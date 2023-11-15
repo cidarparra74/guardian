@@ -1,0 +1,32 @@
+<!----
+-----------------------------------------------------------------------------
+Desarrollado por Victor Rivas 
+-----------------------------------------------------------------------------
+-->
+
+<html>
+<head>
+<!-- la linea de abajo es para mostrar el icono del sitio web   -->
+<LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="-1">
+
+<title>Guardian Pro</title>
+<SCRIPT LANGUAGE="JavaScript">
+function breakOut() 
+{
+if (self.parent.frames.length != 0)
+self.parent.location=document.location.href;
+} 
+breakOut();
+</SCRIPT>
+</head>
+
+<frameset rows="1,*" frameborder="NO" border="0" framespacing="0">
+  <frame src="templates/_cabecera.html" id="HideFrame" border="0" noresize name="menos">
+  <frame src="code/_login.php" id="megaFrame" noresize name="cero">
+</frameset>
+<noframes><body>
+  <a href="code/_login.php">Ingresar</a>
+</body></noframes>
+</html>
