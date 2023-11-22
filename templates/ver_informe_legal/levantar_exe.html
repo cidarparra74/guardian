@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/excepcion.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br />
+
+<form name="adicionar_guardar" method="post" action="{$carpeta_entrar}" onSubmit="des_verificar_formulario()">
+
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="26" class="borde_lista"> 
+          <div align="center">Datos del Cliente</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Cliente :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <b>{$cliente}</b> 
+		</td>
+		<td width="310" nowrap align="right" colspan="2" class="borde_tabla">Informe Legal No {$idp}&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla" valign="middle">Documento :&nbsp;</td>
+         <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$ci_cliente} {$identificacion}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Garant&iacute;a :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <b>{$tipo_bien}</b>
+		</td>
+		<td width="310" nowrap align="right" colspan="2" class="borde_tabla"><img src="../imagenes/pass/{$banderaimg}" border="0"> {$banderatxt}&nbsp;</td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Descripci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$motivo}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="26" class="borde_lista"> 
+          <div align="center">LEVANTAMIENTO DE EXCEPCION</div>
+		</td>
+	</tr>
+      
+	  <tr class="tabla_titulo_contenido"  height="26">
+        <td width="620" colspan="4" class="borde_tabla"><b><u>::&nbsp;Aprobaci&oacute;n</u></b></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;<textarea name="aprobar" id="aprobar" cols="60" rows="5">{$aprobar}</textarea>&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+</table>
+	<table width="600" border="0" class="color_contenido">
+	  <tr>
+		<td width="600" align="center">
+		 	<input type="submit" name="excepcion_boton" value="Guardar" class="boton"> 
+		
+		&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="cancelar_boton" value="Cancelar" class="boton">
+		
+			<input type="hidden" name="idp" value="{$idp}">
+
+		</td>
+      </tr>
+    </table>
+</form>
+<br>
+
+</div>
+
+</body>
+</html>

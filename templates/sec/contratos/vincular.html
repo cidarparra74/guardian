@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/clausulas.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="middle" height="35">
+			<div align="left"> <font class="tabla_titulo_contenido"> 
+Contrato:<br /> <strong>{$tcont}</strong><br /><br />
+Cuando se incluya la cl&aacute;usula siguiente:<br /> <strong>{$tclau}</strong> <br /> incluir tambien las siguientes cl&aacute;usulas:</font> </div>
+		</td>
+		<td width="200" valign="middle" height="35">
+			<div align="right"> <font class="tabla_titulo_contenido"> <a href="{$carpeta_entrar}&idcc={$idco}" class="link_tabla"> 
+          Volver a las Cl&aacute;usulas</a> </font> </div>
+		</td>
+		</tr>
+	</table>
+<br />
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="50"  height="20" valign="middle">&nbsp; Id</td>
+		<td class="borde_lista" width="570" colspan="2" height="20" valign="middle">&nbsp; T&iacute;tulo/Descripci&oacute;n</td>
+	</tr>
+
+	{section name=lista loop=$vinculos}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista" >
+			&nbsp;&nbsp;{$vinculos[lista.index].id} 
+		</td>
+		<td class="borde_lista" >
+			&nbsp;&nbsp;<strong>{$vinculos[lista.index].titulo}</strong> <br />
+			&nbsp;&nbsp;{$vinculos[lista.index].descri} 
+		</td>
+		<td class="borde_lista" ><div align="center">
+			<a href="{$carpeta_entrar}&idcl={$idcl}&idcv={$idco}&quitvinc={$vinculos[lista.index].id}" onMouseOver=" overlib('Quitar vinculo',CAPTION,'Quitar ' ); return true" onMouseOut=" nd(); return true" > 
+			<img src="../imagenes/pass/delete.png" border="0"></a>&nbsp;
+		</div></td>
+	</tr>
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista" colspan="3">No existen clausulas opcionales para vincular</td>
+	</tr>
+	{/section}
+</table>
+<br />
+{if $clausulas}
+<form name="adicion" method="post" action="{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="0" class="borde_lista">
+	<tr>
+		<td  width="620"><div align="center">
+		<select name="idclausula">
+		{section name=lista loop=$clausulas}
+		<option value="{$clausulas[lista.index].id}" >{$clausulas[lista.index].descri}</option>
+		<!-- option value="{$clausulas[lista.index].id}" >------ ({$clausulas[lista.index].descri})</option -->
+		{/section}
+		</select>
+		</div></td>
+	<tr>
+	</tr>
+		<td  width="620"><div align="center">
+			<input type="submit" name="adicvinc" value="Vincular" class="boton"> &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="idcl" value="{$idcl}" >
+			<input type="hidden" name="idcv" value="{$idco}" >
+		</div></td>
+	</tr>
+</table>
+</form>
+{/if}
+<br>
+</div>
+</body>
+</html>

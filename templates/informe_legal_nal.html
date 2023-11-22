@@ -1,0 +1,232 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/informe_legal.js">
+</SCRIPT>
+
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="4" height="20" valign="middle" align="center"> &nbsp;Opciones 
+        de B&uacute;squeda</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Recinto: 
+          :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+			<select name="filtro_almacen" class="input">
+			<option value="*">(todos)</option>
+			{section name=lista loop=$almacenes}
+			<option value="{$almacenes[lista.index].id_almacen}" {if $filtro_almacen == $almacenes[lista.index].id_almacen}selected{/if}>{$almacenes[lista.index].nombre}</option>
+		 	{/section}
+			</select>
+		</td>
+       </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Usuario 
+          :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+			<select name="filtro_usuario" class="input">
+			<option value="*">(todos)</option>
+			{section name=lista loop=$f_usuario}
+			<option value="{$f_usuario[lista.index].id}"{if $filtro_usuario == $f_usuario[lista.index].id} selected{/if}>{$f_usuario[lista.index].usuario}</option>
+			{/section}
+		 	</select>
+		</td>
+ 
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Tipo bi&eacute;n 
+          :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+		 	<select name="filtro_tipo_bien" class="input">
+			<option value="*">(todos)</option>
+			{section name=lista loop=$tiposbien}
+				<option value="{$tiposbien[lista.index].id}" 
+				{if $filtro_tipo_bien == $tiposbien[lista.index].id} selected {/if}
+				>{$tiposbien[lista.index].descri}</option>
+			{/section}
+			
+		 	</select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Cliente 
+          :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="filtro_cliente" value="{$filtro_cliente}" class="input" size="30">
+		</td>
+		<td width="100" nowrap align="right" height="25" valign="middle">C.I.
+          :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="filtro_ci_cliente" value="{$filtro_ci_cliente}" class="input" size="20">
+		</td>
+      </tr>
+	   <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Estado 
+          :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+		 	<select name="filtro_estado" class="input">
+			<option value="3" {if $filtro_estado =='3'}selected{/if}>Solicitados</option>
+			<option value="0"  {if $filtro_estado =='0'}selected{/if}>En elaboraci&oacute;n</option>
+			<option value="1" {if $filtro_estado =='1'}selected{/if}>Publicados</option>
+			</select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">De la fecha :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+		 <input name="filtro_fecha" type="text" class="input" id="filtro_fecha" value="{$filtro_fecha}" size="15" maxlength="10">&nbsp;&nbsp;A la Fecha :&nbsp;<input name="filtro_fech2" type="text" class="input" id="filtro_fech2" value="{$filtro_fech2}" size="15" maxlength="10">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">&nbsp;</td>
+		<td width="520" colspan="3" align="left" valign="middle" height="30">
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton">&nbsp;
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		 <input type="hidden" name="filtro" value="ok">
+		</td>
+      </tr>
+</table>
+</form>
+{if $informes}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		
+      <td width="620" colspan="3" valign="middle" height="20" class="borde_lista"> 
+        Informes Legales {if $filtro_estado =='3'}Pendientes de Aceptación{else}
+		{if $filtro_estado =='0'}en Elaboraci&oacute;n{else}{if $filtro_estado =='1'}Publicados{/if}{/if}{/if}</td>
+	</tr>
+
+	<tr class="tabla_titulo_color">
+	  <td width="20" height="20" valign="middle" class="borde_lista">&nbsp;Nº</td>
+      <td width="600" colspan="2" height="20" valign="middle" class="borde_lista">&nbsp;Cliente</td>
+	</tr>
+	{section name=lista loop=$informes}
+	<tr class="tabla_titulo_contenido">
+		<td width="20" class="borde_lista">&nbsp;{$informes[lista.index].id}</td>
+		<td width="400" class="borde_lista">&nbsp;<strong>{$informes[lista.index].cliente}</strong><br>
+		&nbsp;Bien:&nbsp;{$informes[lista.index].tipo_bien}
+		{if $informes[lista.index].vencidos>0}<a href="{$carpeta_entrar}&hayvencidos=ok&id={$informes[lista.index].id}" class="aviso_rojo">
+		{if $informes[lista.index].vencidos>1}
+		[{$informes[lista.index].vencidos} documentos vencidos!]
+		{else}
+		[{$informes[lista.index].vencidos} documento vencido!]
+		{/if}</a>
+		{/if}
+		<br>&nbsp;Solicita:&nbsp;{$informes[lista.index].usuario}&nbsp;en fecha {$informes[lista.index].sol_fecha}<br>
+		&nbsp;Aceptado por:&nbsp;{$informes[lista.index].usuario_asig}&nbsp;en fecha {$informes[lista.index].ace_fecha}</td>
+		
+      <td width="200" class="borde_lista" align="center"> 
+		{if $filtro_estado =='3'}	
+			<a href="{$carpeta_entrar}&aceptar_informe=acc&id={$informes[lista.index].id}" onMouseOver=" overlib('Aceptar la elaboración de este informe legal',CAPTION,'Aceptar' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/aceptadas.gif" border="0">
+			</a>
+			
+		{else}
+		<table border="0" cellpadding="3" cellspacing="0" align="center">
+		<tr>
+		
+		
+		<td>
+			{if $informes[lista.index].habilitar_informe == 1}
+				<a href="{$carpeta_entrar}&deshabilitar_informe={$informes[lista.index].bien}&id={$informes[lista.index].id}" onMouseOver=" overlib('Quitar la publicación de este informe para los usuarios',CAPTION,'Quitar Publicación' );  return true" onMouseOut=" nd();   return true"> 
+					<img src="../imagenes/pass/rechazado.gif" border="0"></a>
+			{else}
+			{if $con_publicar=='S'}
+				<a href="{$carpeta_entrar}&habilitar_informe={$informes[lista.index].bien}&id={$informes[lista.index].id}" onMouseOver=" overlib('Publicación de este informe para los usuarios',CAPTION,'Publicar' );  return true" onMouseOut=" nd();   return true"> 
+					<img src="../imagenes/pass/solicitud.gif" border="0"></a>
+			{/if}
+			{/if}
+		</td>
+		<td>
+			<a href="{$carpeta_entrar}&imprimir={$informes[lista.index].bien}&id={$informes[lista.index].id}" onMouseOver=" overlib('Impresión de este informe legal',CAPTION,'Impresión' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir_lista.jpg" border="0"></a>
+		</td>
+		<td>
+			<a href="{$carpeta_entrar}&imprimir_segundo={$informes[lista.index].bien}&id={$informes[lista.index].id}" onMouseOver=" overlib('Impresión del 2º informe legal',CAPTION,'Impresión' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir_segundo.jpg" border="0"></a>
+		</td>
+		{if $con_publicar=='S'}
+		<td>
+			<a href="{$carpeta_entrar}&inf_final={$informes[lista.index].bien}&id={$informes[lista.index].id}" onMouseOver=" overlib('Redactar/Editar Informe Legal Final',CAPTION,'I.L.Final' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/editahoja.jpg" border="0"></a>
+		</td>
+		{/if}
+		<td>
+			<a target="_blank" href="{$carpeta_entrar}&ver_detalle={$informes[lista.index].bien}&id={$informes[lista.index].id}" onMouseOver=" overlib('Ver el detalle de fechas de este informe legal',CAPTION,'Detalles' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/detalle.jpg" border="0"></a>
+		</td>
+		{if $informes[lista.index].habilitar_informe == 0}
+		{if $con_publicar=='S'}
+		<td>
+			<a href="{$carpeta_entrar}&modificar={$informes[lista.index].bien}&id={$informes[lista.index].id}" onMouseOver=" overlib('Redactar Informe Legal',CAPTION,'Redactar' ); window.status='Modificación de valores'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/modificar.jpg" border="0"></a>
+		</td>
+		{/if}
+		{/if}
+		{if $informes[lista.index].habilitar_informe == 0}
+		{if $con_publicar=='S'}
+		<td>
+			<a href="{$carpeta_entrar}&eliminar={$informes[lista.index].bien}&id={$informes[lista.index].id}" onMouseOver=" overlib('Eliminación de este Informe Legal',CAPTION,'Eliminar' ); window.status='Eliminación'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0"></a>
+		</td>
+		{/if}
+		{/if}
+		{if $informes[lista.index].habilitar_informe == 0}
+		<td>
+			<a href="{$carpeta_entrar}&cambiarus={$informes[lista.index].bien}&id={$informes[lista.index].id}" onMouseOver=" overlib('Reasignar este Informe Legal a otro usuario',CAPTION,'Reasignar' ); window.status='Cambiar este I.L. a otro usuario'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/reasigna.jpg" border="0"></a>
+		</td>
+		{/if}
+		{if $conexcepcion[lista.index] != ""}
+		<td>
+			<a href="{$carpeta_entrar}&excepcion={$informes[lista.index].bien}&id={$informes[lista.index].id}" onMouseOver=" overlib('Ver estado de excepciones',CAPTION,'Excepción' ); window.status='Ver detalle de excepciones a este I.L.'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/excepcion.jpg" border="0"></a>
+		</td>
+		{/if}
+		</tr>
+		</table>
+		{/if}
+		</td>
+	</tr>
+	{/section}
+</table>
+{/if}
+<br><br>{if $enable_ilsin == 1}
+<!-- table width="620" cellspacing="0" border="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+      <td width="620" align="center">&nbsp;Adici&oacute;n de I.L. sin recepci&oacute;n</td>
+	</tr>
+	<tr class="tabla_titulo_contenido">
+		<td width="620" align="center"><br>
+			<form name="adicion" method="post" action="../code/_main.php?action=informe_legal.php" onSubmit="validar_bien()">
+				Adicionar I.L.:&nbsp;&nbsp;
+				<select name="acc_tipo_bien" class="input">
+					<option value="*">--------</option>
+				{section name=lista loop=$tiposbien}
+					<option value="{$tiposbien[lista.index].id}">{$tiposbien[lista.index].descri}</option>
+				{/section}
+				</select>&nbsp;&nbsp;
+				<input type="submit" name="adicionar" value="Adicionar" class="boton">
+				<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			</form>
+		</td>
+	</tr>
+</table -->{/if}
+</div>
+<br>
+
+<br><br>
+</body>
+</html>

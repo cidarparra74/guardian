@@ -1,0 +1,475 @@
+<html>
+<head>
+<script language="javascript" src="../scripts/modalpopups.js"></script>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/informe_legal_pj.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_documentos_cal.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+<script language="JavaScript" src="../scripts/comun.js" type="text/JavaScript"></script>
+<script type="text/javascript" language="javascript" src="../scripts/XHConn.js"></script>
+
+<title>-</title>
+
+<script>
+{literal}
+var myConn = new XHConn();
+
+if (!myConn) alert("XMLHTTP no disponible! Intente con otro navegador.");
+
+{/literal}
+
+</script>
+
+</head>
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_formulario()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<table width="650" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="450" valign="bottom" height="20">
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=informe_legal.php" class="link_tabla">
+				Volver a lista de Informes
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+
+	</table>
+<form name="formulario" method="post" action="../code/_main.php?action=informe_legal.php" onSubmit="return verificar_formulario()">
+<table width="650" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="650" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            {if $isblank == '1'}Adici&oacute;n de Nuevo{else}Modificaci&oacute;n del{/if} Informe Legal ({$bien})</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	 
+	  <tr class="tabla_titulo_contenido" height="30"> 
+        <td width="115" nowrap align="right" class="borde_tabla">Entregar a :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <select name="usuario_comun" class="input">
+			{section name=lista loop=$f_ids_usuario}
+			<option value="{$f_ids_usuario[lista.index]}" {if $id_us_comun == $f_ids_usuario[lista.index]}selected{/if}>{$f_usuario[lista.index]}</option>				
+			{/section}
+		 </select>
+		</td>
+		<td width="115" nowrap align="right" class="borde_tabla">N&uacute;mero I.L. :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <input type="text" value="{$numero_informe}" name="numero_informe" class="input_derecha" size="12" maxlength="20" readonly>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        
+		<td width="115" nowrap align="right" class="borde_tabla" valign="middle">NIT :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		<input type="text" name="ci_cliente" value="{$ci_cliente}" id="ci_cliente" maxlength="25" class="input" size="15" {if $isblank == '0'}readonly{/if}>
+		&nbsp;{if $isblank == '1'}&nbsp;
+		 <a href="javascript:void(0)" onClick="return buscarnit('ci_cliente')" onMouseOver=" overlib('Buscar doc. cliente',CAPTION,'Buscar' );  " onMouseOut=" nd();   return true">
+			<img src="../imagenes/pass/find.png" border="0"></a>&nbsp;{if $enable_prop=='S'}
+		  <a href="javascript:void(0)" onClick="javascript:wdPedirDatos(1)" onMouseOver=" overlib('Adicionar cliente',CAPTION,'Nuevo' );  " onMouseOut=" nd();   return true">
+			<img src="../imagenes/pass/user_add.png" border="0"></a>&nbsp;{/if}{/if}
+		<input type="hidden" name="id_propietari1" id="id_propietari1" {if $isblank == '1'}value="0"{else}value="{$id_propietario}"{/if}>
+		</td>
+		<td width="115" nowrap align="right" class="borde_tabla" valign="middle">{if $nrocaso!=''}N&uacute;mero :{/if}&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">{if $nrocaso!=''}<input type="text" value="{$nrocaso}" name="nrocaso" class="input_derecha" size="12" maxlength="20" readonly>{/if}&nbsp;
+		</td>
+	  </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="115" nowrap align="right" class="borde_tabla">Raz&oacute;n Social :&nbsp;</td>
+        <td width="535" align="left" class="borde_tabla"  colspan="3">
+		 <input type="text" name="cliente" id="cliente" value="{$cliente}" maxlength="250" class="input" size="80" readonly>
+		</td>
+	  </tr>
+
+	<tr class="tabla_titulo_contenido"> 
+        <td width="115" class="borde_tabla" align="right">Descripci&oacute;n :&nbsp; </td>
+		<td width="535" colspan="3" class="borde_tabla"><input type="text" name="motivo" value="{$motivo}" maxlength="250" class="input" size="80"></td>
+     </tr>
+	<tr class="tabla_titulo_contenido"> 
+	  	<td width="115" nowrap align="right" class="borde_tabla">&nbsp;</td>
+		 <td width="535" colspan="3" nowrap align="left" class="borde_tabla">Ultima&nbsp;modificaci&oacute;n:&nbsp;<input type="text" name="fechaold" value="{$fechaold}" maxlength="12" class="input" size="12" readonly onMouseOver=" overlib('Ultima modificación del Informe Legal', CAPTION,'Fecha' ); return true" onMouseOut=" nd();   return true"><input type="hidden" name="fecha" value="{$fecha}" id="fecha">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+
+	<tr class="tabla_titulo_color">
+		<td width="650" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Datos Generales de la Personer&iacute;a Jur&iacute;dica<a name="acc2"></a> </div>
+		</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">
+		
+	  <table width="650" border="0" cellpadding="0" cellspacing="0">
+
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="170" nowrap align="right" class="borde_tabla" valign="top">Tipo :&nbsp;</td>
+        <td width="480" align="left" class="borde_tabla" valign="top">
+		 <select name="tipo_sociedad" class="input" id="tipo_sociedad">
+			{section name=lista loop=$sociedades}
+			<option value="{$sociedades[lista.index].id}" {if $tipo_sociedad == $sociedades[lista.index].id}selected{/if}>{$sociedades[lista.index].sociedad}</option>
+			{/section}
+		 </select>
+		 </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="2" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td nowrap align="right" class="borde_tabla" valign="top">Objeto Social :&nbsp;</td>
+        <td align="left" class="borde_tabla" valign="top">
+		 <textarea name="actividad" cols="75" rows="2" class="input" id="actividad">{$actividad}</textarea>
+		 </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="2" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td nowrap align="right" class="borde_tabla" valign="top">Duraci&oacute;n :&nbsp;</td>
+        <td align="left" class="borde_tabla" valign="top">
+		 <input type="text" name="duracion" id="duracion" value="{$duracion}" maxlength="40" class="input" size="30">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fecha Vencimiento: <input type="text" name="fecha_vence" id="fecha_vence" value="{$fecha_vence}" maxlength="12" class="input" size="12"></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="2" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td nowrap align="right" class="borde_tabla" valign="top">Domicilio :&nbsp;</td>
+        <td align="left" class="borde_tabla" valign="top">
+		 <textarea name="direccion" cols="75" rows="2" class="input" id="direccion">{$direccion}</textarea>
+		 </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="2" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td nowrap align="right" class="borde_tabla" valign="top"><br />N&oacute;mina Directores :&nbsp;</td>
+        <td align="left" class="borde_tabla" valign="top">
+		
+		<table width="470" id="tblDetalle" class="listado">
+		<thead>
+			<tr>
+				<th width="200" class="borde_tabla" align="left">Nombre</th>
+				<th width="180" class="borde_tabla" align="left">Cargo</th>
+				<th width="80"  class="borde_tabla" align="left">C.I.</th>
+				<!-- th width="40"  class="borde_tabla" align="left">&nbsp;</th -->
+			</tr>
+		</thead>{assign var="indice" value=0}
+		<tbody id="tbDetalle">
+		{section name=lista loop=$nomina}
+			{assign var="indice" value=$smarty.section.lista.index+1}
+		<tr id="rowDetalle_{$indice}">
+		<td><input type="text" name="hdnNom[]" id="hdnNom_{$indice}" value="{$nomina[lista.index].nombre}" maxlength="50" class="input" size="30"></td>
+		<td><input type="text" name="hdnCar[]" id="hdnCar_{$indice}" value="{$nomina[lista.index].cargo}" maxlength="50" class="input" size="26"></td>
+		<td><input type="text" name="hdnCi[]" id="hdnCi_{$indice}" value="{$nomina[lista.index].ci}" maxlength="20" class="input" size="10"></td>
+		<!-- td><img src="../images/actions/delete.png" width="16" height="16" onMouseOver=" overlib('Eliminar esta persona',CAPTION,'Eliminar' ); return true" onMouseOut=" nd(); return true"/>
+		<img src="../imagenes/pass/edit.png" border="0" onMouseOver=" overlib('Modificar datos de esta persona',CAPTION,'Modificar' ); return true" onMouseOut=" nd(); return true"></td -->
+		</tr>
+		{/section}
+		{assign var="indice" value=$indice+1}
+		<tr id="rowDetalle_{$indice}">
+		<td><input type="text" name="hdnNom[]" id="hdnNom_{$indice}" value="" maxlength="50" class="input" size="30"></td>
+		<td><input type="text" name="hdnCar[]" id="hdnCar_{$indice}" value="" maxlength="50" class="input" size="26"></td>
+		<td><input type="text" name="hdnCi[]" id="hdnCi_{$indice}" value="" maxlength="20" class="input" size="10"></td>
+		<!-- td><img src="../images/actions/delete.png" width="16" height="16" onMouseOver=" overlib('Eliminar esta persona',CAPTION,'Eliminar' ); return true" onMouseOut=" nd(); return true"/>
+		<img src="../imagenes/pass/edit.png" border="0" onMouseOver=" overlib('Modificar datos de esta persona',CAPTION,'Modificar' ); return true" onMouseOut=" nd(); return true"></td -->
+		</tr>
+		</tbody>
+		</table><input type="hidden" id="filas" name="filas" value="{$indice}" />
+		<div align="right"><input type="button" id="btnAgregar" name="btnAgregar" value="Agregar Fila" class="boton" onclick="agregarFila(document.getElementById('filas'));" />&nbsp;&nbsp;&nbsp;</div>
+		 </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="2" class="borde_tabla">&nbsp;</td>
+      </tr>
+	 <tr class="tabla_titulo_contenido"> 
+        <td nowrap align="right" class="borde_tabla" valign="top">Nro Matr&iacute;cula :&nbsp;</td>
+        <td align="left" class="borde_tabla" valign="top">
+		 <input type="text" name="matricula" id="matricula" value="{$matricula}" maxlength="40" class="input" size="30"> &nbsp;&nbsp;&nbsp;&nbsp;Fecha Vencimiento:&nbsp;<input type="text" name="fecha_matri" id="fecha_matri" value="{$fecha_matri}" maxlength="12" class="input" size="12">
+		 </td>
+      </tr>
+ 
+	 <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="2" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td nowrap align="right" class="borde_tabla" valign="top">Escritura Constituci&oacute;n :&nbsp;</td>
+        <td align="left" class="borde_tabla" valign="top">
+		 <input type="text" name="nro_escritura" id="nro_escritura" value="{$nro_escritura}" maxlength="40" class="input" size="30">&nbsp;&nbsp;&nbsp;&nbsp;Fecha Escritura :&nbsp;<input type="text" name="fecha_escri" id="fecha_escri" value="{$fecha_escri}" maxlength="12" class="input" size="12">
+		 </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="2" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td nowrap align="right" class="borde_tabla" valign="top">Notario :&nbsp;</td>
+        <td align="left" class="borde_tabla" valign="top">
+		 <input type="text" name="notario" id="notario" value="{$notario}" maxlength="200" class="input" size="70">
+		 </td>
+      </tr>
+
+	  </table>
+	  
+	  </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_color">
+		<td width="650" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Poderes de Administraci&oacute;n<a name="acc2"></a> </div>
+		</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" align="left" class="borde_tabla" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <a href="../code/_main.php?action=informe_legal.php&poderes={$numero_informe}&idp=0" target="_blank"><img src="../images/actions/add.png" border="0"> Adicionar Poder</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="document.formulario.volver.value = 'S'; document.formulario.submit();" ><img src="../images/actions/refresh.png" border="0"> Actualizar lista</a><br />
+		 <br /><input type="hidden" name="volver" value="N"><input type="hidden" name="idpoder" value="">
+		 </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla" align="center">
+		<table width="550" id="tblDetalle" class="listado">
+		<thead>
+			<tr>
+				<th width="100" class="borde_tabla" align="left">N&uacute;mero</th>
+				<th width="100" class="borde_tabla" align="left">Fecha</th>
+				<th width="290"  class="borde_tabla" align="left">Documentos</th>
+				<th width="30"  class="borde_tabla" align="left">ELI</th>
+				<th width="30"  class="borde_tabla" align="left">MOD</th>
+			</tr>
+		</thead>
+		<tbody id="tbDetalle">
+		{section name=lista loop=$poderes}
+		<tr >
+		<td>{$poderes[lista.index].numero}</td>
+		<td>{$poderes[lista.index].fecha}</td>
+		<td>{$poderes[lista.index].fojas} hojas, {$poderes[lista.index].tipo}</td>
+		<td><a href="javascript:void(0);" onclick="eliminar_poder_confirmar({$poderes[lista.index].id}, document.formulario);"><img src="../images/actions/delete.png" border="0" onMouseOver=" overlib('Eliminar este poder',CAPTION,'Eliminar' ); return true" onMouseOut=" nd(); return true"/></a></td>
+		<td><a href="../code/_main.php?action=informe_legal.php&poderes={$numero_informe}&idp={$poderes[lista.index].id}" target="_blank"><img src="../imagenes/pass/edit.png" border="0" onMouseOver=" overlib('Modificar datos de este poder',CAPTION,'Modificar' ); return true" onMouseOut=" nd(); return true"></a></td>
+		</tr>
+		{/section}
+		</tbody>
+		</table>
+	</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+</table>
+<table width="650" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="650" colspan="7" valign="middle" height="30" class="borde_lista">
+		<table width="650" border="0" cellpadding="0" cellspacing="0">
+		<tr class="tabla_titulo_color">
+		<td width="410" colspan="4" >&nbsp;* Documentaci&oacute;n Requerida
+		</td>
+		<td width="200" colspan="3" ><div align="right">
+		NO Tomar en cuenta&nbsp;<img src="../imagenes/pass/accept.jpg" border="0"></div>
+		</td>
+        </tr>
+		</table>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+		<td width="270" valign="middle" height="30" class="borde_lista">
+		<div align="left"> Documento</div>
+		</td>
+		<td width="50" valign="middle" height="30" class="borde_lista" align="right">
+		<div align="left"> N&ordm;</div>
+		</td>
+		<td width="60"  valign="middle" height="30" class="borde_lista">
+		<div align="left"> Fecha</div>
+		</td>
+		<td width="60" valign="middle" height="30" class="borde_lista">
+		<div align="left"> Fecha Venc.</div>
+		</td>
+		<td width="150" valign="middle" height="30" class="borde_lista">
+		<div align="left"> Tipo</div>
+		</td>
+		<td width="35" valign="middle" height="30" class="borde_lista" align="right">
+		<div align="left"> Fs.</div>
+		</td>
+		<td width="25" valign="middle" height="30" class="borde_lista">
+		<div align="center"><img src="../imagenes/pass/accept.jpg" border="0">
+          </div>
+		</td>
+	</tr>
+   
+	  {section name=lista loop=$docus}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="270" nowrap align="left" class="borde_nada" valign="top">
+			{$docus[lista.index].documento}&nbsp;
+			<input type="hidden" name="documento_id[]" value="{$docus[lista.index].id_documento}">
+		</td>
+		<td width="50" nowrap align="left" class="borde_nada" valign="top">
+			{if $docus[lista.index].con_numero == 1}
+			<input type="text" name="numero[]" class="input_derecha" size="10" value="{$infor[lista.index].numero}">
+			{else}
+			<input type="hidden" name="numero[]" value="0">
+			{/if}
+		</td>
+		<td width="60" nowrap align="left" class="borde_nada" valign="top">
+			{if $docus[lista.index].tiene_fecha == 1}
+				{if $docus[lista.index].vencimiento == 1}
+					<input type="text" name="fecha_{$smarty.section.lista.index}" class="input_derecha" size="12" 
+					value="{$infor[lista.index].fechas}" 
+					onKeyUp="colocar_fecha_vencimiento( fecha_{$smarty.section.lista.index}, 
+								vencim_{$smarty.section.lista.index}, 
+								fecha_venc{$smarty.section.lista.index}, 
+								obs_{$smarty.section.lista.index})">
+					<input type="hidden" name="vencim_{$smarty.section.lista.index}" value="{$docus[lista.index].meses_vencimiento}">
+				{else}
+					<input type="text" name="fecha_{$smarty.section.lista.index}" class="input_derecha" size="12" value="{$infor[lista.index].fechas}" onKeyUp="colocar_fecha(fecha_{$smarty.section.lista.index})">
+				{/if}
+			{else}
+				&nbsp;
+			{/if}
+		</td>
+		<td width="60 nowrap align="left" class="borde_nada" valign="top">
+			{if $docus[lista.index].vencimiento == 1}
+				<input type="text" name="fecha_venc{$smarty.section.lista.index}" class="input_derecha" size="12" value="{$infor[lista.index].fechas_vencimiento}" onKeyUp="colocar_fecha(fecha_venc{$smarty.section.lista.index})">
+			{else}
+				&nbsp;
+			{/if}
+		</td>
+		<td width="150" nowrap align="left" class="borde_nada" valign="top">
+			<select name="tipo_documento[]" class="input" {if $enable_ws=='N'}onchange="vervalor(this,{$smarty.section.lista.index})"{/if}>
+				<option value="0">-----</option>
+				{section name=lista2 loop=$tipodocs}
+					<option value="{$tipodocs[lista2.index].id}" {if $infor[lista.index].ids_tipo_documento == $tipodocs[lista2.index].id}selected{/if}>{$tipodocs[lista2.index].tipo}</option>
+				{/section}
+			</select>
+		</td>
+		<td width="35" nowrap align="left" class="borde_nada" valign="top">
+			<input type="text" name="fojas{$smarty.section.lista.index}" value="{$infor[lista.index].fojas}" class="input_derecha" size="3" onKeyUp="validar_numeros(fojas{$smarty.section.lista.index}, 100)">
+		</td>
+		<td width="25" nowrap class="borde_nada" valign="top"><div align="center">
+				<input type="checkbox" name="tomar_{$smarty.section.lista.index}" class="input" {if $infor[lista.index].NO_tomar_en_cuenta == 1}checked{/if}>
+			</div>
+		</td>
+	  </tr>
+    <tr class="tabla_titulo_contenido">
+		<td width="270" valign="middle" height="30" class="borde_nada" align="right">
+		Obs:</td>
+        <td valign="middle" height="30" class="borde_nada" colspan="6">
+		<div align="left">
+		<textarea name="obs_{$smarty.section.lista.index}" class="input" rows="2" cols="65">{$infor[lista.index].observaciones}</textarea>
+		</div>
+		</td>
+    </tr>
+	  <tr >
+        <td width="650" colspan="7" class="il_separa"></td>
+      </tr>
+	  {/section}
+</table>
+
+
+<table width="650" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+
+	<tr class="tabla_titulo_color">
+		<td width="650" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Otras Observaciones </div>
+		</td>
+	  </tr>
+	
+      <tr class="tabla_titulo_contenido">
+        <td width="650" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido">
+        <td width="650" colspan="4" class="borde_tabla">
+		&nbsp;
+          <textarea name="otras_observaciones" cols="98" rows="10" class="input" id="otras_observaciones">{$otras_observaciones}</textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="650" colspan="4" class="borde_tabla">&nbsp;</td>
+    </tr>
+	
+	<tr class="tabla_titulo_color">
+		<td width="650" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Conclusiones</div>
+		</td>
+	  </tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">
+		&nbsp;
+          <textarea name="conclusiones" cols="98" rows="3" class="input" id="conclusiones">{$conclusiones}</textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">Indique el estado final del informe legal:&nbsp;
+		<select name="bandera" class="input">
+				<option value="" >-----</option>
+				
+	{if $il_estado[0]}<option value="r" {if $bandera eq "r"}selected="selected"{/if}>{$il_estado[0]}</option>{/if}
+	{if $il_estado[1]}<option value="a" {if $bandera eq "a"}selected="selected"{/if}>{$il_estado[1]}</option>{/if}
+	{if $il_estado[2]}<option value="v" {if $bandera eq "v"}selected="selected"{/if}>{$il_estado[2]}</option>{/if}
+	{if $il_estado[3]}<option value="z" {if $bandera eq "z"}selected="selected"{/if}>{$il_estado[3]}</option>{/if}
+			</select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">&nbsp;</td>
+    </tr>
+</table>
+
+
+	<table width="650" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="650" colspan="2">&nbsp;</td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="modificar_boton" value="Guardar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="modificar_boton_x" value="{$tipo_bien}">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="tipo_bien" value="{$tipo_bien}">
+			<input type="hidden" name="estado_formulario" value="modificar">
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="cantidad_documentos" value="{$cantidad_documentos}">
+			<input type="hidden" name="id_tipo_bien" value="{$id_tipo_bien}">
+			<input type="hidden" name="p_lista_personas" value="">
+			<input type="hidden" name="p_lista_titular" value="">
+          </div></td>
+</form>	
+
+<form name="adicionar_cancelar" method="post" action="../code/_main.php?action=informe_legal.php" onSubmit="des_verificar_formulario()">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		<input type="hidden" name="estado_formulario" value="modificar">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+<br>
+</body>
+</html>

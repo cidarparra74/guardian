@@ -1,0 +1,73 @@
+<html>
+<head>
+<title></title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/comun.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br>
+ <table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">&nbsp;</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=adm/personas.php" class="link_tabla">
+				Volver a lista de personas
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<td width="420" class="tabla_titulo_contenido">&nbsp;Nombre: {$nombres}</td>
+		<td width="200" >&nbsp;</td>
+		</tr>
+	</table>
+ 
+<form name="adicion" method="post" action="../code/_main.php?action=adm/personas.php">
+<!---  TABLA PARA EL LISTADO  --->
+<table width="520" cellpadding="0" cellspacing="0" border="0" align="center" class="borde_lista">
+ {assign var="lugar_grupo" value="xxx"}
+  {section name=lista loop=$listaofis}
+  {if $listaofis[lista.index].almacen <> $lugar_grupo}	
+  <tr class="tabla_titulo_color">
+	<td width="480">&nbsp;{$listaofis[lista.index].almacen}</td>
+	<td width="40" align="center">Asignar</td>
+  </tr>{assign var="lugar_grupo" value=$listaofis[lista.index].almacen}
+  {/if}
+  <tr class="tabla_titulo_contenido">
+	<td width="480" class="borde_lista">&nbsp;&nbsp;&nbsp;{$listaofis[lista.index].nombre}</td>
+	<td width="40" align="center" class="borde_lista"><input type="checkbox" name="opcion[]" value="{$listaofis[lista.index].id}" {if $listaofis[lista.index].tiene=='1'}CHECKED{/if}>&nbsp;</td>
+  </tr>
+  {sectionelse}
+   <tr>
+    <td colspan="2" class="borde_lista">&nbsp;No existen registros para mostrar!</td>
+  </tr>
+  {/section}
+ </table>
+ <br>
+ <table width="620" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="620"><div align="center">
+			<input type="submit" name="ofis_boton" value="Guardar y Salir" class="boton">
+			<!-- input name="cancela" type="button" value="Volver" class="boton" onclick='javascript:enviaform("frmVolver")' / -->
+			<input name="id" type="hidden" value="{$id}" />
+		</div></td>
+	</tr>
+</table>
+ 
+ </form>
+ 
+<form name="frmVolver" id="frmVolver" action="../code/_main.php?action=adm/personas.php">
+	<input name="id" type="hidden" value="{$id}" />
+</form>
+</div>
+</body>
+</html>

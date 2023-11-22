@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_mensajes.js">
+</SCRIPT>
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="../code/_main.php?action=excepciones.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="4" height="20" valign="middle" align="center"> &nbsp;Opciones 
+        de B&uacute;squeda</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Responsable 
+          :&nbsp;</td>
+        <td width="520" colspan="3" align="left" valign="middle">
+			{if $f_id_responsable == "ninguno"}
+			<select name="filtro_responsable" class="input">
+				<option value="ninguno">------</option>
+				{section name=lista loop=$f_ids_responsable}
+					<option value="{$f_ids_responsable[lista.index]}">{$f_responsable[lista.index]}</option>
+				{/section}
+		 	</select>
+			{else}
+			<select name="filtro_responsable" class="input">
+				<option value="ninguno">------</option>
+				{section name=lista loop=$f_ids_responsable}
+					{if $f_id_responsable == $f_ids_responsable[lista.index]}
+						<option selected value="{$f_ids_responsable[lista.index]}">{$f_responsable[lista.index]}</option>
+					{else}
+						<option value="{$f_ids_responsable[lista.index]}">{$f_responsable[lista.index]}</option>
+					{/if}
+				{/section}
+		 	</select>
+			{/if}
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Tipo 
+          :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+			{if $f_tipo == "ninguno"}
+			<select name="filtro_tipo" class="input">
+				<option value="ninguno">-----------</option>
+				<option value="pendientes">Pendientes</option>
+				<option value="regularizados">Regularizados</option>
+		 	</select>
+			{else}
+			<select name="filtro_tipo" class="input">
+				<option value="ninguno">------</option>
+					{if $f_tipo == "pendientes"}
+						<option selected value="pendientes">Pendientes</option>
+						<option value="regularizados">Regularizados</option>
+					{else}
+						<option value="pendientes">Pendientes</option>
+						<option selected value="regularizados">Regularizados</option>
+					{/if}
+		 	</select>
+			{/if}
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" align="center" valign="middle" height="30">
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton">&nbsp;
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+<br>
+{if $ids_de[0] != null}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="9" height="20" valign="middle" class="borde_lista" align="left">&nbsp;Documentos 
+        con Excepciones</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+	  <td width="220" height="20" valign="middle" class="borde_lista">&nbsp;Cliente</td>
+	  <td width="120" height="20" valign="middle" class="borde_lista">&nbsp;Documento</td>
+	  <td width="180" height="20" valign="middle" class="borde_lista">&nbsp;Nota</td>
+	  <td width="80" height="20" valign="middle" class="borde_lista">&nbsp;Plazo</td>
+	  <td width="60" colspan="2" height="20" valign="middle" class="borde_lista">&nbsp;D&iacute;as</td>
+	</tr>
+
+	{section name=lista loop=$ids_de}
+	<tr class="tabla_titulo_contenido">
+      <td width="220" class="borde_lista" valign="top">&nbsp;{$cliente[lista.index]} <br><strong>Responsable :</strong>{$responsable[lista.index]}</td>
+      <td width="120" class="borde_lista" valign="top">&nbsp;{$documento[lista.index]} 
+      </td>
+	  <td width="180" class="borde_lista" valign="top">{$nota[lista.index]}
+      </td>
+		<td width="80" class="borde_lista" valign="top">{$plazo[lista.index]}</td>
+		<td width="40" class="borde_lista" valign="top">
+			&nbsp;
+			{if $dias[lista.index] >=0}
+				{$dias[lista.index]}
+			{else}
+				<font color="#FF0000"><strong>{$dias[lista.index]}</strong></font>
+			{/if}
+		</td>
+		
+		<td width="20" class="borde_lista"><div align="center">
+			{if $estado[lista.index] == "vigente"}
+			<a href="{$carpeta_entrar}&regularizar=acc&id={$ids_de[lista.index]}" onMouseOver=" overlib('Regularizar este docuemnto',CAPTION,'Regularizar' , ABOVE); window.status='Detalles'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/aceptadas.gif" border="0">
+			</a>
+			{else}
+				&nbsp;
+			{/if}
+		</div></td>
+	</tr>
+	{/section}
+</table>
+{/if}
+<br><br>
+
+</div>
+</body>
+</html>

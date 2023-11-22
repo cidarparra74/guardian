@@ -1,0 +1,158 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/informe_legal.js">
+</SCRIPT>
+
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="../code/_main.php?action=ver_informe_legal.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="4" height="20" valign="middle" align="center">&nbsp;Opciones 
+        de B&uacute;squeda</td>
+	</tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Cliente 
+          :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="filtro_cliente" value="{$f_cliente}" class="input" size="30">
+		</td>
+		<td width="100" nowrap align="right" height="25" valign="middle">C.I. 
+          :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="filtro_ci_cliente" value="{$f_ci_cliente}" class="input" size="20">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+		<td width="100" >&nbsp;</td>
+          <td colspan="3" align="left" valign="middle" height="30">
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton">&nbsp;
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td  colspan="5" height="20" valign="middle" class="borde_lista">
+			Solicitudes de Informes Legales/Archivo Pendientes de Autorizaci&oacute;n</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+	  <td width="20" height="20" valign="middle" class="borde_lista">&nbsp;Nº</td>
+      <td width="150" height="20" valign="middle" class="borde_lista">&nbsp;Cliente</td>
+	  <td width="150" height="20" valign="middle" class="borde_lista" nowrap>&nbsp;Tipo Bien</td>
+	  <td width="175" height="20" valign="middle" class="borde_lista">&nbsp;Us. Com&uacute;n</td>
+	  <td width="125" height="20" valign="middle" class="borde_lista">&nbsp;Fechas</td>
+	</tr>
+	{section name=lista loop=$sol_informe_legal}
+	<tr class="tabla_titulo_contenido">
+		<td width="20" nowrap class="borde_lista">
+			&nbsp;{$sol_informe_legal[lista.index].id_informe_legal}
+		</td>
+		<td width="150" class="borde_lista">
+			&nbsp;{$sol_informe_legal[lista.index].cliente}
+		</td>
+		<td width="150" class="borde_lista">
+			&nbsp;{$sol_informe_legal[lista.index].tipo_bien}<br>Nro: {$sol_informe_legal[lista.index].nro_bien}
+		</td>
+		
+		<td width="175" class="borde_lista">
+			&nbsp;{$sol_informe_legal[lista.index].nombreus}<br>
+			Obs: {$sol_informe_legal[lista.index].motivo}
+		</td>
+		<td width="125" class="borde_lista">
+			Reg:&nbsp;{$sol_informe_legal[lista.index].fecha1}<br>
+			Sol:&nbsp;{$sol_informe_legal[lista.index].fecha2}
+		</td>
+	</tr>
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td  colspan="6" height="20" valign="middle" class="borde_lista">
+			*** No hay datos para mostrar ***
+		</td>
+	</tr>
+	{/section}
+</table>
+<br><br>
+<table width="670" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="670" colspan="8" height="20" valign="middle" class="borde_lista">
+			Publicaciones de Informes Legales
+		</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+	  <td width="40" height="20" valign="middle" class="borde_lista">&nbsp;Nº</td>
+      <td width="160" height="20" valign="middle" class="borde_lista">&nbsp;Cliente</td>
+	  <td width="470" height="20" colspan="2" valign="middle" class="borde_lista">&nbsp;Datos de la  solicitud</td>
+	</tr>
+	{section name=lista loop=$pub_informe_legal}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista">
+			&nbsp;{$pub_informe_legal[lista.index].id}
+		</td>
+		<td class="borde_lista">
+		<img src="../imagenes/pass/{$pub_informe_legal[lista.index].icono}" border='0'>&nbsp;{$pub_informe_legal[lista.index].cliente}
+		</td>
+		<td width="320" class="borde_lista">
+			&nbsp;{$pub_informe_legal[lista.index].tipo_bien}<br>
+			&nbsp;Nro. Bien: <b>{$pub_informe_legal[lista.index].nrobien}</b><br>
+			&nbsp;Solicitante: <b>{$pub_informe_legal[lista.index].usuario}</b>
+		</td>
+		<td width="150" class="borde_lista" align="left">&nbsp;
+			<a target="_blank" href="{$carpeta_entrar}&ver_detalle=acc&id={$pub_informe_legal[lista.index].id}" onMouseOver=" overlib('Ver el detalle de fechas de este informe legal',CAPTION,'Detalles' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/detalle.jpg" border="0"></a>
+		
+			<a href="{$carpeta_entrar}&modificar=acc&id={$pub_informe_legal[lista.index].id}" onMouseOver=" overlib('Ver/Cambiar los documentos recepcionados',CAPTION,'Ver' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/modificar.jpg" border="0"></a>
+		
+			<a href="{$carpeta_entrar}&imprimir_recepcion={$pub_informe_legal[lista.index].bien}&id={$pub_informe_legal[lista.index].id}" onMouseOver=" overlib('Impresión de documentos recepcionados',CAPTION,'Impresión' );  return true" onMouseOut=" nd();   return true"> 
+					<img src="../imagenes/pass/imprimir_lista.jpg" border="0"></a>
+		
+			{if $pub_informe_legal[lista.index].habilitar_informe == 1}
+				<a href="{$carpeta_entrar}&imprimir={$pub_informe_legal[lista.index].bien}&id={$pub_informe_legal[lista.index].id}" onMouseOver=" overlib('Impresión de este informe legal',CAPTION,'Impresión' );  return true" onMouseOut=" nd();   return true"> 
+					<img src="../imagenes/pass/imprimir_lista.jpg" border="0"></a>
+				
+				<a href="{$carpeta_entrar}&imprimirIL={$pub_informe_legal[lista.index].bien}&id={$pub_informe_legal[lista.index].id}" onMouseOver=" overlib('Impresión del Informe Final',CAPTION,'Impresión' );  return true" onMouseOut=" nd();   return true"> 
+					<img src="../imagenes/pass/imprimir_lista.jpg" border="0"></a>
+			{else}
+				<a href="#" onMouseOver=" overlib('Informe en Proceso de elaboración',CAPTION,'Estado' );  return true" onMouseOut=" nd();   return true"> 
+					<img src="../imagenes/pass/rechazado.gif" border="0"></a>	
+			{/if}
+			
+			{if $conexcepcion[lista.index] != ""}
+			<a href="{$carpeta_entrar}&excepcion=acc&id={$pub_informe_legal[lista.index].id}" onMouseOver=" overlib('Registro de excepciones',CAPTION,'Excepción' ); return true" onMouseOut=" nd();   return true">
+				{if $conexcepcion[lista.index] == "OBS"}
+				<img src="../imagenes/pass/eye.gif" border="0"></a>
+				{else}
+				<img src="../imagenes/pass/excepcion.jpg" border="0"></a>
+				{/if}
+			{else}&nbsp;
+			{/if}
+			{if $pub_informe_legal[lista.index].bandera == 'v' && $enable_ws=='S' && $pub_informe_legal[lista.index].contrato=='s'}
+				<a href="{$carpeta_entrar}&solcontra=acc&id={$pub_informe_legal[lista.index].id}" onMouseOver=" overlib('Elaboración de Contrato',CAPTION,'Solicitud' );  return true" onMouseOut=" nd();  return true" onClick='return confirm("Seguro de solicitar el contrato?")'> 
+					<img src="../imagenes/pass/foldercafe.png" border="0"></a>
+			{/if}
+		</td>
+	</tr>
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td  colspan="4" height="20" valign="middle" class="borde_lista">
+			*** No hay datos para mostrar. Utilice las opciones de b&uacute;squeda ***
+		</td>
+	</tr>
+	{/section}
+</table>
+
+</div>
+<br>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/tipos_bien.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br>
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		
+      <td class="borde_lista" width="450" height="20" valign="middle"> 
+        &nbsp;Tipo de {if $cat == '0'}Bien{else}Producto{/if}</td>
+		<td class="borde_lista" width="170" colspan="3" height="20" valign="middle"> 
+        &nbsp;I.L.?</td>
+	</tr>{assign var="cabeza" value='0'}
+	
+	{section name=lista loop=$tiposbien}
+	{if $tiposbien[lista.index].codigo != $cabeza}		
+		{assign var="cabeza" value=$tiposbien[lista.index].codigo}
+
+	<tr class="tabla_titulo_color">
+	<td class="borde_lista" colspan="4" height="20" valign="middle"> 
+        &nbsp;{$tiposbien[lista.index].banca}</td>
+
+	</tr>
+	{/if}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista" width="450">
+			&nbsp;
+			<a class="tabla_titulo_contenido" href="../code/_main.php?action=adm/tipos_bien.php&documentos=acc&id={$tiposbien[lista.index].id_tipo_bien}" onMouseOver=" overlib('Presione aqui para ver los documentos de este tipo de bien',CAPTION,'Documentos' ); window.status='Detalles'; return true" onMouseOut=" nd();   return true"> 
+				{$tiposbien[lista.index].descripcion}
+			</a>
+		</td>
+		<td class="borde_lista" width="30"><div align="left">
+			&nbsp;{$tiposbien[lista.index].con_inf_legal}
+		</div></td>
+		<td class="borde_lista" width="60"><div align="left">
+			&nbsp;{$tiposbien[lista.index].bien}
+		</div></td>
+		<td class="borde_lista" width="80"><div align="center">
+			<a href="../code/_main.php?action=adm/tipos_bien.php&modificar=acc&id={$tiposbien[lista.index].id_tipo_bien}" onMouseOver=" overlib('Modificar los documentos de este Tipo de Bien',CAPTION,'Modificar' ); window.status='Modificación de valores'; return true" onMouseOut=" nd(); return true"><img src="../imagenes/pass/modificar.jpg" border="0"></a>&nbsp;
+			<a href="../code/_main.php?action=adm/tipos_bien.php&documentos_imp=acc&id={$tiposbien[lista.index].id_tipo_bien}" onMouseOver=" overlib('Elegir documentos que son requisito',CAPTION,'Requisitos' ); window.status='Modificación de valores'; return true" onMouseOut=" nd(); return true"> <img src="../imagenes/pass/aceptadas.gif" border="0"></a>&nbsp;
+			<a href="../code/_main.php?action=adm/tipos_bien.php&eliminar=acc&id={$tiposbien[lista.index].id_tipo_bien}" onMouseOver=" overlib('Eliminación de los valores de este Tipo de Bien',CAPTION,'Eliminar' ); window.status='Eliminación'; return true" onMouseOut=" nd(); return true"><img src="../imagenes/pass/eliminar.jpg" border="0"></a>
+		</div></td>
+	</tr>
+	{/section}
+</table>
+<br>
+<form name="adicion" method="post" action="../code/_main.php?action=adm/tipos_bien.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td  width="620"><div align="center">
+			<input type="submit" name="adicionar" value="Adicionar Tipo" class="boton">
+		</div></td>
+	</tr>
+</table>
+</form>
+<br>
+</div>
+</body>
+</html>

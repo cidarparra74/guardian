@@ -1,0 +1,209 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/excepcion.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+{literal}
+<script>
+function show_hide(item1,item2) {
+	if(item1.value=='P') {
+	document.getElementById('resp_'+item2).style.display = "none";
+	document.getElementById('limite_'+item2).style.display = "none";
+	} else {
+	document.getElementById('resp_'+item2).style.display = "block";
+	document.getElementById('limite_'+item2).style.display = "block";
+	}
+}
+</script>
+{/literal}
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">{if $flag == '0'}
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="{$carpeta_entrar}" class="link_tabla">
+				Volver a lista de Informes
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+{else}
+<br />
+{/if}
+<form name="adicionar_guardar" method="post" action="{$carpeta_entrar}" onSubmit="des_verificar_formulario()">
+
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="26" class="borde_lista"> 
+          <div align="center">Datos del Cliente</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Cliente :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <b>{$cliente}</b> 
+		</td>
+		<td width="310" nowrap align="right" colspan="2" class="borde_tabla">Informe Legal No {$id}&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla" valign="middle">Documento :&nbsp;</td>
+         <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$ci_cliente} {$identificacion}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Garant&iacute;a :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <b>{$tipo_bien}</b>
+		</td>
+		<td width="310" nowrap align="right" colspan="2" class="borde_tabla"><img src="../imagenes/pass/{$banderaimg}" border="0"> {$banderatxt}&nbsp;</td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Descripci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$motivo}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="26" class="borde_lista"> 
+          <div align="center">SOLICITUD DE EXCEPCION</div>
+		</td>
+	</tr>
+      {assign var="corte" value="x"}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">
+		<table width="620" cellpadding="0" cellspacing="0" border="0" align="center" class="borde_lista">
+		{section name=lista loop=$excepciones}
+			{if $excepciones[lista.index].clase!=$corte}
+		<tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_lista" height="26"><b><u>::&nbsp;
+		{if $excepciones[lista.index].clase == 'A'}Documentación Existente con Observación{/if}
+		{if $excepciones[lista.index].clase == 'B'}Documentación Faltante{/if}
+		{if $excepciones[lista.index].clase == 'C'}Otras Observaciones{/if}
+		{assign var="corte" value=$excepciones[lista.index].clase}
+		</u></b></td>
+        </tr>
+		<tr class="tabla_titulo_color">
+		{if $excepciones[lista.index].clase == 'C'}
+		<td width="240" class="borde_lista">&nbsp;OBSERVACION</td>
+		{else}
+		<td width="240" class="borde_lista">&nbsp;DOCUMENTO y OBSERVACION</td>
+		{/if}
+		<td width="100"  class="borde_lista">&nbsp;Tipo Excep.</td>
+		<td width="180"  class="borde_lista">&nbsp;Responsable</td>
+		<td width="100"  class="borde_lista">&nbsp;Fecha Limite</td>
+		</tr>
+			{/if}
+		<tr class="tabla_titulo_contenido">
+		{if $excepciones[lista.index].clase == 'C'}
+		<td width="240" class="borde_lista"><span class="aviso_rojo">{$excepciones[lista.index].obs}</span></td>
+		{else}
+		<td class="borde_lista"><b>
+		{$excepciones[lista.index].documento}</b>{if $excepciones[lista.index].clase == 'A'}<br />
+		{$excepciones[lista.index].fojas}&nbsp;{$excepciones[lista.index].tipo}{/if}<br />
+		<span class="aviso_rojo">{$excepciones[lista.index].obs}{*$excepciones[lista.index].fecha*}</span></td>
+		{/if}
+		<td class="borde_lista">{if $aprobar == ''}<select name="tipo[]" id="tipo_{$smarty.section.lista.index}" class="input" onChange="javascript:show_hide(this,'{$smarty.section.lista.index}')">
+		<option value="-">--</option>
+		<option value="T" {if $excepciones[lista.index].exce_tipo == 'T'}selected{/if}>Temporal</option>
+		<option value="P" {if $excepciones[lista.index].exce_tipo == 'P'}selected{/if}>Permanente</option>
+		</select>{else}
+		<select name="tipo[]" id="tipo_{$smarty.section.lista.index}" class="input" >
+		<option value="-">--</option>
+		{if $excepciones[lista.index].exce_tipo == 'T'}<option value="T" selected>Temporal</option>{/if}
+		{if $excepciones[lista.index].exce_tipo == 'P'}<option value="P" selected>Permanente</option>{/if}
+		</select>
+		{/if}</td>
+		<td class="borde_lista">{if $aprobar == ''}<select name="resp[]" id="resp_{$smarty.section.lista.index}" class="input" style="display:{if $excepciones[lista.index].exce_tipo == 'T'}block{else}none{/if}" >
+		{section name=lista2 loop=$revisores}
+		<option value="{$revisores[lista2.index].id_usuario}" {if $excepciones[lista.index].exce_resp == $revisores[lista2.index].id_usuario}selected{/if}>{$revisores[lista2.index].nombre}</option>
+		{/section}</select>{else}{if $excepciones[lista.index].exce_tipo == 'T'}
+		<select name="resp[]" id="resp_{$smarty.section.lista.index}" class="input" >
+		{section name=lista2 loop=$revisores}
+		{if $excepciones[lista.index].exce_resp == $revisores[lista2.index].id_usuario}<option value="{$revisores[lista2.index].id_usuario}" >{$revisores[lista2.index].nombre}</option>{/if}
+		{/section}</select>{else}&nbsp;{/if}{/if}
+		</td>
+		<td class="borde_lista"><input type="text" name="limite[]" id="limite_{$smarty.section.lista.index}" value="{$excepciones[lista.index].exce_limite}" size="11" class="input" style="display:{if $excepciones[lista.index].exce_tipo == 'T'}block{else}none{/if}" {if $aprobar != ''}readonly{/if}>
+		<input type="hidden" name="id_documento[]" value="{$excepciones[lista.index].id_documento}">
+		<input type="hidden" name="obs[]" value="{$excepciones[lista.index].obs}">
+		<input type="hidden" name="clase[]" value="{$excepciones[lista.index].clase}">
+		</td>
+		</tr>
+		{/section}
+		</table>
+		</td>
+      </tr>
+	  
+	  
+	  <tr class="tabla_titulo_contenido"  height="26">
+        <td width="620" colspan="4" class="borde_tabla"><b><u>::&nbsp;Justificaci&oacute;n</u></b></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;{if $flag == '0' && $aprobar == ''}<textarea name="justifi" id="justifi" cols="60" rows="5">{$justifi}</textarea>{else}{$justifi}{/if}&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  {if $flag != '0'}
+	  <tr class="tabla_titulo_contenido"  height="26">
+        <td width="620" colspan="4" class="borde_tabla"><b><u>::&nbsp;Aprobaci&oacute;n</u></b></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;<textarea name="aprobar" id="aprobar" cols="60" rows="5">{$aprobar}</textarea>&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  {else}{if $aprobar != ''}
+	  <tr class="tabla_titulo_contenido"  height="26">
+        <td width="620" colspan="4" class="borde_tabla"><b><u>::&nbsp;Aprobaci&oacute;n</u></b></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;<textarea name="aprobar" id="aprobar" cols="60" rows="5" readonly>{$aprobar}</textarea>&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>{/if}
+	  {/if}
+</table>
+	{if $flag == '0' && $aprobar == ''}Recuerde Guardar los cambios antes de imprimir {if $enable_ws == 'A' }o solicitar aprobaci&oacute;n{/if}{/if}
+	<table width="600" border="0" class="color_contenido">
+	  <tr>
+		<td width="600" align="center">{if $aprobar == '' || $flag != '0'}
+		 	<input type="submit" name="excepcion_boton" value="Guardar" class="boton"> 
+			{if $flag == '0'}
+		&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton">
+		{if $enable_ws == 'A' }&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="solicitar_boton_aprobar" value="Solicitar Aprobaci&oacute;n" class="boton">{/if}{/if}{/if}
+		&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="imprimir_exce" value="Imprimir" class="boton">
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="estado_formulario" value="aceptar">
+			<input type="hidden" name="flag" value="{$flag}">
+		</td>
+      </tr>
+    </table>
+</form>
+<br>
+
+</div>
+
+</body>
+</html>

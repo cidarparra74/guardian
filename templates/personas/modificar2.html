@@ -1,0 +1,188 @@
+<html>
+<head>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/personas.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<script type="text/javascript" src="../scripts/tabber.js"></script>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0"  class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br>
+
+<form name="frmcliente" id="proyecto" action="{$carpeta_entrar}" method="post" onSubmit="return verificarp(this)">
+    <input type="hidden" id="control" name="control" value="{$control}" />
+	<input type="hidden" id="id" name="id" value="{$id}" />
+<table width="630" border="0" cellpadding="3" cellspacing="0" class="borde_lista">	
+	<tr class="tabla_titulo_color">
+		<td width="630" colspan="2" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Modificaci&oacute;n de Clientes</div>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido">
+		<td colspan="2">
+{if $control == '0'}
+
+<table width="620" border="0" cellpadding="0" cellspacing="0" >
+
+	<tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Doc. Identidad:</td>
+		<td width="420" class="borde_tabla">
+        <input type="text" id="txtCI" name="txtCI" value="{$txtCI}" class="input" size="20" maxlength="30" /> 
+			<select id="selEmi" name="selEmi" class="input">
+                <option value="--">--</option>
+				{section name=lista loop=$expedido}
+				<option value="{$expedido[lista.index].id}" {if $expedido[lista.index].id == $emision}selected{/if}>{$expedido[lista.index].descri}</option>
+                {/section}
+            </select>&nbsp;
+			</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Tipo Documento:</td>
+		<td width="420" class="borde_tabla">
+			<select id="selTipo" name="selTipo" class="input">
+                {section name=lista loop=$tipodocs}
+				<option value="{$tipodocs[lista.index].id}">{$tipodocs[lista.index].descri}</option>
+                {/section}
+            </select><script type="text/javascript">document.frmcliente.selTipo.value='{$selTipo}'</script>
+			</td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Nombre (Apellidos/Nombres):</td>
+		<td width="420" class="borde_tabla">
+        <input type="text" id="txtNombre" name="txtNombre" value="{$txtNombre}" class="input" size="40" maxlength="100" /></td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Nacionalidad:</td>
+		<td width="420" class="borde_tabla">
+        <input type="text" id="txtProcede" name="txtProcede" value="{$txtProcede}" class="input" size="40" maxlength="50" /></td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Pa&iacute;s:</td>
+		<td width="420" class="borde_tabla">
+			<select id="selPais" name="selPais" class="input">
+                {section name=lista loop=$paises}
+				<option value="{$paises[lista.index].id}" {if $paises[lista.index].descri=='BOLIVIA'}selected{/if}>{$paises[lista.index].descri}</option>
+                {/section}
+            </select><script type="text/javascript">document.frmcliente.selPais.value='{$selPais}'</script>
+		</td>
+      </tr>
+	 <tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Profesi&oacute;n/Ocupaci&oacute;n:</td>
+		<td width="420" class="borde_tabla">
+        <input type="text" id="txtOcupa" name="txtOcupa" value="{$txtOcupa}" class="input"  size="50" maxlength="50" /> </td>
+      </tr>
+	 <tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Direcci&oacute;n:</td>
+		<td width="420" class="borde_tabla">
+        <input type="text" id="txtDireccion" name="txtDireccion" value="{$txtDireccion}" class="input"  size="50" maxlength="250" /> </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Tel&eacute;fono(s):</td>
+		<td width="420" class="borde_tabla">
+        <input type="text" id="txtTelef" name="txtTelef" value="{$txtTelef}" class="input"  size="50" maxlength="50" /> </td>
+      </tr>
+	 <tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Estado Civil:</td>
+		<td width="420" class="borde_tabla">
+            <select id="selEstCivil" name="selEstCivil" class="input">
+                <option value="-">--</option>
+                <option value="S">SOLTERO(A)</option>
+                <option value="C">CASADO(A)</option>
+                <option value="D">DIVORCIADO(A)</option>
+				<option value="V">VIUDO(A)</option>
+            </select></td><script type="text/javascript">document.frmcliente.selEstCivil.value='{$selEstCivil}'</script>
+      </tr>
+
+</table>
+
+{else}
+
+<table width="620" border="0" cellpadding="0" cellspacing="0">
+
+	<tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">NIT:</td>
+		<td width="420" class="borde_tabla">
+        <input type="text" id="txtNIT" name="txtNIT" value="{$txtCI}" class="input" size="20" maxlength="30" /> 
+		&nbsp;<a href="javascript:void(0)" onClick="return buscarNIT(txtNIT)" onMouseOver=" overlib('Busca el NIT',CAPTION,'Buscar' );  " onMouseOut=" nd(); return true"><img src="../imagenes/pass/find.png" border="0">Buscar cliente</a>
+			</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Pa&iacute;s:</td>
+		<td width="420" class="borde_tabla">
+			<select id="selPais2" name="selPais2" class="input">
+                {section name=lista loop=$paises}
+				<option value="{$paises[lista.index].id}" {if $paises[lista.index].id==$selPais2}selected{/if}>{$paises[lista.index].descri}</option>
+                {/section}
+            </select><script type="text/javascript">document.frmcliente.selPais2.value='{$selPais}'</script>
+		</td>
+      </tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Razon Social:</td>
+		<td width="420" class="borde_tabla">
+        <input type="text" id="txtRSocial" name="txtRSocial" value="{$txtNombre}" class="input" size="40" maxlength="50" /></td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Matr&iacute;cula de Comercio:</td>
+		<td width="420" class="borde_tabla">
+        <input type="text" id="txtMatricula" name="txtMatricula" value="{$txtMatricula}" class="input" size="40" maxlength="50" /></td>
+      </tr>
+	 <tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Domicilio:</td>
+		<td width="420" class="borde_tabla">
+        <input type="text" id="txtDomicilio" name="txtDomicilio" value="{$txtDireccion}" class="input"  size="50" maxlength="250" /> </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Tel&eacute;fono(s):</td>
+		<td width="420" class="borde_tabla">
+        <input type="text" id="txtTelef2" name="txtTelef2" value="{$txtTelef}" class="input"  size="50" maxlength="50" /> </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="200" class="borde_tabla" align="right">Representado Por:</td>
+		<td width="420" class="borde_tabla">
+            <textarea id="txtRepresenta" name="txtRepresenta" class="input" cols="60" rows="3" maxlength="250" />{$txtRepresenta}</textarea >
+			</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" class="borde_tabla" align="right">Tipo:</td>
+		<td width="420" class="borde_tabla">
+            <select id="selEstCivil" name="selEstCivil" class="input">
+                <option value="-">--</option>
+                <option value="1">CIVIL</option>
+                <option value="2">COMERCIAL</option>
+            </select><script type="text/javascript">document.frmcliente.selEstCivil.value='{$selEstCivil}'</script>
+		</td>
+      </tr>
+</table>
+{/if}
+		</td>
+	</tr>
+
+</table>
+   
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" align="center">
+		<input type="submit" id="modificar_boton_x" name="modificar_boton_x" value="Guardar" class="boton" />
+		<input type="hidden" name="xnombres" value="{$txtnombre}">
+		<input type="hidden" name="xci" value="{$txtCI}">
+		</td>
+        <td width="310" align="center">
+		<input type="submit" id="cancela_boton_x" name="cancela_boton_x" value="Cancelar" class="boton" />
+		</td>
+      </tr>
+    </table>
+
+</form>
+</div>
+
+</body>
+</html>

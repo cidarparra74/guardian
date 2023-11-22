@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_propietarios.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_modificar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="modificar" method="post" action="{$carpeta_entrar}" onSubmit="return verificar_adicion_mod()">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+           Cambiar fecha de devoluci&oacute;n</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Fecha:&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" colspan="3">
+		 <!-- input name="fecha" type="text" class="input" value="{$fecha}" size="31" maxlength="31" ><br -->
+		 {html_select_date prefix="fecha" all_extra="class='input'" start_year="-0" end_year="+5" display_days=true field_order="DMY" field_separator=" / " time="$fecha"}
+		 &nbsp;&nbsp;Horas:&nbsp;
+			{html_select_time use_24_hours=true all_extra="class='input'" prefix="hora" display_seconds=false time="$fecha"}
+		</td>
+
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="ampliar_boton" value="Guardar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="ampliar_plazo_x" value="acc">
+			<input type="hidden" name="id" value="{$id}">
+          </div></td>
+		  
+</form>		
+<form name="modificar_cancelar" method="post" action="{$carpeta_entrar}" onSubmit="des_verificar_adicion_mod()">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="modificar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="id" value="{$id}">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

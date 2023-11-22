@@ -1,0 +1,591 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="contrato">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="titulo" type="xs:string" minOccurs="0" />
+                <xs:element name="cabecera" type="xs:string" minOccurs="0" />
+                <xs:element name="pie" type="xs:string" minOccurs="0" />
+                <xs:element name="idcontrato" type="xs:int" minOccurs="0" />
+                <xs:element name="codtipo" type="xs:int" minOccurs="0" />
+                <xs:element name="codmateria" type="xs:int" minOccurs="0" />
+                <xs:element name="habilitado" type="xs:int" minOccurs="0" />
+                <xs:element name="codentidad" type="xs:int" minOccurs="0" />
+                <xs:element name="con_firma" type="xs:int" minOccurs="0" />
+                <xs:element name="partesfirmantes" type="xs:string" minOccurs="0" />
+                <xs:element name="cabecera2" type="xs:string" minOccurs="0" />
+                <xs:element name="pie2" type="xs:string" minOccurs="0" />
+                <xs:element name="numerar_clausulas" type="xs:int" minOccurs="0" />
+                <xs:element name="cprotocolo" type="xs:string" minOccurs="0" />
+                <xs:element name="pprotocolo" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="clausulas">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="posicion" type="xs:int" minOccurs="0" />
+                <xs:element name="idclausula" type="xs:int" minOccurs="0" />
+                <xs:element name="titulo" type="xs:string" minOccurs="0" />
+                <xs:element name="contenido" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="variables">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="idclausula" type="xs:int" minOccurs="0" />
+                <xs:element name="tipo" type="xs:int" minOccurs="0" />
+                <xs:element name="miembro" type="xs:int" minOccurs="0" />
+                <xs:element name="idvariable" type="xs:string" minOccurs="0" />
+                <xs:element name="desctabla" type="xs:string" minOccurs="0" />
+                <xs:element name="desctexto" type="xs:string" minOccurs="0" />
+                <xs:element name="contenido" type="xs:string" minOccurs="0" />
+                <xs:element name="esglobal" type="xs:int" minOccurs="0" />
+                <xs:element name="nrofila" type="xs:int" minOccurs="0" />
+                <xs:element name="nrocolumna" type="xs:int" minOccurs="0" />
+                <xs:element name="adicional" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="personas">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="posicion" type="xs:int" minOccurs="0" />
+                <xs:element name="ci" type="xs:string" minOccurs="0" />
+                <xs:element name="expedido" type="xs:string" minOccurs="0" />
+                <xs:element name="nombre" type="xs:string" minOccurs="0" />
+                <xs:element name="domicilio" type="xs:string" minOccurs="0" />
+                <xs:element name="calidad" type="xs:string" minOccurs="0" />
+                <xs:element name="parrafo" type="xs:string" minOccurs="0" />
+                <xs:element name="dom_especial" type="xs:string" minOccurs="0" />
+                <xs:element name="edocivil" type="xs:string" minOccurs="0" />
+                <xs:element name="nacionalidad" type="xs:string" minOccurs="0" />
+                <xs:element name="profesion" type="xs:string" minOccurs="0" />
+                <xs:element name="tipo_documento" type="xs:int" minOccurs="0" />
+                <xs:element name="pais" type="xs:int" minOccurs="0" />
+                <xs:element name="redaccion" type="xs:string" minOccurs="0" />
+                <xs:element name="razonsocial" type="xs:string" minOccurs="0" />
+                <xs:element name="nit" type="xs:string" minOccurs="0" />
+                <xs:element name="nromatricula" type="xs:string" minOccurs="0" />
+                <xs:element name="personanatural" type="xs:string" minOccurs="0" />
+                <xs:element name="representante" type="xs:string" minOccurs="0" />
+                <xs:element name="aceptante" type="xs:boolean" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <contrato>
+    <titulo>CONTRATO - APERTURA LINEA DE CREDITO ROTATIVA</titulo>
+    <cabecera>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24\tab\tab\tab\tab\tab\fs22 SE\''d1OR NOTARIO DE FE PUBLICA\par
+En los registros de escrituras p\''fablicas que corren a su cargo, s\''edrvase insertar un contrato de Apertura de L\''ednea de Cr\''e9dito, el mismo que se suscribe al tenor y contenido de las cl\''e1usulas siguientes:\par
+\f1\fs17\par
+}
+</cabecera>
+    <pie>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24 Usted Se\''f1or notario, se servir\''e1 agregar las dem\''e1s clausulas de estilo y seguridad debiendo insertar las partes pertinentes de los documentos que correspondan\f1\fs17\par
+}
+</pie>
+    <idcontrato>62</idcontrato>
+    <codtipo>13</codtipo>
+    <codmateria>1</codmateria>
+    <habilitado>1</habilitado>
+    <codentidad>2</codentidad>
+    <con_firma>0</con_firma>
+    <partesfirmantes />
+    <cabecera2>{\rtf1\ansi\ansicpg1252\deff0\deflang16394{\fonttbl{\f0\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\f0\fs15\par
+}
+</cabecera2>
+    <pie2>{\rtf1\ansi\ansicpg1252\deff0\deflang16394{\fonttbl{\f0\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\f0\fs15\par
+}
+</pie2>
+    <numerar_clausulas>1</numerar_clausulas>
+    <cprotocolo />
+    <pprotocolo />
+  </contrato>
+  <clausulas>
+    <posicion>1</posicion>
+    <idclausula>230</idclausula>
+    <titulo>PARTES Y DENOMINACION DE LA APERTURA DE LA LINEA DE CRÉDITO</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+\viewkind4\uc1\pard\fs22 Dir\''e1 usted que, en la suscripci\''f3n del presente contrato intervienen:\par
+- Por una parte,  FONDO FINANCIERO PRIVADO PRODEM S.A., instituci\''f3n legalmente constituida, con Matr\''edcula de Comercio N\''ba 13563 otorgada por FUNDEMPRESA y NIT 1029837028 en lo sucesivo simplemente F.F.P.PRODEM S.A. representada legalmente en \''e9ste contrato por &lt;&lt;Rep_Legal_ffp,0&gt;&gt;; con domicilio en &lt;&lt;sol_domicilio,0&gt;&gt;\par
+- Por la otra \par
+&lt;&lt;PARTES,2&gt;&gt; \par
+Se deja presente que el Estado Civil de las partes seg\''fan sus c\''e9dulas de identidad son &lt;&lt;Estdo_Civil_ffp,0&gt;&gt; respectivamente.\par
+\fs20\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>2</posicion>
+    <idclausula>231</idclausula>
+    <titulo>OTORGAMIENTO DE LINEA DE CREDITO</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil Arial;}{\f1\fnil\fcharset0 Arial;}{\f2\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\f0\fs24 Al presente, el F.F.P. PRODEM S.A. otorga una L\f1\''ednea de Cr\''e9dito Rotativa a favor de el (los) ACREDITADO (S) por un monto de hasta &lt;&lt;Mont_ Lnea,0&gt;&gt;, constituy\''e9ndose consecuentemente \''e9ste (estos) en deudor (es) del F.F.P. PRODEM S.A. por el monto total de la L\''ednea de Cr\''e9dito otorgada a su favor y de todas las obligaciones inherentes, relativas, derivadas y emergentes de este contrato.\par
+\f2\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>3</posicion>
+    <idclausula>233</idclausula>
+    <titulo>PLAZO DE LA LINEA DE CREDITO</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+\viewkind4\uc1\pard\fs24 El plazo  por el cual el F.F.P. PRODEM S.A. concede al (a los) ACREDITADO (S) la presente l\''ednea de cr\''e9dito, es de &lt;&lt;Plzo_ Linea,0&gt;&gt; a\''f1os computables a partir de la habilitaci\''f3n de la l\''ednea; dentro de dicho plazo el (los) ACREDITADO (S) podr\''e1 (n) utilizar la L\''ednea de Cr\''e9dito y realizar operaciones con cargo a ella. \par
+Todas las operaciones que, dentro del plazo establecido para la L\''ednea de Cr\''e9dito realice (n) el (los) ACREDITADO (S), se considerar\''e1n efectuadas con cargo a la presente L\''ednea de Cr\''e9dito, sujetas al presente contrato y garantizadas por todas y cada una de las garant\''edas, sin excepci\''f3n.\par
+Asimismo, las partes acuerdan y dejan establecido que, en las operaciones realizadas con cargo a la L\''ednea de Cr\''e9dito que eventualmente tengan un vencimiento posterior al del t\''e9rmino de la L\''ednea de Cr\''e9dito, se mantendr\''e1, con toda su validez, efectos, eficacia, todo lo pactado en este contrato, sus garant\''edas reales, fianzas y todas las garant\''edas y condiciones establecidas en esta L\''ednea de Cr\''e9dito.\par
+\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>4</posicion>
+    <idclausula>234</idclausula>
+    <titulo>DOCUMENTOS PARA OPERACIONES CON CARGO A LA LÍNEA DE CRÉDITO</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24 El monto de la presente L\''ednea de Cr\''e9dito estar\''e1 disponible para el (los) ACREDITADO (S) mediante financiamientos parciales o totales, que se otorgar\''e1n conforme a las estipulaciones que se indican a continuaci\''f3n: 1. El (Los) ACREDITADO (S) dar\''e1 (n) aviso al F.F.P. PRODEM S.A. para el desembolso de un financiamiento parcial conforme a la cl\''e1usula Tercera anterior, determin\''e1ndose la actividad en la que se utilizar\''e1n los fondos solicitados; 2. El inter\''e9s aplicable a cada una de las operaciones solicitadas, ser\''e1 estipulado y determinado en cada uno de los documentos de respaldo de la operaci\''f3n solicitada; 3. Cuando el (los) ACREDITADO (S) avise (n) al F.F.P. PRODEM S.A. para el desembolso de un financiamiento parcial o total, se elaborar\''e1 el documento correspondiente que tenga establecido el F.F.P. PRODEM S.A. al efecto, donde se establecer\''e1n espec\''edficamente la moneda, sus montos, los intereses, plazos y/o plazos parciales y dem\''e1s condiciones particulares de cada operaci\''f3n individualmente consideradas, constituyendo as\''ed un documento en virtud del cual el (los) ACREDITADO (S) se obliga (n) irrevocablemente al reembolso a favor del F.F.P. PRODEM S.A. del respectivo financiamiento parcial en la forma estipulada. Todos los documentos y, en su caso, sus anexos, que se firmen en ejecuci\''f3n de la L\''ednea de Cr\''e9dito, se considerar\''e1n, a todos los efectos, como parte integrante de la misma. Sin perjuicio de lo anterior, los comprobantes del F.F.P. PRODEM SA ser\''e1n suficiente prueba de los montos desembolsados. 4. Los intereses respectivos para los financiamientos parciales o totales, continuar\''e1n aplic\''e1ndose en la tasa que corresponda hasta el reembolso del total del capital al F.F.P. PRODEM S.A. conforme a las estipulaciones en los documentos espec\''edficos de cada financiamiento parcial o total, calcul\''e1ndose siempre sobre los saldos deudores de capital a la fecha de los respectivos  pagos. 5. Cuando cualquier fecha de pago de capital y/o intereses recayera en d\''eda inh\''e1bil, el vencimiento correspondiente se producir\''e1 el d\''eda h\''e1bil siguiente. \par
+\f1\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>5</posicion>
+    <idclausula>235</idclausula>
+    <titulo>INTERESES, CARGOS FINANCIEROS Y REPORTES</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil Arial;}{\f1\fnil\fcharset0 Arial;}{\f2\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\f0\fs24 Las partes convienen expresamente las siguientes condiciones financieras: 1. En caso de operaciones que devenguen intereses, la tasa peri\f1\''f3dica utilizada para calcular el cargo financiero y la Tasa de inter\''e9s Efectiva Activa al Cliente (TEAC), ser\''e1 calculada y establecida en cada contrato en que se instrumente la utilizaci\''f3n de la L\''ednea de Cr\''e9dito; 2. Cada utilizaci\''f3n de fondos u operaci\''f3n con cargo a la L\''ednea de Cr\''e9dito, devengar\''e1 intereses a tasa fija o variable, que ser\''e1 especificada en cada documento en que se instrumente cada utilizaci\''f3n de los fondos u operaci\''f3n con cargo a la L\''ednea de Cr\''e9dito; 3. Los cargos financieros ser\''e1n aplicados en montos fijos o en porcentajes, seg\''fan corresponda. Cuando se trate de montos fijos, ser\''e1n expresados en porcentajes para fines de incorporaci\''f3n en la TEAC, lo cual se obtendr\''e1 dividiendo el monto del cargo sobre el monto de la operaci\''f3n en cuesti\''f3n; 4. En caso de mora el inter\''e9s corriente estipulado se recargar\''e1 con el inter\''e9s penal, establecido por Ley, lo cual ser\''e1 aplicado durante todo el per\''edodo que dure la mora; 5. De conformidad a lo establecido por disposiciones reglamentarias en vigencia, el F.F.P. PRODEM S.A. se compromete a entregar, por cada nueva operaci\''f3n realizada bajo la presente L\''ednea de Cr\''e9dito, reportes al (a los) ACREDITADO (S) en los que se consignar\''e1n la siguiente informaci\''f3n: a) Saldo anterior; b) Identificaci\''f3n de las transacciones de cr\''e9dito y d\''e9bito; c) Tasa de inter\''e9s peri\''f3dica utilizada para computar los cargos financieros y la correspondiente a la TEAC (Tasa Efectiva Activa al Cliente), si correspondiera; d) M\''e9todos de c\''e1lculo de la TEAC correspondiente a las transacciones efectuadas, si correspondiera; e) Intervalo en el cual se aplican los cargos financieros; f) Saldo sobre los que se aplican los cargos financieros; g) Otros cobros; h) Fecha de corte para el c\''e1lculo de cargos financieros; i) Fechas de per\''edodos libre de cargo financiero; y, j) Direcci\''f3n y tel\''e9fono para reclamos y comunicaciones.\par
+En cumplimiento al Reglamento de Tasas de Inter\''e9s de la Recopilaci\''f3n de Normas de la Autoridad de Supervisi\''f3n del Sistema Financiero, el (los) ACREDITADO (S) declara (n) expresamente su conformidad con la aplicaci\''f3n de la referida tasa de inter\''e9s y los dem\''e1s cargos indicados en este contrato todo lo cual es de su conocimiento y aceptaci\''f3n.\par
+Asimismo, en cumplimiento a la referida normativa, el (los) ACREDITADO (S) declara (n) y reconoce (n) haber sido informado (s), debida y previamente a la suscripci\''f3n de este contrato sobre el alcance  de las cl\''e1usulas referidas a la aplicaci\''f3n de la tasa de inter\''e9s, su variaci\''f3n en funci\''f3n a la tasa de referencia, el cronograma de pagos, el monto acumulado de los pagos del servicio y la Tasa de inter\''e9s Efectiva Activa al Cliente (TEAC), incluida la forma de realizar el respectivo c\''e1lculo.\par
+\f2\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>6</posicion>
+    <idclausula>236</idclausula>
+    <titulo>MONEDA DE PAGO Y LIQUIDACIONES DE LA LINEA DE CRÉDITO</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24 El pago de las operaciones formalizadas con cargo a esta L\''ednea de Cr\''e9dito, deber\''e1 hacerse efectivo en el domicilio del F.F.P. PRODEM S.A. en dinero en efectivo, de curso legal y corriente y en la misma moneda desembolsada e indicada en los respectivos documentos de obligaci\''f3n y con fondos inmediatamente disponibles, libre de todo impuesto o gravamen y sin deducci\''f3n alguna por ning\''fan concepto, siendo inadmisible el pago, oferta de pago y/o consignaci\''f3n en moneda diferente a la desembolsada y/o con prestaci\''f3n diversa de la debida. Dicho pago, ya sea dentro o fuera del juicio, deber\''e1 ser efectuado en el monto indicado en las correspondientes liquidaciones que en cada caso, y a tal efecto elaborar\''e1 el F.F.P. PRODEM S.A. cuantas veces sea necesario, las mismas que no podr\''e1n ser objetadas ni reclamadas por el (los) ACREDITADO (S), ni por otros obligados ni terceros. Se conviene que el \''fanico facultado para determinar el saldo deudor de las obligaciones contra\''eddas con cargo a esta L\''ednea de Cr\''e9dito ser\''e1 el F.F.P. PRODEM S.A., y que las liquidaciones que elabore el F.F.P. PRODEM S.A. tendr\''e1n por s\''ed solas suficiente fuerza legal y ejecutiva, har\''e1n fe en juicio y surtir\''e1n todos los efectos legales  de documento p\''fablico probatorio, respecto a los conceptos involucrados a la liquidaci\''f3n correspondiente.\par
+\f1\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>7</posicion>
+    <idclausula>237</idclausula>
+    <titulo>CADUCIDAD Y DERECHOS DE ACELERACIÓN</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24 El F.F.P. PRODEM S.A. podr\''e1 en cualquier momento suspender los desembolsos y la vigencia de la presente L\''ednea de Cr\''e9dito, darla por concluida y declarar caducos y vencidos tanto el t\''e9rmino de la L\''ednea de Cr\''e9dito, como de los documentos en que se instrumentar\''e1n las operaciones y declarar en mora, vencidas, l\''edquidas y exigibles la totalidad de las deudas y obligaciones del (de los) ACREDITADO (S), sin necesidad de intimaci\''f3n o requerimiento previo ni de otra formalidad y requisito, por cualesquiera  de las siguientes causas: 1. Incumplimiento total o parcial del (de los) ACREDITADO (S), de cualesquiera de las cl\''e1usulas y obligaciones establecidas en el presente contrato o en los contratos, documentos o t\''edtulos de las operaciones otorgadas con cargo a esta L\''ednea de Cr\''e9dito. 2. Falta de pago oportuno total o parcial de cualquier suma desembolsada intereses, impuestos o accesorios aplicables, en las fechas convenidas. 3. Disminuci\''f3n de la solvencia del (de los) ACREDITADO (S), librada a sola apreciaci\''f3n y criterio del F.F.P. PRODEM S.A. 4. La declaraci\''f3n de quiebra voluntaria o judicial, o el concurso de acreedores, o la cesi\''f3n de bienes, promovida por el (los) ACREDITADO (S) o por terceros y que involucren al (a los) ACREDITADO (S). 5. Inhabilidad del (de los) ACREDITADO (S) para ejercer el comercio. 6. Fuga o persecuci\''f3n judicial del (de los) ACREDITADO (S). 7.  Disminuci\''f3n de la garant\''eda o del valor de las garant\''edas o enajenaci\''f3n, embargo, secuestro, hipoteca o cualquier otro tipo de gravamen o disposici\''f3n de bienes, sin la previa autorizaci\''f3n del F.F.P. PRODEM S.A., que afecte a los bienes constituidos en garant\''eda de el (los) ACREDITADO (S). 8. El no asegurar o no pagar las correspondientes primas y costos que demande los seguros contratados de todos los bienes constituidos en garant\''eda en Compa\''f1\''eda de Seguros aceptada por el F.F.P. PRODEM S.A.; no endosar y subrogar las correspondientes p\''f3lizas de seguro a favor del F.FP. PRODEM S.A., as\''ed como no contratar seguro de desgravamen que el F.F.P. PRODEM S.A. lo solicite. 9. El no permitir el libre acceso a personeros, inspectores o peritos autorizados del F.F.P. PRODEM S.A., a sus dependencias, en cualquier momento, con el objeto de realizar inspecciones, verificar la correcta aplicaci\''f3n de los fondos de la L\''ednea de Cr\''e9dito, la existencia y buena conservaci\''f3n de los bienes dados en garant\''eda; as\''ed como no proporcionar al F.F.P. PRODEM S.A. los datos e informaci\''f3n necesarios para las inspecciones que se realicen, o no dar aviso al F.F.P. PRODEM S.A. ante cualquier otro dato relevante de los bienes dados  en garant\''eda. 10. En general  cualquier acto del (de los) ACREDITADO (S) o de terceros y/o cualquier circunstancia, que pudiera poner en riesgo la total recuperaci\''f3n del cr\''e9dito y dem\''e1s obligaciones contra\''eddas por el (los) ACREDITADO (S).\par
+La conclusi\''f3n anticipada del t\''e9rmino de la L\''ednea de Cr\''e9dito no modifica o extingue las operaciones vigentes, todo lo que se mantendr\''e1 conforme a los t\''e9rminos, cl\''e1usulas y condiciones que se hayan pactado o establecido, hasta su cumplimiento o pago total.\par
+\f1\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>8</posicion>
+    <idclausula>238</idclausula>
+    <titulo>INCUMPLIMIENTO Y MORA DE LA LINEA DE CRÉDITO</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil Arial;}{\f1\fnil\fcharset0 Arial;}{\f2\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\f0\fs24 Queda convenido que la falta de pago total o parcial del pr\f1\''e9stamo, intereses y/o sus accesorios o la simple demora en el pago de cualesquier cuota de capital, intereses, etc., en las fechas de sus correspondientes vencimientos, constituir\''e1n a el (los) ACREDITADO (S) en mora por el monto total de la obligaci\''f3n, como de todas las obligaciones por operaciones vigentes realizadas con cargo a la L\''ednea de Cr\''e9dito, la cual se considerar\''e1 vencida, l\''edquida y exigible sin necesidad de intimaci\''f3n o requerimiento judicial o extrajudicial previo, pudiendo el F.F.P. PRODEM S.A. interponer en cualquier momento la correspondiente acci\''f3n judicial para su cobranza u otra v\''eda procesal a elecci\''f3n del F.F.P. PRODEM S.A., quedando en tal caso el (los) ACREDITADO (S) obligados al pago de todos los gastos judiciales y extrajudiciales as\''ed como costas procesales y otros, aunque no se haya dictado sentencia.\par
+\f2\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>9</posicion>
+    <idclausula>258</idclausula>
+    <titulo>GARANTIA DEL CONTRATO DE APERTURA DE LINEA DE CREDITO</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs22 El (los) ACREDITADO(S) garantiza(n) el cumplimiento del presente contrato y de todas las obligaciones que asuma(n) con cargo a la L\''ednea de Cr\''e9dito, con la generalidad de sus bienes presentes,&lt;&lt;Int_Varia_ffp,0&gt;&gt; &lt;&lt;Plazo_ Mes_ffp,0&gt;&gt; futuros y especialmente con la primera hipoteca especial, se\''f1alada y privilegiada a favor del F.F.P. PRODEM S.A.,  de:\par
+\b\f1\fs17 &lt;&lt;Des_Gar_ffp,0&gt;&gt;\b0\f0\fs22  \par
+En consecuencia, dicho inmueble con todas sus mejoras, instalaciones, construcciones, usos, costumbres, servidumbres, sin reservas ni limitaciones, queda (n) reatado (s) y gravado (s) en calidad de garant\''eda hipotecaria a favor del F.F.P. PRODEM S.A., hasta que el (los) ACREDITADO (S) haga (n) efectivo el pago total de todas y cada una de las obligaciones objeto del presente contrato y las se\''f1aladas, emergentes e inherentes del mismo, no pudiendo en efecto el (los) ACREDITADO (S), CONYUGE(S), PROPIETARIO(S) Y/O GARANTE(S) HIPOTECARIO(S) pedir o demandar extrajudicial o Judicialmente el levantamiento ni cancelaci\''f3n de los grav\''e1menes hipotecarios, mientras exista cualquier obligaci\''f3n de su parte ante el F.F.P. PRODEM S.A.; tampoco podr\''e1n crear nuevos grav\''e1menes, hipotecas ni vender, ceder, transferir, arrendar ni dar en anticresis el mismo a terceros, salvo que el F.F.P. PRODEM S.A. expresamente lo autorice por escrito.\f1\fs17\par
+\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>10</posicion>
+    <idclausula>256</idclausula>
+    <titulo>DECLARACIÓN DEPOSITO PLAZO FIJO - DPF</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24 El (los ) ACREDITADO(S) declara(n) tener un Dep\''f3sito a Plazo Fijo, emitido por la suma de &lt;&lt;Monto_DPF,0&gt;&gt;, que se evidencia del Certificado de Deposito a plazo fijo N\''ba &lt;&lt;Nro_DPF_ffp,0&gt;&gt; y Cuenta N\''ba &lt;&lt;Nro_Cta_DPF_ffp,0&gt;&gt; de fecha de apertura &lt;&lt;Ini_Plz_fij_ffp,0&gt;&gt; con un vencimiento se\''f1alado para &lt;&lt;Fch_vto_DPF_ffp,0&gt;&gt; emitido por &lt;&lt;Nom_Ins_ffp,0&gt;&gt; \par
+Mientras existan, seg\''fan los registros operativos y contables del F.F.P. PRODEM S.A., obligaciones por cancelar, el Dep\''f3sito a Plazo Fijo descrito en la presente cl\''e1usula, ser\''e1 renovado autom\''e1ticamente cuantas veces sea necesario, bajo las condiciones se\''f1aladas en el Reglamento de Dep\''f3sitos a Plazo Fijo de la Recopilaci\''f3n de Normas de la Autoridad de Supervisi\''f3n del Sistema Financiero vigentes a la fecha de su renovaci\''f3n.\f1\fs17\par
+\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>11</posicion>
+    <idclausula>248</idclausula>
+    <titulo>DERECHOS DE COMPENSACIÓN</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24  El (Los) ACREDITADO (S) de manera expresa e irrevocable, facultan y autorizan al F.F.P. PRODEM S.A., para que en cualquier momento y sin necesidad de formalidad alguna sea judicial o extrajudicial, aviso o notificaci\''f3n, proceda a compensar cualquier suma de dinero devengada por el (los) ACREDITADO (S), emergente del presente contrato.\par
+A este efecto, el F.F.P. PRODEM S.A. proceder\''e1, en cualquiera de sus oficinas, con la retenci\''f3n y d\''e9bito de la suma adeudada por el (los) ACREDITADO (S) y/o codeudores, m\''e1s las comisiones, intereses corrientes, penales y dem\''e1s conceptos accesorios y exigibles, de sus respectivas cuentas de ahorro, fondos, recursos, sea que \''e9stos se encuentren depositados, girados, endosados o consignados a su nombre u orden o de cualquier otro modo en su favor.\par
+Esta retenci\''f3n se deber\''e1 realizar con el objeto de cubrir la totalidad de la suma devengada o en su defecto, hasta el monto equivalente a sus fondos disponibles.\par
+Ninguna de estas medidas adoptadas por el F.F.P. PRODEM S.A. generar\''e1 obligaci\''f3n ni responsabilidad por parte del F.F.P. PRODEM S.A. ante el (los) ACREDITADO (S) y/o codeudores u otras personas. Esta facultad es potestativa y exclusiva del F.F.P. PRODEM S.A.\par
+\f1\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>12</posicion>
+    <idclausula>241</idclausula>
+    <titulo>OTRAS OBLIGACIONES DE LA PARTE ACREDITADA</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24 El (Los) ACREDITADO(S), \fs22 PROPIETARIO(S) Y/O GARANTE(S) HIPOTECARIO(S) \fs24 se obliga(n) a dar aviso al F.F.P. PRODEM S.A. sobre cualquier cambio que se produjere  relacionado con la conservaci\''f3n, ubicaci\''f3n y seguros del (de los) bien (es) dado (s) en garant\''eda.\par
+El aviso deber\''e1 realizarlo por escrito dentro de los quince d\''edas siguientes a la fecha en que tal cambio o p\''e9rdida se hubiere producido.\par
+De ocurrir cualquiera de tales actos o hechos, se producir\''e1 autom\''e1ticamente la caducidad del t\''e9rmino, reput\''e1ndose la obligaci\''f3n vencida, l\''edquida, y exigible, en cuyo caso el F.F.P. PRODEM S.A. podr\''e1 proceder de inmediato a la cobranza judicial del pr\''e9stamo, intereses, accesorios, etc., por su monto insoluto, de acuerdo a lo estipulado en el presente documento.\par
+\f1\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>13</posicion>
+    <idclausula>249</idclausula>
+    <titulo>DERECHOS DEL ACREDITADO</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24 El (los) ACREDITADO (S) tendr\''e1 (n) los siguientes derechos:1.Solicitar en cualquier momento informaci\''f3n relacionada al desglose de sus pagos (extracto del cr\''e9dito); 2. Solicitar en cualquier momento actualizaci\''f3n del cronograma de pagos (plan de pagos actualizado); 3. A recibir el nuevo plan de pagos, en caso de cualquier modificaci\''f3n al plan de pagos original realizado por acuerdo de partes; y, 4. A conocer la forma de c\''e1lculo de los cargos financieros.\par
+\f1\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>14</posicion>
+    <idclausula>250</idclausula>
+    <titulo>TRIBUTOS Y GASTOS DE PERFECCIONAMIENTO DEL CONTRATO DE APERTURA DE LINEA</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24 Todos los timbres, impuestos, derechos y cualquier otro pago que fuesen aplicables al presente contrato o a las operaciones con cargo a la L\''ednea de Cr\''e9dito, as\''ed como el importe de costos y gastos que deban hacerse, o sean requeridos para su legalizaci\''f3n, inscripciones, registros, etc., y otros, sin exclusi\''f3n alguna, correr\''e1n a cargo y cuenta exclusiva del (de los) ACREDITADO (S).\par
+\f1\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>15</posicion>
+    <idclausula>244</idclausula>
+    <titulo>RENUNCIA AL TRAMITE DE PROCESO EJECUTIVO</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs22 Se deja expresamente establecido que a los efectos de una acci\''f3n judicial que inicie el F.F.P. PRODEM S.A. por el incumplimiento al presente contrato, el (los) ACREDITADO(S), CONYUGE(S), PROPIETARIO(S) Y/O GARANTE(S) HIPOTECARIO(S) y todos los que participan en el presente contrato, renuncia(n) en forma irrevocable a los tr\''e1mites del proceso ejecutivo, reconociendo al presente contrato como t\''edtulo coactivo civil incuestionablemente, al que expresamente se somete (n) el (los) ACREDITADO (S), aplic\''e1ndose en ejecuci\''f3n lo previsto por la Ley 1760 del 28 de febrero de 1997 en su art. 48 y siguientes.\par
+\f1\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>16</posicion>
+    <idclausula>245</idclausula>
+    <titulo>CAPACIDAD Y PERSONERÍA</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24 El (los) ACREDITADO(S), CONYUGES, \fs22 PROPIETARIO(S) Y/O GARANTE(S) HIPOTECARIO(S)\fs24  y todos los que participan en el prtesente contrato, reconocen expresamente la personer\''eda jur\''eddica del F.F.P. PRODEM S.A. y la personer\''eda y capacidad de sus personeros legales, motivo por el cual han celebrado el presente contrato de pr\''e9stamo.\par
+\f1\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>17</posicion>
+    <idclausula>254</idclausula>
+    <titulo>CESIÓN DE CRÉDITO</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24 Se deja expresamente establecido que el (los) ACREDITADO (S) autoriza (n) en forma irrevocable al F.F.P. PRODEM S.A. a realizar la cesi\''f3n del presente cr\''e9dito a terceras personas y/o a empresas encargadas de efectuar la titularizaci\''f3n de cr\''e9ditos.\par
+\f1\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>18</posicion>
+    <idclausula>247</idclausula>
+    <titulo>INCLUSIÓN DE CLÁUSULAS</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24 Todas las cl\''e1usulas del presente contrato de L\''ednea de Cr\''e9dito, en lo pertinente, se consideran incorporadas a todas y cada una de las operaciones, documentos y contratos realizados con cargo a la L\''ednea de Cr\''e9dito, constituyendo parte integrante e indivisible de los mismos.\par
+\f1\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>19</posicion>
+    <idclausula>181</idclausula>
+    <titulo>ACEPTACIÓN</titulo>
+    <contenido>{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\qj\f0\fs22 Las partes que suscribimos el presente contrato de las generales y condiciones se\''f1aladas en la clausula primera de \''e9ste documento, manifestamos nuestra entera y absoluta conformidad con todas y cada una de las cl\''e1usulas y estipulaciones del presente contrato, oblig\''e1ndonos a su fiel y estricto cumplimiento, firmando en constancia de ello.  \par
+\pard\f1\fs17\par
+}
+</contenido>
+  </clausulas>
+  <clausulas>
+    <posicion>-1</posicion>
+    <idclausula>0</idclausula>
+    <titulo>PARTES FIRMANTES</titulo>
+    <contenido />
+  </clausulas>
+  <variables>
+    <idclausula>230</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Rep_Legal_ffp</idvariable>
+    <desctabla />
+    <desctexto>Representantes de la Agencia</desctexto>
+    <contenido>CINTHYA ANDREA NUÑEZ ROJAS mayor de edad, hábil por Ley con C.I. No. 4577959 S.C. en condición de Encargada de Agencia, facultada mediante poder No. 1194 de fecha 05 de diciembre del 2007 y ERIKA MANSILLA CORONADO mayor de edad, hábil por Ley, con C.I. No. 5391651 SC. en condición de Atención al Cliente facultada mediante poder No. 451 de fecha 05 de mayo del 2007, ambos poderes otorgados ante la Notaria Gaby Elfy Caballero Céspedes del distrito de Santa Cruz.</contenido>
+    <esglobal>2</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>230</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>sol_domicilio</idvariable>
+    <desctabla />
+    <desctexto>Domicilio Prodem S.A.</desctexto>
+    <contenido>AV BOLIVAR Nº 121</contenido>
+    <esglobal>2</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>230</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Estdo_Civil_ffp</idvariable>
+    <desctabla />
+    <desctexto>Estado Civil Clientes s/C.I.</desctexto>
+    <contenido>Solteros</contenido>
+    <esglobal>0</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>231</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Mont_ Lnea</idvariable>
+    <desctabla />
+    <desctexto>Monto de la Linea</desctexto>
+    <contenido>Bs 1,111.00 (UN MIL CIENTO ONCE 00/100 BOLIVIANOS)</contenido>
+    <esglobal>0</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>233</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Plzo_ Linea</idvariable>
+    <desctabla />
+    <desctexto>Plazo Apertura en AÑOS</desctexto>
+    <contenido>12 (DOCE)</contenido>
+    <esglobal>0</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>258</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Int_Varia_ffp</idvariable>
+    <desctabla />
+    <desctexto>Porcentaje Interés Variable:</desctexto>
+    <contenido>12.00 % (DOCE POR CIENTO)</contenido>
+    <esglobal>0</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>258</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Plazo_ Mes_ffp</idvariable>
+    <desctabla />
+    <desctexto>Plazo del Préstamo en Meses</desctexto>
+    <contenido>12.00 (DOCE)</contenido>
+    <esglobal>0</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>258</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Des_Gar_ffp</idvariable>
+    <desctabla />
+    <desctexto>Descrip. Hipoteca de Inmueble</desctexto>
+    <contenido>casa</contenido>
+    <esglobal>0</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>256</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Monto_DPF</idvariable>
+    <desctabla />
+    <desctexto>Monto del DPF</desctexto>
+    <contenido>Bs 2,000.00 (DOS MIL  00/100 BOLIVIANOS)</contenido>
+    <esglobal>0</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>256</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Nro_DPF_ffp</idvariable>
+    <desctabla />
+    <desctexto>Número DPF</desctexto>
+    <contenido>560</contenido>
+    <esglobal>0</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>256</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Nro_Cta_DPF_ffp</idvariable>
+    <desctabla />
+    <desctexto>Número Cuenta DPF</desctexto>
+    <contenido>2222</contenido>
+    <esglobal>0</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>256</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Ini_Plz_fij_ffp</idvariable>
+    <desctabla />
+    <desctexto>Fecha Inicio DPF</desctexto>
+    <contenido>23/12/2010</contenido>
+    <esglobal>0</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>256</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Fch_vto_DPF_ffp</idvariable>
+    <desctabla />
+    <desctexto>Fecha Vencimiento DPF</desctexto>
+    <contenido>a</contenido>
+    <esglobal>0</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <variables>
+    <idclausula>256</idclausula>
+    <tipo>0</tipo>
+    <miembro>1</miembro>
+    <idvariable>Nom_Ins_ffp</idvariable>
+    <desctabla />
+    <desctexto>Nombre Inst. Financiera</desctexto>
+    <contenido>BANCO DE CREDITO S.A.</contenido>
+    <esglobal>1</esglobal>
+    <nrofila>0</nrofila>
+    <nrocolumna>0</nrocolumna>
+    <adicional />
+  </variables>
+  <personas>
+    <posicion>1</posicion>
+    <ci>3801618</ci>
+    <expedido>CB</expedido>
+    <nombre>Victor Rivas</nombre>
+    <domicilio>Cleomedes Blanco</domicilio>
+    <calidad>DEUDOR y/o PRESTATARIO</calidad>
+    <parrafo />
+    <dom_especial>torres Sofer</dom_especial>
+    <edocivil>SOLTERO/A</edocivil>
+    <nacionalidad>Boliviana</nacionalidad>
+    <profesion>Ing. Sistemas</profesion>
+    <tipo_documento>1</tipo_documento>
+    <pais>1</pais>
+    <redaccion>Victor Rivas, con Cédula de Identidad Nro. 3801618 CB, .|.mayor de edad, de nacionalidad Boliviana, profesión u ocupación Ing. Sistemas, hábil por derecho,  con domicilio en Cleomedes Blanco, .|.que en adelante se denominará DEUDOR y/o PRESTATARIO.</redaccion>
+    <razonsocial />
+    <nit />
+    <nromatricula />
+    <personanatural>1</personanatural>
+    <representante />
+    <aceptante>false</aceptante>
+  </personas>
+</NewDataSet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}}
+\viewkind4\uc1\pard\qj\f0\fs22 Mediante escritura(s) p\'fablica(s) Nos. <<Nro_Escritura,0>> de fecha(s) <<Fch_Escritura,0>>, otorgada(s) ante la(s) Notar\'eda(s) de Fe P\'fablica No(s). <<Nro_Notaria_ffp,0>>, de <<Loca_lid_ffp,0>>, el F.F.P. PRODEM S.A. otorg\'f3 pr\'e9stamo (s) por la(s) suma(s)de <<Monto_ffp,0>> a favor de:\par
+<<PARTES,2>>\par
+Con la garant\'eda hipotecaria de(l) (los) siguiente(s) bien(es): \par
+<<INCISOS,3>>\par
+\par
+}
+[8] => Array
+        (
+            [id] => 258
+            [titulo] => GARANTIA DEL CONTRATO DE APERTURA DE LINEA DE CREDITO
+            [idnumeral] => 0
+            [contenido] => {\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+\viewkind4\uc1\pard\fs22 El (los) ACREDITADO(S) garantiza(n) el cumplimiento del presente contrato y de todas las obligaciones que asuma(n) con cargo a la L\'ednea de Cr\'e9dito, con la generalidad de sus bienes presentes,<> <> futuros y especialmente con la primera hipoteca especial, se\'f1alada y privilegiada a favor del F.F.P. PRODEM S.A.,  de:\par
+<>\par
+\par
+}
+        )
+
+    [9] => Array
+        (vicosi
+            [id] => 258
+            [titulo] => Hipoteca de Inmueble
+            [idnumeral] => 192
+            [contenido] => {\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs22 <> \par
+En consecuencia, dicho inmueble con todas sus mejoras, instalaciones, construcciones, usos, costumbres, servidumbres, sin reservas ni limitaciones, queda (n) reatado (s) y gravado (s) en calidad de garant\'eda hipotecaria a favor del F.F.P. PRODEM S.A., hasta que el (los) ACREDITADO (S) haga (n) efectivo el pago total de todas y cada una de las obligaciones objeto del presente contrato y las se\'f1aladas, emergentes e inherentes del mismo, no pudiendo en efecto el (los) ACREDITADO (S), CONYUGE(S), PROPIETARIO(S) Y/O GARANTE(S) HIPOTECARIO(S) pedir o demandar extrajudicial o Judicialmente el levantamiento ni cancelaci\'f3n de los grav\'e1menes hipotecarios, mientras exista cualquier obligaci\'f3n de su parte ante el F.F.P. PRODEM S.A.; tampoco podr\'e1n crear nuevos grav\'e1menes, hipotecas ni vender, ceder, transferir, arrendar ni dar en anticresis el mismo a terceros, salvo que el F.F.P. PRODEM S.A. expresamente lo autorice por escrito.\f1\fs17\par
+}
+        )
+
+    [10] => Array
+        (
+            [id] => 258
+            [titulo] => Hipoteca de Vehículo
+            [idnumeral] => 193
+            [contenido] => {\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Microsoft Sans Serif;}}
+\viewkind4\uc1\pard\fs24 <>\par
+En consecuencia, se constituye(n) en depositario(s) gratuito(s) del veh\'edculo otorgado en garant\'eda, el (los) ACREDITADO(S), quedando el veh\'edculo bajo su guarda, custodia y conservaci\'f3n, asumiendo para s\'ed todas y cada una de las obligaciones contra\'eddas, incluyendo la de depositario gratuito del Veh\'edculo, oblig\'e1ndose a no cambiar de ubicaci\'f3n, gravar, ceder, o de cualquier modo disponer en todo o en parte, salvo consentimiento expreso y por escrito del F.F.P. PRODEM S.A., obligaci\'f3n que deber\'e1 ser inscrita en el registro de Veh\'edculos del Organismo Operativo de Tr\'e1nsito en favor del F.F.P. PRODEM S.A. haci\'e9ndose pasible a las sanciones legales correspondientes en caso de incumplimiento.  Asimismo, el (los) ACREDITADO(S), \fs22 PROPIETARIO(S) Y/O GARANTE(S) HIPOTECARIO(S) \fs24 no podr\'e1(n) crear nuevos grav\'e1menes, hipotecas ni similares sobre su propiedad, as\'ed como tampoco, vender, ceder ni transferir las mismas a terceros, salvo que el F.F.P. PRODEM S.A. expresamente lo autorice por escrito y en tal caso, bajo las condiciones que F.F.P. PRODEM S.A. establezca en resguardo de sus derechos bajo el presente contrato. En caso de incumplimiento a lo establecido en esta cl\'e1usula, se proceder\'e1 conforme lo estipulado en la cl\'e1usula de caducidad y derechos de aceleraci\'f3n del presente documento.\par
+El (los) ACREDITADO(S) se obliga(n) a dar aviso a F.F.P. PRODEM S.A. sobre cualquier cambio que se produjere relacionada con la conservaci\'f3n, ubicaci\'f3n y seguros del (de los) bien (es) dado (s) en garant\'eda\par
+\ul\b SEGURO CONTRA TODO RIESGO\ulnone\b0\par
+Del mismo modo, el (los) ACREDITADO(S) se compromete asegurar el veh\'edculo contra todo riesgo, por un monto equivalente al pr\'e9stamo, en una Compa\'f1\'eda de Seguros a satisfacci\'f3n del F.F.P. PRODEM S.A., cuya p\'f3liza deber\'e1 estar endosada a favor del F.F.P. PRODEM S.A., quien ser\'e1 \'fanico beneficiario.\par
+En caso de que el (los) ACREDITADO(S) incumpla en los pagos de las primas mensuales, incurrir\'e1 en causal de caducidad de la p\'f3liza de seguros, imputable \'edntegramente al (a los) ACREDITADO(S) con los efectos legales establecidos en el contrato de seguro. No obstante lo anterior el hecho de contratarse un seguro de automotores, no altera ni modifica en forma alguna ninguna de las cl\'e1usulas, t\'e9rminos ni las condiciones del contrato, ni las obligaciones que tiene el (los) ACREDITADO(S), los codeudores, garantes, fiadores con el F.F.P. PRODEM S.A. y que establecen en el presente contrato. En caso de producirse un riesgo o siniestro bajo las coberturas del contrato de seguro, la obligaci\'f3n se considerar\'e1 pagada \'fanicamente cuando la compa\'f1\'eda aseguradora haya hecho efectivo al F.F.P. PRODEM S.A. el pago del monto total adeudado,  a satisfacci\'f3n y conformidad del F.F.P. PRODEM S.A.. Si por cualquier motivo la compa\'f1\'eda de seguros no hace efectivo el pago o solo lo realiza en forma parcial, las obligaciones del (de los) ACREDITADO(S) conforme a este contrato continuar\'e1n vigentes por los saldos adeudados correspondientes a sus vencimientos, conforme se establece en el presente contrato, hasta su cancelaci\'f3n total, pudiendo ser ejecutado judicialmente en caso de incumplimiento de pago o por otra causa en la forma establecida en el presente contrato.\f1\fs17\par
+}
+        )
+

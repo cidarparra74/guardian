@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/representa.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20"></td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=adm/oficinas.php" class="link_tabla">
+				Volver a lista de Oficinas
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+<br>{$oficina}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	{assign var="grp" value="x"}
+	{section name=lista loop=$representa}
+	{if $grp!=$representa[lista.index].id_banca}
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="540"  height="20" valign="middle">&nbsp;* {$representa[lista.index].banca}</td>
+		
+		<td class="borde_lista" width="40"></td>
+		
+		<td class="borde_lista" width="40"><div align="center">
+			<a href="../code/_main.php?action=adm/oficinas/representa.php&eliminar_rep=acc&id={$representa[lista.index].id_oficina}&idb={$representa[lista.index].id_banca}" onMouseOver=" overlib('Eliminar representantes de esta banca',CAPTION,'Eliminar' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+		</div></td>
+	</tr>{assign var="grp" value=$representa[lista.index].id_banca}
+	{/if}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista" width="580" colspan="2">
+			&nbsp;{$representa[lista.index].nombre}
+		</td>
+		<td class="borde_lista" width="40"><div align="center">
+			<a href="../code/_main.php?action=adm/oficinas/representa.php&modificar_rep=acc&idr={$representa[lista.index].id_representa}" onMouseOver=" overlib('Cambiar este representante',CAPTION,'Modificar' ); return true" onMouseOut=" nd(); return true"> 
+				<img src="../imagenes/pass/tras.png" border="0">
+			</a>
+		</div></td>
+	</tr>
+	{/section}
+</table>
+<br />
+<form name="adicion" method="post" action="../code/_main.php?action=adm/oficinas/representa.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td  width="620"><div align="center">
+			<input type="submit" name="adicionar_rep" value="Adicionar Banca" class="boton">
+			<input type="hidden" name="id" value="{$id}">
+		</div></td>
+	</tr>
+</table>
+</form>
+<br>
+</div>
+</body>
+</html>

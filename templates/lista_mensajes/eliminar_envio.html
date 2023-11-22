@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_mensajes.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_eliminar_envio()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>Propietario :</strong> {$titulo_nombre}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="autoriza.php?carpeta_entrar=mensajes" class="link_tabla">
+				Volver a lista de Mensajes
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="420" valign="middle" height="30">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>CI :</strong> {$titulo_mis}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="middle" height="30">
+		</td>
+		</tr>
+	</table>
+<form name="eliminar_prestar" method="post" action="../code/_main.php?action=lista_mensajes.php" onSubmit="return  eliminar_prestamo_confirmar('este', 'Prestamo de Carpeta')">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Eliminaci&oacute;n de Prestamos de Carpetas</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Datos de la Carpeta :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 {$mostrar_carpeta}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Usuario Destino :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <select name="usuario" class="input">
+			{section name=lista loop=$ids_usuario}
+				{if $ids_usuario[lista.index] == $id_us_corriente}
+					<option value="{$ids_usuario[lista.index]}" selected>{$nombres[lista.index]}</option>
+				{/if}
+			{/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Observaci&oacute;n :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <textarea class="input" name="observacion" rows="3" cols="70" readonly>{$observacion}</textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	 
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="eliminar_envio_boton" value=" Eliminar " class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="id_movimiento" value="{$id_movimiento}">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+          </div></td>
+		  
+</form>		
+<form name="modificar_prestar_cancelar" method="post" action="../code/_main.php?action=lista_mensajes.php">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="prestar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		<input type="hidden" name="volver_lista" value="acc">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

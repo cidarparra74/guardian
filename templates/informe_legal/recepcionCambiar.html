@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/informe_legal_perito.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="{$carpeta_entrar}" class="link_tabla">
+				Volver a lista de Informes
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+<form name="formulario" method="post" action="{$carpeta_entrar}" onSubmit="return validaform(this)">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"> 
+          <div align="center">Modificar Recepción / Informe Legal</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Solicitante :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$nombre_usuario}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Cliente :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$cliente}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Agencia :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$agencia}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Tipo :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$tipo_bien}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla" align="left">&nbsp;Agencia : 
+          <select name="perito" class="input">
+            <option value="--" selected>(seleccione)</option>
+			{section name=lista loop=$peritos}
+				<option value="{$peritos[lista.index].id}" {if $peritos[lista.index].id==$id_perito}selected{/if}>{$peritos[lista.index].nombres}</option>
+			{/section}
+		  </select></td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="30" colspan="4" class="borde_tabla">&nbsp; </td>
+    </tr>
+
+</table>
+
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="asignar_perito_x" value="Aceptar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="id" value="{$id}">
+			</div></td>
+		  
+</form>		
+<form name="adicionar_cancelar" method="post" action="{$carpeta_entrar}" >
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> 
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+<br>
+</body>
+</html>

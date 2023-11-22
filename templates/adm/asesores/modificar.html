@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/asesores.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_modificar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="modificar" method="post" action="../code/_main.php?action=adm/asesores.php" onSubmit="return verificar_adicion()">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="620" colspan="4" valign="middle" height="30"><div align="center"> 
+            Modificaci&oacute;n de Asesores</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Nombres :&nbsp;</td>
+        <td class="borde_tabla" width="210" align="left">
+		 <input name="nombres" type="text" class="input" value="{$nombres}" size="31" maxlength="50">
+		</td>
+        <td class="borde_tabla" width="100" nowrap align="right">Apellidos :&nbsp;</td>
+        <td class="borde_tabla" width="210" align="left">
+		 <input name="apellidos" type="text" class="input" value="{$apellidos}" size="31" maxlength="100">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">C.I. :&nbsp;</td>
+        <td class="borde_tabla" width="210" align="left">
+		 <input name="ci" type="text" class="input" value="{$ci}" size="31" maxlength="20">
+		</td>
+        <td class="borde_tabla" width="100" nowrap align="right">Tel&eacute;fonos :&nbsp;</td>
+        <td class="borde_tabla" width="210" align="left">
+		 <input name="telefonos" type="text" class="input" value="{$telefonos}" size="31" maxlength="50">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Direcci&oacute;n :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left">
+		 <input name="direccion" type="text" class="input" value="{$direccion}" size="82" maxlength="250">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="modificar_boton" value="Guardar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="existentes" value="{$existentes}">
+			<input type="hidden" name="id" value="{$id}">
+          </div></td>
+		  
+</form>		
+<form name="modificar_cancelar" method="post" action="../code/_main.php?action=adm/asesores.php">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="modificar_boton_cancelar" value="Cancelar" class="boton"> </div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

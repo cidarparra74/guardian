@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/contratos.js"></SCRIPT>
+<SCRIPT>
+{literal}
+function verificaro(form){
+
+	var CamposImput = form.getElementsByTagName("input"); 
+	var cnt = 0;
+	var marcado = false;
+	for(var i=0; i< CamposImput.length; i++) { 
+		// Si el tipo de campo es checkbox
+		if(CamposImput[i].type == "checkbox" && CamposImput[i].value == "1") {
+			if(CamposImput[i].checked == true)
+				marcado = true; 
+			cnt++;
+		} 
+	}
+	if(!marcado && cnt > 0){
+		alert('Debe seleccionar al menos un servicio'); 
+		return false; 
+	}else{
+		return true;
+	}
+
+
+}
+{/literal}
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0"  class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+</br>
+<table width="620" border="0" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_contenido"> 
+		<td width="620"  valign="middle" height="30">&nbsp;<strong>Se encontraron cl&aacute;usulas opcionales para este contrato</strong><br>&nbsp;Elija las que desee incluir</td>
+	</tr>
+</table>
+<form name="adicionar" method="post" action="{$carpeta_entrar}" onsubmit="return verificaro(this);">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center">{$contrato}</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido">
+        <td width="100" nowrap align="right" class="borde_tabla">&nbsp;</td>
+        <td width="420" align="left" class="borde_tabla" colspan='3'>
+			<strong>Cl&aacute;usulas Opcionales:</strong></br></br>
+		 	{section name=lista loop=$opcionales}
+			<input type="checkbox" name="opc_{$smarty.section.lista.index}" {$opcionales[lista.index].marcado} value="{$opcionales[lista.index].esserv}">&nbsp;{$opcionales[lista.index].titulo}</br>
+			<input type="hidden" name="clau_{$smarty.section.lista.index}" value="{$opcionales[lista.index].id}">
+			</br>
+			{sectionelse}
+			(No existen cl&aacute;usulas opcionales para este contrato)
+			{/section}
+		</td>
+      </tr>
+	
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="adicionar3" value="Siguiente" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </div></td>
+        <td width="310"><div align="left">
+		<input type="button" name="boton_cancelar" value="Cancelar" class="boton" onClick="des_verificar_adicion()">
+		</div>
+		</td>
+      </tr>
+    </table>
+</form>
+<form name="adicionar_cancelar" method="post" action="{$carpeta_entrar}&filtro=1 ">
+<input type="hidden" name="adicionar_boton_cancelar" value="s"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+</form>	
+</div>
+
+</body>
+</html>

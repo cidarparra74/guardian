@@ -1,0 +1,23 @@
+
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/informe_legal_vehiculo.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="left">
+<br><br>
+<form name="acc" method="post">
+    &nbsp;&nbsp;<input type="button" name="boton" value="Buscar" class="boton" onClick="self.opener.document.formulario.marca.value='{$marca}'; self.opener.document.formulario.chasis.value='{$chasis}'; self.opener.document.formulario.modelo.value='{$modelo}'; self.opener.document.formulario.motor.value='{$motor}'; self.opener.document.formulario.clase.value='{$clase}'; self.opener.document.formulario.tipo.value='{$tipo}'; self.opener.document.formulario.color.value='{$color}'; self.opener.document.formulario.alcaldia.value='{$alcaldia}'; self.opener.document.formulario.crpva.value='{$crpva}'; self.opener.document.formulario.poliza.value='{$poliza}'; self.opener.document.formulario.fecha_vehiculo.value='{$fecha}'; window.close();">&nbsp;
+	<input type="hidden" name="poner_precio" value="{$precio}">
+</form>
+</div>
+
+</body>
+</html>

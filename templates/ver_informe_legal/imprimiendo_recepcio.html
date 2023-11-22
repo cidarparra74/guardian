@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Recepci&oacute;n</title>
+</head>
+
+<body >
+<div align="left" style="font-family: arial; font-size: 11px;">
+<p>
+<table width="800" cellpadding="3" cellspacing="0" border="0" align="left">
+	<tr>
+		<td width="800" colspan="2" height="20" align="center">
+			<h3>RECEPCION DE DOCUMENTOS</h3>
+		</td>
+	</tr>
+	<tr><td width="300" align="right">Fecha Recepci&oacute;n::</td>
+	<td width="500">{$fecha}</td></tr>
+	<tr><td width="300" align="right">Cliente:</td>
+	<td width="500">{$cliente}&nbsp; Nro. Caso: {$nrocaso}</td></tr>
+	<tr><td width="300" align="right">Solicitante:</td>
+	<td width="500">{$nombres}&nbsp;</td></tr>
+	<tr><td width="300" align="right">Tipo de Garantia:</td>
+	<td width="500">{$tipo_bien}&nbsp;</td></tr>
+	<tr><td width="300" align="right">Descripci&oacute;n:</td>
+	<td width="500">{$motivo}&nbsp;</td></tr>
+	<tr><td width="300" align="right">Monto del Pr&eacute;stamo:</td>
+	<td width="500">{$montoprestamo}&nbsp;</td></tr>
+</table>
+</p>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<p>
+<table width="800" cellpadding="1" cellspacing="0" border="0" align="left" >
+<tr>
+<td width="200" style="border: #000 solid 1px; font-size: 11px;"><b>Documento</b></td>
+<td width="100" style="border: #000 solid 1px; font-size: 11px;"><b>Tipo</b></td>
+<td width="50" style="border: #000 solid 1px; font-size: 11px;"><b>Fojas</b></td>
+<td width="225" style="border: #000 solid 1px; font-size: 11px;"><b>Obs</b></td>
+<td width="225" style="border: #000 solid 1px; font-size: 11px;"><b>Comentario</b></td>
+</tr>
+{section name=lista loop=$docus}
+<tr >
+<td style="border: #000 solid 1px; font-size: 11px;">{$docus[lista.index].documento}&nbsp;</td>
+<td style="border: #000 solid 1px; font-size: 11px;">{$docus[lista.index].tipo}&nbsp;</td>
+<td style="border: #000 solid 1px; font-size: 11px;">{$docus[lista.index].fojas}&nbsp;</td>
+<td style="border: #000 solid 1px; font-size: 11px;">{$docus[lista.index].obs}&nbsp;</td>
+<td style="border: #000 solid 1px; font-size: 11px;">{$docus[lista.index].comentario}&nbsp;</td>
+</tr>
+{/section}
+</table>
+</p>
+</div>
+</body>
+</html>

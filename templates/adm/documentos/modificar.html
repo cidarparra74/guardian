@@ -1,0 +1,229 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/documentos.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_modificar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="modificar" method="post" action="../code/_main.php?action=adm/documentos.php" onSubmit="return verificar_adicion()" enctype="multipart/form-data">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="620" colspan="4" valign="middle" height="30"><div align="center"> 
+            {if $accion == 'A'}
+			Adici&oacute;n de Documento
+			{/if}{if $accion == 'M'}
+			Modificaci&oacute;n de Documento
+			{/if}{if $accion == 'E'}
+			Eliminaci&oacute;n de Documento
+			{/if}
+			</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Documento :&nbsp;</td>
+        <td class="borde_tabla" width="520" align="left" colspan='3'>{if $accion == 'E'}<strong>{$documento}&nbsp;</strong>{else}
+		 <input name="documento" type="text" class="input" value="{$documento}" size="50" maxlength="150">{/if}
+		</td>
+      </tr>
+	  <!--
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Grupo :&nbsp;</td>
+        <td class="borde_tabla" width="210" align="left">
+		 	<select name="grupo" class="input">
+				<option value="ninguno" selected>--------</option>
+				
+				{section name=lista loop=$ids_grupo}
+					{if $accion == 'E'}<strong>{if $id_grupo == $ids_grupo[lista.index].id}{$ids_grupo[lista.index].grupo}{/if}&nbsp;</strong>{else}
+					<option value="{$ids_grupo[lista.index].id}" {if $id_grupo == $ids_grupo[lista.index].id}selected{/if}>{$ids_grupo[lista.index].grupo}</option>
+					{/if}
+				{/section}
+			</select>
+		</td>
+		<td class="borde_tabla" width="310" nowrap align="right" colspan="4">&nbsp;</td>
+ 
+      </tr> 
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr> 
+	  -->
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Descripci&oacute;n :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left">{if $accion == 'E'}<strong>{$descripcion}&nbsp;</strong>{else}
+		 <input name="descripcion" type="text" class="input" value="{$descripcion}" size="70" maxlength="250">{/if}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Imagen :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left">{if $accion == 'E'}<strong>{$imagen}&nbsp;</strong>{else}
+		 <input name="imagen" id="imagen" type="file" size="50"/>{/if}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">&nbsp;</td>
+		<td class="borde_tabla" width="210" align="right">Pedir Nro de documento :&nbsp;			
+        </td>
+		 <td class="borde_tabla" width="100">{if $accion == 'E'}<strong>{if $con_numero == 1}SI{else}NO{/if}&nbsp;</strong>{else}
+		 &nbsp;<select name="con_numero" class="input">
+				<option value="1" {if $con_numero == 1}selected{/if}>SI</option>
+				<option value="0" {if $con_numero == 0}selected{/if}>NO</option>
+			</select>{/if}
+		 </td>
+		  <td class="borde_tabla" width="210">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+	    <td class="borde_tabla" width="100" nowrap align="right">&nbsp;</td>
+		<td class="borde_tabla" width="210"  align="right">Tiene Fecha :&nbsp;</td>
+		<td class="borde_tabla" width="100" align="left" > {if $accion == 'E'}<strong>{if $tiene_fecha == 1}SI{else}NO{/if}&nbsp;</strong>{else}
+			&nbsp;<select name="tiene_fecha" class="input">
+					<option value="1" {if $tiene_fecha == 1}selected{/if}>SI</option>
+					<option value="0" {if $tiene_fecha == 0}selected{/if}>NO</option>
+			</select>{/if}
+		</td>
+		<td class="borde_tabla" width="210" align="left">&nbsp; 
+			
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	   
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">&nbsp;</td>
+        <td class="borde_tabla" width="210" align="right"> 
+			Tiene Vencimiento :&nbsp;
+		</td>
+		<td class="borde_tabla" width="100" nowrap align="left">{if $accion == 'E'}<strong>{if $vencimiento == 1}SI{else}NO{/if}&nbsp;</strong>{else}
+		&nbsp;<select name="vencimiento" class="input">
+				<option value="1" {if $vencimiento == 1}selected{/if}>SI</option>
+				<option value="0" {if $vencimiento == 0}selected{/if}>NO</option>
+			</select>{/if}</td>
+        <td class="borde_tabla" width="210" align="left">&nbsp; 
+			
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">&nbsp;</td>
+		<td class="borde_tabla" width="210" align="right">D&iacute;as Vencimiento :&nbsp;			
+        </td>
+		 <td class="borde_tabla" width="100">{if $accion == 'E'}<strong>{$meses_vencimiento}&nbsp;</strong>{else}
+		 &nbsp;<input type="text" class="input_derecha" name="meses_vencimiento" size="5" maxlength="10" value="{$meses_vencimiento}" onKeyUp="validar_numeros(meses_vencimiento,10000000)">{/if}
+		 </td>
+		  <td class="borde_tabla" width="210">(Cero si es variable)&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">&nbsp;</td>
+		<td class="borde_tabla" width="210" align="right">Doc. Post Desembolso :&nbsp;			
+        </td>
+		 <td class="borde_tabla" width="100">{if $accion == 'E'}<strong>{if $post_desembolso == 1}SI{else}NO{/if}&nbsp;</strong>{else}
+		 &nbsp;<select name="post_desembolso" class="input">
+				<option value="1" {if $post_desembolso == 1}selected{/if}>SI</option>
+				<option value="0" {if $post_desembolso == 0}selected{/if}>NO</option>
+			</select>{/if}
+		 </td>
+		  <td class="borde_tabla" width="210">&nbsp;</td>
+      </tr>
+	  	  <tr class="tabla_titulo_contenido">
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">&nbsp;</td>
+		<td class="borde_tabla" width="210" align="right">Mandatorio :&nbsp;			
+        </td>
+		 <td class="borde_tabla" width="100">{if $accion == 'E'}<strong>{if $requerido == 1}SI{else}NO{/if}&nbsp;</strong>{else}
+		 &nbsp;<select name="requerido" class="input">
+				<option value="1" {if $requerido == 1}selected{/if}>SI</option>
+				<option value="0" {if $requerido == 0}selected{/if}>NO</option>
+			</select>{/if}
+		 </td>
+		  <td class="borde_tabla" width="210">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">&nbsp;</td>
+		<td class="borde_tabla" width="210" align="right">Doc. Seguro :&nbsp;			
+        </td>
+		 <td class="borde_tabla" width="100">{if $accion == 'E'}<strong>{if $seguro == 1}SI{else}NO{/if}&nbsp;</strong>{else}
+		 &nbsp;<select name="seguro" class="input">
+				<option value="1" {if $seguro == 1}selected{/if}>SI</option>
+				<option value="0" {if $seguro == 0}selected{/if}>NO</option>
+			</select>{/if}
+		 </td>
+		  <td class="borde_tabla" width="210">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">&nbsp;</td>
+		<td class="borde_tabla" width="210" align="right">Tiene comentarios :&nbsp;			
+        </td>
+		 <td class="borde_tabla" width="100">{if $accion == 'E'}<strong>{if $tiene_coment == 1}SI{else}NO{/if}&nbsp;</strong>{else}
+		 &nbsp;<select name="tiene_coment" class="input">
+				<option value="1" {if $tiene_coment == 1}selected{/if}>SI</option>
+				<option value="0" {if $tiene_coment == 0}selected{/if}>NO</option>
+			</select>{/if}
+		 </td>
+		  <td class="borde_tabla" width="210">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla">
+        <td width="620" colspan="2">&nbsp;</td>
+      </tr>
+      <tr class="tabla">
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="modificar_boton" value="Guardar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="accion" value="{$accion}">
+          </div></td>
+</form>
+<form name="modificar_cancelar" method="post" action="../code/_main.php?action=adm/documentos.php">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="modificar_boton_cancelar" value="Cancelar" class="boton"> </div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

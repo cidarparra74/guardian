@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/responsables.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br>
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	{assign var="salto" value="`-`"}
+	{section name=lista loop=$personas}
+	{if $personas[lista.index].tipo_rol != $salto}
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="5" height="20" valign="middle" class="borde_lista">
+			{if $personas[lista.index].tipo_rol == 'x'}&nbsp;Sin especificar tipo de persona{else}
+			{if $personas[lista.index].tipo_rol == 'A'}&nbsp;Asesor{else}
+			{if $personas[lista.index].tipo_rol == 'N'}&nbsp;Notario{else}
+			{if $personas[lista.index].tipo_rol == 'R'}&nbsp;Responsable{else}
+			{if $personas[lista.index].tipo_rol == 'T'}&nbsp;Tramitador{else}
+			{if $personas[lista.index].tipo_rol == 'P'}&nbsp;Perito{/if}{/if}{/if}{/if}{/if}{/if}
+			{assign var="salto" value=$personas[lista.index].tipo_rol}
+		</td>
+	</tr>
+	{/if}
+	<tr class="tabla_titulo_contenido">
+		<td width="460" class="borde_lista">
+			{$personas[lista.index].recinto}&nbsp;/&nbsp;{$personas[lista.index].apellidos}&nbsp;{$personas[lista.index].nombres}
+		</td>
+		
+		<td width="40" class="borde_lista"><div align="center">{if $personas[lista.index].tipo_rol == 'P'}
+			<a href="../code/_main.php?action=adm/personas.php&tipos=acc&id={$personas[lista.index].id_persona}" onMouseOver=" overlib('Especificar especialidad',CAPTION,'Perito' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../images/actions/script.png" border="0">
+			</a>{else}&nbsp;{/if}
+		</div></td>
+
+		<td width="40" class="borde_lista"><div align="center">
+			<a href="../code/_main.php?action=adm/personas.php&ofis=acc&id={$personas[lista.index].id_persona}&ido={$personas[lista.index].id_oficina}" onMouseOver=" overlib('Donde esta asignada la persona',CAPTION,'Oficinas' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../images/actions/casazul.png" border="0">
+			</a>
+		</div></td>
+		
+		<td width="40" class="borde_lista"><div align="center">
+			<a href="../code/_main.php?action=adm/personas.php&modificar=acc&id={$personas[lista.index].id_persona}" onMouseOver=" overlib('Modificación de los valores de esta persona',CAPTION,'Modificar' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/modificar.jpg" border="0">
+			</a>
+		</div></td>
+		<td width="40" class="borde_lista"><div align="center">
+			<a href="../code/_main.php?action=adm/personas.php&eliminar=acc&id={$personas[lista.index].id_persona}" onMouseOver=" overlib('Eliminación de los valores de esta persona',CAPTION,'Eliminar' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+		</div></td>
+	</tr>
+	{/section}
+</table>
+<br><br>
+<form name="adicion" method="post" action="../code/_main.php?action=adm/personas.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="620"><div align="center">
+			<input type="submit" name="adicionar" value="Adicionar Persona" class="boton">
+		</div></td>
+	</tr>
+</table>
+</form>
+<br>
+</div>
+</body>
+</html>

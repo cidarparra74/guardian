@@ -1,0 +1,209 @@
+<html>
+<head>
+<title>Informe Legal</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px; height:auto;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+.font12{font-family: arial; font-size: 12px;}
+#global {
+width: 620px;
+padding: 0px;
+text-align: left;
+background-color: #FFF;
+clear: left;
+}
+p {margin-left:20px; clear: left;}
+</style>
+{/literal}
+</head>
+
+<body>
+
+<div id="global">
+<p>
+	<table width="100%" cellpadding="3" cellspacing="0" border="0" align="left" class="tableBorder">
+		<tr>
+			<td width="50%" colspan="2" align="left">
+				<img src="../{$logo}">
+			</td>
+			<td width="50%" colspan="2" align="left">
+				<h3>INFORME LEGAL (Semovientes)</h3>
+				<!-- span class="font12">(DICTAMEN LEGAL)</span -->
+			</td>
+		</tr>
+		<tr><td width="50%" colspan="2" align="right">&nbsp;</td>
+		<td width="50%" colspan="2" align="right">&nbsp;<h3><b>{$bandera}</b></h3></td></tr>
+		<tr><td width="50%" colspan="2" align="right">&nbsp;</td>
+		<td width="50%" colspan="2" align="right">&nbsp;Nro. {if $enable_ws=='A'}Caso{else}{if $enable_ws=='S'}Cuenta{/if}{/if}: {$nrocaso}
+		&nbsp;&nbsp;&nbsp;Nro. Informe: {$id}</td>
+		</tr>
+		<tr><td width="15%" align="right">A:</td>
+		<td width="35%">{$nombres}&nbsp;</td>
+		<td width="20%" align="right">Fecha Recepci&oacute;n:</td>
+		<td width="30%" nowrap>{$fecha_rec}</td></tr>
+		
+		<tr><td align="right" >Cliente:</td>
+		<td>{$cliente}&nbsp;&nbsp;<br /></td>
+		<td align="right">Fecha Aceptaci&oacute;n:</td>
+		<td>{$fecha_ace}&nbsp;</td></tr>
+		
+		<tr><td align="right">Doc: </td>
+		<td>{$ci_cliente} {$id_doc}&nbsp;</td>
+		<td align="right">Fecha Publicaci&oacute;n:</td>
+		<td>{$fecha_pub}&nbsp;</td></tr>
+		
+		<tr><td align="right">Tipo de Garant&iacute;a:</td>
+		<td>{$bien}&nbsp;</td>
+		<td align="right">N&uacute;mero de Bien:</td>
+		<td>{$nrobien}&nbsp;</td></tr>
+		
+		<tr><td align="right">Elaborado por:</td>
+		<td>{$usr_acep}&nbsp;</td>
+		<td align="right">Oficina:</td>
+		<td>{$oficina}</td></tr>
+	</table>
+</p>
+<p>
+<span class="font12">&nbsp;&nbsp;&nbsp;&nbsp;I. DATOS DEL PROPIETARIO</span>
+	<table width="100%" cellpadding="1" cellspacing="0" border="0" align="left" class="tableBorder">
+	<tr>
+	<td width="40%" class="tdBorder"><b>Nombre</b></td>
+	<td width="15%" class="tdBorder"><b>Documento</b></td>
+	<td width="45%" class="tdBorder"><b>Direcci&oacute;n</b></td>
+	</tr>
+	{section name=lista loop=$lista_personas}
+	<tr>
+	<td class="tdBorder">{$lista_personas[lista.index].nombre}&nbsp;{if $lista_personas[lista.index].titular  =='S' }<b>(Titular)</b>{/if}</td>
+	<td class="tdBorder">{$lista_personas[lista.index].ci}&nbsp;{$lista_personas[lista.index].emision}</td>
+	<td class="tdBorder">{$lista_personas[lista.index].direccion}&nbsp;</td>
+	</tr>
+	{sectionelse}
+	<tr>
+	<td class="tdBorder" colspan="3">(Sin propietarios registrados)</td>
+	</tr>
+	{/section}
+	</table>
+</p>
+<p>
+<span class="font12">&nbsp;&nbsp;&nbsp;&nbsp;II. DATOS GENERALES DEL SEMOVIENTE</span>
+
+	<table width="100%" cellpadding="3" cellspacing="0" border="0" align="left" class="tableBorder">
+		<tr><td width="15%" class="tdBorder" align="right">Descripci&oacute;n:</td>
+		<td width="85%" class="tdBorder" class="tdBorder" colspan="3">{$tipo_a}&nbsp;</td></tr>
+		
+		<tr><td width="15%" align="right">Raza:</td>
+		<td width="35%" class="tdBorder">{$marca}&nbsp;</td>
+		<td width="15%" class="tdBorder" align="right">Cantidad:</td>
+		<td width="35%" class="tdBorder">{$asiento}&nbsp;</td></tr>
+		
+		<tr><td width="15%" class="tdBorder" align="right">Ubicaci&oacute;n:</td>
+		<td width="85%" class="tdBorder" class="tdBorder" colspan="3">{$clase}&nbsp;</td></tr>
+		
+		<tr><td class="tdBorder" align="right">Nro. Cert.:</td>
+		<td class="tdBorder">{$poliza}&nbsp;</td>
+		<td class="tdBorder" align="right">Fecha Cert.:</td>
+		<td class="tdBorder">{$fpoliza}&nbsp;</td></tr>
+		
+		
+		<tr><td class="tdBorder" align="right">Observaciones:</td>
+		<td class="tdBorder" colspan="3">{$matricula}&nbsp;</td></tr>
+	</table>
+</p>
+<p>
+<span class="font12">&nbsp;&nbsp;&nbsp;&nbsp;III. DOCUMENTACION EXISTENTE SIN OBSERVACION</span>
+	<table width="100%" cellpadding="1" cellspacing="0" border="0" align="left" class="tableBorder">
+	<tr>
+	<td width="40%" class="tdBorder"><b>Documento</b></td>
+	<td width="10%" class="tdBorder"><b>Fecha</b></td>
+	<td width="10%" class="tdBorder"><b>Fecha Vence</b></td>
+	<td width="35%" class="tdBorder"><b>Tipo</b></td>
+	<td width="5%" class="tdBorder"><b>Fojas</b></td>
+	</tr>
+	{section name=lista loop=$infor1}
+	<tr>
+	<td class="tdBorder">{$infor1[lista.index].documento}&nbsp;{if $infor1[lista.index].numero !=''} - {$infor1[lista.index].numero}{/if}</td>
+	<td class="tdBorder">{$infor1[lista.index].fechas}&nbsp;</td>
+	<td class="tdBorder">{$infor1[lista.index].fechas_vencimiento}&nbsp;</td>
+	<td class="tdBorder">{$infor1[lista.index].tipo}&nbsp;</td>
+	<td class="tdBorder">{$infor1[lista.index].fojas}&nbsp;</td>
+	</tr>
+	{/section}
+	</table>
+</p>
+<p>
+<span class="font12">&nbsp;&nbsp;&nbsp;&nbsp;IV. REDACCION DE LA GARANTIA EN EL CONTRATO</span>
+	<table width="100%" cellpadding="1" cellspacing="0" border="0" align="left" class="tableBorder">
+	<tr>
+	<td width="100%">&nbsp;{$garantia_contrato}</td>
+	</tr>
+	</table>
+</p>
+<p>
+<span class="font12">&nbsp;&nbsp;&nbsp;&nbsp;V. OBSERVACIONES </span>
+<br />
+<span class="font11">&nbsp;&nbsp;&nbsp;&nbsp;<u>a) Documentaci&oacute;n existente con observaci&oacute;n</u></span>
+
+	<table width="100%" cellpadding="1" cellspacing="0" border="0" align="left" class="tableBorder">
+	<tr>
+	<td width="34%" class="tdBorder"><b>Documento</b></td>
+	<td width="10%" class="tdBorder"><b>Fecha</b></td>
+	<td width="15%" class="tdBorder"><b>Tipo</b></td>
+	<td width="5%" class="tdBorder"><b>Fojas</b></td>
+	<td width="36%" class="tdBorder"><b>Obs</b></td>
+	</tr>
+	{section name=lista loop=$infor2}
+	<tr >
+	<td class="tdBorder">{$infor2[lista.index].documento}&nbsp;{if $infor2[lista.index].numero !=''} - {$infor2[lista.index].numero}{/if}</td>
+	<td class="tdBorder">{$infor2[lista.index].fechas}&nbsp;</td>
+	<td class="tdBorder">{$infor2[lista.index].tipo}&nbsp;</td>
+	<td class="tdBorder">{$infor2[lista.index].fojas}&nbsp;</td>
+	<td class="tdBorder">{$infor2[lista.index].obs}&nbsp;</td>
+	</tr>
+	{/section}
+	</table>
+</p>
+<p>
+<span class="font11">&nbsp;&nbsp;&nbsp;&nbsp;<u>b) Documentaci&oacute;n faltante</u></span>
+<table width="100%" cellpadding="1" cellspacing="0" border="0" align="left" class="tableBorder">
+	<tr>
+	<td width="100%">
+	{section name=lista loop=$infor3}
+	- {$infor3[lista.index].documento}&nbsp;<br />
+	{sectionelse}
+	(sin documentaci&oacute;n faltante)
+	{/section}
+	</td>
+	</tr>
+	</table>
+</p>
+<p>
+<span class="font11">&nbsp;&nbsp;&nbsp;&nbsp;<u>c) Otras Observaciones</u></span>
+	<table width="100%" cellpadding="1" cellspacing="0" border="0" align="left" class="tableBorder">
+	<tr>
+	<td width="100%">&nbsp;{$otras_observaciones}</td>
+	</tr>
+	</table>
+</p>
+<p>	
+<span class="font12">&nbsp;&nbsp;&nbsp;&nbsp;VI. NOTA</span>
+	<table width="100%" cellpadding="1" cellspacing="0" border="0" align="left" class="tableBorder">
+	<tr>
+	<td width="100%">&nbsp;{$nota}</td>
+	</tr>
+	</table>
+</p>
+<p>	
+<span class="font12">&nbsp;&nbsp;&nbsp;&nbsp;VII. CONCLUSIONES y/o RECOMENDACIONES</span>
+	<table width="100%" cellpadding="1" cellspacing="0" border="0" align="left" class="tableBorder">
+	<tr>
+	<td width="100%">&nbsp;{$conclusiones}</td>
+	</tr>
+	</table>
+</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/contratos.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido" >
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<SCRIPT LANGUAGE='JavaScript' SRC='../../overlib/overlib.js'></SCRIPT>
+<div align="center">
+{$ok}
+<form name="buscar" method="post" action="{$carpeta_entrar}" >
+</form>
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="3" height="20" valign="middle" align="center"> &nbsp;Contratos</td>
+	</tr>
+{section name=lista loop=$miscontratos}	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="70" nowrap align="right"  valign="middle">{$miscontratos[lista.index].id}&nbsp;</td>
+        <td width="450" align="left" valign="middle">&nbsp;{$miscontratos[lista.index].titulo}&nbsp;</td>
+        <td width="100" align="left" valign="middle">&nbsp;
+			<a href="../code/_main.php?action=sec/contratos.php&modificar=dat&id={$miscontratos[lista.index].id}" onMouseOver=" overlib('Modificación de este contrato',CAPTION,'Modificar' ); return true" onMouseOut=" nd(); return true"> 
+				<img src="../imagenes/pass/modificar.png" border="0"></a>&nbsp;
+		<a href="{$carpeta_entrar}&idcc={$miscontratos[lista.index].id}" onMouseOver=" overlib('Clausulas',CAPTION,'Ver ' ); return true" onMouseOut=" nd(); return true" > 
+			<img src="../imagenes/pass/eye_2.png" border="0"></a>
+		&nbsp;
+		<a href="{$carpeta_entrar}&idc={$miscontratos[lista.index].id}" onMouseOver=" overlib('Renumerar posicion',CAPTION,'Reenumera ' ); return true" onMouseOut=" nd(); return true" onClick="return confirm('Proceder?');"> 
+			<img src="../imagenes/pass/aceptadas.gif" border="0"></a>
+		&nbsp;</td>
+      </tr>
+{/section}
+	  
+</table>
+
+
+<br>
+<br> <!-- estos BR son para corregir el problema de los ultims tooltips de la lista -->
+</div>
+</body>
+</html>

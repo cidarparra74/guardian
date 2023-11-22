@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/informe_legal.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_eliminar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="./_main.php?action={$carpeta_acc}.php" class="link_tabla">
+				Volver a lista de Informes
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+<br>
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+           {if $cual=='rec'} Eliminar recepci&oacute;n{else}{if $cual=='ope'} Eliminar operaci&oacute;n{else}Eliminar o Mover Solicitud{/if}{/if} </div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Solicitante :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla"><b>{$nombre_us_actual}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Cliente :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla"><b>{$cliente}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Descripci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla"><b>{$motivo}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+	    <td width="100" nowrap align="right" class="borde_tabla" valign="middle">N&ordm; Doc. :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <b>{$ci_cliente} {$identificacion}</b>
+		</td>
+        <td width="100" nowrap align="right" class="borde_tabla" valign="middle">Tipo :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <b>{$tipo_bien}</b>
+		</td>
+      </tr>
+	  <form name="formulario" method="post" action="./_main.php?action={$carpeta_acc}.php" onSubmit="return eliminar_confirmar( 'esta', '{if $cual=='rec'}recepcion{else}{if $cual=='ope'}operacion{else}solicitud{/if}{/if}', this.puede_eliminar)">
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>{if $cual=='ope'}
+	<tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Motivo :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		<textarea name="justifica" cols="80" rows="10" class="input" id="justifica"></textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>{/if}
+</table>
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="3">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="155" nowrap><div align="right">
+		
+            <input type="submit" name="eliminar_boton" value="Eliminar" class="boton">
+			<input type="hidden" name="eliminar_boton_x" value="el">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="estado_formulario" value="eliminar">
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="cual" value="{$cual}">
+			<input type="hidden" name="puede_eliminar" value="{$puede_eliminar}">
+         </form></div></td>
+		 <td width="155" nowrap><div align="right">{if $cual=='sol'}
+		 <form name="formov" method="post" action="./_main.php?action={$carpeta_acc}.php" onSubmit="return mover_confirmar()">	
+		 <input type="submit" name="mover_boton" value="Mover" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  <input type="hidden" name="eliminar_boton_x" value="mv">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="estado_formulario" value="eliminar">
+			<input type="hidden" name="id" value="{$id}">
+		  </form></div>{else}&nbsp;{/if}</td>
+	<td width="310"><div align="left">
+<form name="adicionar_cancelar" method="post" action="./_main.php?action={$carpeta_acc}.php" onSubmit="des_verificar_formulario()">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		<input type="hidden" name="estado_formulario" value="eliminar">
+</form>	</div>
+		</td>
+	
+      </tr>
+    </table>
+</div>
+<br>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_mensajes.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="autoriza.php?carpeta_entrar=mensajes" class="link_tabla">
+				Volver a lista de Mensajes
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+<form name="formulario" method="post" action="autoriza.php" onSubmit="return confirmar_guardar_carpeta('esta', 'Carpeta en Archivo')">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Retorno del Prestamo a Archivo</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Datos de la Carpeta :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 {$mostrar_propietario}<br><br>
+		 {$mostrar_carpeta}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla"><hr noshade class="borde_lista"></td>
+      </tr>
+	  	  
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" valign="top" class="borde_tabla">Observaciones 
+          Envio :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 {if $fecha_auto_arch != null}
+			 {$corriente} : {$observacion}<br><br>
+			 {$autoriza} : {$observacion_auto}<br><br>
+		{/if}
+		 
+          {$nombre_us_actual} : {$observacion_arch_corr}
+		  <br><br>
+          {$corriente} (Aceptar) : {$observacion_arch_conf}
+		  <br><br>
+		  {$corriente} (Retornar) : {$observacion_corr_arch_ret}
+		   </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla"><hr noshade class="borde_lista"></td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" valign="top" class="borde_tabla">Enviado el :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla"> {$fecha_arch_corr_conf} </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" valign="top" class="borde_tabla">Aceptado el :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla"> {$fecha_corr_arch_ret} </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" valign="top" class="borde_tabla">Plazo de Devoluci&oacute;n 
+          :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla"> {$fecha_arch_corr_plazo} </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" valign="top" class="borde_tabla">Obs. de Retorno :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <textarea class="input" name="observacion" rows="3" cols="70"></textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="boton_confirmar_retorno" value="Guardar en Archivo" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+          </div></td>
+		  
+</form>		
+<form name="formulario_cancelar" method="post" action="autoriza.php">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="prestar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

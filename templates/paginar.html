@@ -1,0 +1,24 @@
+&nbsp;
+{if $pagPrevia != 0} 
+<a href="../code/{$modulopaginador}?pageno=1">
+	<img src="../images/actions/resultset_first.png" title="Primera página" border="0" align="middle"/></a>
+<a href="../code/{$modulopaginador}?pageno={$pagPrevia}&centrocosto={$centrocosto}">
+	<img src="../images/actions/resultset_previous.png" title="Página anterior" border="0" align="middle"/></a>
+{/if}&nbsp;&nbsp;
+{if $npaginas}
+	{section name=lista loop=$npaginas}
+		{if $npaginas[lista] == $pagina}
+		<strong>{$npaginas[lista]}</strong>&nbsp;&nbsp;
+		{else}
+			{if $npaginas[lista] != '0'}
+		<a href="../code/{$modulopaginador}?pageno={$npaginas[lista]}&centrocosto={$centrocosto}">{$npaginas[lista]}</a>&nbsp;&nbsp;
+			{/if}
+		{/if}
+	{/section}
+{/if}
+{if $pagSiguiente != 0}
+<a href="../code/{$modulopaginador}?pageno={$pagSiguiente}&centrocosto={$centrocosto}">
+	<img src="../images/actions/resultset_next.png" title="Página siguiente" border="0" align="middle"/></a>
+<a href="../code/{$modulopaginador}?pageno={$total_paginas}&centrocosto={$centrocosto}">
+<img src="../images/actions/resultset_last.png" title="Ultima página" border="0" align="middle"/></a>
+{/if}

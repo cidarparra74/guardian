@@ -1,0 +1,147 @@
+<html> 
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/usuarios.js"></SCRIPT>
+<script type="text/javascript" language="javascript" src="../scripts/XHConn.js"></script>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+{literal}
+<script language="JavaScript">
+var myConn = new XHConn();
+if (!myConn) alert("XMLHTTP no disponible! Intente con otro navegador.");
+
+function actualiza_2_frames(urlDest){
+    window.parent.frames[1].location=urlDest;
+    window.parent.frames[2].location="../code/_intro.php";
+}
+</script>
+{/literal}
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br>
+<form name="buscar" method="post" action="../code/_main.php?action=adm/usuarios.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="4" height="20" valign="middle" align="center">&nbsp;Opciones 
+        de B&uacute;squeda</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Oficina :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+			<select name="id_oficina" class="input">
+				<option value="*">Todos</option>
+				{section name=lista loop=$oficinas}
+					<option value="{$oficinas[lista.index].id_oficina}" {if $id_oficina == $oficinas[lista.index].id_oficina} selected {/if}>{$oficinas[lista.index].oficina}</option>
+				{/section}
+				
+		 	</select>
+		</td>
+		</tr>
+        <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Perfil :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+		 	<select name="id_perfil" class="input">
+			<option value="*">Todos</option>
+			{section name=lista loop=$perfiles}
+				<option value="{$perfiles[lista.index].id_perfil}" {if $id_perfil == $perfiles[lista.index].id_perfil} selected {/if}>{$perfiles[lista.index].perfil}</option>
+			{/section}
+			</select>
+		</td>
+      </tr>
+	  
+	  </tr>
+        <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Estado :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+		 	<select name="estado" class="input">
+			<option value="*">Todos (no eliminados)</option>
+				<option value="S" {if $estado == 'S'} selected {/if}>Habilitados</option>
+				<option value="N" {if $estado == 'N'} selected {/if}>No Habilitados</option>
+				<option value="E" {if $estado == 'E'} selected {/if}>Eliminados</option>
+			</select>
+		</td>
+      </tr>
+	  
+	<tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Nombre :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="usuario" value="{$usuario}" class="input" size="30">
+		</td>
+		<td width="100" nowrap align="right" height="25" valign="middle">&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			&nbsp;
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" >&nbsp;</td>
+          <td colspan="3" align="left" valign="middle" height="30">
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton">&nbsp;
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+{if $estado != 'E'}
+<form name="adicion" method="post" action="../code/_main.php?action=adm/usuarios.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td  width="620"><div align="center">
+			<input type="submit" name="adicionar" value="Adicionar Usuario" class="boton">
+		</div></td>
+	</tr>
+</table>
+</form>{/if}
+
+<table width="620" cellpadding="0" cellspacing="0" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="230" height="20" valign="middle">
+			&nbsp;Oficina
+		</td>
+		<td class="borde_lista" width="320"  height="20" valign="middle">
+			&nbsp;Usuario
+		</td>
+		<td class="borde_lista" width="70"  height="20" valign="middle">
+			&nbsp;{if $estado == 'E'}Elimin.{/if}
+		</td>
+		
+	</tr>
+	{assign var="gperfil" value="xxx"}
+	{section name=lista loop=$usuarios}
+	{if $gperfil!=$usuarios[lista.index].id_perfil}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista" width="390" colspan="3" height="20" valign="middle">
+			&nbsp;<b>:: {if $usuarios[lista.index].perfil != ''}{$usuarios[lista.index].perfil}{else}(SIN PERFIL ASIGNADO){/if}</b>
+		</td>
+	</tr>{assign var="gperfil" value=$usuarios[lista.index].id_perfil}
+	{/if}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista" width="230">
+			&nbsp;{$usuarios[lista.index].oficina}
+		</td>
+		<td class="borde_lista" width="320">
+			{if $usuarios[lista.index].activo == 'N'}
+			&nbsp;<a href="javascript: void(0);" onClick="javascript:habilitarusr({$usuarios[lista.index].id_usuario})" onMouseOver=" overlib('Habilitar acceso al sistema',CAPTION,'Usuario deshabilitado!' ); return true;" onMouseOut=" nd();  return true;"><img src="../images/actions/status_offline.png" border="0"></a>
+			{/if}&nbsp;{$usuarios[lista.index].nombres}
+		</td>
+		<td class="borde_lista" width="70">&nbsp;{if $usuarios[lista.index].activo != 'E'}
+			<a href="#" onMouseOver=" overlib('{$usuarios[lista.index].perfil}<br>Login: {$usuarios[lista.index].login}',CAPTION,'Detalles' ); return true" onMouseOut=" nd();   return true">
+			<img src="../imagenes/pass/detalle.jpg" border="0"></a>
+			
+			<a href="../code/_main.php?action=adm/usuarios.php&modificar=acc&id={$usuarios[lista.index].id_usuario}" onMouseOver=" overlib('Modificaci�n de los valores de este Usuario',CAPTION,'Modificar' ); return true" onMouseOut=" nd();   return true">
+			<img src="../imagenes/pass/modificar.jpg" border="0"></a>
+			<a href="../code/_main.php?action=adm/usuarios.php&eliminar=acc&id={$usuarios[lista.index].id_usuario}" onMouseOver=" overlib('Eliminaci�n de los valores de este Usuario',CAPTION,'Eliminar',CAPCOLOR,'{$acc_color_txt_cabecera}',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'120',TEXTFONT,'Arial',BELOW); return true" onMouseOut=" nd(); return true">
+			<img src="../imagenes/pass/eliminar.jpg" border="0"></a>
+			{else}{$usuarios[lista.index].fecha_eli}<br />{$usuarios[lista.index].user_eli}
+			{/if}
+		</div></td>
+	</tr>
+	{/section}
+</table>
+<br>
+</div>
+</body>
+</html>

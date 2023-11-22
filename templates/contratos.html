@@ -1,0 +1,236 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/contratos.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido" >
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<SCRIPT LANGUAGE='JavaScript' SRC='../../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="{$carpeta_entrar}" onSubmit="return verfechas1()">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="2" height="20" valign="middle" align="center"> &nbsp;Opciones de B&uacute;squeda en Contratos</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="120"  align="right"  valign="middle">Mostrar :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		<select name="filtro_firma" class="input">
+		<option value='*' {if $filtro_firma=='*'}selected{/if}>Todos</option>
+		<option value='0' {if $filtro_firma=='0'}selected{/if}>Sin firma</option>
+		<option value='1' {if $filtro_firma=='1'}selected{/if}>Firmados</option>
+		</select>
+		</td>
+      </tr>
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="120"  align="right" height="25" valign="middle">Texto en el Doc. :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 	<input name="filtro_texto" type="text" class="input" id="filtro_texto" value="{$filtro_texto}" size="60" maxlength="100">
+		</td>
+      </tr>
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="120"  align="right" height="25" valign="middle">De la fecha :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 <input name="filtro_fecha" type="text" class="input" id="filtro_fecha" value="{$filtro_fecha}" size="15" maxlength="10">&nbsp;&nbsp;A la Fecha :&nbsp;<input name="filtro_fech2" type="text" class="input" id="filtro_fech2" value="{$filtro_fech2}" size="15" maxlength="10">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="120"  align="right" height="28" valign="middle">&nbsp;</td>
+		<td width="500" align="left" valign="middle">
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton"><br><br>
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+
+<form name="adicion" method="post" action="{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center" class="borde_lista">
+	<tr class="tabla_titulo_contenido">
+		<td width="620" align="center">{if $quien == '10'}
+			<select name="almacen" class="input" size="9">
+			{section name=lista loop=$almacenes}
+				<option value="{$almacenes[lista.index].id}" {if $almacenes[lista.index].id == $id_almacen} selected {/if}>
+				{$almacenes[lista.index].nombre}</option>
+			{/section}
+			</select>
+{/if}</td>
+	</tr>
+	<tr class="tabla_titulo_contenido">
+		<td width="620"><div align="center">
+
+			<input type="submit" name="adicionar" value="Adicionar Contrato" class="boton">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="edita" value="{$edita}">
+		</div></td>
+	</tr>
+
+</table>
+</form>
+
+
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="110" class="borde_lista">
+			&nbsp;Fecha Hora
+		</td>
+		<td width="360" class="borde_lista">
+			&nbsp;Cliente / T&iacute;tulo Contrato
+		</td>
+		<td width="150" class="borde_lista">
+			&nbsp;
+		</td>
+		
+	</tr>
+	{section name=lista loop=$miscontratos}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista">
+			&nbsp;{$miscontratos[lista.index].fecha}&nbsp;{$miscontratos[lista.index].hora}
+		</td>
+		<td class="borde_lista">
+			&nbsp;<strong>{$miscontratos[lista.index].parte}</strong>&nbsp;&nbsp;{if $miscontratos[lista.index].nrocaso != ''}[{$miscontratos[lista.index].nrocaso}]{/if}<br>
+			&nbsp;{$miscontratos[lista.index].id}&nbsp;-&nbsp;{$miscontratos[lista.index].titulo}
+		</td>
+		<td class="borde_lista">&nbsp;
+		{if $quien != '1' && $quien != '8' && $quien=='10'}
+			{if $quien != '9'}
+			{if $miscontratos[lista.index].firma == '0'}
+			<a href="{$carpeta_entrar}&id={$miscontratos[lista.index].id}&firma=2" onMouseOver=" overlib('Solicitar VoBo',CAPTION,'Notificar' );  return true"  onMouseOut=" nd();   return true"><img src="../images/actions/script.png" border="0"></a>{else}
+			{if $miscontratos[lista.index].firma == '2'}<a href="{$carpeta_entrar}&id={$miscontratos[lista.index].id}&firma=0" onMouseOver=" overlib('Quitar notificación',CAPTION,'Notificado' );  return true"  onMouseOut=" nd();   return true"><img src="../images/actions/notificado.png" border="0"></a>{else}
+			<img src="../images/actions/firmado.png" border="0" onMouseOver=" overlib('Aceptado con VoBo',CAPTION,'Notificado' );  return true"  onMouseOut=" nd();   return true">{/if}{/if}
+			
+			{else}
+			{if $miscontratos[lista.index].firma == '0'}
+			{if $miscontratos[lista.index].nulo != '1'}
+			<a href="{$carpeta_entrar}&id={$miscontratos[lista.index].id}&firma=3" onMouseOver=" overlib('Elaborado por {$miscontratos[lista.index].elabora} ({$miscontratos[lista.index].telefono})',CAPTION,'Firmar contrato' ); return true"  onMouseOut=" nd(); return true"><img src="../images/actions/script_edit.png" border="0"></a>
+			{else}<a href="javascript: void(0);" onMouseOver=" overlib('Debe generar el documento',CAPTION,'No puede firmar!' );  return true"  onMouseOut=" nd();   return true"><img src="../images/actions/script_edit.png" border="0"></a>
+			{/if}{else}
+			<a href="{$carpeta_entrar}&id={$miscontratos[lista.index].id}&firma=4" onMouseOver=" overlib('Elaborado por {$miscontratos[lista.index].elabora}',CAPTION,'Firmado' );  return true"  onMouseOut=" nd();   return true"><img src="../images/actions/tick.png" border="0"></a>{/if}
+			{/if}
+		{else}
+		{if $quien == '1'  || $quien=='10'}
+			{if $miscontratos[lista.index].firma == '0'}
+			<img src="../images/actions/firmar.png" border="0" onMouseOver=" overlib('Sin VoBo',CAPTION,'Pendiente' );  return true"  onMouseOut=" nd();   return true">{else}
+			<img src="../images/actions/firmado.png" border="0" onMouseOver=" overlib('Firmado por {$miscontratos[lista.index].firmante}',CAPTION,'Con VoBo' );  return true"  onMouseOut=" nd();   return true">{/if}
+		{else} {* aqui $quien = 8*}
+		<!--
+		WHO=8
+
+1. Selecciona todos los contratos del USUARIO QUE ELABORA.
+
+2. Si el contrato.con_firma_abogado=1 debe restringir la impresión hasta
+que sea firmado. El usuario debe SOLICITAR LA FIRMA enviando un correo (es
+la pantalla donde sale la lista de ABOGADOS y se puede colocar un email CC.
+
+3. Si el contrato.con_firma_abogado=0 puede inmediatamente ver el contrato
+e imprimirlo.
+
+4. En ningún caso el USUARIO QUE ELABORA puede firmar el contrato.
+
+		-->
+		{if $miscontratos[lista.index].confirma == '1'}
+			{if $miscontratos[lista.index].firma == '0'}
+				{if $miscontratos[lista.index].nulo != '1'}
+			<a href="{$carpeta_entrar}&id={$miscontratos[lista.index].id}&firma=2" onMouseOver=" overlib('Solicitar VoBo',CAPTION,'Notificar');  return true"  onMouseOut=" nd();   return true"><img src="../images/actions/script.png" border="0"></a>
+			{else}<a href="javascript: void(0);" onMouseOver=" overlib('Debe generar el documento',CAPTION,'No puede firmar!' );  return true"  onMouseOut=" nd();   return true"><img src="../images/actions/script_edit.png" border="0"></a>
+			{/if}{else}
+			{if $miscontratos[lista.index].firma == '2'}
+			<a href="{$carpeta_entrar}&id={$miscontratos[lista.index].id}&firma=0" onMouseOver=" overlib('Quitar notificación',CAPTION,'Notificado' );  return true"  onMouseOut=" nd();   return true"><img src="../images/actions/notificado.png" border="0"></a>
+			{else}
+
+			<img src="../images/actions/firmado.png" border="0" onMouseOver=" overlib('Firmado por {$miscontratos[lista.index].firmante}',CAPTION,'Con VoBo' );  return true"  onMouseOut=" nd();   return true">
+			{/if}
+			{/if}
+		{else}
+			{if $miscontratos[lista.index].firma == '0'}
+			<img src="../images/actions/firmar.png" border="0" onMouseOver=" overlib('Sin Firma',CAPTION,'Pendiente' );  return true"  onMouseOut=" nd();   return true">{else}
+			<img src="../images/actions/firmado.png" border="0" onMouseOver=" overlib('Firmado por {$miscontratos[lista.index].firmante}',CAPTION,'Con VoBo' );  return true"  onMouseOut=" nd();   return true">{/if}
+		{/if}
+		{/if}
+		{/if}
+		<a href="contratos/vervarRTF.php?id={$miscontratos[lista.index].id}&td={$tipodoc}" onMouseOver=" overlib('Documento Parcial',CAPTION,'Ver Variables' );  return true"  onMouseOut=" nd();   return true" target="_blank"><img src="../images/actions/icon_lupa.png" border="0"></a>
+	{if $quien != '1' && $quien=='10'}
+		{if $miscontratos[lista.index].firma == '1' }
+			{if $miscontratos[lista.index].nulo != '1'}
+		{if $word == 's'}
+			{if $tipodoc == 'W' || $tipodoc == 'A'}
+		<a href="contratos/abrirRTF.php?id={$miscontratos[lista.index].id}&td=W" onMouseOver=" overlib('Abrir en WORD',CAPTION,'Abrir' );  return true"  onMouseOut=" nd();   return true" target="_blank"><img src="../images/actions/page_word.png" border="0"></a>
+			{/if}
+			
+			{if $tipodoc == 'O' || $tipodoc == 'A'}
+		<a href="contratos/abrirRTF.php?id={$miscontratos[lista.index].id}&td=O" onMouseOver=" overlib('Abrir en OPEN OFFICE',CAPTION,'Abrir' );  return true"  onMouseOut=" nd();   return true" target="_blank"><img src="../images/actions/openoffice.png" border="0"></a>
+			{/if}
+		{/if}
+		<a href="contratos/abrirPDF.php?id={$miscontratos[lista.index].id}" onMouseOver=" overlib('Abrir como PDF',CAPTION,'Ver' ); return true" onMouseOut=" nd(); return true" target="_blank"> 
+				<img src="../imagenes/pass/pdf.png" border="0"></a>
+				{if $miscontratos[lista.index].firma == '1'}
+		<a href="{$carpeta_entrar}&enviarmail=1&id={$miscontratos[lista.index].id}" onMouseOver=" overlib('Enviar Correo',CAPTION,'e-mail' ); return true" onMouseOut=" nd(); return true"> 
+				<img src="../images/actions/email.png" border="0"></a>{/if}
+			{else}
+		<a href="{$carpeta_entrar}&id={$miscontratos[lista.index].id}&gendoc=v" onMouseOver=" overlib('Generar documento ahora',CAPTION,'Sin documento!' );  return true"  onMouseOut=" nd();   return true"><img src="../images/actions/exclamation.png" border="0"></a>
+			{/if}
+		{else}
+		{if $miscontratos[lista.index].confirma == '1'}
+		<a href="javascript: void(0);" onMouseOver=" overlib('Sin firma de aprobación',CAPTION,'VoBo Pendiente' );  return true"  onMouseOut=" nd();   return true"><img src="../images/actions/page_word_firma.png" border="0"></a>
+		{else}
+		{if $word == 's'}
+			{if $tipodoc == 'W' || $tipodoc == 'A'}
+		<a href="contratos/abrirRTF.php?id={$miscontratos[lista.index].id}&td=W" onMouseOver=" overlib('Abrir en WORD',CAPTION,'Abrir' );  return true"  onMouseOut=" nd();   return true" target="_blank"><img src="../images/actions/page_word.png" border="0"></a>
+			{/if}
+			
+			{if $tipodoc == 'O' || $tipodoc == 'A'}
+		<a href="contratos/abrirRTF.php?id={$miscontratos[lista.index].id}&td=O" onMouseOver=" overlib('Abrir en OPEN OFFICE',CAPTION,'Abrir' );  return true"  onMouseOut=" nd();   return true" target="_blank"><img src="../images/actions/openoffice.png" border="0"></a>
+			{/if}
+		{/if}
+		<a href="contratos/abrirPDF.php?id={$miscontratos[lista.index].id}" onMouseOver=" overlib('Abrir como PDF',CAPTION,'Ver' ); return true" onMouseOut=" nd(); return true" target="_blank"> 
+				<img src="../imagenes/pass/pdf.png" border="0"></a>
+		{/if}
+		{/if}
+	{else}
+			{if $miscontratos[lista.index].nulo != '1'}
+		{if $word == 's'}
+		{if $tipodoc == 'W' || $tipodoc == 'A'}
+		<a href="contratos/abrirRTF.php?id={$miscontratos[lista.index].id}&td=W" onMouseOver=" overlib('Abrir en WORD',CAPTION,'Abrir' );  return true"  onMouseOut=" nd();   return true" target="_blank"><img src="../images/actions/page_word.png" border="0"></a>
+			{/if}
+			
+			{if $tipodoc == 'O' || $tipodoc == 'A'}
+		<a href="contratos/abrirRTF.php?id={$miscontratos[lista.index].id}&td=O" onMouseOver=" overlib('Abrir en OPEN OFFICE',CAPTION,'Abrir' );  return true"  onMouseOut=" nd();   return true" target="_blank"><img src="../images/actions/openoffice.png" border="0"></a>
+			{/if}
+		{/if}
+		<a href="contratos/abrirPDF.php?id={$miscontratos[lista.index].id}" onMouseOver=" overlib('Abrir como PDF',CAPTION,'Ver' ); return true" onMouseOut=" nd(); return true" target="_blank"> 
+				<img src="../imagenes/pass/pdf.png" border="0"></a>{if $miscontratos[lista.index].firma == '1'}
+		<a href="{$carpeta_entrar}&enviarmail=1&id={$miscontratos[lista.index].id}" onMouseOver=" overlib('Enviar Correo',CAPTION,'e-mail' ); return true" onMouseOut=" nd(); return true"> 
+				<img src="../images/actions/email.png" border="0"></a>{/if}
+			{else}
+		<a href="{$carpeta_entrar}&id={$miscontratos[lista.index].id}&gendoc=v" onMouseOver=" overlib('Generar documento ahora',CAPTION,'Sin documento!' );  return true"  onMouseOut=" nd();   return true"><img src="../images/actions/exclamation.png" border="0"></a>
+			{/if}
+	{/if}
+		{if $miscontratos[lista.index].firma == '0'}
+		<a href="{$carpeta_entrar}&modificar=acc&id={$miscontratos[lista.index].id}" onMouseOver=" overlib('Modificar valores del contrato',CAPTION,'Modificar' );  return true" onMouseOut=" nd();   return true"><img src="../imagenes/pass/modificar.jpg" border="0"></a>
+		<!-- a href="{$carpeta_entrar}&eliminar=acc&id={$miscontratos[lista.index].id}" onMouseOver=" overlib('Eliminar contrato',CAPTION,'Eliminar' ); return true" onMouseOut=" nd(); return true"><img src="../imagenes/pass/eliminar.jpg" border="0"></a -->
+		<a href="{$carpeta_entrar}&masopc=acc&id={$miscontratos[lista.index].id}" onMouseOver=" overlib('Ver más opciones',CAPTION,'Otros' );  return true" onMouseOut=" nd(); return true">m&aacute;s...</a>
+		{else}
+		
+		{/if}
+		</td>
+	</tr>
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="4" height="20" valign="middle" class="borde_lista">&nbsp;(Vacio, utilice la opci&oacute;n de b&uacute;squeda)</td>
+	</tr>
+	{/section}
+</table>
+<br>
+<br>
+<br>
+<br>
+<br> <!-- estos BR son para corregir el problema de los ultims tooltips de la lista -->
+</div>
+</body>
+</html>

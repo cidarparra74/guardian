@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>Informe Final</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+.font12{font-family: arial; font-size: 12px;}
+</style>
+{/literal}
+</head>
+
+<body>
+<div align="left">
+<table width="700" cellpadding="1" cellspacing="0" border="0" align="left" >
+<tr>
+<td>
+
+	<table width="600" cellpadding="3" cellspacing="0" border="0" align="center" class="tableBorder">
+		<tr>
+			<td width="150" align="left">
+				<img src="../{$logo}">
+			</td>
+			<td width="450" align="left">
+				<h3>INFORME FINAL</h3>
+				(Perfeccionamiento del Contrato)
+			</td>
+		</tr>
+		
+		<tr><td width="150" align="right" >Cliente:</td>
+		<td width="450"><b>{$cliente}&nbsp;[{$ci_cliente} {$id_doc}]&nbsp;</b><br></td>
+		</tr>
+		<tr><td width="150" align="right" >A:</td>
+		<td width="450">{$encarg_ag}<br></td>
+		</tr>
+		<tr>
+		<td width="600" colspan="2" align="center">
+			<table width="600" cellpadding="3" cellspacing="0" border="0" align="center" class="tableBorder">
+			<tr>
+				<td width="150" align="right">N&uacute;mero de Testimonio: &nbsp;</td>
+				<td width="150">{$inf_nro_esc}&nbsp;</td>
+				<td width="150" align="right">Importe Pr&eacute;stamo: &nbsp;</td>
+				<td width="150">{$montoprestamo}&nbsp;</td>
+			</tr>
+			<tr>
+				<td align="right">Fecha de Testimonio: &nbsp;</td>
+				<td>{$inf_fch_esc}&nbsp;</td>
+				<td align="right">Plazo: &nbsp;</td>
+				<td>{$inf_plazo}&nbsp;</td>
+			</tr>
+			<tr>
+				<td align="right">Seguro Del: &nbsp;</td>
+				<td>{$inf_fch_ini}&nbsp;&nbsp;Al: &nbsp;{$inf_fch_fin}</td>
+				<td align="right">{if $inf_nota!=''}Nota: {/if}&nbsp;</td>
+				<td>{if $inf_nota!=''}{$inf_nota}{/if}&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="150" align="right">Aseguradora: &nbsp;</td>
+				<td width="150">{$entidad}&nbsp;</td>
+				<td width="150" align="right">Importe P&oacute;liza: &nbsp;</td>
+				<td width="150">{$inf_gravmonto}&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="150" align="right">Notario: &nbsp;</td>
+				<td width="450" colspan="3">{$notario}&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="150" align="right">Tramitador: &nbsp;</td>
+				<td width="450" colspan="3">{$tramitador}&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="150" align="right">Objeto: &nbsp;</td>
+				<td width="450" colspan="3">{$motivo}&nbsp;</td>
+			</tr>
+			</table>
+		
+		</td></tr>
+	</table>
+	
+<table width="600" cellpadding="3" cellspacing="0" border="0" align="center" class="tableBorder">
+	<tr>
+		<td width="600" colspan="4" align="left">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="600" colspan="4" align="left"><span class="font11">
+El cr&eacute;dito otorgado mediante la escritura detallada anteriormente se encuentra garantizado con los siguientes bienes:</span></td>
+	</tr>
+	<tr>
+		<td width="300" align="left" class="tdBorder"><b>GARANTIA</b></td>
+		<td width="100" align="left" class="tdBorder"><b>ASIENTO DE GRAVAMENES</b></td>
+		<td width="100" align="left" class="tdBorder"><b>FECHA GRAVAMEN</b></td>
+		<td width="100" align="left" class="tdBorder"><b>I.L.</b></td>
+	</tr>
+	<tr>
+		<td width="300" align="left" class="tdBorder">{$inf_nro_mat}&nbsp;</td>
+		<td width="100" align="left" class="tdBorder">{$inf_nro_asi}&nbsp;</td>
+		<td width="100" align="left" class="tdBorder">{$inf_fch_grav}&nbsp;</td>
+		<td width="100" align="left" class="tdBorder">{$id}&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="600" colspan="4" align="left">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="600" colspan="4" align="left"><b>COMENTARIOS Y OBSERVACIONES</b></td>
+	</tr>
+	<tr>
+		<td width="600" colspan="4" align="left">{$inf_obs}&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="600" colspan="4" align="left">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="600" colspan="4" align="left">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="600" colspan="4" align="left">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="300" align="left">Ultima actualizaci&oacuten&nbsp;{$last_update}</td>
+		<td width="300" colspan="3" align="center">___________________________<br>{$elaborado}&nbsp;</td>
+	</tr>
+</td>
+</tr>
+</table>
+
+</div>
+</body>
+</html>

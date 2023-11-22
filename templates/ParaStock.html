@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido" >
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<SCRIPT LANGUAGE='JavaScript' SRC='../../overlib/overlib.js'></SCRIPT>
+<div align="center">
+
+<form name="buscarrec" method="post" action="ParaStock.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="2" height="20" valign="middle" align="center"> &nbsp;Opciones 
+        de B&uacute;squeda</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Regional :&nbsp;</td>
+        <td width="520" align="left" valign="middle">
+		<select name='recintoSel'> 
+		<option value='-'>------</option>
+		{section name=lista loop=$recinto}
+			<option value='{$recinto[lista.index].id_almacen}' {if $recintoSel == $recinto[lista.index].id_almacen}selected{/if}>{$recinto[lista.index].nombre}</option>
+		{/section}
+		</select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" >&nbsp;</td>
+          <td colspan="3" align="left" valign="middle" height="30">
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton">&nbsp;
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+
+{if $errores != ''}
+Resultado del proceso
+<table width="600" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+<tr>
+<td width="600" class="borde_lista">
+{$errores}
+</td>
+</tr>
+</table>
+{ /if }
+
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="110" class="borde_lista">
+			&nbsp;Cuenta
+		</td>
+		<td width="380" class="borde_lista">
+			&nbsp;Sucursal
+		</td>
+		<td width="40" class="borde_lista">
+			&nbsp;Casos
+		</td>
+		<td width="90" class="borde_lista">&nbsp;</td>
+	</tr>
+	{section name=lista loop=$main}
+	<tr class="tabla_titulo_contenido">
+		<td width="110" class="borde_lista">
+			&nbsp;{$main[lista.index].cuenta}
+		</td>
+		<td width="380" class="borde_lista">
+			&nbsp;<strong>{$main[lista.index].sucursal}</strong>
+		</td>
+		<td width="40" class="borde_lista">
+			&nbsp;{$main[lista.index].casos}			
+		</td>
+		<td width="90" class="borde_lista"><div align="center">
+		<a href="ParaStock.php?suc={$main[lista.index].sucursal}&cue={$main[lista.index].cuenta}" onMouseOver=" overlib('Procesar Registros',CAPTION,'Stock' );  return true"  onMouseOut=" nd();   return true" target="_self"><img src="../images/actions/icon_lupa.png" border="0"></a>&nbsp;
+		</div></td>
+	</tr>
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="4" height="20" valign="middle" class="borde_lista">&nbsp;(Vacio, no hay registros que procesar)</td>
+	</tr>
+	{/section}
+</table>
+<br>
+<br>
+<br>
+<br>
+<br> <!-- estos BR son para corregir el problema de los ultims tooltips de la lista -->
+</div>
+</body>
+</html>

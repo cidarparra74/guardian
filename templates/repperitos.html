@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="{$carpeta_entrar}" target='_blank'>
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="4" height="20" valign="middle" align="center"> &nbsp;Opciones 
+        de B&uacute;squeda</td>
+	</tr>
+      	  
+	  <tr class="tabla_titulo_contenido" height="25"> 
+        <td width="100" nowrap align="right" valign="middle">Cliente :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="filtro_cliente" value="{$f_cliente}" class="input" size="30">
+		</td>
+		<td width="100" nowrap align="right" valign="middle">C.I. :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="filtro_ci_cliente" value="{$f_ci_cliente}" class="input" size="20">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" height="25"> 
+        <td width="100" nowrap align="right" valign="middle">Del I.L. nro :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="filtro_nini" value="{$f_nini}" class="input" size="15">
+		</td>
+		<td width="100" nowrap align="right" valign="middle">Al I.L. nro:&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="filtro_nfin" value="{$f_nfin}" class="input" size="15">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" height="25"> 
+        <td width="100" nowrap align="right" valign="middle">Tipo Garant&iacute;a :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+			<select name="id_tipo_bien" class="input">
+            <option value="*" >(Todos)</option>
+			{section name=lista loop=$tiposbien}
+				<option value="{$tiposbien[lista.index].id}" {if $tiposbien[lista.index].id==$id_tipo_bien}selected{/if}>{$tiposbien[lista.index].descri}</option>
+			{/section}
+		  </select>
+		</td>
+
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" height="25"> 
+        <td width="100" nowrap align="right" valign="middle">Perito :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+			<select name="id_perito" class="input">
+            <option value="*" >(Todos)</option>
+			{section name=lista loop=$peritos}
+				<option value="{$peritos[lista.index].id}" {if $peritos[lista.index].id==$id_perito}selected{/if}>{$peritos[lista.index].nombres}</option>
+			{/section}
+		  </select>
+		</td>
+
+      </tr>
+	  
+	  
+	  <tr class="tabla_titulo_contenido"height="30" > 
+        <td width="100" >&nbsp;</td>
+		<td colspan="3" align="left" valign="middle" >
+		 <input type="submit" name="imprimir_boton" value=" Imprimir " class="boton">
+		</td>
+      </tr>
+</table>
+</form>
+
+<br>	
+</div>
+
+</body>
+</html>

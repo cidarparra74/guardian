@@ -1,0 +1,15 @@
+<?php
+
+$id_movimiento= $_REQUEST['id'];
+
+//fecha actual
+
+$fecha_actual= date("Y-m-d H:i:s");
+$fecha_actual= "CONVERT(DATETIME,'$fecha_actual',102)";
+
+$observacion= $_REQUEST['observacion'];
+
+$sql= "UPDATE movimientos_carpetas SET corr_adj=$fecha_actual, id_estado='9', flujo=1, obs_adj='$observacion' WHERE id_movimiento_carpeta='$id_movimiento' ";
+ejecutar($sql);
+
+?>

@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/informe_legal.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br>
+<br>
+<table width="400" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="400" colspan="2" valign="middle" height="30" class="borde_lista"><div align="center"> 
+           Nro.: {$id}&nbsp;&nbsp;&nbsp; Cliente: {$cliente}</div>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido">
+		<td width="200" align="right" class="borde_lista">Fecha de Solicitud: </td>
+        <td width="200" align="left" class="borde_lista">{$fecha_solicitud}</td>
+	</tr>
+	<tr class="tabla_titulo_contenido">
+		<td width="200" align="right" class="borde_lista">Fecha de Aprobaci&oacute;n: </td>
+        <td width="200" align="left" class="borde_lista">{$fecha_aprobacion}</td>
+	</tr>
+	<tr class="tabla_titulo_contenido">
+		<td width="200" align="right" class="borde_lista">Fecha de Aceptaci&oacute;n: </td>
+        <td width="200" align="left" class="borde_lista">{$fecha_aceptacion}</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+		<td width="200" align="center" height="30" class="borde_lista">Elaboraci&oacute;n</td>
+		<td width="200" align="center" height="30" class="borde_lista">Publicaci&oacute;n</td>
+	</tr>
+	  {section name=lista loop=$fechas_hab}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" align="center" class="borde_lista">{$fechas_hab[lista.index].hab}<br>{$fechas_hab[lista.index].usr}</td>
+        <td width="200" align="center" class="borde_lista">{$fechas_hab[lista.index].qui} 
+		{if $fechas_hab[lista.index].con=='1'}
+		<a href="{$carpeta_entrar}&imprimirh=s&idf={$fechas_hab[lista.index].idf}" onMouseOver=" overlib('Impresión de este informe legal',CAPTION,'Impresión' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir_lista.jpg" border="0">
+			</a>{/if}
+		{if $fechas_hab[lista.index].con=='2'}
+		<strong>Informe Final</strong>{/if}
+        </td>
+      </tr>
+	  {sectionelse}
+	   <tr class="tabla_titulo_contenido"> 
+        <td width="200" align="center" colspan="2" class="borde_lista">Sin fechas</td>
+      </tr>
+	  {/section}
+</table>
+<br><br>
+
+</div>
+<br>
+</body>
+</html>

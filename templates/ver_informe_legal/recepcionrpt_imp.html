@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Guardian Pro</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/autoriza_reportes.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+
+<table width="700" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="700" colspan="6" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Recepcion de Documentos del {$fec1} al {$fec2}</div>
+		</td>
+	</tr>
+    <tr class="tabla_titulo_color"> 
+        <td width="17%" class="borde_lista">&nbsp;Banca </td>
+		<td width="20%" class="borde_lista">&nbsp;Usuario </td>
+		<td width="20%" class="borde_lista">&nbsp;Agencia </td>
+		<td width="10%" class="borde_lista">&nbsp;Nro de Caso </td>
+		<td width="20%" class="borde_lista">&nbsp;Cliente </td>
+		<td width="13%" class="borde_lista">&nbsp;Fecha </td>
+    </tr>
+	{section name=lista loop=$casos}
+	<tr class="tabla_titulo_contenido">
+        <td class="borde_lista" nowrap>&nbsp;{$casos[lista.index].banca}</td>
+		<td class="borde_lista">&nbsp;{$casos[lista.index].usuario}</td>
+		<td class="borde_lista">&nbsp;{$casos[lista.index].oficina}</td>
+		<td class="borde_lista">&nbsp;{$casos[lista.index].nrocaso}</td>
+		<td class="borde_lista">&nbsp;{$casos[lista.index].cliente}</td>
+		<td class="borde_lista">&nbsp;{$casos[lista.index].fecha}
+		<a href="{$carpeta_entrar}&imprimir_recepcion=acc&query1={$casos[lista.index].id}&gorep=s" onMouseOver=" overlib('Imprimir documentos',CAPTION,'Imprimir' ); return true" onMouseOut=" nd();   return true" target="_blank"> 
+			<img src="../imagenes/pass/printer.png" border="0">
+		</a>
+		</td>
+    </tr>
+	{sectionelse}
+	<tr class="borde_lista">
+        <td class="borde_tabla" colspan="3">&nbsp;</td>
+    </tr>
+	{/section}
+</table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<script language="javascript" src="../scripts/modalpopups.js"></script>
+<script type="text/javascript" language="javascript" src="../scripts/XHConn.js"></script>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/opciones.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+
+<div align="center">
+<form name="guardar" method="post" action="../code/_main.php?action=sec/opciones.php">
+<table width="650" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_tabla" width="650" colspan="2" valign="middle" height="30"><div align="center"> 
+            Configuraci&oacute;n del Sistema</div>
+		</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">&nbsp; </td>
+	</tr>
+	
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="300" nowrap align="right">Grupo para contratos de Caja de Ahorro :&nbsp;</td>
+	<td class="borde_tabla" width="350" align="left" >{if $ok=='N'}
+		<select name="cta_ahorro" class="input">
+		{section name=lista loop=$tipos}
+			<option value="{$tipos[lista.index].id}" {if $tipos[lista.index].id == $cta_ahorro}selected{/if} >{$tipos[lista.index].tipo}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" nowrap align="right">Grupo para contratos de Cuenta Corriente :&nbsp;</td>
+	<td class="borde_tabla" align="left" >{if $ok=='N'}
+		<select name="cta_corriente" class="input">
+		{section name=lista loop=$tipos}
+			<option value="{$tipos[lista.index].id}" {if $tipos[lista.index].id == $cta_corriente}selected{/if} >{$tipos[lista.index].tipo}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+	
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" nowrap align="right">Contrato de Servicios Adicionales :&nbsp;</td>
+	<td class="borde_tabla" align="left" >{if $ok=='N'}
+		<select name="servadic" class="input">
+		{section name=lista loop=$contratos}
+			<option value="{$contratos[lista.index].id}" {if $contratos[lista.index].id == $servadic}selected{/if} >{$contratos[lista.index].tipo}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" nowrap align="right">Clausula Manejo Conjunta :&nbsp;</td>
+	<td class="borde_tabla" align="left" >{if $ok=='N'}
+		<select name="conjunta" class="input">
+		{section name=lista loop=$clausulas}
+			<option value="{$clausulas[lista.index].id}" {if $clausulas[lista.index].id == $conjunta}selected{/if} >{$clausulas[lista.index].tipo}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" nowrap align="right">Clausula Manejo Indistinta :&nbsp;</td>
+	<td class="borde_tabla" align="left" >{if $ok=='N'}
+		<select name="indistinta" class="input">
+		{section name=lista loop=$clausulas}
+			<option value="{$clausulas[lista.index].id}" {if $clausulas[lista.index].id == $indistinta}selected{/if} >{$clausulas[lista.index].tipo}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+	
+	
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" nowrap align="right">Clausula Fallecimiento Conjunta :&nbsp;</td>
+	<td class="borde_tabla" align="left" >{if $ok=='N'}
+		<select name="fallconj" class="input">
+		{section name=lista loop=$clausulas}
+			<option value="{$clausulas[lista.index].id}" {if $clausulas[lista.index].id == $fallconj}selected{/if} >{$clausulas[lista.index].tipo}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" nowrap align="right">Clausula Fallecimiento Indistinta :&nbsp;</td>
+	<td class="borde_tabla" align="left" >{if $ok=='N'}
+		<select name="fallindi" class="input">
+		{section name=lista loop=$clausulas}
+			<option value="{$clausulas[lista.index].id}" {if $clausulas[lista.index].id == $fallindi}selected{/if} >{$clausulas[lista.index].tipo}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+	
+	
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" nowrap align="right">Clausula Servicios :&nbsp;</td>
+	<td class="borde_tabla" align="left" >{if $ok=='N'}
+		<select name="servicios" class="input">
+		{section name=lista loop=$clausulas}
+			<option value="{$clausulas[lista.index].id}" {if $clausulas[lista.index].id == $servicios}selected{/if} >{$clausulas[lista.index].tipo}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+	
+	
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" nowrap align="right">Clausula Serv. Tarjeta de D&eacute;bito CON Cta. Col. :&nbsp;</td>
+	<td class="borde_tabla" align="left" >{if $ok=='N'}
+		<select name="servtarindi" class="input">
+		{section name=lista loop=$clausulas}
+			<option value="{$clausulas[lista.index].id}" {if $clausulas[lista.index].id == $servtarindi}selected{/if} >{$clausulas[lista.index].tipo}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+	
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" nowrap align="right">Clausula Serv. Tarjeta de D&eacute;bito SIN Cta. Col. :&nbsp;</td>
+	<td class="borde_tabla" align="left" >{if $ok=='N'}
+		<select name="servtarjeta" class="input">
+		{section name=lista loop=$clausulas}
+			<option value="{$clausulas[lista.index].id}" {if $clausulas[lista.index].id == $servtarjeta}selected{/if} >{$clausulas[lista.index].tipo}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">&nbsp;</td>
+	</tr>
+	
+</table>
+	<table width="650" border="0" class="color_contenido">
+      <tr> 
+        <td align="center">
+           {if $ok=='N'}<input type="submit" name="adicionar_boton" value="Guardar Configuraci&oacute;n" class="boton">{/if}&nbsp;
+          </td>
+      </tr>
+    </table>
+</form>	
+</div>
+<br><br><br>
+</body>
+</html>

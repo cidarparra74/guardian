@@ -1,0 +1,118 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/trasladar.js">
+</SCRIPT>
+
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>Propietario :</strong> {$titulo_nombre}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="{$carpeta_entrar}&filtro=1" class="link_tabla">
+				Volver a lista de Propietarios
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="420" valign="middle" height="30">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>CI :</strong> {$titulo_mis}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="middle" height="30">
+			&nbsp;
+		</td>
+		</tr>
+	</table>
+<form name="trasladando" id="trasladando" method="post" action="{$carpeta_entrar}" onsubmit="return confirmar(this)">
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		
+      <td width="195" height="20" valign="middle" class="borde_lista"> &nbsp;Tipo Carpeta</td>
+	  <td width="175" height="20" valign="middle" class="borde_lista"> &nbsp;Oficina</td>
+	  <td width="250" height="20" colspan="2" valign="middle" class="borde_lista"> &nbsp;Observaci&oacute;n</td>
+	</tr>{assign var="corte" value="xxx"}
+	{section name=lista loop=$ids_carpeta}
+	{if $ids_carpeta[lista.index].operacion <> $corte}	
+	<tr class="tabla_titulo_contenido">
+	<td height="20" colspan="4" valign="middle"><b>&nbsp;OPERACION: {$ids_carpeta[lista.index].operacion}</b>
+	</td>
+	</tr>{assign var="corte" value=$ids_carpeta[lista.index].operacion}
+	{/if}
+	<tr class="tabla_titulo_contenido">
+		<td width="195" class="borde_lista">&nbsp;
+			{$ids_carpeta[lista.index].tipo_carpeta}
+		</td>
+		<td width="175" class="borde_lista">
+			&nbsp;{$ids_carpeta[lista.index].o_nombre}
+		</td>
+		<td width="200" class="borde_lista">
+			&nbsp;{$ids_carpeta[lista.index].carpeta}
+			<br>
+			<strong>{$ids_carpeta[lista.index].fecha}</strong>
+		</td>
+		<td width="50" class="borde_lista" align="left">&nbsp;
+
+			{if $puede_mover[lista.index] == "si"}
+				<input type="checkbox" name="mover_{$ids_carpeta[lista.index].id}" class="input">
+			{else}
+			<a href="return void(0);" onMouseOver=" overlib('Carpeta Prestada ',CAPTION,'Bloqueado' ); return true" onMouseOut=" nd();   return true"><img src="../imagenes/pass/prestardoc.png" border="0"></a>
+			{/if}&nbsp;
+		</td>
+		
+		
+	</tr>
+	{/section}
+	<tr class="tabla_titulo_color">
+      <td colspan="4" valign="middle" class="borde_lista"> &nbsp;Trasladar carpetas seleccionadas a:</td>
+	</tr>
+	<tr class="tabla_titulo_contenido">
+	<td height="20" colspan="4" valign="middle"> &nbsp;Oficina Destino: <select name="id_oficina">
+	  <option value="0">(seleccione)</option>
+	  {section name=lista loop=$oficinas}
+	  <option value="{$oficinas[lista.index].id}">{$oficinas[lista.index].almacen} - {$oficinas[lista.index].oficina}</option>
+	  {/section}
+	  </select>
+	</td>
+	</tr>
+</table>
+<br />
+
+<table width="620" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="620"><div align="center">
+			
+			<input type="submit" name="trasladar_boton_x" value="Trasladar Marcada(s)" class="boton">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="idprop" value="{$idprop}">
+			
+		</div></td>
+	</tr>
+</table>
+</form>
+</div>
+<br /><br /><br />
+</body>
+</html>

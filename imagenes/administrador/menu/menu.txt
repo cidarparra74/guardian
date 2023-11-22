@@ -1,0 +1,7 @@
+text->	franklin gothic demi cursiva 10
+
+color->	pagebackground: 19,85,153
+	button: 227,121,27
+	backing: 216,216,12
+	text(off): 255,255,255
+	text(over): 255,255,20

@@ -1,0 +1,120 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_propietarios.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_modificar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="modificar" method="post" action="../code/_main.php?action=propietarios.php" onSubmit="return verificar_adicion_mod()">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Modificaci&oacute;n de Propietarios</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Nombre :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <input name="nombres" type="text" class="input" value="{$nombres}" size="31" maxlength="150">
+		</td>
+        <td width="100" nowrap align="right" class="borde_tabla">C&oacute;digo (CI) :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <input name="mis" type="text" class="input" id="mis" value="{$mis}" size="20" maxlength="50">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Nro Doc. :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 	<input name="ci" type="text" class="input" value="{$ci}" size="15" maxlength="20">	
+			<select name="tipo_identificacion" class="input">
+		 	{section name=lista loop=$identificacion}
+				<option value="{$identificacion[lista.index].id}"
+				{if $identificacion[lista.index].id == $id_tipo_id} selected {/if}>
+				{$identificacion[lista.index].descri}</option>
+			{/section}
+		 </select>
+		</td>
+        <td width="100" nowrap align="right" class="borde_tabla">NIT :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <input name="nit" type="text" class="input" value="{$nit}" size="25" maxlength="30">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Estado Civil :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 	<select name="estado_civil" id="estado_civil" class="input">
+				<option value="S" {if $estado_civil=='S'}selected{/if}>Soltero(a)</option>
+				<option value="C" {if $estado_civil=='C'}selected{/if}>Casado(a)</option>
+				<option value="V" {if $estado_civil=='V'}selected{/if}>Viudo(a)</option>
+				<option value="D" {if $estado_civil=='D'}selected{/if}>Divorciado(a)</option>
+				<option value="O" {if $estado_civil=='O'}selected{/if}>Concuvinado(a)</option>
+			</select>
+		</td>
+        <td width="100" nowrap align="right" class="borde_tabla">Tel&eacute;fonos  :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		  <input name="telefonos" type="text" class="input" value="{$telefonos}" size="25" maxlength="50">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Direcci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <input name="direccion" type="text" class="input" value="{$direccion}" size="82" maxlength="250">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap align="center">
+            <input type="submit" name="modificar_boton" value="Guardar" class="boton">
+			<input type="hidden" name="modificar_boton_x" value="acc">
+			<input type="hidden" name="existentes" value="{$existentes}">
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+
+		</td>
+		<td width="310" align="center"><input type="submit" name="modificar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+	
+	</td>	
+      </tr>
+    </table>
+</form>
+</div>
+
+</body>
+</html>

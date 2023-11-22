@@ -1,0 +1,172 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="modificar" method="post" action="{$carpeta_entrar}" >
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="620" colspan="4" valign="middle" height="30"><div align="center"> 
+            Modificaci&oacute;n de Variables</div>
+		</td>
+	</tr>
+	 <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+  
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="160"  nowrap align="right">Importe Pr&eacute;stamo :&nbsp;</td>
+        <td class="borde_tabla" width="150"  align="left">
+		 <input name="importePrestamo" type="text" class="input" value="{$importePrestamo}" size="20" maxlength="50">
+		</td>
+        <td class="borde_tabla" width="160"  nowrap align="right">Moneda Pr&eacute;stamo :&nbsp;</td>
+        <td class="borde_tabla" width="150"  align="left">
+		<select name='monedaPrestamo'>
+			<option value ='0'{if $monedaPrestamo == '0'}selected{/if}>Bolivianos</option>
+			<option value ='1'{if $monedaPrestamo == '1'}selected{/if}>Dolares</option>
+		</select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Cuenta Desembolso :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <input name="CuentaDesembolso" type="text" class="input" value="{$CuentaDesembolso}" size="20" maxlength="20">
+		</td>
+        <td class="borde_tabla"  nowrap align="right">N&uacute;mero de Cuotas :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <input name="numeroCuotas" type="text" class="input" value="{$numeroCuotas}" size="20" maxlength="50">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Cuotas Tasa Fija :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <input name="cuotasTasaFija" type="text" class="input" value="{$cuotasTasaFija}" size="20" maxlength="20">
+		</td>
+        <td class="borde_tabla"  nowrap align="right">Plazo Meses :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <input name="plazoMeses" type="text" class="input" value="{$plazoMeses}" size="20" maxlength="50">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Tasa1 :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <input name="Tasa1" type="text" class="input" value="{$Tasa1}" size="20" maxlength="20">
+		</td>
+        <td class="borde_tabla"  nowrap align="right">Tasa2 :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <input name="Tasa2" type="text" class="input" value="{$Tasa2}" size="20" maxlength="50">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Monto Cuota :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <input name="Cuota" type="text" class="input" value="{$Cuota}" size="20" maxlength="20">
+		</td>
+        <td class="borde_tabla"  nowrap align="right">Teac:&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <input name="Teac" type="text" class="input" value="{$Teac}" size="20" maxlength="50">
+		</td>
+      </tr>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">N&uacute;mero L&iacute;nea :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <input name="numeroLinea" type="text" class="input" value="{$numeroLinea}" size="20" maxlength="20">
+		</td>
+        <td class="borde_tabla"  nowrap align="right">&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" nowrap align="right">Importe Linea :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <input name="importeLinea" type="text" class="input" value="{$importeLinea}" size="20" maxlength="20">
+		</td>
+        <td class="borde_tabla"  nowrap align="right">Moneda Linea :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		<select name='monedaLinea'>
+			<option value ='0'{if $monedaLinea == '0'}selected{/if}>Bolivianos</option>
+			<option value ='1'{if $monedaLinea == '1'}selected{/if}>Dolares</option>
+		</select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="160" nowrap align="right" valign="top">Destino Cr&eacute;dito :&nbsp;</td>
+        <td class="borde_tabla" width="460" colspan="3" align="left">
+		 	<input name="destinoCredito" type="text" class="input" value="{$destinoCredito}" size="65" maxlength="50">
+		</td>
+      </tr>
+	  
+
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="modificar_boton" value="Guardar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="idcaso" value="{$idcaso}">
+          </div></td>
+		  
+</form>		
+<form name="modificar_cancelar" method="post" action="{$carpeta_entrar}">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="modificar_boton_cancelar" value="Cancelar" class="boton"> </div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

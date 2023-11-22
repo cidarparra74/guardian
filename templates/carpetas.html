@@ -1,0 +1,193 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_carpetas.js">
+</SCRIPT>
+
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>Propietario :</strong> {$titulo_nombre}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=propietarios.php&filtro=1" class="link_tabla">
+				Volver a lista de Propietarios
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="420" valign="middle" height="30">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>CI :</strong> {$titulo_mis}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="middle" height="30">
+			&nbsp;
+		</td>
+		</tr>
+	</table>
+
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		
+      <td width="250" height="20" valign="middle" class="borde_lista"> &nbsp;Tipo Carpeta / Oficina</td>
+	  <td width="370" height="20" colspan="2" valign="middle" class="borde_lista"> &nbsp;Observaci&oacute;n</td>
+	</tr>{assign var="corte" value="xxx"} {assign var="cant" value=0}
+	{section name=lista loop=$ids_carpeta}
+	{if $ids_carpeta[lista.index].operacion <> $corte}	
+	<tr class="tabla_titulo_contenido">
+	<td height="25" valign="middle"><b>&nbsp;OPERACION: {$ids_carpeta[lista.index].operacion}</b></td>
+	<td height="20" colspan="2" align="right" valign="middle" ><a href="../code/_main.php?action=carpetas.php&carpeta_entrar={$carpeta_acc}&adicionar={$ids_carpeta[lista.index].id}">Adicionar carpeta de contrato</a>&nbsp;</td>
+	</tr>{assign var="corte" value=$ids_carpeta[lista.index].operacion}
+	{/if}{assign var="cant" value=$cant+1}
+	<tr class="tabla_titulo_contenido">
+		<td width="250" class="borde_lista">&nbsp;
+			{if $id_almacen==$ids_carpeta[lista.index].id_almacen && $los_estados[lista.index] != 8}
+			<a href="../code/_main.php?action=carpetas.php&documentos=ok&id_cpd={$ids_carpeta[lista.index].id}&id_tcarp={$ids_carpeta[lista.index].id_tc}" class="link_tabla" onMouseOver=" overlib('Cambiar los Documentos de esta Carpeta',CAPTION,'Documentos' ); return true" onMouseOut=" nd(); return true">{$ids_carpeta[lista.index].tipo_carpeta}</a>{else}
+			<a href="../code/_main.php?action=carpetas.php&documentos=ver&id_cpd={$ids_carpeta[lista.index].id}&id_tcarp={$ids_carpeta[lista.index].id_tc}" class="link_tabla" onMouseOver=" overlib('Ver los Documentos de esta Carpeta',CAPTION,'Documentos' ); return true" onMouseOut=" nd(); return true">{$ids_carpeta[lista.index].tipo_carpeta}</a>{/if}
+			<br />&nbsp;&nbsp;&nbsp;
+			&nbsp;({$ids_carpeta[lista.index].o_nombre})
+		</td>
+		<td width="220" class="borde_lista">
+			&nbsp;{$ids_carpeta[lista.index].carpeta}
+			<br>
+			<strong>{$ids_carpeta[lista.index].fecha}</strong>
+		</td>
+		<td width="150" class="borde_lista" align="left">&nbsp;
+{if $ids_carpeta[lista.index].fdev==''}
+	{if $id_almacen==$ids_carpeta[lista.index].id_almacen}
+			{if $ids_carpeta[lista.index].ctabien!=''}
+				{if $ids_carpeta[lista.index].cuenta==''}
+				<img src="../images/actions/stop.png" border="0" onMouseOver=" overlib('Por Contabilizar',CAPTION,'Estado' ); return true" onMouseOut=" nd(); return true">
+				{else}
+				<a href="{$carpeta_entrar}&decontabiliza=acc&id={$ids_carpeta[lista.index].id}" onMouseOver=" overlib('Ver si esta cancelada',CAPTION,'Estado Contabilizado' ); return true" onMouseOut=" nd();   return true"><img src="../images/actions/tick.png" border="0"></a>
+				{/if}
+			{/if}
+			<a href="{$carpeta_entrar}&reporte_docs=acc&id={$ids_carpeta[lista.index].id}" onMouseOver=" overlib('Imprimir el contenido de esta Carpeta',CAPTION,'Reporte' ); return true" onMouseOut=" nd();   return true" target="_blank"><img src="../imagenes/pass/printer.png" border="0"></a>
+<!-- MODIFICADO POR PERCY para modificar datos carpeta -->
+			<a href="{$carpeta_entrar}&modificar=ope&id={$ids_carpeta[lista.index].id}" onMouseOver=" overlib('Ver/Modificar el nro de operación',CAPTION,'Verificar en WS' ); return true" onMouseOut=" nd();  return true"><img src="../imagenes/pass/modificar.png" border="0" width="16" height="16"></a>
+{if $enable_ws =='S'}			
+{/if}
+			{if $puede_prestar[lista.index] != "no" }
+			<a href="{$carpeta_entrar}&eliminar=acc&id={$ids_carpeta[lista.index].id}" onMouseOver=" overlib('Eliminación de los valores de esta Carpeta',CAPTION,'Eliminar' ); return true" onMouseOut=" nd();   return true"><img src="../imagenes/pass/eliminar.jpg" border="0"></a>
+			{/if}
+			{if $puede_prestar[lista.index] == "si"}
+			<a href="{$carpeta_entrar}&prestar_carpeta=acc&id={$ids_carpeta[lista.index].id}" onMouseOver=" overlib('Prestar esta Carpeta',CAPTION,'Prestamo' ); return true" onMouseOut=" nd();   return true"><img src="../imagenes/pass/prestardoc.png" border="0"></a>
+			{else}
+			{if $puede_prestar[lista.index] != "xx"}
+				{if $los_estados[lista.index] == 8}								
+					&nbsp;&nbsp;<img src="../imagenes/pass/devuelto_cliente.gif" border="0" onMouseOver=" overlib('Por: {$nombres_us[lista.index]}',CAPTION,'Devuelto al cliente' ); return true" onMouseOut=" nd();   return true">
+				{else}
+					{********** solo puede modificar en caso de que el estado este en estado 4 ***************}
+					{if $los_estados[lista.index] == 4}
+						<a href="javascript:void(0);" onMouseOver=" overlib('{$nombres_us[lista.index]}', CAPTION,'Prestado a:' );  return true" onMouseOut=" nd(); return true"><img src="../imagenes/pass/prestado.gif" border="0"></a>
+					{else}
+						<a href="javascript:void(0);" onMouseOver="overlib('{$nombres_us[lista.index]}<br>Carpeta en Movimiento',CAPTION,'Prestado a:' );  return true" onMouseOut=" nd(); return true"><img src="../imagenes/pass/prestado.gif" border="0"></a>
+					{/if}
+				{/if}
+			{/if}
+			{/if}
+			
+			{if $los_estados[lista.index] != 8}
+				{if $puede_prestar[lista.index] == "si"}
+					<!--<a href="#" onMouseOver=" overlib('Esta carpeta no esta Prestada',CAPTION,'Modificar' ); return true" onMouseOut=" nd(); return true"> 
+						<img src="../imagenes/pass/modificar_carpeta.gif" border="0">
+					</a>
+					-->
+				{else}
+					{**********solo puede modificar en caso de que el estado este en 4 ***************}
+					{if $los_estados[lista.index] == 4}
+						{if $puede_modificar[lista.index] == "si"}
+							<a href="{$carpeta_entrar}&modificar_prestamo=acc&id={$ids_carpeta[lista.index].id}" onMouseOver=" overlib('Modificación del prestamo de esta Carpeta',CAPTION,'Modificar' ); window.status='Modificación'; return true" onMouseOut=" nd();   return true"> 
+								<img src="../imagenes/pass/modificar_carpeta.gif" border="0">
+							</a>
+						
+						{/if}
+					
+					{/if}
+				{/if}
+			
+			{/if}
+
+
+			{if $los_estados[lista.index] != 8}
+				{if $puede_prestar[lista.index] == "xx"} 
+					{if $ids_carpeta[lista.index].ctabien=='' && $ids_carpeta[lista.index].coninf=='N'}
+					<a href="{$carpeta_entrar}&devolver_cliente=acc&id={$ids_carpeta[lista.index].id}" onMouseOver=" overlib('Devolver esta Carpeta al Cliente',CAPTION,'Doc. Adicional' ); return true" onMouseOut=" nd();   return true"><img src="../imagenes/pass/devolver_cliente.png" border="0"></a>
+					
+					{/if}
+				<!--	<a href="{$carpeta_entrar}&devolver_documen=acc&id={$ids_carpeta[lista.index].id}" onMouseOver=" overlib('Devolver documentos al Cliente',CAPTION,'Dev. Parcial' ); return true" onMouseOut=" nd();   return true"><img src="../imagenes/pass/folderpag.png" border="0"></a> -->
+				{else}
+					{**********solo puede modificar en caso de que el estado este en 4 ***************}
+					{if $los_estados[lista.index] == 4}
+						{if $puede_modificar[lista.index] == "si"}
+							<a href="{$carpeta_entrar}&eliminar_prestamo=acc&id={$ids_carpeta[lista.index].id}" onMouseOver=" overlib('Eliminación del préstamo de esta Carpeta',CAPTION,'Eliminar' ); window.status='Eliminación'; return true" onMouseOut=" nd();   return true"><img src="../imagenes/pass/eliminar_prestar.gif" border="0"></a>
+						{/if}
+					
+					{/if}
+				{/if}
+			{/if}
+			
+			
+	{else}
+				<!-- carpeta de otra agencia -->
+				<img src="../imagenes/pass/information.png" border="0" onMouseOver=" overlib('Carpeta de otra agencia',CAPTION,'Aviso' , ABOVE); return true" onMouseOut=" nd();  return true" target="_blank"> 
+	{/if}
+{else}
+	<!-- carpeta devuelta -->
+	<a href="javascript:void(0);" onMouseOver=" overlib('Devuelta al Cliente',CAPTION,'Carpeta' , ABOVE); return true" onMouseOut=" nd();   return true"> 
+		<img src="../imagenes/pass/persona.gif" border="0"></a>
+{/if}&nbsp;
+<a href="{$carpeta_entrar}&info_carpeta=acc&id={$ids_carpeta[lista.index].id}" onMouseOver=" overlib('Información de la carpeta',CAPTION,'Ver' , ABOVE); return true" onMouseOut=" nd();   return true" target="_blank"> 
+		<img src="../imagenes/pass/help.png" border="0"></a>{if $enable_ws =='S'}
+		{if $ids_carpeta[lista.index].ctabien!=''}
+		{if $ids_carpeta[lista.index].id_ilegal != "0"}
+		<a href="{$carpeta_entrar}&verrecep=acc&idc={$ids_carpeta[lista.index].id}&id={$ids_carpeta[lista.index].id_ilegal}" onMouseOver=" overlib('Recepcion de docs',CAPTION,'Ver' ); return true" onMouseOut=" nd();   return true"><img src="../imagenes/pass/modifica.png" border="0"></a>&nbsp;
+		{/if}{/if}{/if}
+		</td>
+	</tr>
+	{/section}
+</table>
+<br />
+
+<table width="620" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="310"><div align="center">
+			<form name="adicion" id="adicion" method="post" action="../code/_main.php?action=carpetas.php">
+			<input type="submit" name="adicionar" value="Adicionar Carpeta" class="boton">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			</form>
+		</div></td>
+		<td width="310"><div align="center">{if $cant>0 && $trasladar=='S'}
+			<form name="traslado" id="traslado" method="post" action="../code/_main.php?action=carpetas.php">
+			<input type="submit" name="trasladar" value="Trasladar Carpeta(s)" class="boton">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="idprop" value="{$idprop}">
+			</form>{else}&nbsp;{/if}
+		</div></td>
+	</tr>
+</table>
+<br /><br /><br />
+</div>
+</body>
+</html>

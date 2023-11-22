@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="adicionar" method="post" action="../code/_main.php?action=adm/bancas.php" onSubmit="return verificar_adicion()">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="620" colspan="4" valign="middle" height="30"><div align="center"> 
+            Adici&oacute;n de Bancas</div>
+		</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+		<td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+		<td class="borde_tabla" width="150" nowrap align="right">C&oacute;digo :&nbsp;</td>
+		<td class="borde_tabla" width="470" colspan="3" align="left">
+		 <input name="codigo" type="text" class="input" value="" size="10" maxlength="5">
+		</td>
+	</tr>
+
+	<tr class="tabla_titulo_contenido"> 
+		<td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+		<td class="borde_tabla"  nowrap align="right">Descripci&oacute;n Banca :&nbsp;</td>
+		<td class="borde_tabla"  colspan="3" align="left">
+		 <input name="banca" type="text" class="input" value="" size="60" maxlength="250">
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+	</tr>
+	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td  width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td  width="310" nowrap><div align="right">
+            <input type="submit" name="adicionar_boton" value="Adicionar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="existentes" value="{$existentes}">
+          </div></td>
+		  
+</form>		
+<form name="adicionar_cancelar" method="post" action="../code/_main.php?action=adm/bancas.php">
+        <td  width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> </div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

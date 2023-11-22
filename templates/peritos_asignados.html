@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="4" height="20" valign="middle" align="center"> &nbsp;Opciones 
+        de B&uacute;squeda</td>
+	</tr>
+      	  
+	  <tr class="tabla_titulo_contenido" height="25"> 
+        <td width="100" nowrap align="right" valign="middle">Cliente :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="filtro_cliente" value="{$f_cliente}" class="input" size="30">
+		</td>
+		<td width="100" nowrap align="right" valign="middle">C.I. :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="filtro_ci_cliente" value="{$f_ci_cliente}" class="input" size="20">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" height="25"> 
+        <td width="100" nowrap align="right" valign="middle">Perito :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+			<select name="id_perito" class="input">
+            <option value="*" >(Todos)</option>
+			{section name=lista loop=$peritos}
+				<option value="{$peritos[lista.index].id}" {if $peritos[lista.index].id==$id_perito}selected{/if}>{$peritos[lista.index].nombres}</option>
+			{/section}
+		  </select>
+		</td>
+
+      </tr>
+	  
+	  
+	  <tr class="tabla_titulo_contenido"height="30" > 
+        <td width="100" >&nbsp;</td>
+		<td colspan="3" align="left" valign="middle" >
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton">&nbsp;
+		</td>
+      </tr>
+</table>
+</form>
+
+{if $asignados}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="6" valign="middle" height="20" class="borde_lista"> 
+        Informes Legales con Perito Asignado </td>
+	</tr>
+
+	<tr class="tabla_titulo_color">
+	  <td width="20" height="20" valign="middle" class="borde_lista">&nbsp;Nº</td>
+      <td width="300" height="20" valign="middle" class="borde_lista">&nbsp;Cliente</td>
+  	  <td width="300" height="20" colspan="2" valign="middle" class="borde_lista" nowrap>&nbsp;Perito</td>
+	</tr>
+	{section name=lista loop=$asignados}
+	<tr class="tabla_titulo_contenido">
+		<td width="20" class="borde_lista">&nbsp;{$asignados[lista.index].id_informe_legal}</td>
+		<td width="300" class="borde_lista">&nbsp;<strong>{$asignados[lista.index].sol_cliente}</strong><br>
+		{if $asignados[lista.index].nrocaso!=''}&nbsp;{if $enable_ws == 'A'}Nro. de Caso:{else}Nro. Cuenta:{/if} {$asignados[lista.index].nrocaso}<br>{/if}
+		&nbsp;Bien:&nbsp;{$asignados[lista.index].sol_tipo_bien}</td>
+		<td width="275" class="borde_lista">&nbsp;{$asignados[lista.index].perito}</td>
+		<td width="25" class="borde_lista" align="center">
+			<a href="{$carpeta_entrar}&asignar_perito=acc&id={$asignados[lista.index].id_informe_legal}" onMouseOver=" overlib('Cambiar perito a este i.l.',CAPTION,'Con Perito' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/user_add.png" border="0"></a>
+		</td>
+	</tr>
+	{/section}
+</table>
+{/if }
+<br>	
+</div>
+<br>
+<br><br>
+</body>
+</html>

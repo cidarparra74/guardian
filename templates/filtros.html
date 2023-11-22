@@ -1,0 +1,34 @@
+{if $Fnrocampos > 0}<form name="frmFiltro" action="../code/{$modulopaginador}">
+<table width="470" border="0" align="center" cellpadding="3" cellspacing="0">
+ <tr class="ParaFiltro">
+  <td width="25%" align="right">Buscar:</td>
+  <td width="20%">
+  <input name="fDatoFiltro" type="text" value="" size="25" class="campotxt">
+  </td>
+  <td width="15%" align="right">En:</td>
+  <td width="20%">
+		<select name='fCampoFiltro' class="campotxt">
+		{section name=lista loop=$Fcriterio}
+			<option value = "{$Fcriterio[lista].campo}">{$Fcriterio[lista].descri}</option>
+		{/section}
+		</select>
+  </td>
+  <td width="20%">
+	<input name="btnFiltro" type="submit" value="Ok" class="botonPeq">
+	<input  name="filtro" id="filtro" type="hidden"  value="S" />
+	<input type="hidden" id="ffcentrocosto" name="ffcentrocosto" value="{$centrocosto}" />
+	<input type="hidden" id="tipocomprob" name="tipocomprob" value="{$tipocomprob}" />
+  </td>
+ </tr>
+ {if $tipodoc != ""}
+ <tr class="ParaFiltro">
+  <td align="right">Nro. de Serie:</td>
+  <td colspan="4">
+   <input type="text" id="txtBuscar" name="txtBuscar" class="campotxt" size="25" />
+   <a href="#" onclick="buscar_serie();"><img src="../images/actions/icon_lupa.png" border="0"></a>   
+  </td>
+ </tr>
+ {/if}
+</table></form>
+<div class="espacioTop"></div>
+{/if}

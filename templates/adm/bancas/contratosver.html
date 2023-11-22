@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_adicionar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<table width="600" border="0" cellpadding="0" cellspacing="0" >
+	<tr >
+		<td  width="600" colspan="3" valign="middle" align="right" > 
+            <font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=adm/bancas.php" class="link_tabla">
+				Volver a lista de Bancas
+			</a>
+			</font>
+		</td>
+	</tr>
+</table>
+<br>
+<form name="adicionar" method="post" action="../code/_main.php?action=adm/bancas.php">
+<table width="600" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="600" colspan="3" valign="middle" height="30"><div align="center"> 
+            Banca: {$banca}</div>
+		</td>
+	</tr>
+
+    {section name=lista loop=$contratos}
+      <tr class="tabla_titulo_contenido"> 
+        <td  class="borde_lista" width="200" nowrap align="left">&nbsp;{if $contratos[lista.index].clase=='A'}Apertura de L&iacute;nea{/if}
+		{if $contratos[lista.index].clase=='B'}Bajo L&iacute;nea{/if}
+		{if $contratos[lista.index].clase=='P'}Pr&eacute;stamo{/if}
+		</td>
+        <td  class="borde_lista" width="340" align="left">
+		 {$contratos[lista.index].titulo}
+		 </td>
+		 <td class="borde_lista" width="60" align="left">
+		 <a href="../code/_main.php?action=adm/bancas.php&clausula=acc&id={$id}&idc={$contratos[lista.index].id}" onMouseOver=" overlib('Ver clausulas',CAPTION,'Clausulas' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/detalle.jpg" border="0"></a>&nbsp;
+			<a href="../code/_main.php?action=adm/bancas.php&inciso=acc&id={$id}&idc={$contratos[lista.index].id}" onMouseOver=" overlib('Ver Incisos',CAPTION,'Inciso' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/aceptadas.gif" border="0"></a>&nbsp;
+			<!-- a href="../code/_main.php?action=adm/bancas.php&variable=acc&id={$id}&idc={$contratos[lista.index].id}" onMouseOver=" overlib('Ver Variables',CAPTION,'Variables' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/icon_lupa.png" border="0"></a -->
+		 </td>
+      </tr>
+	{/section}  
+	  
+    </table>
+
+</form>
+</div>
+
+</body>
+</html>

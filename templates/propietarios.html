@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_propietarios.js">
+</SCRIPT>
+
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido" onLoad="cargar_buscar()">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<SCRIPT LANGUAGE='JavaScript' SRC='../../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="../code/_main.php?action=propietarios.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="4" height="20" valign="middle" align="center"> &nbsp;Opciones de B&uacute;squeda</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Nombres :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+		 <input name="filtro_nombres" type="text" class="input" id="filtro_nombres" value="{$filtro_nombres}" size="31" maxlength="50">
+		</td>
+        <td width="100" nowrap align="right" valign="middle">C&oacute;digo :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+		 <input name="filtro_mis" type="text" class="input" id="filtro_mis" value="{$filtro_mis}" size="31" maxlength="100">
+		</td>
+      </tr>
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">C.I. :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+		 	<input name="filtro_ci" type="text" class="input" id="filtro_ci" value="{$filtro_ci}" size="31" maxlength="20">
+		</td>
+        <td width="100" nowrap align="right" valign="middle">Tel&eacute;fonos :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+		 <input name="filtro_telefonos" type="text" class="input" id="filtro_telefonos" value="{$filtro_telefonos}" size="31" maxlength="50">
+		</td>
+      </tr>
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Direcci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" valign="middle">
+		 <input name="filtro_direccion" type="text" class="input" id="filtro_direccion" value="{$filtro_direccion}" size="82" maxlength="250">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" >&nbsp;</td>
+        <td colspan="3" align="left" valign="middle" >
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton">&nbsp;
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		
+      <td width="620" colspan="6" height="20" valign="middle" class="borde_lista">&nbsp;Propietarios</td>
+	</tr>
+	{section name=lista loop=$ids_propietario}
+	<tr class="tabla_titulo_contenido">
+		<td width="420" class="borde_lista">
+			&nbsp;
+			<a class="link_tabla" href="../code/_main.php?action=carpetas.php&carpeta_propietario=acc&id_cp={$ids_propietario[lista.index].ids}&carpeta_ant={$carpeta_acc}" onMouseOver=" overlib('Ver las carpetas de este Propietario',CAPTION,'Carpetas' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/tiene_carpeta.jpg" border="0">&nbsp;{$ids_propietario[lista.index].nombres}
+			</a>
+			&nbsp;&nbsp;
+			(<b>{$ids_propietario[lista.index].tiene_carpeta}</b>)
+			[{$ids_propietario[lista.index].tiene_il}]
+				
+		</td>
+		<td width="40" class="borde_lista"><div align="center">
+			<a href="#" onMouseOver=" overlib('{$ids_propietario[lista.index].direccion}',CAPTION,'Dirección' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/casa.jpg" border="0">
+			</a>
+			</div>
+		</td>
+		<td width="40" class="borde_lista"><div align="center">
+			<a href="#" onMouseOver=" overlib('{$ids_propietario[lista.index].telefonos}',CAPTION,'Teléfono' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/telefono.jpg" border="0">
+			</a>
+		</div></td>
+		<td width="40" class="borde_lista"><div align="center">
+			<a href="#" onMouseOver=" overlib('C.I. : {$ids_propietario[lista.index].ci}<br>CI: {$ids_propietario[lista.index].mis}',CAPTION,'Detalles' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/detalle.jpg" border="0">
+			</a>
+		</div></td>
+		<td width="40" class="borde_lista"><div align="center"><a href="{$carpeta_entrar}&modificar=acc&id={$ids_propietario[lista.index].ids}" onMouseOver=" overlib('Modificación de los valores de esta Carpeta',CAPTION,'Modificar' );  return true" onMouseOut=" nd();   return true"><img src="../imagenes/pass/modificar.jpg" border="0"></a></div></td>
+		<td width="40" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&eliminar=acc&id={$ids_propietario[lista.index].ids}" onMouseOver=" overlib('Eliminación del Propietario',CAPTION,'Eliminar' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+		</div></td>
+	</tr>
+	{/section}
+</table>
+<br><br>{if $v=='s'}
+<form name="adicion" method="post" action="../code/_main.php?action=propietarios.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="620"><div align="center">
+			<input type="submit" name="adicionar" value="Importar Datos del Cliente" class="boton">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="v" value="{$v}">
+		</div></td>
+	</tr>
+</table>
+</form>
+{/if}
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<link href="../styles/mainframe.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="../scripts/qTip.js" type="text/JavaScript"></script>
+</head>
+
+<body>
+<div class="espacioTop"></div>
+<div id="wrap">
+<div class="barratitulo">Mantenimiento de Usuarios</div>
+<div class="espacioTop"></div>
+<!--- TABLA PARA LOS FILTROS --->
+{include file="../templates/filtros.html"}
+
+<!---  TABLA PAR EL LISTADO  --->
+<table width="550" border="0" align="center" cellpadding="2" cellspacing="0">
+ <tr>
+    <th width="200">&nbsp;&nbsp;&nbsp;&nbsp;Nombre</td>
+	<th width="100">&nbsp;Login</td>
+	<th width="150">&nbsp;Perfil</td>
+	<th width="100">&nbsp;</td>
+  </tr>
+  {section name=lista loop=$usuarios}
+  <tr {if $smarty.section.lista.index is even}class="filaImp"{else}class="filaPar"{/if}>
+    <td width="200">&nbsp;{if $usuarios[lista].activo=='S'}<img src="../images/actions/status_online.png" border="0" />{else}<img src="../images/actions/status_offline.png" border="0" />{/if}&nbsp;{$usuarios[lista].nombre}</td>
+	<td width="100">&nbsp;{$usuarios[lista].login}</td>
+	<td width="150">&nbsp;{$usuarios[lista].perfil}</td>
+	<td width="100"><img src="../images/actions/separador.png" border="0" />&nbsp;
+	<img src="../images/actions/eye.png" title="Ver datos" border="0" />&nbsp;
+	<a title="Cambiar Contraseña" href="../code/admusuarioABM.php?task=pss&id={$usuarios[lista].idusr}&pagina={$pagina}">
+	<img src="../images/actions/key.png" border="0" /></a>&nbsp;
+	<a title="Modificar Datos" href="../code/admusuarioABM.php?task=mod&id={$usuarios[lista].idusr}&pagina={$pagina}">
+	<img src="../images/actions/edit.png" border="0" /></a>&nbsp;
+	<a title="Deshabilitar Registro" href="../code/admusuarioABM.php?task=del&id={$usuarios[lista].idusr}&pagina={$pagina}">
+	<img src="../images/actions/delete.png" border="0" /></a></td>
+  </tr>
+  {sectionelse}
+   <tr>
+    <td colspan="4"><div class="filaPar">&nbsp;No existen registros para mostrar!</div></td>
+  </tr>
+  {/section}
+ </table>
+ <div class="espacioMid"></div>
+ <div class="barraNavega">
+  	<div class="barraNavegaL">{include file="../templates/paginacion.html"}</div>
+	<div class="barraNavegaR">
+    <a title="Adicionar Nuevo Registro" href="../code/admusuarioABM.php?task=add">
+	<img src="../images/actions/add.png" border="0" align="middle"/>&nbsp;Adicionar&nbsp;</a>&nbsp;&nbsp;&nbsp;
+	<a title="Imprimir Listado" href="../code/repadmusuarios.php?task=print">
+	<img src="../images/actions/printer.png" border="0" align="middle" />&nbsp;Imprimir&nbsp;</a>
+	</div>
+ </div>
+<div class="espacioTop"></div>
+</div>
+</body>
+</html>

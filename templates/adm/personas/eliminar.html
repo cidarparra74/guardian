@@ -1,0 +1,113 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/responsables.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_eliminar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="eliminar" method="post" action="../code/_main.php?action=adm/personas.php" onSubmit="return eliminar_confirmar('este', 'Asesor', this.puede_eliminar)">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Eliminaci&oacute;n de datos de la persona</div>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Tipo de Persona :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <select name='tipo_rol'>
+			{if $tipo_rol == 'A'}<option value ='A'>Asesor</option>{/if}
+			{if $tipo_rol == 'N'}<option value ='N'>Notario</option>{/if}
+			{if $tipo_rol == 'R'}<option value ='R'>Responsable</option>{/if}
+			{if $tipo_rol == 'T'}<option value ='T'>Tramitador</option>{/if}
+			{if $tipo_rol == 'P'}<option value ='P'>Perito</option>{/if}
+		</select>
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">Oficina :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <select name="id_oficina" class="input">
+			
+				<option value="0" >{$oficina}</option>
+			
+			</select>
+		</td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Nombres :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <input name="nombres" type="text" class="input" value="{$nombres}" size="31" maxlength="50" readonly>
+		</td>
+        <td width="100" nowrap align="right" class="borde_tabla">Apellidos :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <input name="apellidos" type="text" class="input" value="{$apellidos}" size="31" maxlength="100" readonly>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">C.I. :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <input name="ci" type="text" class="input" value="{$ci}" size="31" maxlength="20" readonly>
+		</td>
+        <td width="100" nowrap align="right" class="borde_tabla">Tel&eacute;fonos :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <input name="telefonos" type="text" class="input" value="{$telefonos}" size="31" maxlength="50" readonly>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Direcci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <input name="direccion" type="text" class="input" value="{$direccion}" size="82" maxlength="250" readonly>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="eliminar_boton" value="Eliminar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="puede_eliminar" value="{$puede_eliminar}">
+          </div></td>
+		  
+</form>		
+<form name="eliminar_cancelar" method="post" action="../code/_main.php?action=adm/personas.php">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="eliminar_boton_cancelar" value="Cancelar" class="boton"> </div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

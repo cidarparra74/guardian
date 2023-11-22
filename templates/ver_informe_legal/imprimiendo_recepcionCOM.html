@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>Recepci&oacute;n</title>
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+</head>
+
+<body>
+<div align="left">
+<table width="650" cellpadding="1" cellspacing="0" border="0" align="left" >
+<tr>
+<td>
+<table width="650" cellpadding="3" cellspacing="0" border="0" align="left" class="tableBorder">
+	<tr>
+		<td width="300" colspan="2" align="left">
+			<img src="{$logo}">
+		</td>
+		<td width="350" colspan="2" align="right">
+			Nro: {$id}
+		</td>
+	</tr>
+	<tr>
+		<td width="650" colspan="4" align="center">
+			<h3>RECEPCION DE DOCUMENTOS</h3>
+		</td>
+	</tr>
+	<tr><td width="350" colspan="2">&nbsp;</td>
+	<td width="350"  colspan="2" align="right">&nbsp;{if $nrocaso!=''}Nro. Caso: {$nrocaso}{/if} &nbsp;</td></tr>
+	<tr><td width="100" align="right" >Cliente:</td>
+	<td width="250">{$cliente}&nbsp;&nbsp;</td>
+	<td width="100" align="right">Documento:</td>
+	<td width="200">{$ci}&nbsp;</td></tr>
+	<tr><td width="100" align="right">Tipo de Producto:</td>
+	<td width="250" >{$tipo_bien}&nbsp;</td>
+	<td width="100" align="right">N&uacute;mero de Bi&eacute;n:</td>
+	<td width="200">{$nrobien}</td>
+	</tr>
+	<tr><td width="100" align="right">Recepcionado por:</td>
+	<td width="250">{$nombres}&nbsp;</td>
+	<td width="100" align="right">&nbsp; <!-- Fecha Recepci&oacute;n: --></td>
+	<td width="200"><!-- {$fecha}-->&nbsp;</td>
+	</tr>
+</table>
+
+</tr>
+</td>
+<tr>
+<td>
+
+<table width="650" cellpadding="1" cellspacing="0" border="0" align="left" class="tableBorder">
+<tr>
+<td width="230" class="tdBorder"><b>Documento</b></td>
+<td width="60" class="tdBorder"><b>Recepci&oacute;n</b></td>
+<td width="100" class="tdBorder"><b>Tipo</b></td>
+<td width="40" class="tdBorder"><b>Excep.</b></td>
+<td width="210" class="tdBorder"><b>Obs / Comentarios</b></td>
+</tr>
+{section name=lista loop=$docus}
+<tr >
+<td class="tdBorder">{$docus[lista.index].documento}&nbsp;</td>
+<td class="tdBorder">{$docus[lista.index].frecep}&nbsp;</td>
+<td class="tdBorder">{$docus[lista.index].tipo}&nbsp;</td>
+<td class="tdBorder" align="center">&nbsp;{if $docus[lista.index].fojas == '1'}X{/if}</td>
+<td class="tdBorder">{if $docus[lista.index].obs != ''}{$docus[lista.index].obs}{/if}{if $docus[lista.index].comentario != '' }/{$docus[lista.index].comentario}{/if}</td>
+</tr>
+{/section}
+</table>
+</td>
+</tr>
+{if $faltan}
+<tr>
+<td>
+<br />
+<b>DOCUMENTOS FALTANTES</b>
+<table width="650" cellpadding="1" cellspacing="0" border="0" align="left" class="tableBorder">
+<tr>
+<td class="tdBorder"><b>Documento</b></td>
+</tr>
+{section name=lista loop=$faltan}
+<tr>
+<td class="tdBorder">{$faltan[lista.index]}&nbsp;</td>
+</tr>
+{/section}
+</table>
+</td>
+</tr>
+{/if}
+<tr>
+<td>
+<br><span class="font11">
+Yo, {$cliente} declaro que la documentaci&oacute;n detallada anteriormente es la &uacute;nica que entregu&eacute; a la instituci&oacute;n</span><br><br>
+<table width="650" cellpadding="1" cellspacing="0" border="0" align="left" >
+<tr>
+<td>
+
+		<table width="320" cellpadding="1" cellspacing="0" border="0" align="center" class="tableBorder">
+		<tr>
+		<td align="center" class="tdBorder"><b>RECIBI CONFORME</b></td>
+		</tr>
+		<tr>
+		<td class="tdBorder">&nbsp;<br><br><br></td>
+		</tr>
+		<tr>
+		<td align="center" class="tdBorder">FIRMA<br>Nombre:_________________________________</td>
+		</tr>
+		</table>
+
+</td>
+
+<td>
+		
+		<table width="320" cellpadding="1" cellspacing="0" border="0" align="center" class="tableBorder">
+		<tr>
+		<td align="center" class="tdBorder"><b>ENTREGUE CONFORME</b></td>
+		</tr>
+		<tr>
+		<td class="tdBorder">&nbsp;<br><br><br></td>
+		</tr>
+		<tr>
+		<td align="center" class="tdBorder">FIRMA<br>{$cliente}</td>
+		</tr>
+		</table>
+</td>
+</tr>
+</table>
+<br>
+</td>
+</tr>
+
+</table>
+</div>
+</body>
+</html>

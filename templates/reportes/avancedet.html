@@ -1,0 +1,58 @@
+<html>
+<head>
+<title></title>
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+</head>
+<body>
+<br><br>
+<div align="left">
+<table width='620' cellpadding='0' cellspacing='0' border='0' align='left' >
+	<tr>
+		<td width="200" align="left">
+			<img src="{$logo}">
+		</td>
+		<td width="420" align="left">
+			<h4>Digitaci&oacute;n de Carpetas</h4>
+		</td>
+	</tr>
+</table>
+<br /><br /><br /><br />
+<table border="1" width="680" cellpadding='2' cellspacing='0' class='tableBorder'>
+{section name=lista loop=$detalle}
+	{if $detalle[lista.index].tipo=='++'}
+	<tr>
+	<td colspan="4"><strong>{$detalle[lista.index].nombre}</strong>&nbsp;</td>
+	</tr>
+	<tr>
+	<th width="80" align="left"><b>FECHA</b></th>
+	<th width="200" align="left"><b>NOMBRE CLIENTE</b></th>
+	<th width="200" align="left"><b>TIPO CARPETA</b></th>
+	<th width="200" align="left"><b>OBS</b></th>
+	</tr>
+	{else}
+		{if $detalle[lista.index].tipo=='--'}
+	<tr>
+	<td colspan="4"><strong>USUARIO: {$detalle[lista.index].nombre}</strong>&nbsp;</td>
+	</tr>
+		{else}
+	<tr>
+	<td width="80">{$detalle[lista.index].fecha}</td>
+	<td width="200">{$detalle[lista.index].nombre}&nbsp;</td>
+	<td width="200">{$detalle[lista.index].tipo}&nbsp;</td>
+	<td width="200">{$detalle[lista.index].obs}&nbsp;</td>
+	</tr>
+		{/if}
+	{/if}
+{/section}
+</table>
+		
+</div>
+</body>
+</html>

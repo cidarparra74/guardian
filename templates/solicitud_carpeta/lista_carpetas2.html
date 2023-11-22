@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/comun_solicitud.js">
+</SCRIPT>
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>Propietario :</strong> {$titulo_nombre}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=revisar_carpeta.php" class="link_tabla">
+				Volver a lista de Propietarios
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="420" valign="middle" height="30">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>CI :</strong> {$titulo_mis}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="middle" height="30">
+
+		</td>
+		</tr>
+	</table>
+
+<table width="650" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+      <td width="270" height="20" valign="middle" class="borde_lista"> &nbsp;Tipo Carpeta&nbsp;/&nbsp;Oficina</td>
+	  <td width="380" height="20" colspan="2" valign="middle" class="borde_lista"> &nbsp;Observacion</td>
+	</tr>
+	{section name=lista loop=$ids_carpeta}
+	<tr class="tabla_titulo_contenido">
+		<td width="270" class="borde_lista">
+			&nbsp;<strong>{$ids_carpeta[lista.index].tipo_carpeta}</strong><br />
+			&nbsp;{$ids_carpeta[lista.index].o_nombre}<br />
+			&nbsp;<span class="aviso_rojo">
+			
+		{if $ids_carpeta[lista.index].puede_prestar == "si"}
+			Carpeta en catastro
+		{else}
+			{if $ids_carpeta[lista.index].los_estados == 8}
+			Devuelto al Cliente por: {$ids_carpeta[lista.index].nombres_us}
+			{else}
+				{**********solo puede modificar en caso de que el estado este en estado 1***************}
+				{if $ids_carpeta[lista.index].los_estados == 1}
+					Solicitada por: {$ids_carpeta[lista.index].nombres_us}
+				{else}
+					{if $ids_carpeta[lista.index].los_estados == 0}
+					{********** es carpeta de otra agencia ***************}
+						Carpeta de otra agencia
+					{else}
+					Prestado a: {$ids_carpeta[lista.index].nombres_us} (En movimiento actualmente)
+					{/if}
+				{/if}
+			{/if}
+		{/if}
+			</span>
+		</td>
+		
+		<td width="275" class="borde_lista">
+			&nbsp;{$ids_carpeta[lista.index].carpeta}
+		</td>
+		
+		<td width="105" class="borde_lista">
+			<a href="../code/_main.php?action=carpetas.php&info_carpeta=acc&id={$ids_carpeta[lista.index].id_carpeta}" onMouseOver=" overlib('Información de la carpeta',CAPTION,'Ver' , ABOVE); return true" onMouseOut=" nd();   return true" target="_blank"> 
+		<img src="../imagenes/pass/help.png" border="0"></a>
+		&nbsp;
+		{if $ids_carpeta[lista.index].puede_prestar != "si"}
+		<a href="{$carpeta_entrar}&revisar_flujo=acc&id={$ids_carpeta[lista.index].id_carpeta}" onMouseOver=" overlib('Revisión del movimiento',CAPTION,'Ver Flujo' , ABOVE); return true" onMouseOut=" nd();   return true" > 
+		<img src="../imagenes/pass/foldertab.png" border="0"></a>
+		{/if}
+		&nbsp;
+		{if $ids_carpeta[lista.index].los_estados != 8 && $ids_carpeta[lista.index].los_estados != 0}
+			<a href="{$carpeta_entrar}&eliminar_prestamo=acc&id={$ids_carpeta[lista.index].id_carpeta}" onMouseOver=" overlib('Eliminacion del prestamo de esta Carpeta',CAPTION,'Eliminar',CAPCOLOR,'white',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'120',TEXTFONT,'Arial',LEFT); return true" onMouseOut=" nd();   return true"> 
+					<img src="../imagenes/pass/eliminar_prestar.gif" border="0"></a>
+		{/if}
+		</td>
+	</tr>
+	{/section}
+</table>
+<br>
+</div>
+</body>
+</html>

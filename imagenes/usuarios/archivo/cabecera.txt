@@ -1,0 +1,10 @@
+text-> 	principal: rockwell negrita cursiva 22.83
+	subheading: arial negrita cursiva  10.14
+
+color->	pagebackground: 19,85,153
+	text: 255,255,255
+	subtext: 13,40,126
+	mondrian 2: 255,255,176
+	mondrian 3: 238,158,43
+	line: 0,0,0
+	shadow: 0,0,0 el numero 5 en shadow

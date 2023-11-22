@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<!-- SCRIPT LANGUAGE="JavaScript" src="../scripts/tipos_documentos.js">
+</SCRIPT -->
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_adicionar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="adicionar" method="post" action="../code/_main.php?action=adm/bancas.php">
+<table width="600" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="600" colspan="2" valign="middle" height="30"><div align="center"> 
+            {$banca} / {$titulo} </div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="600" colspan="2">&nbsp; </td>
+      </tr>
+    
+	    
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="200" nowrap align="right">SEGURO DESGRAVAMEN (SVD):&nbsp;</td>
+        <td class="borde_tabla" width="400" align="left">
+		 <select name="SVD" class="input">
+		 <option value="-">Ninguno</option>
+		 {section name=lista loop=$incisos}
+		 <option value="{$incisos[lista.index].idinc}" {if $incisos[lista.index].idinc==$SVD}selected{/if}>{$incisos[lista.index].inciso}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+
+	   <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="200" nowrap align="right">FORMA DE PAGO SECUENC. (FPS):&nbsp;</td>
+        <td class="borde_tabla" width="400" align="left">
+		 <select name="FPS" class="input">
+		 <option value="-">Ninguno</option>
+		 {section name=lista loop=$incisos}
+		 <option value="{$incisos[lista.index].idinc}" {if $incisos[lista.index].idinc==$FPS}selected{/if}>{$incisos[lista.index].inciso}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	  
+	   <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="200" nowrap align="right">FORMA DE PAGO UNICO (FPU):&nbsp;</td>
+        <td class="borde_tabla" width="400" align="left">
+		 <select name="FPU" class="input">
+		 <option value="-">Ninguno</option>
+		 {section name=lista loop=$incisos}
+		 <option value="{$incisos[lista.index].idinc}" {if $incisos[lista.index].idinc==$FPU}selected{/if}>{$incisos[lista.index].inciso}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	 
+	 <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="200" nowrap align="right">TASA MIXTA (TMI):&nbsp;</td>
+        <td class="borde_tabla" width="400" align="left">
+		 <select name="TMI" class="input">
+		 <option value="-">Ninguno</option>
+		 {section name=lista loop=$incisos}
+		 <option value="{$incisos[lista.index].idinc}" {if $incisos[lista.index].idinc==$TMI}selected{/if}>{$incisos[lista.index].inciso}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	  
+	   <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="200" nowrap align="right">TASA VARIABLE (TVA):&nbsp;</td>
+        <td class="borde_tabla" width="400" align="left">
+		 <select name="TVA" class="input">
+		 <option value="-">Ninguno</option>
+		 {section name=lista loop=$incisos}
+		 <option value="{$incisos[lista.index].idinc}" {if $incisos[lista.index].idinc==$TVA}selected{/if}>{$incisos[lista.index].inciso}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="200" nowrap align="right">TASA FIJA (TFI):&nbsp;</td>
+        <td class="borde_tabla" width="400" align="left">
+		 <select name="TFI" class="input">
+		 <option value="-">Ninguno</option>
+		 {section name=lista loop=$incisos}
+		 <option value="{$incisos[lista.index].idinc}" {if $incisos[lista.index].idinc==$TFI}selected{/if}>{$incisos[lista.index].inciso}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	
+		<tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="200" nowrap align="right">LINEA DE CREDITO ROTATIVA (LIR):&nbsp;</td>
+        <td class="borde_tabla" width="400" align="left">
+		 <select name="LIR" class="input">
+		 <option value="-">Ninguno</option>
+		 {section name=lista loop=$incisos}
+		 <option value="{$incisos[lista.index].idinc}" {if $incisos[lista.index].idinc==$LIR}selected{/if}>{$incisos[lista.index].inciso}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="200" nowrap align="right">LINEA DE CREDITO SIMPLE (LIS):&nbsp;</td>
+        <td class="borde_tabla" width="400" align="left">
+		 <select name="LIS" class="input">
+		 <option value="-">Ninguno</option>
+		 {section name=lista loop=$incisos}
+		 <option value="{$incisos[lista.index].idinc}" {if $incisos[lista.index].idinc==$LIS}selected{/if}>{$incisos[lista.index].inciso}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="600" colspan="4">&nbsp; </td>
+      </tr>
+	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td  width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td  width="310" nowrap><div align="right">
+            <input type="submit" name="inciso_boton" value="Guardar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="idc" value="{$idc}">
+			<input type="hidden" name="id" value="{$id}">
+          </div></td>
+		  
+</form>		
+<form name="adicionar_cancelar" method="post" action="../code/_main.php?action=adm/bancas.php">
+        <td  width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> </div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

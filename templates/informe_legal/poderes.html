@@ -1,0 +1,199 @@
+<html>
+<head>
+<title>Documento Poder</title>
+<script type="text/javascript" language="javascript" src="../scripts/XHConn.js"></script>
+<SCRIPT LANGUAGE="JavaScript"  src="../scripts/poderes.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+ marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<div align="center" class="aviso_rojo">Informe Nro: {$id}</div>
+<form name="formulario" method="post" action="{$carpeta_entrar}"  onSubmit="return validar(this)" >
+    <table width="600" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td colspan="2" valign="middle" height="25" class="borde_lista"><div align="center"> 
+            Datos del Poder</div>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td colspan="2" class="borde_tabla">&nbsp; </td>
+    </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="150" align="right" class="borde_tabla">N&uacute;mero :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla"><input type="text" name="numero" value="{$numero}" maxlength="20" class="input" size="15" ></td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido">
+        <td width="150" nowrap align="right" class="borde_tabla">Notario :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="notario" value="{$notario}" maxlength="50" class="input" size="45">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Fecha :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="fecha" value="{$fecha}" maxlength="15" class="input" size="12">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Otorgante(s) :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <textarea name="otorgante" cols="70" rows="3" class="input" id="otorgante">{$otorgante}</textarea>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Registro :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <textarea name="registro" cols="70" rows="2" class="input" id="registro">{$registro}</textarea>
+		</td>
+      </tr>
+	 <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Fojas :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="fojas" value="{$fojas}" maxlength="15" class="input" size="8">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Tipo Documento :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+	  <select name="tipo_documento" class="input">
+				<option value="0">-----</option>
+				{section name=lista2 loop=$tipodocs}
+					<option value="{$tipodocs[lista2.index].id}" {if $tipo == $tipodocs[lista2.index].id}selected{/if}>{$tipodocs[lista2.index].tipo}</option>
+				{/section}
+			</select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td colspan="2" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  		<input type="hidden" name="id" id="id" value="{$id}">
+			<input type="hidden" name="idp" id="idp" value="{$idp}">
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla">&nbsp; </td>
+		<td class="borde_tabla">&nbsp;<a href="javascript:void(0)" onClick="guardarP({$id})" onMouseOver=" overlib('Guarda esta secci&oacute;n', CAPTION, 'Ok' ); return true" onMouseOut=" nd();  
+		return true"><img src="../images/actions/tick.png" border="0"> Guardar </a></td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td colspan="2" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_color">
+		<td colspan="2" valign="middle" height="25" class="borde_lista"><div align="center"> 
+            Datos de los Apoderados</div>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td colspan="2" class="borde_tabla">&nbsp; </td>
+    </tr>
+	
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Nombre :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="nombre" id="nombre" value="" maxlength="60" class="input" size="45">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Nro C.I. :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="ci" id="ci" value="" maxlength="15" class="input" size="12">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Tipo :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="tipo" id="tipo" value="" maxlength="1" class="input" size="5"> (A, B, C, etc.)
+		</td>
+      </tr>
+	  <!-- tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Porcentaje :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="porcentaje" id="porcentaje" value="" maxlength="15" class="input" size="8"> %
+		</td>
+      </tr -->
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Facultades :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <textarea name="facultades" id="facultades" cols="70" rows="3" class="input" id="facultades"></textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">L&iacute;mites &amp; Restricciones :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <textarea name="restricciones" id="restricciones" cols="70" rows="3" class="input" id="restricciones"></textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Estado :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <select name="estado" id="estado" class="input">
+		 <option value="S">Vigente</option>
+		 <option value="N">Revocado</option>
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td colspan="2" class="borde_tabla">&nbsp; </td>
+    </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <a href="javascript:void(0)" onClick="return colocar_lista({$idp})" onMouseOver=" overlib('Adiciona la persona', CAPTION, 'Adicionar' ); return true" onMouseOut=" nd();  return true">
+			<img src="../images/actions/addtxt.png" border="0"></a>
+		</td>
+      </tr>
+	<tr class="tabla_titulo_contenido">
+      <td colspan="2" class="borde_tabla" align="center"><br />
+		<table width="550" id="tblDetalle" class="listado">
+		<thead>
+			<tr>
+				<th width="380" class="borde_tabla" align="left">Apoderado</th>
+				<th width="50"  class="borde_tabla" align="left">Tipo</th>
+				<!-- th width="50"  class="borde_tabla" align="left">%</th -->
+				<th width="70"  class="borde_tabla" align="left">Estado</th>
+				<th width="50"  class="borde_tabla" align="left">&nbsp;</th>
+			</tr>
+		</thead>{assign var="indice" value=0}
+		<tbody id="tbDetalle">
+		{section name=lista loop=$apoderados}
+			{assign var="indice" value=$smarty.section.lista.index+1}
+		<tr id="rowDetalle_{$indice}">
+		<td>{$apoderados[lista.index].apoderado}<input type="hidden" id="hdnCi_{$indice}" name="hdnCi[]" value="{$apoderados[lista.index].ci}"/><input type="hidden" id="ida_{$indice}" name="ida_{$indice}" value="{$apoderados[lista.index].id}"/></td>
+		<td>{$apoderados[lista.index].tipo}</td>
+		<!-- td>{$apoderados[lista.index].porcentaje}</td -->
+		<td>{$apoderados[lista.index].estado}</td>
+		<td><a href="javascript:void(0)" onClick="return eliminarFila({$indice})" onMouseOver=" overlib('Eliminar esta persona',CAPTION,'Eliminar' ); return true" onMouseOut=" nd(); return true"><img src="../images/actions/delete.png" width="16" height="16" border="0" /></a>&nbsp;
+		<a href="javascript:void(0)" onClick="return modificarFila({$indice})" onMouseOver=" overlib('Modificar datos de esta persona',CAPTION,'Modificar' ); return true" onMouseOut=" nd(); return true"><img src="../imagenes/pass/edit.png" border="0" /></a></td>
+		</tr>
+		{/section}
+		</tbody>{assign var="indice" value=$indice+1}
+		</table><input type="hidden" id="filas" name="filas" value="{$indice}" />
+	  </td>
+    </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td colspan="2" class="borde_tabla">&nbsp; </td>
+    </tr>
+</table>
+
+</form>	
+
+<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" align="center">
+		<input type="button" name="cerrar" value=" Cerrar " class="boton" onclick="closewin();">
+		</td>
+      </tr>
+</table>
+
+</div>
+<br />
+</body>
+</html>

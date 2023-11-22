@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="-1">
+
+<title>Guardian II</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/comun.js">
+</SCRIPT>
+
+<link href="../styles/login.css" rel="stylesheet" type="text/css" />
+</head>
+<body onLoad="estableceFoco(this.frmlogin.username)">
+<form name="frmlogin" action='../code/_autentifica.php' method='POST'>
+<div align="center">
+{if $intento > 0}
+	<div class='largo'>
+
+		<div class="espacio"></div>
+		<div class="boxhead">
+			INICIO DE SESION {if $ldap==''}GUARDIAN{else}CUENTA WINDOWS{/if}
+		</div>
+		<div class="espacio5"></div>
+		<div class="boxbody">
+		
+		<div class="celda">Nombre de usuario:&nbsp;<input type='text' size='15' maxlength='20' name='username' id='username' autocomplete="off"></div>
+		<div class="celda">Contrase&ntilde;a:&nbsp;<input type='password' size='15' maxlength='20' name='password'></div>
+			<img src="../images/login/key.png" class="imagen">
+			<div class="celda"><input type="submit" value=' Entrar{if $intento <4} ({$intento}){/if}'></div>
+			<input type="hidden" name="ctaguardian" value="{$ctaguardian}">
+		</div>
+</div>
+{/if}
+	{if $intento < 1}
+	<div class='largo'>
+	<div class="espacio"></div>
+	<br />
+		<div class="boxhead">
+			<a href="_login.php?RESET=N">INTENTAR CON OTRA CUENTA</a>
+		</div>
+	<br />
+	<div class="espacio5"></div>
+	</div>
+	{/if}
+{if $txtaviso!=''}
+	<div class="nofloat"></div><br /><br />
+	<span class="aviso">
+		<img src="../images/login/warning.png"><br />{$txtaviso} 
+	</span>
+{/if}
+{if $ldap!=''}
+	<div class="nofloat"></div><br /><br />
+	<span class="medianita">
+		<br />Utilice su cuenta de Windows para iniciar sesi&oacute;n.<br />
+		Para iniciar con una cuenta del Sistema Guardi&aacute;n presione <a href="_login.php?ctaguardian=N">aqu&iacute;</a>.
+	</span>
+{/if}
+</div>
+</form>
+</body>
+</html>

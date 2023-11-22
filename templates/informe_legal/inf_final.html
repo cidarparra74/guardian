@@ -1,0 +1,186 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript"  src="../scripts/informe_final.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+ marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="620" valign="bottom" height="20">
+			<div align="right"><font class="tabla_titulo_contenido">
+			
+			<a href="{$carpeta_entrar}" class="link_tabla">
+				Volver a lista de Informes
+			</a>
+			</font></div>
+		</td>
+		</tr>
+	</table>
+<form name="formulario" method="post" action="{$carpeta_entrar}"   onSubmit="return validar(this)" >
+    <table width="600" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td colspan="2" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Informe Final</div>
+		</td>
+	</tr>
+	 <tr class="tabla_titulo_contenido"> 
+        <td colspan="2" class="borde_tabla">&nbsp; </td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="150" align="right" class="borde_tabla">Cliente :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla"> <div align="left"><strong>{$cliente}</strong> 
+          </div></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td colspan="2" class="borde_tabla">&nbsp; </td>
+      </tr>
+	 
+	  <tr class="tabla_titulo_contenido">
+        <td width="150" nowrap align="right" class="borde_tabla">Nro Testimonio :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="inf_nro_esc" value="{$inf_nro_esc}" maxlength="20" class="input" size="20" >
+		&nbsp;<!-- input type="submit" name="btn_busca_esc" value="Buscar" class="boton"  -->
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="150" align="right" class="borde_tabla">Notario :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+          <select name="id_notario" class="input">
+				
+            <option value="ninguno">------</option>
+					{section name=lista loop=$notarios}
+						<option value="{$notarios[lista.index].id}" 
+							{if $id_notario == $notarios[lista.index].id} selected {/if}
+						>{$notarios[lista.index].nombre}</option>
+					{/section}
+		  </select></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="150" align="right" class="borde_tabla">Tramitador :&nbsp;</td>
+		
+        <td width="450" align="left" class="borde_tabla"> 
+          <select name="id_tramitador" class="input" >
+				
+            <option value="ninguno">------</option>
+					{section name=lista loop=$tramitadores}
+					        <option value="{$tramitadores[lista.index].id}" 
+							{if $id_tramitador == $tramitadores[lista.index].id} selected {/if}
+							>{$tramitadores[lista.index].nombre}</option>
+					{/section}
+		  </select></td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Fecha Testimonio :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="inf_fch_esc" value="{$inf_fch_esc}" maxlength="25" class="input" size="20">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Nro de Matrícula/Placa :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <textarea name="inf_nro_mat" cols="60" rows="2" class="input" maxlength="200">{$inf_nro_mat}</textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Nro Asiento :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="inf_nro_asi" value="{$inf_nro_asi}" maxlength="60" class="input" size="45">
+		</td>
+      </tr>
+	   <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Fecha Grav&aacute;men :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="inf_fch_grav" value="{$inf_fch_grav}" maxlength="45" class="input" size="45">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Importe de la P&oacute;liza :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="inf_gravmonto" value="{$inf_gravmonto}" maxlength="25" class="input" size="15">
+		 <select name="moneda" class="input">
+		 <option value="Bs" {if $moneda =='Bs'}selected{/if}>Bolivianos</option>
+		 <option value="Us" {if $moneda =='Us'}selected{/if}>D&oacute;lares</option>
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Importe del Pr&eacute;stamo :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="montoprestamo" value="{$montoprestamo}" maxlength="25" class="input" size="15">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Plazo :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="inf_plazo" value="{$inf_plazo}" maxlength="20" class="input" size="10">&nbsp;(Expresado en meses)
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Fecha Seguro del :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <input type="text" name="inf_fch_ini" value="{$inf_fch_ini}" maxlength="20" class="input" size="13" onchange="colocar_fecha(this)">&nbsp;Al:&nbsp;<input type="text" name="inf_fch_fin" value="{$inf_fch_fin}" maxlength="15" class="input" size="13" onchange="colocar_fecha(this)">
+		 Nota:&nbsp;<input type="text" name="inf_nota" value="{$inf_nota}" maxlength="100" class="input" size="25" >
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Cia. Aseguradora :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <select name="id_entidad" class="input">
+		 <option value="0">(Ninguna)</option>
+		 {section name=lista loop=$entidades}
+		 <option value="{$entidades[lista.index].id}" {if $entidades[lista.index].id == $id_entidad}selected{/if}>{$entidades[lista.index].entidad}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Observaciones :&nbsp;</td>
+        <td width="450" align="left" class="borde_tabla">
+		 <textarea name="inf_obs" cols="60" rows="4" class="input">{$inf_obs}</textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td colspan="2" class="borde_tabla">&nbsp;</td>
+      </tr>
+</table>
+
+<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="btn_inf_final" value="Registrar" class="boton"  >
+            <input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="tibien" value="{$tibien}">
+			<input type="hidden" name="nrocaso" value="{$nrocaso}">
+            <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+          </div></td>
+		  
+</form>		
+<form name="adicionar_cancelar" method="post" action="{$carpeta_entrar}" onSubmit="des_verificar_formulario()">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		<input type="hidden" name="estado_formulario" value="adicionar">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+<br>
+</body>
+</html>

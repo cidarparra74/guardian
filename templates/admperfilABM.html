@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<script language="JavaScript" src="../scripts/comun.js" type="text/JavaScript"></script>
+
+<script language="JavaScript" src="../scripts/chkadmperfil.js" type="text/JavaScript"></script>
+<link href="../styles/mainframe.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+ <div class="espacioTop"></div>
+ <div id="wrapABM">
+ 
+	<div class="barratitulo">{$titulomsg}</div>
+		
+	<div id="formbase">
+	<fieldset>
+	<form name="frmDatos" id="frmDatos" action="../code/admperfil.php" onsubmit ="return validar(this)">
+	<legend>{if $task != 'del'}<img src="../images/actions/puntorojo.gif">=Dato requerido
+	{else}{if $noBorrar==0}¡ EL REGISTRO SERA ELIMINADO DEFINITIVAMENTE !{else}ESTE REGISTRO NO SE PUEDE ELIMINAR{/if}{/if}</legend>
+	<p>
+	{if $task == 'del'}
+		<label for="nombre">Nombre de Perfil:</label>
+		<span class="noedit">{$nombre}</span>
+		<br />
+		<label for="nombre">Activo?</label>
+		<span class="noedit">{$activo}</span>
+	{else}
+		<label for="nombre"><img src="../images/actions/puntorojo.gif">Nombre de Perfil:</label>
+		<input name="nombre" id="nombre" type="text" size="30" value="{$nombre}" /><br />
+		<label for="activo">Activo?</label>
+		<select name="activo" id="activo">
+		<option value="S">Si</option>
+		<option value="N">No</option>
+		</select><script>document.getElementById("activo").value="{$activo}"</script>
+		<br />
+		
+		
+	{/if}
+	<br />
+	</p>
+	<p>
+	<label for="pass">&nbsp;</label>
+	{if $task == 'add'}
+	<input name="inserta1" type="submit" value="Guardar y Seguir" class="boton"/>
+	<input name="task" type="hidden" value="{$task}" />
+	{/if}
+	{if $task == 'del'}
+		{if $noBorrar==0}
+	<input name="elimina" type="submit" value="Eliminar !" class="boton"/>
+		{/if}
+	{else}
+		{if $task == 'add'}
+		<input name="inserta2" type="submit" value="Guardar y Volver" class="boton"/>
+		{else}
+		<input name="edita" type="submit" value="Guardar" class="boton"/>
+		{/if}
+	{/if}
+	<input name="cancela"  type="button" value="Volver" class="boton" onclick='javascript:enviaform("frmVolver")'/>
+	<input name="pagina" type="hidden" value="{$pagina}" />
+	<input name="ejecutaABM" type="hidden" value="S" />
+	<input name="id" type="hidden" value="{$id}" />
+	</p>
+		</form>
+		</fieldset>
+	</div>
+ 
+ </div>
+ 
+ <form name="frmVolver" id="frmVolver" action="../code/admperfil.php">
+	<input name="pageno" type="hidden" value="{$pagina}" />
+ </form>
+</body>
+</html>

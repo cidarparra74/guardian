@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<link href="../styles/topframe.css" rel="stylesheet" type="text/css" />
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<script type="text/javascript" language="javascript" src="../scripts/XHConn.js"></script>
+<script language="javascript" src="../scripts/modalpopups.js"></script>
+<SCRIPT LANGUAGE='JavaScript' SRC='../scripts/chpass.js'></SCRIPT>
+{literal}
+<SCRIPT LANGUAGE="JavaScript"> 
+function getKey(keyStroke) { 
+isNetscape=(document.layers); 
+eventChooser = (isNetscape) ? keyStroke.which : event.keyCode; 
+
+} 
+document.onkeypress = getKey; 
+
+document.onkeydown = function(){ 
+if(window.event && window.event.keyCode == 8) 
+{ 
+window.event.keyCode = 505; 
+} 
+if(window.event && window.event.keyCode == 505) 
+{ 
+return true; 
+} 
+} 
+</script> 
+<script language="JavaScript">
+var myConn = new XHConn();
+if (!myConn) alert("XMLHTTP no disponible! Intente con otro navegador.");
+
+function actualiza_2_frames(urlDest){
+    window.parent.frames[1].location=urlDest;
+    window.parent.frames[2].location="../code/_intro.php";
+}
+</script>
+{/literal}
+
+</head>
+
+<body>
+<div id="container">
+   <div id="ImgFrame">
+ <img src="../images/logo/glogo.png" border="0" />
+   </div>
+   <div id="Frame">
+    <div id="UsrFrame">
+	<div class="noFloat"></div>
+&nbsp;{if $salir=='s'}
+<a href="_logout.php" onMouseOver=" overlib('Salir del Sistema',CAPTION,'LOGOUT'); " onMouseOut=" nd(); return true"><img src="../images/actions/logout1.png" border="0"></a>&nbsp;{/if}
+<a href="javascript: parent.frames[0].wdPedirChPass({$idusuario});" target="mainFrame" onMouseOver=" overlib('Cambiar Contraseña', CAPTION,'Seguridad'); " onMouseOut=" nd(); return true"><img src="../images/actions/key.png" border="0"></a>&nbsp;<img src="../images/actions/user.png" border="0" onMouseOver=" overlib('{$perfil}', CAPTION,'Perfil:'); " onMouseOut=" nd(); return true">&nbsp;<span class="pequenab">{$usuario} [{$perfil}]</span>&nbsp;&nbsp;<img src="../images/actions/casa.png" border="0">&nbsp;<span class="pequenab">{$oficina}</span>&nbsp;{if $banca!=''}<span class="pequenab">BANCA: {$banca}</span>{/if}
+    <br>{literal}
+<script languaje="JavaScript">
+	var mydate=new Date()
+	var year=mydate.getYear()
+	if (year < 1000)
+	year+=1900
+	var day=mydate.getDay()
+	var month=mydate.getMonth()
+	var daym=mydate.getDate()
+	//if (daym<10)
+	//daym="0"+daym
+	var dayarray=new Array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado")
+	var montharray=new Array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre")
+	document.write("<div class='paraFecha'>"+ dayarray[day]+" "+daym+" de "+montharray[month]+" de "+year+"</div>")
+</script>
+   {/literal}
+	</div>
+	
+    <div id="MnuFrame">
+	<!--- <img src="../images/toolbar/{$toolbar[lista].imagen}" border="0" width="32" height="32" />   -->
+	<!--- a href="../code/_menu.php?grupoMnu={$toolbar[lista].codigo}"  target="leftFrame" --->
+		<ul id='mainmenu'>
+			{section name=lista loop=$toolbar}
+			  	<li><a href='javascript:actualiza_2_frames("../code/_menu.php?grupoMnu={$toolbar[lista].codigo}")'>{$toolbar[lista].descri}</a></li>
+			{sectionelse}
+			<li>Sin acceso</li> Ud. no tiene acceso a ning&uacute;n m&oacute;dulo, contacte al administrador.<br>
+			{/section}	
+      	</ul>
+	</div>
+	<!--  ------------------------- fecha del sistema  -------------------------------   -->
+	<div class="noFloat"></div>
+	
+   </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br><br>
+<form name="adicionar_cancelar" method="post" action="{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="6" valign="middle" height="20" class="borde_lista"> 
+        Informes Legales con Asignaci&oacute;n de Perito</td>
+	</tr>
+
+	<tr class="tabla_titulo_color">
+	  <td width="40" height="20" valign="middle" class="borde_lista">&nbsp;Nº</td>
+      <td width="300" height="20" valign="middle" class="borde_lista">&nbsp;Cliente</td>
+  	  <td width="280" height="20" valign="middle" class="borde_lista" nowrap>&nbsp;Perito</td>
+	</tr>
+	{section name=lista loop=$solicitudes}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista">&nbsp;{$solicitudes[lista.index].id_informe_legal}</td>
+		<td class="borde_lista">&nbsp;<strong>{$solicitudes[lista.index].sol_cliente}</strong><br>
+		{if $solicitudes[lista.index].nrocaso!=''}&nbsp;{if $enable_ws == 'A'}Nro. de Caso:{else}Nro. Cuenta:{/if} {$solicitudes[lista.index].nrocaso}<br>{/if}
+		&nbsp;Bien:&nbsp;{$solicitudes[lista.index].sol_tipo_bien}</td>
+		<td class="borde_lista">&nbsp;{$solicitudes[lista.index].perito}</td>
+	</tr>
+	<input type="hidden" name="informes[]" value="{$solicitudes[lista.index].id_informe_legal}">
+	<input type="hidden" name="peritos[]" value="{$solicitudes[lista.index].id_perito}">
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista" colspan='3'>&nbsp;(No existen i.l. o no se defini&oacute; peritos)</td>
+	</tr>
+	<input type="hidden" name="informes[]" value="0">
+	<input type="hidden" name="peritos[]" value="0">
+	{/section}
+</table>
+<br>
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2" align="center">
+		<input type="submit" name="asignar_todos_x" value="Aceptar Asignacion" class="boton">
+		</td>
+      </tr>
+	</table>
+</form>		
+</div>
+<br>
+<br><br>
+</body>
+</html>

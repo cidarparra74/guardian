@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+
+</head>
+
+<body>
+
+<div align='left'>
+<br>
+<table width='700' cellpadding='0' cellspacing='0' border='0' align='center' >
+	<tr>
+		<td width="300" align="left">
+			<img src="{$logo}">
+		</td>
+		<td width="400" align="left">
+			<h4>REPORTE DE AUDITORIA</h4>
+		</td>
+	</tr>
+	<tr>
+	<td width="300" colspan="2" align="left">
+	<table width='700' cellpadding='0' cellspacing='0' border='1' align='center' class='tableBorder'>
+		<tr>
+		<td width='80' valign='top' class='tdBorder'>
+			<b>Gaveta<br>Gavetero</b>
+		</td>
+		<td width='100' valign='top' class='tdBorder'>
+			<b>C.I.</b>
+		</td>
+		<td width='200' valign='top' class='tdBorder'>
+			<b>Nombre</b>
+		</td>
+		<td width='100' valign='top' class='tdBorder'>
+			<b>Tipo Carpeta</b>
+		</td>
+		<td width='90' valign='top' class='tdBorder'>
+			<b>Cuenta</b>
+		</td>
+		<td width='90' valign='top' class='tdBorder'>
+			<b>Operaci&oacute;n</b>
+		</td>
+		<td width='90' valign='top' class='tdBorder'>
+			<b>Fecha Ingreso</b>
+		</td>
+		<td width='100' valign='top' class='tdBorder'>
+			<b>Agencia</b>
+		</td>
+		<td width='50' valign='top' class='tdBorder'>
+			<b>Estado</b>
+		</td>
+		<td width='100' valign='top' class='tdBorder'>
+			<b>Solicitante</b>
+		</td>
+		<td width='90' valign='top' class='tdBorder'>
+			<b>Fecha Mov.</b>
+		</td>
+		</tr>
+		{assign var="grupo" value="x"}
+	{section name=lista loop=$carpetas}
+			{*  if $carpetas[lista.index].posicion!=$grupo}
+				{assign var="grupo" value=$carpetas[lista.index].posicion}
+		<tr>
+	
+		</tr>
+		{/if   *}
+		<tr>
+		<td width='80' valign='top' class='tdBorder'>
+			{$carpetas[lista.index].posicion}-{$carpetas[lista.index].gaveta}
+		</td>
+		<td width='100' valign='top' class='tdBorder'>
+			{$carpetas[lista.index].mis} {$carpetas[lista.index].emision}
+		</td>
+		<td width='200' valign='top' class='tdBorder'>
+			{$carpetas[lista.index].nombres}
+		</td>
+		<td width='100' valign='top' class='tdBorder'>
+			{$carpetas[lista.index].tipo}
+		</td>
+		<td width='90' valign='top' class='tdBorder'>
+			{$carpetas[lista.index].cuenta}
+		</td>
+		<td width='90' valign='top' class='tdBorder'>
+			{$carpetas[lista.index].operacion}
+		</td>
+		<td width='90' valign='top' class='tdBorder'>
+			{$carpetas[lista.index].fecha}
+		</td>
+		<td width='100' valign='top' class='tdBorder'>
+			{$carpetas[lista.index].nombre}
+		</td>
+		<td width='50' valign='top' class='tdBorder'>
+			{$carpetas[lista.index].estado}
+		</td>
+		<td width='100' valign='top' class='tdBorder'>
+			{$carpetas[lista.index].solicita}&nbsp;
+		</td>
+		<td width='90' valign='top' class='tdBorder'>
+			{$carpetas[lista.index].fecmov}&nbsp;
+		</td>
+		</tr>
+	{/section}
+	</table>
+	</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/comun_solicitud.js">
+</SCRIPT>
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>Propietario :</strong> {$titulo_nombre}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=solicitud_carpeta.php" class="link_tabla">
+				Volver a lista de Propietarios
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="420" valign="middle" height="30">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>CI :</strong> {$titulo_mis}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="middle" height="30">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		
+      <td width="270" height="20" valign="middle" class="borde_lista"> &nbsp;Tipo Carpeta&nbsp;/&nbsp;Oficina</td>
+	  <td width="350" height="20" colspan="4" valign="middle" class="borde_lista"> &nbsp;Observacion</td>
+	</tr>
+	{section name=lista loop=$ids_carpeta}
+	<tr class="tabla_titulo_contenido">
+		<td width="270" class="borde_lista">
+			<a href="../code/_main.php?action=carpetas.php&info_carpeta=acc&id={$ids_carpeta[lista.index].id_carpeta}" onMouseOver=" overlib('Información de la carpeta',CAPTION,'Ver' , ABOVE); return true" onMouseOut=" nd();   return true" target="_blank"> 
+		<img src="../imagenes/pass/help.png" border="0"></a>
+			&nbsp;<strong>{$ids_carpeta[lista.index].tipo_carpeta}</strong><br />
+			&nbsp;{$ids_carpeta[lista.index].o_nombre}
+		</td>
+		<td width="275" class="borde_lista">
+			&nbsp;{$ids_carpeta[lista.index].carpeta}
+		</td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			{if $ids_carpeta[lista.index].puede_prestar == "si"}
+			<a href="{$carpeta_entrar}&prestar_carpeta=acc&id={$ids_carpeta[lista.index].id_carpeta}" onMouseOver=" overlib('Prestarse esta Carpeta',CAPTION,'Prestamo' ); return true" onMouseOut=" nd(); return true"> 
+				<img src="../imagenes/pass/prestardoc.gif" border="0">
+			</a>
+			{else}
+				{if $ids_carpeta[lista.index].los_estados == 8}
+				<a href="javascript: return void(0);" onMouseOver=" overlib('Devuelto al Cliente por: {$ids_carpeta[lista.index].nombres_us}',CAPTION,'Ultimo Prestamo' ); return true" onMouseOut=" nd();   return true"> 
+					<img src="../imagenes/pass/devuelto_cliente.gif" border="0">
+				</a>
+				{else}
+					{**********solo puede modificar en caso de que el estado este en estado 1***************}
+					{if $ids_carpeta[lista.index].los_estados == 1}
+						<a href="javascript: return void(0);" onMouseOver=" overlib('{$ids_carpeta[lista.index].nombres_us}', CAPTION,'Prestado a:' ); return true" onMouseOut=" nd();   return true"> 
+							<img src="../imagenes/pass/prestado.gif" border="0">
+						</a>
+					{else}
+						{if $ids_carpeta[lista.index].los_estados == 0}
+						{********** es carpeta de otra agencia ***************}
+							<a href="javascript: return void(0);" onMouseOver=" overlib('Carpeta de otra agencia',CAPTION,'OJO' ); return true" onMouseOut=" nd();   return true"> 
+							<img src="../images/actions/error.png" border="0">
+						</a>
+						{else}
+						<a href="javascript: return void(0);" onMouseOver=" overlib('{$ids_carpeta[lista.index].nombres_us}<br>Carpeta en Movimiento actualmente',CAPTION,'Prestado a:' ); return true" onMouseOut=" nd();   return true"> 
+							<img src="../imagenes/pass/prestado.gif" border="0">
+						</a>
+						{/if}
+					{/if}
+				{/if}
+			{/if}
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+		{if $ids_carpeta[lista.index].los_estados != 8}
+			{**********solo puede modificar en caso de que el estado este en 1***************}
+			{if $ids_carpeta[lista.index].los_estados == 1}
+				{if $ids_carpeta[lista.index].puede_modificar == "si"}
+					<a href="{$carpeta_entrar}&modificar_prestamo=acc&id={$ids_carpeta[lista.index].id_carpeta}" onMouseOver=" overlib('Modificación del prestamo de esta Carpeta',CAPTION,'Modificar',CAPCOLOR,'white',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'120',TEXTFONT,'Arial',LEFT); return true" onMouseOut=" nd();   return true"> 
+						<img src="../imagenes/pass/modificar_carpeta.gif" border="0">
+					</a>
+				{else}
+					&nbsp;
+				{/if}
+			{else}
+			{**carpetas ya en movimiento*******}			
+				&nbsp;
+			{/if}
+		{else}
+			&nbsp;
+		{/if}
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+		{if $ids_carpeta[lista.index].los_estados != 8}
+			{**********solo puede modificar en caso de que el estado este en 1***************}
+			{if $ids_carpeta[lista.index].los_estados == 1}
+				{if $ids_carpeta[lista.index].puede_modificar == "si"}
+					<a href="{$carpeta_entrar}&eliminar_prestamo=acc&id={$ids_carpeta[lista.index].id_carpeta}" onMouseOver=" overlib('Eliminacion del prestamo de esta Carpeta',CAPTION,'Eliminar',CAPCOLOR,'white',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'120',TEXTFONT,'Arial',LEFT); return true" onMouseOut=" nd();   return true"> 
+						<img src="../imagenes/pass/eliminar_prestar.gif" border="0">
+					</a>
+				{else}
+					&nbsp;
+				{/if}
+			{else}
+			{**carpetas ya en movimiento*******}			
+				&nbsp;
+			{/if}
+		{else}
+			&nbsp;
+		{/if}
+		</div></td>
+		
+		
+	</tr>
+	{/section}
+</table>
+<br>
+</div>
+</body>
+</html>

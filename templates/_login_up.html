@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Guardian II</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/comun.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/login.js"></SCRIPT>
+
+<link href="../styles/login.css" rel="stylesheet" type="text/css" />
+</head>
+<body onLoad="estableceFoco(this.frmlogin.password0)">
+<form name="frmlogin" action='../code/_login.php' method='POST' onSubmit="return verificar_up()">
+<div align="center">
+
+	<div class='largo'>
+
+		<div class="espacio"></div>
+		
+		<div class="boxhead_ch">
+			ENLAZAR CUENTAS
+		</div>
+		<div class="espacio5"></div>
+		<div class="boxbody">
+		<div class="celda">Usuario en Guardi&aacute;n:&nbsp;<input type='input' size='15' maxlength='20' name='username2' id='username2'></div>
+		<div class="celda">Contrase&ntilde;a  en Guardi&aacute;n:&nbsp;<input type='password' size='15' maxlength='20' name='password2' id='password2'></div>
+		<div class="celda">Contrase&ntilde;a de {$username}:&nbsp;<input type='password' size='15' maxlength='20' name='passldap' id='passldap'></div>
+			<img src="../images/login/key_ch.png" class="imagen">
+			<div class="celda"><input type="submit" value=' Aceptar '></div>
+			<input type="hidden" name="chlog" value="u">
+			<input type="hidden" name="username" value="{$username}">
+		</div>
+		
+	</div>
+
+{if $txtaviso!=''}
+	<div class="nofloat"></div><br /><br />
+	<span class="aviso">
+		<img src="../images/login/warning.png"><br />{$txtaviso}
+	</span>
+{/if}
+
+<br /><br />
+
+</div>
+</form>
+</body>
+</html>

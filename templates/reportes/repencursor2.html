@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>Reporte</title>
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+</head>
+
+<body>
+<div align='left'>
+<table width='620' cellpadding='0' cellspacing='0' border='0' align='left' >
+	<tr>
+		<td width="200" align="left">
+			<img src="{$logo}">
+		</td>
+		<td width="420" align="left">
+			<h4>Reporte de Tr&aacute;mites en curso</h4>
+		</td>
+	</tr>
+	<tr>
+	<tr>
+	<td width="600" colspan="2" align="left">
+
+	<table width='480' cellpadding='0' cellspacing='0' border='1' align='left' class='tableBorder'>
+		{assign var="grupo" value=$listado[0].id}
+		
+		<tr>
+		<td width='200' valign='top'>
+			<b>Nombre</b>
+		</td>
+		<td width='200' valign='top'>
+			<b>Tipo de Bi&eacute;n</b>
+		</td>
+		<td width='80' valign='top'>
+			<b>Cantidad</b>
+		</td>
+		</tr>
+		{assign var="suma" value=0}
+		
+		{section name=lista loop=$listado}
+		
+	
+		{if $listado[lista.index].id!=$grupo}
+				{assign var="grupo" value=$listado[lista.index].id }
+		<tr>
+		<td valign='top' colspan="2">
+			&nbsp;
+		</td>
+		<td valign='top' align="right">
+			&nbsp;<strong>{$suma}</strong>
+		</td>
+		</tr>{assign var="suma" value=0}
+		{/if}
+		{if $suma==0}
+				{assign var="grupo" value=$listado[lista.index].id }
+		<tr>
+		<td valign='top' colspan="3">
+			&nbsp;<strong>{$listado[lista.index].oficina}</strong>
+		</td>
+
+		</tr>{assign var="suma" value=0}
+		{/if}
+		<tr>
+		<td valign='top'>
+			{$listado[lista.index].usuario}
+		</td>
+		<td valign='top'>
+			{$listado[lista.index].tipo_bien}
+		</td>
+		<td valign='top'>
+			{$listado[lista.index].cant}
+		</td>
+		</tr>
+		{assign var="suma" value=$suma+$listado[lista.index].cant}
+		{/section}
+	</table>
+	</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

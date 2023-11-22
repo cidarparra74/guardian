@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+</head>
+
+<body>
+<div align='left'>
+<table width='620' cellpadding='0' cellspacing='0' border='0' align='left' >
+	<tr>
+		<td width="200" align="left">
+			<img src="{$logo}">
+		</td>
+		<td width="420" align="left">
+			<h4>Reporte de Promoci&oacute;n</h4>
+		</td>
+	</tr>
+	<tr>
+	<tr>
+	<td width="600" colspan="2" align="left">
+
+	<table width='620' cellpadding='0' cellspacing='0' border='1' align='left' class='tableBorder'>
+		{assign var="grupo" value="x"}
+		
+			{* if $listado[lista.index].posicion!=$grupo}
+				{assign var="grupo" value=$listado[lista.index].posicion *}
+		<tr>
+		<td width='100' valign='top'>
+			<b>Fecha</b>
+		</td>
+		<td width='80' valign='top'>
+			<b>C.I.</b>
+		</td>
+		<td width='140' valign='top'>
+			<b>Cliente</b>
+		</td>
+		<td width='80' valign='top'>
+			<b>Tel&eacute;fono</b>
+		</td>
+		<td width='120' valign='top'>
+			<b>Garantia</b>
+		</td>
+		<td width='100' valign='top'>
+			<b>Usuario</b>
+		</td>
+		</tr>
+		{* /if *}
+		{section name=lista loop=$listado}
+		<tr>
+		<td valign='top'>
+			{$listado[lista.index].ufecha}
+		</td>
+		<td valign='top'>
+			{$listado[lista.index].ci}
+		</td>
+		<td valign='top'>
+			{$listado[lista.index].cliente}
+		</td>
+		<td valign='top'>
+			{$listado[lista.index].telefono}
+		</td>
+		<td valign='top'>
+			{$listado[lista.index].tipo_bien}
+		</td>
+		<td valign='top'>
+			{$listado[lista.index].usuario}
+		</td>
+		</tr>
+		{/section}
+	</table>
+	</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

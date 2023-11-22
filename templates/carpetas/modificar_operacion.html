@@ -1,0 +1,208 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<!-- SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_carpetas.js">
+</SCRIPT - {$enable_ws}-->
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_modificar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>Propietario :</strong> {$titulo_nombre}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=carpetas.php&carpeta_entrar=propietarios&filtro=1" class="link_tabla">
+				Volver a lista de Propietarios
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="420" valign="middle" height="30">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>CI :</strong> {$titulo_mis}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="middle" height="30">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=carpetas.php&carpeta_entrar=carpetas" class="link_tabla">
+				Volver a lista de Carpetas
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+<form name="modificar" method="post" action="../code/_main.php?action=carpetas.php" >
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+           Verificaci&oacute;n de Nro. de Operaci&oacute;n e Instancia</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" nowrap align="right" class="borde_tabla">Propietario :&nbsp;</td>
+        <td width="420" colspan="3" align="left" class="borde_tabla">
+		 {$titulo_nombre}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" nowrap align="right" class="borde_tabla">Tipo Carpeta :&nbsp;</td>
+        <td width="420" colspan="3" align="left" class="borde_tabla">
+		 {$tipo_bien}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" nowrap align="right" class="borde_tabla">Oficina :&nbsp;</td>
+        <td width="420" colspan="3" align="left" class="borde_tabla">
+		 {$oficina}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" nowrap align="right" class="borde_tabla">Descripci&oacute;n :&nbsp;</td>
+        <td width="420" colspan="3" align="left" class="borde_tabla">
+		 {$carpeta}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" nowrap align="right" class="borde_tabla">Cuenta:&nbsp;</td>
+        <td width="420" colspan="3" align="left" class="borde_tabla"><strong>{$cuenta}<strong/></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  {if $filas==-1}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" nowrap align="right" class="borde_tabla">Operaci&oacute;n:&nbsp;</td>
+        <td width="420" colspan="3" align="left" class="borde_tabla">{$operacion}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" nowrap align="right" class="borde_tabla">Sub Operaci&oacute;n:&nbsp;</td>
+        <td width="420" colspan="3" align="left" class="borde_tabla">{$suboperacion}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" nowrap align="right" class="borde_tabla">Instancia:&nbsp;</td>
+        <td width="420" colspan="3" align="left" class="borde_tabla">{$instancia}
+		</td>
+      </tr>
+	  {else}
+	  {if $filas==0}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; Verifique si los n&uacute;meros siguientes corresponden a la operaci&oacute;n</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" nowrap align="right" class="borde_tabla">Operaci&oacute;n WS:&nbsp;</td>
+        <td width="420" colspan="3" align="left" class="borde_tabla">
+		 <input type="text" name="operacionws" value="{$operacionws}" class="input" size="15" readonly>
+		 &nbsp;&nbsp;&nbsp;Sub Operaci&oacute;n: <input type="text" name="suboperacionws" value="{$suboperacionws}" class="input" size="15" readonly>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" nowrap align="right" class="borde_tabla">Instancia WS:&nbsp;</td>
+        <td width="420" colspan="3" align="left" class="borde_tabla">
+		 <input type="text" name="nrocasows" value="{$nrocasows}" class="input" size="15" readonly>
+		</td>
+      </tr>
+
+	  {else}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; Existen varias operaciones para esta cuenta</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td colspan="4" align="left" class="borde_tabla">&nbsp; <strong>Seleccione la operaci&oacute;n que corresponda a esta carpeta</strong></td>
+      </tr>
+		{section name=lista loop=$varios}
+	  <tr class="tabla_titulo_contenido">
+			<td colspan="4"   align="left" class="borde_tabla">&nbsp; &nbsp; 
+			<input type="radio" name="optsel" value="{$varios[lista.index].operacion}_{$varios[lista.index].instancia}_{$varios[lista.index].suboperacion}">
+			
+			Operaci&oacute;n WS:&nbsp;{$varios[lista.index].operacion}  -  Instancia WS:&nbsp;{$varios[lista.index].instancia}  -  Sub Operaci&oacute;n WS:&nbsp;{$varios[lista.index].suboperacion}</td>
+      </tr>
+		{/section}
+	  {/if}
+	  
+	  {/if}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp;</td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap>
+		<div align="right">
+		{if $filas!= -1}
+          <input type="submit" name="modificar_boton" value="Aceptar" class="boton">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	        <input type="hidden" name="operacion_boton_x" value="acc">
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+        {/if}  </div>
+		  </td>
+		  
+</form>		
+<form name="modificar_cancelar" method="post" action="../code/_main.php?action=carpetas.php&filtro=1">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="modificar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

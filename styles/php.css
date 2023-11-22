@@ -1,0 +1,256 @@
+<style>
+
+A {
+	COLOR: #0000ff;
+}
+A:hover {
+	text-decoration:none;
+	color:#FFFFFF;
+	background: #135599;
+}
+
+label {
+	padding-right:6px;
+	display: block;
+	letter-spacing: -1px;
+	font-weight: normal;
+	line-height: 1.1;
+	color:#000;
+}
+/**variables de ingreso al sistema*/
+/**variables de ingreso al sistema*/
+.titulo_login{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #006699;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.fondo_titulo_login{
+	background: #135599;
+}
+
+.titulo_tabla_login{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.contenido_tabla_login{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: black;
+	font-weight: bold;
+}
+
+.input_login{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	font-weight: normal;
+}
+
+.boton_login{
+	background: #336699;
+	font-family: sans serif,Verdana,Arial;
+	font-size:12px;
+	color:white;
+	font-weight: bold;
+}
+
+.fondo1_tabla_login{
+	background: #FFFFE2;
+}
+
+.fondo2_tabla_login{
+	background: #FFFFF0;
+}
+
+/**fin de variables de ingreso al sistema*/
+/**fin de variables de ingreso al sistema*/
+
+/******************variables para las paginas..........*/
+/******************variables para las paginas..........*/
+.color_cuerpo{
+	background: #135599;
+}
+
+.color_pie{
+	/*background: #FFFFE0;*/
+	background: #135599;
+}
+
+.color_cabecera{
+	background: #135599;
+}
+
+.color_contenido{
+	background: EAEAEA;
+	/*background: #135599;*/
+}
+
+.color_linea_cabecera{
+	background: #097A06;
+	font-family: sans serif,Verdana,Arial;
+	font-size:11px;
+	color:white;
+	font-weight: bold;
+}
+
+.pie_contenido{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	/*color: #369;*/
+	color: white;
+	text-decoration: none;
+}
+
+.linea{
+	font-size: 1px;
+}
+
+.tabla_titulo_color{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	/*background: #006CD9;*/
+	background: #404040;
+	font-weight: bold;
+	color:white;
+	border: none;
+	/*border: 1px solid #097A06;*/
+}
+
+.tabla_titulo_contenido{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background: #CCE6FF;
+	font-weight: normal;
+	color:black;
+}
+
+.link_tabla{
+	color:black;
+}
+
+.boton{
+	background: #006CD9;
+	font-family: sans serif,Verdana,Arial;
+	font-size:12px;
+	color:white;
+	font-weight: bold;
+	/*border: 1px solid #812E05;*/
+	border: 1px solid #CCE6FF;
+	/*border: 1px solid #9C3B0A;*/
+}
+
+.input{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	font-weight: normal;
+	/*border: 1px solid #FFFFC0;*/
+	/*border: 1px solid #BD4D14;*/
+	border: 1px solid #999;
+}
+
+.input_derecha{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	font-weight: normal;
+	border: 1px solid #BD4D14;
+	text-align: right;
+	background-color: #FFFFFF;
+}
+
+.input_derecha_red{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #fff;
+	font-weight: normal;
+	border: 1px solid #BD4D14;
+	text-align: right;
+	background-color: #FF0000;
+}
+.borde_tabla{
+	/*border: 1px solid #E6E6E6;*/
+	border: 1px solid #CCE6FF;
+	
+}
+
+.borde_lista{
+	margin:0;
+	padding:0;
+	border-collapse:collapse;
+	border: 1px solid #5A5A5A;
+}
+
+.borde_parecido{
+	/*border: 1px solid #097A06;*/
+	border: 1px solid #5A5A5A;
+	/*border: 1px solid #D36309;*/
+}
+
+.borde_nada{
+	
+	border: none;
+	
+}
+
+.borde_pie{
+	border: 1px solid #0F4B86;
+}
+
+.resaltado_azul{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #0000FF;
+	font-weight: bold;
+}
+.aviso_rojo{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FF0000;
+}
+
+.listado{	/* estilo para los listados generados en tablas*/
+	background-color: #fff;
+	border: none;
+	font-family: verdana, monospace;
+	font-size: xx-small;
+	
+}
+
+.sql_txt{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000;
+	background-color: #cce6ff;
+}
+
+.il_separa{
+color: #000;
+border-top: 1px solid #666;
+border-left: none;
+border-right: none;
+border-bottom: none;
+background-color: #cce6ff;
+height:8px;
+}
+
+.sel{
+color: #FFFFFF;
+background-color: #FF0000;
+}
+.nosel{
+color: #000000;
+background-color: #FFFFFF;
+}
+
+
+/******************variables para las paginas..........*/
+/******************variables para las paginas..........*/
+
+</style>

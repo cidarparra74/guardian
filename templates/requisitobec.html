@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/comun.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/requisito.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0"  class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br>
+<form name="formulario" method="post" action="./_main.php?action=requisitobec.php" target="_blank" onsubmit="return validarform(this)">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="2" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            REQUISITOS</div>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp; </td>
+    </tr>
+	<tr class="tabla_titulo_contenido"> 
+		<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Nro Documento :&nbsp;</td>
+        <td width="470" align="left" class="borde_tabla" >
+			<input type="text" name="ci" size="20" class="input">&nbsp;<select name="emision" class="input">
+		 	{section name=lista loop=$emisiones}
+				<option value="{$emisiones[lista.index]}">{$emisiones[lista.index]}</option>
+			{/section}
+		    </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp; </td>
+    </tr>
+	<tr class="tabla_titulo_contenido"> 
+		<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Nombre Cliente :&nbsp;</td>
+        <td width="470" align="left" class="borde_tabla" >
+			<input type="text" name="cliente" size="60" class="input">
+		</td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp; </td>
+    </tr>
+	<tr class="tabla_titulo_contenido"> 
+		<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Tel&eacute;fono(s) :&nbsp;</td>
+        <td width="470" align="left" class="borde_tabla" >
+			<input type="text" name="telefono" size="40" class="input">
+		</td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp; </td>
+    </tr>
+	<tr class="tabla_titulo_contenido"> 
+		<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Producto :&nbsp;</td>
+        <td width="470" align="left" class="borde_tabla">
+			<select name="tipo_bien" class="input">
+			{section name=lista loop=$tiposbien}
+				<option value="{$tiposbien[lista.index].id}" >{$tiposbien[lista.index].descri}</option>
+			{/section}
+			</select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp; </td>
+    </tr>
+	<tr class="tabla_titulo_contenido"> 
+		<td width="150" nowrap align="right" class="borde_tabla" valign="middle">&nbsp;</td>
+		 <td width="470" align="left" class="borde_tabla">
+		 	<input type="submit" name="documentos" value="Ver Documentos" class="boton">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" height="17" colspan="2" class="borde_tabla">&nbsp; </td>
+      </tr>
+</table>
+
+</form>	
+</div>
+<br>
+</body>
+</html>

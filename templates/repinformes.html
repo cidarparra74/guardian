@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>REPORTE</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/contratos.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido" >
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<SCRIPT LANGUAGE='JavaScript' SRC='../../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="{$carpeta_entrar}" onSubmit="return verfechas1()" target="_blank">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="2" height="20" valign="middle" align="center"> &nbsp;Opciones del Reporte</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">Oficina :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+			<select name="filtro_oficina" class="input">
+				<option value="*">(Todos)</option>
+				{section name=lista loop=$f_oficina}
+					<option value="{$f_oficina[lista.index].id}" {if $filtro_oficina == $f_oficina[lista.index].id}selected{/if}>{$f_oficina[lista.index].nombre}</option>
+				{/section}
+		 	</select>
+		</td>
+      </tr>
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">Del Usuario :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 	<select name="filtro_usuario" class="input">
+				<option value="*">(Todos)</option>
+				{section name=lista loop=$f_ids_usuario}
+						<option value="{$f_ids_usuario[lista.index].id_usuario}" {if $f_id_usuario == $f_ids_usuario[lista.index].id_usuario}selected{/if}>{$f_ids_usuario[lista.index].nombres}</option>
+				{/section}
+		 	</select>
+		</td>
+      </tr>
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="25" valign="middle">De la fecha :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 <input name="filtro_fecha" type="text" class="input" id="filtro_fecha" value="{$filtro_fecha}" size="15" maxlength="10">&nbsp;&nbsp;A la Fecha :&nbsp;<input name="filtro_fech2" type="text" class="input" id="filtro_fech2" value="{$filtro_fech2}" size="15" maxlength="10">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">&nbsp;</td>
+		<td width="500" align="left" valign="middle">
+		 <input type="submit" name="buscar_boton" value=" Ver " class="boton"><br><br>
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+
+<br>
+<br> <!-- estos BR son para corregir el problema de los ultims tooltips de la lista -->
+</div>
+</body>
+</html>

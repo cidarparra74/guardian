@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<link href="../styles/mainframe.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+<div class="espacioTop"></div>
+<div id="wrap">
+<div class="barratitulo">Mantenimiento de Men&uacute; de Opciones</div>
+<div class="espacioTop"></div>
+<!--- TABLA PARA LOS FILTROS  --->
+<form name="frmModule" action="../code/_main.php">
+<table width="350" border="0" align="center" cellpadding="3" cellspacing="0">
+ <tr>
+    <td class="ParaFiltro">
+	&nbsp;M&oacute;dulo :
+	<select name="moduloSel" id="moduloSel" class="campotxt" onchange="this.form.submit()">
+	{section name=lista loop=$Modulos}
+		<option value="{$Modulos[lista].codigo}">{$Modulos[lista].nombre}</option>
+	{/section}
+	</select><script>document.getElementById("moduloSel").value="{$moduloSel}"</script>&nbsp;&nbsp;
+	 <a title="Adicionar Nuevo Módulo" href="../code/_main.php?action=admmenuABM.php&task=add&subniv=1&idniv=0&moduloSel={$moduloSel}">
+	<img src="../images/actions/add.png" border="0" align="middle"/>&nbsp;Nuevo&nbsp;M&oacute;dulo</a>
+	<input name="id" type="hidden" value="{$id}" />
+	<input name="pagina" type="hidden" value="{$pagina}" />
+	<input name="action" type="hidden" value="admmenu.php" />
+	</td>
+  </tr>
+</table>
+</form>
+ <div class="espacioMid"></div>
+
+<!---  TABLA PAR EL LISTADO  --->
+<table width="560" border="0" align="center" cellpadding="2" cellspacing="0">
+ <tr>
+    <th width="25">&nbsp;C&oacute;digo</td>
+	<th width="225">Men&uacute;/Opci&oacute;n</td>
+	<th width="160">Acci&oacute;n/Comando</td>
+	<th width="30">Imagen</td>
+	<th width="30">Texto</td>
+	<th width="30">Activo</td>
+	<th width="60">&nbsp;</td>
+  </tr>
+  {section name=lista loop=$tablaDatos}
+  <tr {if $smarty.section.lista.index is even}class="filaImp"{else}class="filaPar"{/if}>
+    <td width="25" >&nbsp;{$tablaDatos[lista].codigo}</td>
+	<td width="225" >{if $tablaDatos[lista].nivel=='3'}&nbsp;&nbsp;&nbsp;{/if}<img src="../images/menu/{$tablaDatos[lista].imagen}" border="0" height="16" width="16"/>&nbsp;{if $tablaDatos[lista].nivel=='2'}<strong>{$tablaDatos[lista].descripcion}</strong>{else}{$tablaDatos[lista].descripcion}{/if}</td>
+	 {if $tablaDatos[lista].nivel=='2'}
+	<td width="160" ><a title="Adicionar Nueva Opción" href="../code/_main.php?action=admmenuABM.php&task=add&subniv=3&idniv={$tablaDatos[lista].codigo}&moduloSel={$moduloSel}">
+	<img src="../images/actions/add.png" border="0" />&nbsp;Nueva&nbsp;Opci&oacute;n</a></td>
+	 {else}
+	<td width="160" >&nbsp;&nbsp;&nbsp;&nbsp;{$tablaDatos[lista].comando}</td>
+	 {/if}
+	<td width="30" align="center"><img src="../images/actions/{if $tablaDatos[lista].verimagen=='S'}tick.png{else}cross.png{/if}" border="0" /></td>
+	<td width="30" align="center"><img src="../images/actions/{if $tablaDatos[lista].vertexto=='S'}tick.png{else}cross.png{/if}" border="0" /></td>
+	<td width="30" align="center"><img src="../images/actions/{if $tablaDatos[lista].activo=='S'}tick.png{else}cross.png{/if}" border="0" /></td>
+	<td width="60" ><img src="../images/actions/separador.png" border="0" />&nbsp;
+	<a title="Modificar Datos" href="../code/_main.php?action=admmenuABM.php&task=mod&id={$tablaDatos[lista].codigo}&subniv=3&moduloSel={$moduloSel}">
+	<img src="../images/actions/edit.png" border="0" /></a>&nbsp;
+	<a title="Eliminar Registro" href="../code/_main.php?action=admmenuABM.php&task=del&id={$tablaDatos[lista].codigo}&subniv=3&moduloSel={$moduloSel}">
+	<img src="../images/actions/delete.png" border="0" /></a></td>
+  </tr>
+  {sectionelse}
+   <tr>
+    <td colspan="7"><div class="filaPar">&nbsp;No existen registros para mostrar!</div></td>
+  </tr>
+  {/section}
+ </table>
+ <div class="espacioMid"></div>
+ <div class="barraNavega">
+  	<div class="barraNavegaL">{include file="../templates/paginacion.html"}</div>
+	<div class="barraNavegaR">
+   
+	<a title="Adicionar Nuevo Menú" href="../code/_main.php?action=admmenuABM.php&task=add&subniv=2&idniv={$moduloSel}&moduloSel={$moduloSel}">
+	<img src="../images/actions/add.png" border="0" align="middle"/>&nbsp;Nuevo&nbsp;Men&uacute;</a>
+	</div>
+ </div>
+<div class="espacioTop"></div>
+</div>
+</body>
+</html>

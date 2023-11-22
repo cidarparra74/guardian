@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/clausulas.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br>
+
+<form name="buscar" method="post" action="../code/_main.php?action=sec/clausulas.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="4" height="20" valign="middle" align="center">&nbsp;Opciones 
+        de Filtro</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Contrato :&nbsp;</td>
+        <td width="520" align="left" valign="middle" colspan="3">
+			<select name="idcc" class="input">
+				<option value="*">Ninguno</option>
+				{section name=lista loop=$miscontratos}
+					<option value="{$miscontratos[lista.index].id}" {if $idcc == $miscontratos[lista.index].id} selected {/if}>{$miscontratos[lista.index].titulo}</option>
+				{/section}
+				
+		 	</select>
+		</td>
+		</tr>
+        
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" >&nbsp;</td>
+          <td colspan="3" align="left" valign="middle" height="30">
+		 <input type="submit" name="buscar_boton" value=" Aceptar " class="boton">&nbsp;
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+<br>
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="50"  height="20" valign="middle">&nbsp; Id</td>
+		<td class="borde_lista" width="570" colspan="2" height="20" valign="middle">&nbsp; T&iacute;tulo/Descripci&oacute;n</td>
+	</tr>
+
+	{section name=lista loop=$clausulas}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista" >
+			&nbsp;&nbsp;{$clausulas[lista.index].id} 
+		</td>
+		<td class="borde_lista" >
+			&nbsp;&nbsp;<strong>{$clausulas[lista.index].titulo}</strong> <br />
+			&nbsp;&nbsp;{$clausulas[lista.index].descri} 
+		</td>
+		<td class="borde_lista" ><div align="center">
+			<a href="../code/_main.php?action=sec/clausulas.php&contratos=acc&id={$clausulas[lista.index].id}" onMouseOver=" overlib('Que contienen esta cláusula',CAPTION,'Contratos' ); return true" onMouseOut=" nd(); return true"> 
+				<img src="../imagenes/pass/eye_2.png" border="0"></a>&nbsp;
+			<a href="../code/_main.php?action=sec/clausulas.php&modificar=dat&id={$clausulas[lista.index].id}" onMouseOver=" overlib('Modificación de esta cláusula',CAPTION,'Modificar ({$clausulas[lista.index].incisos} incisos)' ); return true" onMouseOut=" nd(); return true"> 
+				<img src="../imagenes/pass/modificar.png" border="0"></a>&nbsp;
+			<a href="../code/_main.php?action=sec/clausulas.php&modificar=con&id={$clausulas[lista.index].id}" onMouseOver=" overlib('Contenido de esta cláusula',CAPTION,'Modificar' ); return true" onMouseOut=" nd(); return true"> 
+				<img src="../imagenes/pass/modifica.png" border="0"></a>&nbsp;
+			{*<a href="../code/_main.php?action=sec/clausulas.php&eliminar=acc&id={$clausulas[lista.index].id}" onMouseOver=" overlib('Eliminación de esta cláusula',CAPTION,'Eliminar' ); return true" onMouseOut=" nd(); return true"> 
+				<img src="../imagenes/pass/eliminar.png" border="0"></a>*}
+		</div></td>
+	</tr>
+	{/section}
+</table>
+<br />
+<form name="adicion" method="post" action="../code/_main.php?action=sec/clausulas.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td  width="620"><div align="center">
+			<input type="submit" name="adicionar" value="Adicionar" class="boton">
+		</div></td>
+	</tr>
+</table>
+</form>
+<br>
+</div>
+</body>
+</html>

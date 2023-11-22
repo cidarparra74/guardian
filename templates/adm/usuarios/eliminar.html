@@ -1,0 +1,121 @@
+
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/usuarios.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_eliminar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="eliminar" method="post" action="../code/_main.php?action=adm/usuarios.php" onSubmit="return eliminar_confirmar('este', 'Usuario')">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="620" colspan="4" valign="middle" height="30"><div align="center"> 
+            Eliminaci&oacute;n de Usuarios</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Nombres :&nbsp;</td>
+        <td class="borde_tabla" width="210" align="left" colspan="3">
+		 <strong>{$nombres}</strong>
+		</td>
+
+      </tr>
+	  
+	   <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Perfil :&nbsp;</td>
+        <td class="borde_tabla" width="210" align="left">
+		 	<strong>{$perfil}</strong>
+		</td>
+        <td class="borde_tabla" width="100" nowrap align="right">&nbsp;</td>
+        <td class="borde_tabla" width="210" align="left">
+		 &nbsp;
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Login :&nbsp;</td>
+        <td class="borde_tabla" width="210" align="left">
+		 <strong>{$login}</strong>
+		</td>
+        <td class="borde_tabla" width="100" nowrap align="right">&nbsp;</td>
+        <td class="borde_tabla" width="210" align="left">&nbsp;
+		</td>
+      </tr>
+	   <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" align="right">Oficina :&nbsp;</td>
+        <td class="borde_tabla" width="210"  align="left">
+			<strong>{$almacen} - {$oficina}</strong>
+		</td>
+		<td class="borde_tabla" width="100" align="right">Habilitado :&nbsp;</td>
+        <td class="borde_tabla" width="210"  align="left">
+
+			{if $activo == 'S'}<strong>SI</strong>{/if}
+			{if $activo == 'N'}<strong>NO</strong>{/if}
+
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Fecha&nbsp;</td>
+        <td class="borde_tabla" width="210" align="left">
+		 Eliminaci&oacute;n :&nbsp;<input name="fecha_eli" type="text" class="input" value="{$fecha_eli}" size="15" >
+		</td>
+        <td class="borde_tabla" width="100" nowrap align="right">&nbsp;</td>
+        <td class="borde_tabla" width="210" align="left">&nbsp;
+		</td>
+      </tr>
+	   <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td  width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td  width="310" nowrap><div align="right">
+            <input type="submit" name="eliminar_boton" value="Eliminar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="puede_eliminar" value="{$puede_eliminar}">
+          </div></td>
+		  
+</form>		
+<form name="eliminar_cancelar" method="post" action="../code/_main.php?action=adm/usuarios.php">
+        <td  width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="eliminar_boton_cancelar" value="Cancelar" class="boton"> </div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

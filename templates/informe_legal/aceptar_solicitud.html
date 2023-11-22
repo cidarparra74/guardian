@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/informe_legal_autoriza.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_formulario()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action={$carpeta_acc}.php&filtro=1" class="link_tabla">
+				Volver a lista de Informes
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+<form name="formulario" method="post" action="{$carpeta_entrar}" onSubmit="return verificar_formulario()">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="2" valign="middle" height="30" class="borde_lista"> 
+          <div align="center">{if $carpeta_acc == 'informe_legal_aprob'}Aprobaci&oacute;n de la solicitud de I.L.
+		  {else}{if $carpeta_acc == 'catastro_aprob'}Aprobaci&oacute;n de env&iacute;o a catastro
+		  {else}{if $carpeta_acc == 'autoriza_eval'}Autorizacion de Evaluaci&oacute;n
+		  {else}Aceptaci&oacute;n de Solicitud de Informe Legal.{/if}{/if}{/if}</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Solicitante :&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla">
+		 <input type="text" name="solicitante" size="80" class="input" value="{$nombre_usuario}" readonly>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Cliente :&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla">
+		 <input type="text" name="cliente" value="{$cliente}"  class="input" size="80" readonly>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="17" colspan="2" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+	    <td width="100" nowrap align="right" class="borde_tabla" valign="middle">Documento :&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla">
+		 <input type="text" name="ci_cliente" value="{$ci_cliente} {$emision}" class="input" size="15" readonly>
+		 {if $nrocaso}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{if $enable_ws == 'A'}Nro. de Caso:{else}Nro. de Cuenta:{/if} {$nrocaso}{/if}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla" valign="middle">Tipo :&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla">
+			<input type="text" name="tipo_bien" value="{$tipo_bien}"class="input" size="80" readonly>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp; </td>
+    </tr>
+
+</table>
+
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="aceptar_boton" value="Aceptar" class="boton" src="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="aceptar_boton_x" value="{$acep}">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="estado_formulario" value="aceptar">
+			<input type="hidden" name="id" value="{$id}">
+			<!--<input type="hidden" name="task" value="{$task}">
+			 input type="hidden" name="Tipo" value="{$Tipo}" -->
+          </div></td>
+		  
+</form>		
+<form name="adicionar_cancelar" method="post" action="{$carpeta_entrar}" onSubmit="des_verificar_formulario()">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		<input type="hidden" name="estado_formulario" value="aceptar">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+<br>
+</body>
+</html>

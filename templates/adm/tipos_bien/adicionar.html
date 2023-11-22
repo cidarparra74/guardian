@@ -1,0 +1,151 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/tipos_bien.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_adicionar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="adicionar" method="post" action="../code/_main.php?action=adm/tipos_bien.php" onSubmit="return verificar_adicion()">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="620" colspan="2" valign="middle" height="30"><div align="center"> 
+            Adici&oacute;n de Tipos de {if $cat == '0'}Bienes{else}Productos{/if}</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="170" nowrap align="right">Tipo :&nbsp;</td>
+        <td class="borde_tabla" width="450" align="left" >
+		 <input name="tipo" type="text" class="input" value="" size="50" maxlength="50">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="170" nowrap align="right">Descripci&oacute;n :&nbsp;</td>
+        <td class="borde_tabla" width="450"  align="left">
+		 <input name="descripcion" type="text" class="input" value="" size="60" maxlength="250">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="170" nowrap align="right">Con I.L. :&nbsp;</td>
+        <td class="borde_tabla" width="450" align="left">
+			<select name="con_inf_legal">
+				<option value='S'>Si</option>
+				<option value='N'>No</option>
+			</select>
+		 
+		</td>
+      </tr>
+	   <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="170" nowrap align="right">Con Recepci&oacute;n :&nbsp;</td>
+        <td class="borde_tabla" width="450" align="left">
+			<select name="con_recepcion">
+				<option value='S'>Si</option>
+				<option value='N'>No</option>
+			</select>
+		 
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="170" nowrap align="right">Con valuaci&oacute;n de Perito :&nbsp;</td>
+        <td class="borde_tabla" width="450"  align="left">
+			<select name="con_perito">
+				<option value='S'>Si</option>
+				<option value='N'>No</option>
+			</select>
+		 
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="170" nowrap align="right">Tipo de I.L.:&nbsp;</td>
+        <td class="borde_tabla" width="450" align="left">
+		<select name="bien">
+				<option value='1'>Inmueble</option>
+				<option value='3'>Veh&iacute;culo</option>
+				<option value='2'>Maquinaria</option>
+				<option value='6'>Semovientes</option>
+				<option value='5'>Personer&iacute;a Jur&iacute;dica</option>
+				<option value='4'>Otros</option>
+			</select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="170" nowrap align="right">Banca :&nbsp;</td>
+        <td class="borde_tabla" width="450" align="left">
+		<select name="id_banca">{section name=lista loop=$bancas}
+			<option value='{$bancas[lista.index].id_banca}'>{$bancas[lista.index].codigo}. {$bancas[lista.index].banca}</option>
+		{/section}</select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido">
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="170" nowrap align="right">Cuenta Cble :&nbsp;</td>
+        <td class="borde_tabla" width="450"  align="left">
+		<input name="cuenta" type="text" class="input" value="{$cuenta}" size="30" maxlength="18">
+		</td>
+      </tr>
+	   <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td  width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td  width="170" nowrap><div align="right">
+            &nbsp;<input type="submit" name="adicionar_boton" value="Adicionar" class="boton">
+			<input type="hidden" name="existentes" value="{$existentes}">
+          </div></td>
+		  
+</form>		
+<form name="adicionar_cancelar" method="post" action="../code/_main.php?action=adm/tipos_bien.php">
+        <td  width="450"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> </div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

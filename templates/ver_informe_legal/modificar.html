@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/informe_legal.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_formulario()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="./_main.php?action=ver_informe_legal.php" class="link_tabla">
+				Volver a lista de Informes
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+<form name="formulario" method="post" action="./_main.php?action=ver_informe_legal.php" onSubmit="return verificar_formulario()">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Modificaci&oacute;n de Solicitudes de Informes Legales</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Solicitante :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$nombre_us_actual} </b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Cliente :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <input type="text" name="cliente" value="{$cliente}" maxlength="250" class="input" size="80" onKeyUp="this.value = this.value.toUpperCase();" >
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Descripci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <textarea rows="2" cols="80" class="input" name="motivo">{$motivo}</textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Monto del Pr&eacute;stamo :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <input type="text" name="montopre" size="25" class="input" value="{$montopre}" >
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+	    <td width="100" nowrap align="right" class="borde_tabla" valign="middle">N&ordm; 
+          Doc. :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <input type="text" name="ci_cliente" value="{$ci_cliente}" maxlength="25" class="input" size="15">
+		 <select name="tipo_identificacion" class="input">
+		 	{section name=lista loop=$identificacion}
+				<option value="{$identificacion[lista.index].id}"
+				{if $id_tipo_identificacion == $identificacion[lista.index].id}
+					selected
+				{/if}>{$identificacion[lista.index].descri}</option>
+			{/section}
+		 </select>
+		</td>
+        <td width="100" nowrap align="right" class="borde_tabla" valign="middle">Tipo :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 	<select name="tipo_bien" class="input">
+			{section name=lista loop=$tiposbien}
+				<option value="{$tiposbien[lista.index].id}"
+				{if $id_tipo_bien == $tiposbien[lista.index].id}
+					selected
+				{/if}
+				>{$tiposbien[lista.index].descri}</option>
+			{/section}
+			</select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" colspan="1" class="borde_tabla">&nbsp; </td>
+<td width="520" colspan="3" class="borde_tabla"><input type="checkbox" name="pidedoc" checked="checked"> Indicar documentos</td>
+      </tr>
+
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+    </tr>
+
+</table>
+
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="modificar_boton" value="Guardar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="modificar_boton_x" value="ac">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="estado_formulario" value="modificar">
+			<input type="hidden" name="id" value="{$id}">
+          </div></td>
+		  
+</form>		
+<form name="adicionar_cancelar" method="post" action="./_main.php?action=ver_informe_legal.php" onSubmit="des_verificar_formulario()">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		<input type="hidden" name="estado_formulario" value="modificar">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+<br>
+</body>
+</html>

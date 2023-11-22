@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0"  class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+
+<form name="buscar" method="post" action="../code/_main.php?action=elaborar_contrato.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="2" height="20" valign="middle" align="center"> &nbsp;Opciones 
+        de B&uacute;squeda</td>
+	</tr>
+	  <tr class="tabla_titulo_contenido"> 
+        
+        <td width="100" nowrap align="right" height="25" valign="middle">Oficina:&nbsp;</td>
+        <td width="520" align="left" valign="middle">
+			<select name="id_oficina" class="input">
+				<option value="*">(Todos)</option>
+				{section name=lista loop=$oficinas}
+					<option value="{$oficinas[lista.index].id}" {if $id_oficina == $oficinas[lista.index].id}selected{/if}>{$oficinas[lista.index].nombre}</option>
+				{/section}
+		 	</select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right"  valign="middle">&nbsp;</td>
+		<td width="520"  align="left" valign="middle" height="30">
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton">&nbsp;
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+
+<br>
+<form name="adicionar" method="post" action="{$carpeta_entrar}" >
+
+    <table width="600" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="600"  valign="middle" height="30" class="borde_lista" colspan="3"><div align="center"> 
+          N&uacute;meros de Instancia disponibles:</div>
+		</td>
+	</tr>
+	  <tr class="tabla_titulo_color"> 
+        <td width="100"  class="borde_tabla">&nbsp;<b>N&uacute;mero</b></td>
+		<td width="400"  class="borde_tabla">&nbsp;<b>Cliente</b></td>
+		<td width="100"  class="borde_tabla">&nbsp; </td>
+      </tr>
+	  {section name=lista loop=$nrocasos}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" class="borde_lista">&nbsp;{$nrocasos[lista.index].nrocaso}</td>
+		<td width="400" class="borde_lista">&nbsp;{$nrocasos[lista.index].cliente}</td>
+		<td width="100" class="borde_lista">&nbsp;
+			<a href="{$carpeta_entrar}&nrocaso={$nrocasos[lista.index].id}"  onMouseOver=" overlib('Contrato Elaborado',CAPTION,'Marcar' ); return true" onMouseOut=" nd(); return true" > 
+			<img src="../imagenes/pass/aceptadas.gif" border="0"></a>&nbsp;
+			<a href="{$carpeta_entrar}&del={$nrocasos[lista.index].nrocaso}"  onMouseOver=" overlib('Descartar Contrato',CAPTION,'Eliminar' ); return true" onMouseOut=" nd(); return true" onClick="return confirm('Seguro de descartar este registro?')"> 
+			<img src="../imagenes/pass/eliminar.jpg" border="0"></a>&nbsp;
+			<input type="checkbox" name="opcion[]" value="{$nrocasos[lista.index].nrocaso}">&nbsp;
+			{if $nrocasos[lista.index].tipoope=='1'}
+			<a href="{$carpeta_entrar}&id={$nrocasos[lista.index].id}" onMouseOver=" overlib('Impresión excepciones',CAPTION,'Impresión' ); return true" onMouseOut=" nd();   return true"> 
+			<img src="../imagenes/pass/imprimir_lista.jpg" border="0"></a>{/if}
+		</td>
+      </tr>
+	  {sectionelse}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="600"  class="borde_tabla" colspan="4">&nbsp;(sin n&uacute;meros disponibles)</td>
+      </tr>
+	  {/section}
+
+	  </table>
+	  
+	{if $nrocasos}
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla"> 
+        <td width="620" colspan="2" align="center">&nbsp;<input type="submit" name="chkver" value="Descartar Marcados" class="boton"> </td>
+      </tr>
+    </table>
+	{/if}
+{* if $nrocasos}
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla"> 
+        <td width="620" colspan="2" align="center">&nbsp;<input type="submit" name="elaborar" value="Contrato Elaborado" class="boton"> </td>
+      </tr>
+    </table>
+{/if *}
+</form>
+
+</div>
+
+</body>
+</html>

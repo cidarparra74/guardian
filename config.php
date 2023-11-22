@@ -1,6 +1,6 @@
 <?php
-	$usuario = "usrGuardianPro"; //usuario bd
-	$password = "Pr0dem2017"; //password bd
-	$host= "LOCALHOST"; //"localhost";
-	$bdName = "GuardianPro"; //nombre bd dsn
+	$usuario = "guardian"; //usuario bd
+	$password = "12345678"; //password bd
+	$host= "MSI"; //"localhost";
+	$bdName = "odbcphp"; //nombre bd dsn
 ?>

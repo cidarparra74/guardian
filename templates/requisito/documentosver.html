@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+</head>
+<body >
+<div align="left">
+<table width="600" cellpadding="1" cellspacing="0" border="0" align="left" >
+<tr>
+	<td align="left">
+		<img src="../imagenes/{$logo}">
+		<h4>REQUISITOS PARA {$tipobien}</h4>
+	</td>
+</tr>
+<tr>
+<td>
+<table width="520" cellpadding="0" cellspacing="0" border="0" align="left" class="tableBorder">
+		<tr>
+		<td width="520"  valign="middle">Cliente: <b>{$cliente}</b></td>
+		</tr>
+		<tr>
+		<td width="520"  valign="middle">Doc.: <b>{$ci} {$emision}</b>&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;Tel&eacute;fono(s): <b>{$telefono}</b></td>
+		</tr>
+</table>
+<br>
+</td>
+</tr>
+<tr>
+<td>
+<table width="600" cellpadding="0" cellspacing="0" border="0" align="left" class="tableBorder">
+
+	{assign var="cabeza" value="1"}
+	{section name=lista loop=$documentos}
+	{if $documentos[lista.index].idgru == $cabeza}	
+	<tr>
+	   <td width="560"  valign="middle" align="left" colspan="2" class="tdBorder"> 
+         <b>Documentos {if $cabeza==1}Obligatorios{else}Opcionales{/if}
+			{assign var="cabeza" value="`$cabeza-1`"}</b>
+	  </td>
+	</tr>	
+	{/if}
+		
+		<tr class="tabla_titulo_contenido">
+			 <td width="40"  align="left" class="tdBorder">&nbsp; </td>
+			<td width="350" align="left" class="tdBorder"> 
+			&nbsp;{$documentos[lista.index].docu}
+			</td>
+		
+		</tr>
+	{/section}
+</table>
+<br>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

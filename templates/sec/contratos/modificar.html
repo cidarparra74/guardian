@@ -1,0 +1,164 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/clausulas.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_modificar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="modificar" method="post" action="../code/_main.php?action=sec/contratos.php" onSubmit="return verificar_adicion()">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="620" colspan="2" valign="middle" height="30"><div align="center"> 
+            Datos del Contrato</div>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="170" nowrap align="right">T&iacute;tulo/Descripci&oacute;n :&nbsp;</td>
+        <td class="borde_tabla" width="450" align="left">
+		 <textarea name="titulo"  cols="65" rows="3" maxlength="250" class="input">{$titulo}</textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  colspan="2">&nbsp; </td>
+      </tr>
+
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Tipo :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <select name="codtipo" >
+		 {section name=lista loop=$tipo}
+		 <option value="{$tipo[lista.index].id}" {if $tipo[lista.index].id == $codtipo}selected{/if}>{$tipo[lista.index].desc}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Materia :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <select name="materia" >
+		 {section name=lista loop=$materia}
+		 <option value="{$materia[lista.index].id}" {if $materia[lista.index].id == $codmateria}selected{/if}>{$materia[lista.index].desc}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Entidad :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <select name="entidad" >
+		 {section name=lista loop=$entidad}
+		 <option value="{$entidad[lista.index].id}" {if $entidad[lista.index].id == $codentidad}selected{/if}>{$entidad[lista.index].desc}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Habilitado? :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <select name="habilitado" >
+		 <option value="1" {if $habilitado=='1'}selected{/if}>Si</option>
+		 <option value="0" {if $habilitado!='1'}selected{/if}>No</option>
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Con firmas? :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <select name="con_firma" >
+		 <option value="1" {if $con_firma=='1'}selected{/if}>Si</option>
+		 <option value="0" {if $con_firma!='1'}selected{/if}>No</option>
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Con firma abogado? :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <select name="con_firma_abogado" >
+		 <option value="1" {if $con_firma_abogado=='1'}selected{/if}>Si</option>
+		 <option value="0" {if $con_firma_abogado!='1'}selected{/if}>No</option>
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Numerar Clausulas? :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <select name="numerar_clausulas" >
+		 <option value="1" {if $numerar_clausulas=='1'}selected{/if}>Si</option>
+		 <option value="0" {if $numerar_clausulas!='1'}selected{/if}>No</option>
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Tipo Persona :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <select name="tipopersona">
+		 <option value="N" {if $tipopersona=='N'}selected{/if}>Natural Mayor de edad</option>
+		 <option value="M" {if $tipopersona=='M'}selected{/if}>Natural Menor de edad</option>
+		 <option value="J" {if $tipopersona=='J'}selected{/if}>Juridica</option>
+		 </select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" colspan="2">&nbsp; </td>
+      </tr>
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td  width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td  width="310" nowrap><div align="right">
+            <input type="submit" name="modificar_boton" value="Guardar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="existentes" value="{$existentes}">
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="que" value="{$que}">
+          </div></td>
+		  
+</form>		
+<form name="modificar_cancelar" method="post" action="../code/_main.php?action=sec/contratos.php">
+        <td  width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="modificar_boton_cancelar" value="Cancelar" class="boton"> </div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

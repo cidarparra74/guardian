@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/usuariosec.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_modificar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="modificar" method="post" action="../code/_main.php?action=sec/usuariosec.php" onSubmit="return verificar_adicion()">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="620" colspan="4" valign="middle" height="30"><div align="center"> 
+            Modificaci&oacute;n de usuario SEC</div>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Login :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left">{$login}
+		</td>
+      </tr>
+
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Nombre :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left">{$usuario}
+		</td>
+      </tr>
+
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Oficina :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left"><strong>{$almacen} / {$oficina}</strong>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" height="17" colspan="4">&nbsp; </td>
+		</tr>
+
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Nombres :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left">
+		 <input name="nombre" type="text" class="input" id="nombre" value="{$nombre}" size="80" maxlength="50">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" height="17" colspan="4">&nbsp; </td>
+		</tr>
+
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Ap. Paterno :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left">
+		 <input name="paterno" type="text" class="input" id="paterno" value="{$paterno}" size="80" maxlength="50">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" height="17" colspan="4">&nbsp; </td>
+		</tr>
+
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Ap. Materno :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left">
+		 <input name="materno" type="text" class="input" id="materno" value="{$materno}" size="80" maxlength="50">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" height="17" colspan="4">&nbsp; </td>
+		</tr>
+		
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Ubicaci&oacute;n :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left">
+		 <select name="loca" >
+			<option value="">(desconocida)</option>
+		{section name=lista loop=$localiza}
+			<option value="{$localiza[lista].id}" {if $localiza[lista].id == $loca}selected{/if}>{$localiza[lista].id}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+		
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Perfil :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left">
+		 <select name="idperfil" >
+		{section name=lista loop=$perfil}
+			<option value="{$perfil[lista].id}" {if $perfil[lista].id == $idperfil}selected{/if}>{$perfil[lista].perfil}</option>
+		 {/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+		
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Estado :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left">
+		 <select name="estado" >
+			<option value="1" {if $estado=='1'}selected{/if}>Activo</option>
+			<option value="0" {if $estado=='0'}selected{/if}>No Activo</option>
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td  width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td  width="310" nowrap><div align="right">
+            <input type="submit" name="modificar_boton" value="Guardar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="existentes" value="{$existentes}">
+			<input type="hidden" name="id" value="{$id}">
+          </div></td>
+		  
+</form>		
+<form name="modificar_cancelar" method="post" action="../code/_main.php?action=sec/usuariosec.php">
+        <td  width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="modificar_boton_cancelar" value="Cancelar" class="boton"> </div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

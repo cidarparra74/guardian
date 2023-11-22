@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>Guardian Pro</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/autoriza_reportes.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+
+<form name="formulario" method="post" action="{$carpeta_entrar}">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Reporte de recepci&oacute;n de documentos</div>
+		</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" valign="top" class="borde_tabla">Estado :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <select name="estado" class="input">
+		 	<option value="*" selected>Todos</option>
+			<option value="0">Documentos Incompletos</option>
+			<option value="1">Documentos Completos</option>
+			<!-- option value="2">Documentos con Excepci&oacute;n</option -->
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" valign="top" class="borde_tabla">Del usuario :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <select name="usuario" class="input">
+		 	<option value="*" selected>Todos</option>
+			{section name=lista loop=$usuarios}
+			<option value="{$usuarios[lista.index].id}">{$usuarios[lista.index].nombres}</option>
+			{/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" valign="top" class="borde_tabla">De Recinto / Oficina :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+			<select name="oficina" class="input">
+				<option value="*">(Todos)</option>
+				{section name=lista loop=$f_oficina}
+					<option value="{$f_oficina[lista.index].id}" {if $filtro_oficina == $f_oficina[lista.index].id}selected{/if}>{$f_oficina[lista.index].nombre}</option>
+				{/section}
+		 	</select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" valign="middle" class="borde_tabla">Del :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla" valign="top">
+		 {html_select_date prefix="fecha1" all_extra="class='input'" start_year="-5" end_year="+5" display_days=true field_order="DMY" field_separator=" / "}&nbsp;
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" valign="middle" class="borde_tabla">Al :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla" valign="top">
+		 {html_select_date prefix="fecha2" all_extra="class='input'" start_year="-5" end_year="+5" display_days=true field_order="DMY" field_separator=" / "}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+    </table>
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="boton_reportar" value="Reportar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_entrar}">
+          </div></td>
+		  
+</form>		
+<form name="formulario_cancelar" method="post" action="{$carpeta_entrar}">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="prestar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_entrar}">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

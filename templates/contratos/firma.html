@@ -1,0 +1,114 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+
+<div align="center">
+<br>
+<form name="adicionar" method="post" action="{$carpeta_entrar}">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Documento {if $firma!='1'}NO{/if} Firmado</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+      
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Contrato :&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" colspan='3'>
+			<b>{$titulo}</b><input type="hidden" name="titulo" value="{$titulo}">
+		</td>
+      </tr>
+
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Nombre :&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" colspan='3'>
+			<b>{$cliente}</b><input type="hidden" name="cliente" value="{$cliente}">
+		</td>
+      </tr>
+		
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Fecha/Hora :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla" >
+			<b>{$fecha}&nbsp;&nbsp;{$hora}</b> <input type="hidden" name="fecha" value="{$fecha}">
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">Modificado :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla" >
+			<b>{$modifica}</b>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>{if $etiqueta == '  Notificar  '}
+	  <tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Enviar Notificaci&oacute;n por Correo Electr&oacute;nico</div>
+		</td>
+	</tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>	
+    <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Destinatario :&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" colspan='3'>
+		<select name="id_usuario" class="input">
+		<option value='0'>(No notificar por correo)</option>
+		{section name='lista' loop=$usuarios}
+		<option value='{$usuarios[lista.index].id}'>{$usuarios[lista.index].nombre}</option>
+		{/section}
+		</select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">CC :&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" colspan='3'>
+		<input type="text" name="ccopia" id="ccopia" value="" size="40" class="input">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  {/if}
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="boton_firma" value="{$etiqueta}" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="firmando" value="{$firma}">
+          </div></td>
+		   <td width="310"><div align="left">
+		<input type="button" name="boton_cancelar" value="Cancelar" class="boton" onClick="document.firma_cancelar.submit()">
+		</div>
+		</td>
+      </tr>
+    </table>
+
+</form>
+<form name="firma_cancelar" method="post" action="{$carpeta_entrar}&filtro=1">
+	<input type="hidden" name="adicionar_boton_cancelar" value="s"> 
+	
+</form>
+</div>
+
+</body>
+</html>

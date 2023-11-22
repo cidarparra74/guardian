@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_carpetas.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_modificar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>Propietario :</strong> {$titulo_nombre}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=carpetas.php&carpeta_entrar=propietarios&filtro=1" class="link_tabla">
+				Volver a lista de Propietarios
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="420" valign="middle" height="30">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>CI :</strong> {$titulo_mis}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="middle" height="30">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=carpetas.php&carpeta_entrar=carpetas" class="link_tabla">
+				Volver a lista de Carpetas
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+<form name="modificar" method="post" action="../code/_main.php?action=carpetas.php" onSubmit="return verificar_adicion_mod()">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Modificaci&oacute;n de Carpetas</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Propietario :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 {$titulo_nombre}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Tipo Carpeta :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <select name="tipo_carpeta" class="input">
+			{section name=lista loop=$ids_tipo_carpeta}
+				{if $c_id == $ids_tipo_carpeta[lista.index].id}
+					<option value="{$ids_tipo_carpeta[lista.index].id}" selected>{$ids_tipo_carpeta[lista.index].tipo}</option>
+				{else}
+					<option value="{$ids_tipo_carpeta[lista.index].id}">{$ids_tipo_carpeta[lista.index].tipo}</option>
+				{/if}
+			{/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Oficina :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <select name="oficina" class="input">
+			{section name=lista loop=$ids_oficina}
+				{if $o_id == $ids_oficina[lista.index].id}
+					<option value="{$ids_oficina[lista.index].id}" selected>{$ids_oficina[lista.index].nombre}</option>
+				{else}
+					<option value="{$ids_oficina[lista.index].id}">{$ids_oficina[lista.index].nombre}</option>
+				{/if}
+			{/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Operaci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <input type="text" name="operacion" value="{$operacion}" maxlength="25" class="input" size="25">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Descripci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <input type="text" name="carpeta" value="{$carpeta}" maxlength="250" class="input" size="80">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+          <input type="submit" name="modificar_boton" value="Guardar" class="boton">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    <input type="hidden" name="modificar_boton_x" value="acc">
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+          </div></td>
+		  
+</form>		
+<form name="modificar_cancelar" method="post" action="../code/_main.php?action=carpetas.php&filtro=1" onSubmit="des_verificar_adicion_mod()">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="modificar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

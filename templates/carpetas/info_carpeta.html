@@ -1,0 +1,280 @@
+<html>
+<head>
+<title>GuardianPro</title>
+{literal}
+<style>
+.LetrasN{
+font-family:"Arial";
+	 font-weight: bold;
+	 font-size:12px;
+}
+.LetrasN14{
+font-family:"Arial";
+	 font-weight: bold;
+	 font-size:14px;
+}
+.tabla{
+font-size:11px;
+padding:0px;
+	border-collapse:collapse;
+	border-spacing:0px;
+	font-family:Arial, Helvetica, sans-serif;
+
+}
+.tabla2{
+font-family:"Arial";
+font-size:12px;
+font-weight:bold;
+border-style:solid;
+border-width:1px;
+}
+ .tdx1{
+ font-weight:bold;
+	border-style:solid;
+	border:1px solid #000;
+ }
+ .tdx2{
+	border-style:solid;
+	border:1px solid #000;
+	font-size:10px;
+ }
+</style>
+{/literal}
+</head>
+
+<body>
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<div align="center">
+
+<table width="630" cellpadding="0" cellspacing="0" border="0" align="center" >
+		<tr>
+		<td width="90" valign="middle" height="35">
+			{if $logo01!=''}<img src="{$logo01}" border="0">{/if}
+		</td>
+		<td width="540" valign="middle" height="35" colspan="2" align="center">
+			<div class="LetrasN14">DATOS DE LA CARPETA</div>
+		</td>
+		</tr>
+		<tr>
+		<td width="90" valign="middle" height="35">&nbsp;</td>
+		<td width="540" valign="middle" height="35" colspan="2">
+			<div align="left" class="LetrasN"> <strong>Propietario :</strong> {$nombres} ({$ci})</div>
+		</td>
+		</tr>
+		<tr>
+		<td width="90" valign="middle" height="35">&nbsp;</td>
+		<td width="270" valign="middle" height="35">
+			<div align="left" class="LetrasN"> <strong>Oficina :</strong> {$oficina} </div>
+		</td>
+		<td width="270" valign="middle" height="35">
+			<div align="left" class="LetrasN"> <strong>Tipo de Carpeta :</strong> {$tipo} </div>
+		</td>
+		</tr>
+		<tr>
+		<td width="90" valign="middle" height="35">&nbsp;</td>
+		<td width="270" valign="middle" height="35">
+			<div align="left" class="LetrasN"> <strong>Creaci&oacute;n Carpeta :</strong> {$fecha}</div>
+		</td>
+		<td width="270" valign="middle" height="35">
+			<div align="left" class="LetrasN"> <strong>Operaci&oacute;n :</strong> {$operacion} </div>
+		</td>
+		</tr>
+		<tr>
+		<td width="90" valign="middle" height="35">&nbsp;</td>
+		<td width="540" valign="middle" height="35" colspan="2">
+			<div align="left" class="LetrasN"> <strong>Carpeta :</strong> {$carpeta} </div>
+		</td>
+		</tr>
+</table>
+{section name=lista loop=$movimientos}
+<table width="600" border="0" class="tabla" cellpadding="2" cellspacing="0">
+	<tr > 
+	<td width="170"  class='tdx1'>Detalle</td>
+	<td width="430"  class='tdx1'>&nbsp;</td>
+	</tr>
+
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Fecha Solicitud :&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].fecha1}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Solicitado por :&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].us_inicio}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Entregar carpeta a :&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].us_comun}&nbsp;</td>
+	</tr>{if $movimientos[lista.index].us_autoriza}
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Autorizado por :&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].us_autoriza}&nbsp;</td>
+	</tr>{/if}
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Comentarios :&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].obs_1}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="600" nowrap class='tdx2' colspan="2">&nbsp;</td>
+	</tr>
+	{if $movimientos[lista.index].fecha2}
+	<tr >
+	<td width="170" nowrap class='tdx2'>Fecha rechazo :&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].fecha2}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Comentarios :&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].obs_2}&nbsp;</td>
+	</tr>
+	{else}
+		{if $movimientos[lista.index].fecha3}
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Fecha autorizaci&oacute;n:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>
+	{$movimientos[lista.index].fecha3}&nbsp; Plazo devoluci&oacute;n : {$movimientos[lista.index].fecha3b}</td>
+	</tr>
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Comentarios:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].obs_3}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="600" nowrap class='tdx2' colspan="2">&nbsp;</td>
+	</tr>
+		{/if}
+		{if $movimientos[lista.index].fecha4}
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Fecha pr&eacute;stamo x catastro:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>
+	{$movimientos[lista.index].fecha4}&nbsp;Plazo devoluci&oacute;n : {$movimientos[lista.index].fecha4b}</td>
+	</tr>
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Comentarios:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].obs_4}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="600" nowrap class='tdx2' colspan="2">&nbsp;</td>
+	</tr>
+		{/if}
+		{if $movimientos[lista.index].fecha5}
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Fecha recepci&oacute;n x solicitante:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].fecha5}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Comentarios:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].obs_5}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="600" nowrap class='tdx2' colspan="2">&nbsp;</td>
+	</tr>
+		{/if}
+		{if $movimientos[lista.index].fecha6}
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Fecha devoluci&oacute;n a catastro:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].fecha6}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Comentarios:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].obs_6}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="600" nowrap class='tdx2' colspan="2">&nbsp;</td>
+	</tr>
+		{/if}
+		{if $movimientos[lista.index].fecha7}
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Fecha recepci&oacute;n x catastro:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].fecha7}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Comentarios:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].obs_7}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="600" nowrap class='tdx2' colspan="2">&nbsp;</td>
+	</tr>
+		{/if}
+		{if $movimientos[lista.index].fecha8}
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Fecha devolucion al cliente:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].fecha8}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Comentarios:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].obs_8}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="600" nowrap class='tdx2' colspan="2">&nbsp;</td>
+	</tr>
+		{/if}
+		{if $movimientos[lista.index].fecha9}
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Fecha adjudicaci&oacute;n al banco:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].fecha9}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="170" nowrap class='tdx2'>Comentarios:&nbsp;</td>
+	<td width="430" nowrap class='tdx2'>{$movimientos[lista.index].obs_9}&nbsp;</td>
+	</tr>
+	<tr > 
+	<td width="600" nowrap class='tdx2' colspan="2">&nbsp;</td>
+	</tr>
+		{/if}	
+	{/if}
+	<tr >
+	<td width="600" nowrap class='tdx2' colspan="2">Estado Actual: 
+	{if $movimientos[lista.index].estado == 1}
+		Carpeta solicitada con autorizacion pendiente.
+	{else}
+	{if $movimientos[lista.index].estado == 2}
+		La solicitud de pr&eacute;stamo de la carpeta fue rechazada.
+	{else}
+	{if $movimientos[lista.index].estado == 3}
+		La solicitud de la carpeta fue autorizada, pendiente que salga de archivo.
+	{else}
+	{if $movimientos[lista.index].estado == 4}
+		Catastro prest&oacute; la carpeta, pendiente confirmaci&oacute;n del solicitante.
+	{else}
+	{if $movimientos[lista.index].estado == 5}
+		Solicitante confirm&oacute; recibir la carpeta.
+	{else}
+	{if $movimientos[lista.index].estado == 6}
+		Solicitante devolvi&oacute; la carpeta a archivo, pendiente la confirmaci&oacute;n de catastro.
+	{else}
+	{if $movimientos[lista.index].estado == 7}
+		Catastro confirm&oacute; la devoluci&oacute;n de la carpeta.
+	{else}
+	{if $movimientos[lista.index].estado == 8}
+		Carpeta devuelta al cliente.
+	{else}
+	{if $movimientos[lista.index].estado == 9}
+		Carpeta adjudicada al banco.
+	{else}
+		Error! No se conoce el estado de la carpeta. ({$movimientos[lista.index].estado})
+	{/if}
+	{/if}
+	{/if}
+	{/if}
+	{/if}
+	{/if}
+	{/if}
+	{/if}
+	{/if}<br /><strong>
+	{if $movimientos[lista.index].flujo=='0'} Este movimiento esta inconcluso.
+	{else} Este movimiento est&aacute; concluido.
+	{/if} </strong>
+	&nbsp;</td>
+	</tr>
+</table>
+<br />
+{sectionelse}
+<br />
+<table width="600" border="0" class="tabla" cellpadding="2" cellspacing="0">
+	<tr > 
+	<td class='tdx1'> No se ha realizado ningun movimiento de pr&eacute;stamo de esta carpeta aun.</td>
+	</tr>
+</table>
+{/section}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Recepci&oacute;n</title>
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+</head>
+
+<body>
+<div align="left">
+<table width="650" cellpadding="1" cellspacing="0" border="0" align="left" >
+<tr>
+<td>
+<table width="650" cellpadding="3" cellspacing="0" border="0" align="left" class="tableBorder">
+	<tr>
+		<td width="650" colspan="4" align="center">
+			<h3>Carpetas Prestadas sin Confirmar</h3>
+		</td>
+	</tr>
+	<tr><td width="150" align="right">&nbsp;Solicitante :</td>
+	<td width="500"  colspan="3" align="left">&nbsp;
+	 {if $f_id_usuario == 'ninguno'}Todos
+	 {else}
+	{section name=lista loop=$f_ids_usuario}
+		 {if $f_id_usuario == $f_ids_usuario[lista.index].id_usuario}{$f_ids_usuario[lista.index].nombres}{/if}
+	{/section}
+	{/if}
+	</td>
+	</tr>
+	<tr><td width="150" align="right">&nbsp;Oficina :</td>
+	<td width="500"  colspan="3" align="left">&nbsp;
+	{if $f_id_oficina == 'ninguno'}Todas
+	{else}
+	{section name=lista loop=$f_ids_oficina}
+		{if $f_id_oficina == $f_ids_oficina[lista.index].id_oficina}{$f_ids_oficina[lista.index].nombre}{/if}
+	{/section}
+	{/if}
+	</td>
+	</tr>
+</table>
+</tr>
+</td>
+<tr>
+<td>
+
+
+
+<table width="650" cellpadding="0" cellspacing="0" border="0" align="center" class="tableBorder">
+
+	<tr>
+	  <td width="50" height="20" valign="middle" class="tdBorder">&nbsp;Fecha</td>
+	  <td width="100" height="20" valign="middle" class="tdBorder">&nbsp;Solicitante</td>
+	  <td width="100" height="20" valign="middle" class="tdBorder">&nbsp;Propietario</td>
+	  <td width="200" height="20" valign="middle" class="tdBorder">&nbsp;Carpeta</td>
+	  <td width="200" height="20" valign="middle" class="tdBorder">&nbsp;Observaci&oacute;n</td>
+	</tr>
+	
+	{*********carpetas prestadas con firma autorizada************}
+	{section name=lista loop=$sol_id_movimiento}
+	<tr>
+      <td width="50" class="tdBorder" valign="top">{$sol_id_movimiento[lista.index].sol_fecha} 
+      </td>
+		
+      <td width="100" class="tdBorder" valign="top"> &nbsp;{$sol_id_movimiento[lista.index].sol_corriente} 
+      </td>
+	  <td width="100" class="tdBorder" valign="top">{$sol_id_movimiento[lista.index].sol_propietario}<br>CI:{$sol_id_movimiento[lista.index].sol_mis}
+      </td>
+	  
+		<td width="200" class="tdBorder" valign="top">
+			&nbsp;{$sol_id_movimiento[lista.index].sol_carpeta}
+		</td>
+		
+      <td width="200" class="tdBorder" valign="top"> &nbsp;{$sol_id_movimiento[lista.index].sol_obs_1} </td>
+	</tr>
+	{/section}
+</table>
+
+</tr>
+</td>
+
+</table>
+
+</div>
+</body>
+</html>

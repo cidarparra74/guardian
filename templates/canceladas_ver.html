@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_propietarios.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido" >
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<SCRIPT LANGUAGE='JavaScript' SRC='../../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="2" height="20" valign="middle" align="center"> &nbsp;Opciones de B&uacute;squeda</td>
+	</tr>
+  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="25" valign="middle">Cliente :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 	<input name="filtro_texto" type="text" class="input" id="filtro_texto" value="{$filtro_texto}" size="60" maxlength="100">
+		</td>
+      </tr>
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="25" valign="middle">De la fecha :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 <input name="filtro_fecha" type="text" class="input" id="filtro_fecha" value="{$filtro_fecha}" size="15" maxlength="10">&nbsp;&nbsp;A la Fecha :&nbsp;<input name="filtro_fech2" type="text" class="input" id="filtro_fech2" value="{$filtro_fech2}" size="15" maxlength="10">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="28" valign="middle">&nbsp;</td>
+		<td width="500" align="left" valign="middle">
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton"><br><br>
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="110" class="borde_lista">
+			&nbsp;Fecha Baja
+		</td>
+		<td width="240" class="borde_lista">
+			&nbsp;Cliente / Carpeta
+		</td>
+		<td width="70" class="borde_lista">
+			&nbsp;Cuenta
+		</td>
+		<td width="80" class="borde_lista">&nbsp;Operaci&oacute;n</td>
+		<td width="80" class="borde_lista">&nbsp;Instancia</td>
+	</tr>
+	{section name=lista loop=$miscancelads}
+	<tr class="tabla_titulo_contenido">
+		<td width="110" class="borde_lista">
+			&nbsp;{$miscancelads[lista.index].fecha}
+		</td>
+		<td width="240" class="borde_lista">
+			&nbsp;<strong>{$miscancelads[lista.index].propietario}</strong><br>
+			{$miscancelads[lista.index].tipo_bien}<br>
+			{$miscancelads[lista.index].oficina}
+		</td>
+		<td width="70" class="borde_lista">&nbsp;{$miscancelads[lista.index].cuenta}</td>
+		<td width="80" class="borde_lista">&nbsp;{$miscancelads[lista.index].operacion}</td>
+		<td width="80" class="borde_lista">&nbsp;{$miscancelads[lista.index].nrocaso}</td>
+	</tr>
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="5" height="20" valign="middle" class="borde_lista">&nbsp;(Vacio, utilice la opci&oacute;n de b&uacute;squeda)</td>
+	</tr>
+	{/section}
+</table>
+<br>
+<br>
+<br>
+<br>
+<br> <!-- estos BR son para corregir el problema de los ultims tooltips de la lista -->
+</div>
+</body>
+</html>

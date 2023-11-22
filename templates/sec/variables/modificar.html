@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/variables.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_modificar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="modificar" method="post" action="../code/_main.php?action=sec/variables.php" onSubmit="return verificar_adicion()">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="620" colspan="2" valign="middle" height="30"><div align="center"> 
+            Adici&oacute;n de variable</div>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="150" nowrap align="right">Nombre variable :&nbsp;</td>
+        <td class="borde_tabla" width="470" align="left">
+		 <input name="idtexto" type="text" class="input" id="idtexto" value="{$idtexto}" size="40" maxlength="30">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" height="17" colspan="2">&nbsp; </td>
+	  </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Descripci&oacute;n :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <input name="descri" type="text" class="input" value="{$descri}" size="50" maxlength="30">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Tipo de dato :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <select name="tipo" >
+			<option value="0" {if $tipo == '0'}selected{/if}>Alfanum&eacute;rico</option>
+			<option value="1" {if $tipo == '1'}selected{/if}>Moneda</option>
+			<option value="2" {if $tipo == '2'}selected{/if}>Porcentaje</option>
+			<option value="3" {if $tipo == '3'}selected{/if}>Solo N&uacute;mero</option>
+			<option value="4" {if $tipo == '4'}selected{/if}>Entero</option>
+			<option value="5" {if $tipo == '5'}selected{/if}>Fecha</option>
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">N&uacute;mero L&iacute;neas :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <input name="lineas" type="text" class="input" value="{$lineas}" size="10" maxlength="10">
+		 &nbsp;(Aplica solo para tipo de dato alfanum&eacute;rico)
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Tipo de Contenido :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <select name="esglobal" >
+			<option value="0" {if $esglobal == '0'}selected{/if}>Sin contenido previo</option>
+			<option value="1" {if $esglobal == '1'}selected{/if}>Con contenido fijo</option>
+			<option value="3" {if $esglobal == '2'}selected{/if}>Con contenido modificable</option>
+			<option value="2" {if $esglobal == '3'}selected{/if}>Recordar seg&uacute;n el usuario</option>
+			<option value="4" {if $esglobal == '4'}selected{/if}>Lista con contenido adicional</option>
+			<option value="5" {if $esglobal == '5'}selected{/if}>Aceptante</option>
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Tama&ntilde;o del Contenido :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <select name="eslista" >
+			<option value="0" {if $eslista == '0'}selected{/if}>Un &uacute;nico valor</option>
+			<option value="1" {if $eslista == '1'}selected{/if}>Lista de valores</option>
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Contenido Unico:&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <textarea name="contenido"  size="80" rows="5">{$contenido}</textarea>
+		 <br>(si es una lista guardar y poner valores en la siguiente pantalla)
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla"  nowrap align="right">Contenido Adicional :&nbsp;</td>
+        <td class="borde_tabla"  align="left">
+		 <textarea name="contenido2"  size="80" rows="5"></textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="2">&nbsp; </td>
+      </tr>
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td  width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td  width="310" nowrap><div align="right">
+            <input type="submit" name="modificar_boton" value="Guardar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="existentes" value="{$existentes}">
+			<input type="hidden" name="id" value="{$id}">
+          </div></td>
+		  
+</form>		
+<form name="modificar_cancelar" method="post" action="../code/_main.php?action=sec/variables.php">
+        <td  width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="modificar_boton_cancelar" value="Cancelar" class="boton"> </div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

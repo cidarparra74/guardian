@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<link href="../styles/mainframe.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="../scripts/qTip.js" type="text/JavaScript"></script>
+<script language="JavaScript" src="../scripts/comun.js" type="text/JavaScript"></script>
+</head>
+
+<body>
+<div class="espacioTop"></div>
+<div id="wrapABM">
+<div class="barratitulo">{$titulomsg}</div>
+<div class="espacioTop"></div>
+<div id="formbase">
+<fieldset>
+
+<form name="frmModule" action="../code/admpermisoABM.php">
+<table width="350" border="0" align="center" cellpadding="3" cellspacing="0">
+ <tr>
+    <td class="ParaFiltro">
+	&nbsp;M&oacute;dulo que desea ver:
+	<select name="moduloSel" id="moduloSel" class="campotxt"  onchange="this.form.submit()">
+	{section name=lista loop=$Modulos}
+		<option value="{$Modulos[lista].codigo}">{$Modulos[lista].nombre}</option>
+	{/section}
+	</select><script>document.getElementById("moduloSel").value="{$moduloSel}"</script>
+	
+	<input name="id" type="hidden" value="{$id}" />
+	<input name="pagina" type="hidden" value="{$pagina}" />
+	</td>
+  </tr>
+</table>
+</form>
+ <div class="espacioMid"></div>
+ 
+<form name="frmDatos" action="../code/admpermisoABM.php">
+<!---  TABLA PARA EL LISTADO  --->
+<table width="350" border="0" align="center" cellpadding="2" cellspacing="0">
+ <tr>
+	<th width="330">&nbsp;&nbsp;&nbsp; Men&uacute; / Opci&oacute;n</td>
+	<th width="20" align="center">Acceso</td>
+  </tr>
+  {section name=lista loop=$TablaDatos}
+  <tr {if $smarty.section.lista.index is even}class="filaImp"{else}class="filaPar"{/if}>
+	<td width="330" >&nbsp;&nbsp;
+	{if $TablaDatos[lista].nivel=='3'}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{/if}
+	<img src="../images/menu/{$TablaDatos[lista].imagen}" border="0" height="16" width="16"/>&nbsp;&nbsp;{$TablaDatos[lista].nombre}</td>
+	<td width="20" align="center">{if $TablaDatos[lista].nivel=='3'}<input type="checkbox" name="opcion[]" value="{$TablaDatos[lista].codigo}" {if $TablaDatos[lista].tiene=='1'}CHECKED{/if}>{/if}&nbsp;</td>
+  </tr>
+  {sectionelse}
+   <tr>
+    <td colspan="2"><div class="filaPar">&nbsp;No existen registros para mostrar!</div></td>
+  </tr>
+  {/section}
+ </table>
+ 
+ <div class="espacioMid"></div>
+ <p>
+	<label for="inserta1">&nbsp;</label>
+	<input name="inserta2" type="submit" value="Guardar y Seguir" class="boton"/>
+	<input name="cancela"  type="button" value="Volver" class="boton" onclick='javascript:enviaform("frmVolver")'/>
+	<input name="pagina" type="hidden" value="{$pagina}" />
+	<input name="ejecutaABM" type="hidden" value="S" />
+	<input name="moduloSel" type="hidden" value="{$moduloSel}" />
+	<input name="id" type="hidden" value="{$id}" />
+ </p>
+ </form>
+ </fieldset>
+</div>
+
+<div class="espacioTop"></div>
+</div>
+<form name="frmVolver" id="frmVolver" action="../code/admperfil.php">
+	<input name="pageno" type="hidden" value="{$pagina}" />
+ </form>
+</body>
+</html>

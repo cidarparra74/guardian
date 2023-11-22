@@ -1,0 +1,225 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<script language="javascript" src="../scripts/modalpopups.js"></script>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/contratox.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0"  class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<table width="620" border="0" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_contenido"> 
+		<td width="620"  valign="middle" height="30">&nbsp;<strong>Complete las casillas siguientes</strong></td>
+	</tr>
+</table>
+<form name="adicionar" method="post" action="{$carpeta_entrar}" onSubmit="return verificar4(this)">
+<table width="700" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="700"  valign="middle" height="30" class="borde_lista" colspan="3"><div align="center">{$contrato}</div></td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="700" colspan="3" class="borde_tabla">&nbsp; </td>
+      </tr>{assign var="nrotabla" value=0}
+    {section name=lista loop=$principal}
+	{if $principal[lista.index].id != '0' && $principal[lista.index].contenido != '__duple__'}
+	{if $principal[lista.index].titulo <> '[tabla]'}
+	{if $principal[lista.index].esglobal == '1' && $principal[lista.index].eslista == '0'}
+			<!-- VARIABLES CON CONTENIDO, no dejar modificar, no mostrar -->
+			{* ESTAS VARIABLES YA TIENEN UN CONTENIDO QUE NO CAMBIA *}
+			<input name="data_{$principal[lista.index].ind}" type="hidden" value="{$principal[lista.index].contenido}">
+	{else}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="10"  class="borde_tabla">&nbsp; </td>
+		<td width="240" align="right" class="borde_tabla">
+			&nbsp;{$principal[lista.index].descripcion}:
+		</td>
+		<td width="450" align="left" class="borde_tabla" >&nbsp;
+		{if $principal[lista.index].esglobal == '1'}
+			{if $principal[lista.index].eslista == '1'}
+			<!-- VARIABLES CON CONTENIDO, lista -->
+			<!-- es una lista -->
+				{assign var="cbolista" value=$principal[lista.index].valores}
+				<select name="data_{$principal[lista.index].ind}" class="input">
+				{section name=lista2 loop=$cbolista}
+				<option value="{$cbolista[lista2.index].valor}" {if $cbolista[lista2.index].valor == $principal[lista.index].contenido}selected{/if}>{$cbolista[lista2.index].valor}</option>
+				{/section}
+				</select>
+			{/if}
+		{else}
+		
+		{if $principal[lista.index].esglobal == '0'}
+			<!-- VARIABLES SIN CONTENIDO -->
+			{if $principal[lista.index].tipo == '0'}
+				{if $principal[lista.index].lineas == '1'}
+				<!-- Es una caja de texto de una linea que permite cualquier dato -->
+				<input name="data_{$principal[lista.index].ind}" type="text" class="input" value="{$principal[lista.index].contenido}" size="60" maxlength="250">
+				{else}
+				<!-- Es una caja de texto de varias lineas -->
+				<textarea class="input" name="data_{$principal[lista.index].ind}" rows="{$principal[lista.index].lineas}" cols="60">{$principal[lista.index].contenido}</textarea>
+				{/if}
+			{else}
+			{if $principal[lista.index].tipo == '1'}
+				<!-- Es una caja de texto que pide un valor numérico decimal, y debe ser convertido a literal con moneda. Ej. Bs 100.50 (Son Cien 50/100 Bolivianos) -->
+				<input name="data_{$principal[lista.index].ind}" id="data_{$principal[lista.index].ind}" type="text" class="input" value="{$principal[lista.index].contenido}" size="60" maxlength="100">&nbsp;
+				<a href="javascript:void(0)" onClick="javascript:monedax('data_{$principal[lista.index].ind}','B')" onMouseOver=" overlib('Convertir a literal',CAPTION,'Moneda Bs'); return true" onMouseOut=" nd();   return true"><img src="../imagenes/pass/tras_bs.png" border="0"></a>
+				<a href="javascript:void(0)" onClick="javascript:monedax('data_{$principal[lista.index].ind}','U')" onMouseOver=" overlib('Convertir a literal',CAPTION,'Moneda Us'); return true" onMouseOut=" nd();   return true"><img src="../imagenes/pass/tras_us.png" border="0"></a>
+			{else}
+			{if $principal[lista.index].tipo == '2'}
+				<!-- Es una caja de texto que pide un valor numérico decimal, y debe ser convertido a literal porcentaje. Ej. 10.1% (Diez punto uno por ciento) -->
+				<input name="data_{$principal[lista.index].ind}" type="text" class="input" value="{$principal[lista.index].contenido}" size="60" maxlength="100" onBlur="javascript:porcentajeBlur('data_{$principal[lista.index].ind}')">&nbsp;
+			{else}
+			{if $principal[lista.index].tipo == '3'}
+				<!-- Es una caja de texto que pide un valor numérico decimal, y debe ser convertido a literal. Ej. 8.33 (Ocho punto Treinta tres) -->
+				<input name="data_{$principal[lista.index].ind}" type="text" class="input" value="{$principal[lista.index].contenido}" size="60" maxlength="100" onBlur="javascript:decimalBlur('data_{$principal[lista.index].ind}')">
+			{else}
+			{if $principal[lista.index].tipo == '4'}
+				<!-- Es una caja de texto que pide un valor numérico entero, y debe ser convertido a literal. Ej. 12 (doce) -->
+				<input name="data_{$principal[lista.index].ind}" type="text" class="input" value="{$principal[lista.index].contenido}" size="60" maxlength="100" onBlur="javascript:enteroBlur('data_{$principal[lista.index].ind}')">
+			{else}
+			{if $principal[lista.index].tipo == '5'}
+				<!-- Es una caja de texto que pide un valor fecha, y debe ser convertido a literal. Ej “12-09-2010” cambiar por:  “12 de septiembre de 2011” -->
+				<input name="data_{$principal[lista.index].ind}" type="text" class="input" value="{$principal[lista.index].contenido}" size="25" maxlength="30" onBlur="javascript:fechalargaBlur('data_{$principal[lista.index].ind}')">
+			{else}
+			<!-- tipo >= 6 No esta definido. Ponemos una caja de texto q admite cualquier valor -->
+				<input name="data_{$principal[lista.index].ind}" type="text" class="input" value="{$principal[lista.index].contenido}" size="60" maxlength="100"> !
+			{/if} {* tipo == '5' *}
+			{/if} {* tipo == '4' *}
+			{/if} {* tipo == '3' *}
+			{/if} {* tipo == '2' *}
+			{/if} {* tipo == '1' *}
+			{/if} {* tipo == '0' *}
+		{else}
+	
+		{if $principal[lista.index].esglobal == '2' || $principal[lista.index].esglobal == '3'}
+			<!-- 2: VARIABLES CON CONTENIDO A RECORDAR Variable que la primera vez coloca/elige el usuario -->
+			<!-- 3: VARIABLES CON CONTENIDO MODIFICABLE  -->
+			{if $principal[lista.index].eslista == '0'}
+				{if $principal[lista.index].lineas == '1'}
+			<!-- Es una caja de texto de una linea -->
+			<input name="data_{$principal[lista.index].ind}" type="text" class="input" value="{$principal[lista.index].contenido}" size="60" maxlength="250">
+				{else}
+			<!-- Es una caja de texto de varias lineas -->
+			<textarea class="input" name="data_{$principal[lista.index].ind}" rows="{$principal[lista.index].lineas}" cols="60">{$principal[lista.index].contenido}</textarea>
+				{/if}
+			{else}
+			<!-- es una lista -->
+				{assign var="cbolista" value=$principal[lista.index].valores}
+				<select name="data_{$principal[lista.index].ind}" class="input">
+				{section name=lista2 loop=$cbolista}
+				<option value="{$cbolista[lista2.index].valor}" {if $cbolista[lista2.index].valor == $principal[lista.index].contenido}selected{/if}>{$cbolista[lista2.index].valor}</option>
+				{/section}
+				</select>
+			{/if}
+		{else}
+		{if $principal[lista.index].esglobal == '4'}
+			<!-- VARIABLES LISTA CON CONTENIDO adicional -->
+			{if $principal[lista.index].eslista == '0'}
+				{* ESTO SERIA UN ERROR EN DEFINICION DE VAR YA QUE NO ES LISTA*}
+				<input name="data_{$principal[lista.index].ind}" type="text" class="input" value="{$principal[lista.index].contenido}" size="60" maxlength="100">
+			{else}
+				{assign var="cbolista" value=$principal[lista.index].valores}
+				<select name="data_{$principal[lista.index].ind}" class="input">
+				{section name=lista2 loop=$cbolista}
+				<option value="{$cbolista[lista2.index].valor}"{if $cbolista[lista2.index].valor == $principal[lista.index].contenido}selected{/if}>{$cbolista[lista2.index].valor}</option>
+				{/section}
+				</select>
+			{/if}
+		{else}
+			{* esglobal==3 *}
+			<!-- Es una caja de texto de una linea con contenido -->
+			<input name="data_{$principal[lista.index].ind}" type="text" class="input" value="{$principal[lista.index].contenido}" size="60" maxlength="250">
+
+		{/if} {* fin de esglobal==4 *}
+		{/if} {* fin de esglobal==2 *}
+		{/if} {* fin de esglobal==0 *}
+	
+	{/if}   {* fin de esglobal==1 *}
+	</td>
+      </tr>
+	 
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="700" colspan="3" class="borde_tabla">&nbsp;</td>
+      </tr>
+	 {/if} {* fin de esglobal==1 && eslista == '0' *}
+	{else} {* else de contenido <> '[tabla]' *}
+	<tr class="tabla_titulo_contenido"> 
+    <td width="700" colspan="3" class="borde_tabla" align='center'>
+	<!-- 
+	                             es una tabla 
+	-->
+	{assign var="nrotabla" value=$nrotabla+1}
+	{assign var="nrocols" value=0}
+	
+		{$principal[lista.index].descripcion} 
+		<table width="650" id="tabla{$nrotabla}" class="listado" align='center'>
+		<thead>{assign var="cbolista" value=$principal[lista.index].valores}
+			{assign var="cols" value=$principal[lista.index].lineas}
+			<tr>{section name=listaT loop=$cbolista}
+				<th width='{$cols}' class="borde_tabla" align="left">{$cbolista[listaT.index].titulo}</th>
+				{assign var="nrocols" value=$nrocols+1}
+				{/section}
+			</tr>
+		</thead>
+		<input type="hidden" id="cantcols{$nrotabla}" name="cantcols{$nrotabla}" value="{$nrocols}" />
+		<tbody id="tbTabla{$nrotabla}">
+		{assign var="pfilas" value=$principal[lista.index].contenido}
+			{section name=listaFil loop=$pfilas}
+				{assign var="fila" value=$smarty.section.listaFil.index}
+				{assign var="arreglo" value=$pfilas[$fila]}
+			<tr id="fila{$nrotabla}_{$fila}">
+			{section name=listaT loop=$cbolista}
+				{assign var="indice" value=$smarty.section.listaT.index+1}
+				{assign var="celda" value=$smarty.section.listaT.index}
+				{assign var="dato" value=$arreglo[$celda]}
+			<td><input name="campo{$nrotabla}_{$fila+1}{$indice}" type="text" class="input" value="{$dato}" size="15" maxlength="250" {if $principal[lista.index].nocambia == '1'}readonly{/if}></td>
+			{/section}
+			</tr>
+			{/section}
+		</tbody>
+		<tfoot><tr><td colspan='{$nrocols}'><input type="hidden" id="cantfilas{$nrotabla}" name="cantfilas{$nrotabla}" value="{$fila+1}" />
+		[<a href="javascript: void(0);" onclick="agregarFilaTabla(document.getElementById('cantfilas{$nrotabla}'),'{$nrocols}','{$nrotabla}');">Adicionar fila</a>]&nbsp;&nbsp;
+		[<a href="javascript: void(0);" onclick="quitarFilaTabla(document.getElementById('cantfilas{$nrotabla}'),'{$nrotabla}');">Quitar &uacute;ltima fila</a>]
+		</td></tr>
+		</tfoot>
+		</table>
+		
+		<br>
+		
+	</td>
+    </tr>
+	{/if} {* fin de contenido <> '[tabla]' *}
+	{/if}
+	{/section}
+</table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="modificar_p" value="Siguiente" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </div></td>
+	<td width="310"><div align="left">
+		<input type="button" name="boton_cancelar" value="Cancelar" class="boton" onClick="des_verificar_adicion()">
+		</div>
+		</td>
+      </tr>
+    </table>
+</form>
+<form name="adicionar_cancelar" method="post" action="{$carpeta_entrar}">
+<input type="hidden" name="adicionar_boton_cancelar" value="s"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+</form>	
+</div>
+
+</body>
+</html>

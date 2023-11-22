@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/tipos_carpetas.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_eliminar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<form name="eliminar" method="post" action="../code/_main.php?action=adm/tipos_carpetas.php" onSubmit="return eliminar_confirmar('este', 'Tipo de Carpeta', this.puede_eliminar)">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_lista" width="620" colspan="4" valign="middle" height="30"><div align="center"> 
+            Eliminaci&oacute;n de Tipos de Carpetas</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Tipo :&nbsp;</td>
+        <td class="borde_tabla" width="520" align="left" colspan="3">
+		 <input name="tipo" type="text" class="input" value="{$tipo}" size="50" maxlength="50" readonly>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+
+      <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Descripci&oacute;n :&nbsp;</td>
+        <td class="borde_tabla" width="520" colspan="3" align="left">
+		 <input name="descripcion" type="text" class="input" value="{$descripcion}" size="82" maxlength="250" readonly>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="100" nowrap align="right">Cta. Ing. :&nbsp;</td>
+        <td class="borde_tabla" width="300" align="left">
+		 <input name="cuenta_ingreso" type="text" class="input" value="{$cuenta_ingreso}" size="30" maxlength="250" readonly>
+		</td>
+		<td class="borde_tabla" width="100" nowrap align="right">Cta. Dev. :&nbsp;</td>
+        <td class="borde_tabla" width="300" align="left">
+		 <input name="cuenta_devolucion" type="text" class="input" value="{$cuenta_devolucion}" size="30" maxlength="250" readonly>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td class="borde_tabla" width="620" colspan="4">&nbsp; </td>
+      </tr>
+	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td  width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td  width="310" nowrap><div align="right">
+            <input type="submit" name="eliminar_boton" value="Eliminar" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="puede_eliminar" value="{$puede_eliminar}">
+          </div></td>
+		  
+</form>		
+<form name="eliminar_cancelar" method="post" action="../code/_main.php?action=adm/tipos_carpetas.php">
+        <td  width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="eliminar_boton_cancelar" value="Cancelar" class="boton"> </div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

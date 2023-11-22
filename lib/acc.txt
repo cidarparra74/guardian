@@ -1,0 +1,6 @@
+#990000
+white
+#FFFFC0
+black
+#006CD9
+#F08229

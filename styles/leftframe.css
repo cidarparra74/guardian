@@ -1,0 +1,99 @@
+body {	
+	background-color:#EAEAEA;
+	/*background-color:#FFFFFF;*/
+}
+
+/* ESTILO DE LOS ENLACES */
+a:link { color: black;
+text-decoration:none; 
+background-color:#fff;} /* un enlace no visitado*/ 
+A:visited { color: black;
+text-decoration:none; } /* enlace visitado */ 
+A:hover { color: black;
+/*text-decoration:underline;*/
+background-color:#CCE6FF; } /* raton encima */ 
+A:active { color: blue; } /* enlace activo */ 
+
+
+/* PARA UN LIST QUE HACE DE MENU*/
+#leftmenu {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#leftmenu li {
+	display:block; 
+	width:120px;
+/*	text-decoration:none;*/
+	text-align:center;
+	font-size:9px; 
+	font-family: Arial, Helvetica, sans-serif;
+	color:#990000;
+	background-color:#fff;
+	/*background-color:transparent;*/
+	background-image: none;
+	border: 1px solid #ccc;
+}
+#leftmenu li a {
+	display:block;
+	text-decoration:none;
+	color:#000000;
+	padding:3px 0;
+}
+#leftmenu li a:hover {
+	color:#FFFFFF;
+	background-color:#666666;
+	border-color:#CCCCCC; 
+	padding:3px 0;
+}
+
+
+/* TIPOS DE LETRAS */		
+.pequena{font-family:Arial, Helvetica, sans-serif;
+		font-size:9px;
+		color:#993333
+}
+.mediana{font-family:Arial, Helvetica, sans-serif;
+		font-size:11px;
+		font-weight:bold;
+		color:#0000CC;
+}
+.grande{font-family:Arial, Helvetica, sans-serif;
+		font-size:12px;
+		font-weight:bold;
+		color:#993333
+}
+
+
+.espacio{ height:10px;}
+
+
+/* PARA EL ENCABEZADO DEL MENU*/
+.boxhead {
+	background:#006CD9;
+	color:#FFFFFF;
+	padding:0 1px 0 2px;
+	margin:0 3px 0 3px;
+	font-size:11px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+}
+
+/* PARA EL CONTENIDO DEL MENU*/
+.boxbody {
+	/*background:#CCE6FF;*/
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	padding:1px 0px 0px 3px;}
+
+
+#Lcontainer {
+	margin: 1px 8px 0px 8px;
+	width:144px;
+	border: 1px solid #999999;
+	/*background:#CCE6FF;*/
+	background:#fff;
+	padding: 0px;
+	text-align:left;
+	min-height:450px;
+}

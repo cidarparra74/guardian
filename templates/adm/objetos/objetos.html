@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/tipos_documentos.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br>
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		
+      <td class="borde_lista" width="620" colspan="3" height="20" valign="middle"> &nbsp;Descripciones predefinidas</td>
+	</tr>
+	{section name=lista loop=$objetos}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista" width="540"><div align="left">
+			&nbsp;{$objetos[lista.index].objeto}
+		</div></td>
+		<td class="borde_lista" width="40"><div align="center">
+			<a href="../code/_main.php?action=adm/objetos.php&modificar=acc&id={$objetos[lista.index].id}" onMouseOver=" overlib('Modificación del nombre de esta entidad',CAPTION,'Modificar' ); window.status='Modificación de valores'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/modificar.jpg" border="0">
+			</a>
+		</div></td>
+		<td class="borde_lista" width="40"><div align="center">
+			<a href="../code/_main.php?action=adm/objetos.php&eliminar=acc&id={$objetos[lista.index].id}" onMouseOver=" overlib('Eliminación de esta entidad',CAPTION,'Eliminar' ); window.status='Eliminación'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+		</div></td>
+	</tr>
+	{/section}
+</table>
+<br />
+<form name="adicion" method="post" action="../code/_main.php?action=adm/objetos.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td  width="620"><div align="center">
+			<input type="submit" name="adicionar" value="Adicionar" class="boton">
+		</div></td>
+	</tr>
+</table>
+</form>
+<br>
+</div>
+</body>
+</html>

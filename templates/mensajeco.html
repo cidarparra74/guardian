@@ -1,0 +1,614 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/comun_mensajes.js">
+</SCRIPT>
+
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+
+<form name="formulario_sel" action="_main.php?action=mensajeco.php" method="post">
+<table width="620" cellpadding="2" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+		<td width="620" height="20" valign="middle" class="borde_lista" colspan="2">
+			Opciones de B&uacute;squeda
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido">
+		<td width="120" height="20" align="right"  >
+			Mostrar Bandeja:&nbsp;
+		</td>
+		<td width="500" height="20" align="left"  >
+			<select name="filtro_lista" class="input">
+			<option value='0'>(Seleccione)</option>
+			<option value='1' {if $filtro_lista=='1'}selected{/if}>Pendientes de Autorizaci&oacute;n</option>
+			<option value='2' {if $filtro_lista=='2'}selected{/if}>Solicitures Aceptadas</option>
+			<option value='3' {if $filtro_lista=='3'}selected{/if}>Solicitudes Rechazadas</option>
+			<option value='4' {if $filtro_lista=='4'}selected{/if}>Aceptadas por Confirmar</option>
+			<option value='5' {if $filtro_lista=='5'}selected{/if}>Carpetas en mi poder</option>
+			<option value='6' {if $filtro_lista=='6'}selected{/if}>Retornadas sin Confirmar</option>
+			<option value='7' {if $filtro_lista=='7'}selected{/if}>Devueltas al cliente</option>
+			<option value='8' {if $filtro_lista=='8'}selected{/if}>Adjudicadas al Banco</option>
+			</select>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido">
+		<td width="120" height="20" >&nbsp;
+		</td>
+		<td width="500" height="20" align="left" >
+			<input type="submit" name="filtrar" value="  Ver  " class="boton">
+		</td>
+	</tr>
+</table>
+</form>
+<br>
+{if $sol_id_movimiento[0] != null}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="8" height="25" valign="middle" class="borde_lista">&nbsp;:: Carpetas Solicitadas</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+      <td width="30" height="20" valign="middle" class="borde_lista">&nbsp;Est.</td>
+	  <td width="50" height="20" valign="middle" class="borde_lista">&nbsp;CI</td>
+	  <td width="100" height="20" valign="middle" class="borde_lista">&nbsp;Propietario</td>
+	  <td width="160" height="20" valign="middle" class="borde_lista">&nbsp;Carpeta</td>
+	  <td width="205" height="20" valign="middle" class="borde_lista">&nbsp;Observaci&oacute;n</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	</tr>
+	{*********solicitud de carpetas****************}
+	{section name=lista loop=$sol_id_movimiento}
+	<tr class="tabla_titulo_contenido">
+		<td width="30" class="borde_lista" align="center">
+			<a href="#" onMouseOver=" overlib('Solicitado a: {$sol_autoriza[lista.index]}',CAPTION,'Solicitudes' ); return true" onMouseOut=" nd();   return true">
+				<img src="../imagenes/pass/solicitud.gif" border="0">
+			</a>
+		</td>
+		<td width="50" class="borde_lista" valign="top">
+			&nbsp;{$sol_mis[lista.index]}
+		</td>
+		<td width="100" class="borde_lista" valign="top">
+			{$sol_propietario[lista.index]}
+		</td>
+		<td width="160" class="borde_lista" valign="top">{$sol_carpeta[lista.index]}</td>
+		<td width="205" class="borde_lista" valign="top">
+			&nbsp;{$sol_obs[lista.index]}
+		</td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&eliminar_solicitud=acc&id={$sol_id_movimiento[lista.index]}" onMouseOver=" overlib('Eliminación de los valores de esta Solicitud',CAPTION,'Eliminar' , ABOVE); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="#" onMouseOver=" overlib('Solicitado a: {$sol_autoriza[lista.index]}<br>En Fecha: {$sol_fecha[lista.index]}',CAPTION,'Detalles' , ABOVE); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/detalle.jpg" border="0">
+			</a>
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&modificar_solicitud=acc&id={$sol_id_movimiento[lista.index]}" onMouseOver=" overlib('Modificación de los valores de esta Solicitud',CAPTION,'Modificar' , ABOVE); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/modificar.jpg" border="0">
+			</a>
+		</div></td>
+		
+	</tr>
+	{/section}
+</table>
+{/if}
+{if $ace_id_movimiento[0] != null}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="8" height="25" valign="middle" class="borde_lista">&nbsp;:: Solicitudes Aceptadas</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+      <td width="30" height="20" valign="middle" class="borde_lista">&nbsp;Est.</td>
+	  <td width="50" height="20" valign="middle" class="borde_lista">&nbsp;CI</td>
+	  <td width="100" height="20" valign="middle" class="borde_lista">&nbsp;Propietario</td>
+	  <td width="160" height="20" valign="middle" class="borde_lista">&nbsp;Carpeta</td>
+	  <td width="205" height="20" valign="middle" class="borde_lista">&nbsp;Observaci&oacute;n</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	</tr>
+	{*********solicitudes aceptadas************}
+	{section name=lista loop=$ace_id_movimiento}
+	<tr class="tabla_titulo_contenido">
+		<td width="30" class="borde_lista" align="center">
+			<a href="#" onMouseOver=" overlib('Solicitado a: {$ace_autoriza[lista.index]}',CAPTION,'Aceptadas' ); window.status='Estado del Flujo'; return true" onMouseOut=" nd();   return true">
+				<img src="../imagenes/pass/aceptadas.gif" border="0">
+			</a>
+		</td>
+		<td width="50" class="borde_lista" valign="top">
+			&nbsp;{$ace_mis[lista.index]}
+		</td>
+		<td width="100" class="borde_lista" valign="top">
+			{$ace_propietario[lista.index]}
+		</td>
+		<td width="160" class="borde_lista" valign="top">
+			&nbsp;{$ace_carpeta[lista.index]}
+		</td>
+		<td width="205" class="borde_lista" valign="top">
+			&nbsp;{$ace_obs[lista.index]}
+		</td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<!--
+			<a href="{$carpeta_entrar}&eliminar_aceptada=acc&id={$ace_id_movimiento[lista.index]}" onMouseOver=" overlib('Eliminación de los valores de esta Solicitud',CAPTION,'Eliminar' ); window.status='Eliminación'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+			-->&nbsp;
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="#" onMouseOver=" overlib('Solicitado a: {$ace_autoriza[lista.index]}<br>En Fecha: {$ace_fecha[lista.index]}',CAPTION,'Detalles' , ABOVE); window.status='Detalles'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/detalle.jpg" border="0">
+			</a>
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&modificar_aceptada=acc&id={$ace_id_movimiento[lista.index]}" onMouseOver=" overlib('Mostrar datos de la solicitud',CAPTION,'Datos' , ABOVE); window.status='Valores'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/modificar.jpg" border="0">
+			</a>
+		</div></td>
+		
+	</tr>
+	{/section}
+</table>
+
+{/if}
+
+
+
+
+
+
+{if $neg_id_movimiento[0] != null}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="8" height="25" valign="middle" class="borde_lista">&nbsp;:: Solicitudes Rechazadas</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+      <td width="30" height="20" valign="middle" class="borde_lista">&nbsp;Est.</td>
+	  <td width="50" height="20" valign="middle" class="borde_lista">&nbsp;CI</td>
+	  <td width="100" height="20" valign="middle" class="borde_lista">&nbsp;Propietario</td>
+	  <td width="160" height="20" valign="middle" class="borde_lista">&nbsp;Carpeta</td>
+	  <td width="205" height="20" valign="middle" class="borde_lista">&nbsp;Observaci&oacute;n</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	</tr>
+	{*********solicitudes rechazadas************}
+	{section name=lista loop=$neg_id_movimiento}
+	<tr class="tabla_titulo_contenido">
+		<td width="30" class="borde_lista" align="center">
+			<a href="#" onMouseOver=" overlib('Solicitado a: {$neg_autoriza[lista.index]}',CAPTION,'Rechazadas' ); window.status='Estado del Flujo'; return true" onMouseOut=" nd();   return true">
+				<img src="../imagenes/pass/rechazado.gif" border="0">
+			</a>
+		</td>
+		<td width="50" class="borde_lista" valign="top">
+			&nbsp;{$neg_mis[lista.index]}
+		</td>
+		<td width="100" class="borde_lista" valign="top">
+			{$neg_propietario[lista.index]}
+		</td>
+		<td width="160" class="borde_lista" valign="top">
+			&nbsp;{$neg_carpeta[lista.index]}
+		</td>
+		<td width="205" class="borde_lista" valign="top">
+			&nbsp;{$neg_obs[lista.index]}
+		</td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&eliminar_rechazada=acc&id={$neg_id_movimiento[lista.index]}" onMouseOver=" overlib('Eliminación de los valores de este Rechazo',CAPTION,'Eliminar' , ABOVE); window.status='Eliminación'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="#" onMouseOver=" overlib('Solicitado a: {$neg_autoriza[lista.index]}<br>En Fecha: {$neg_fecha[lista.index]}',CAPTION,'Detalles' , ABOVE); window.status='Detalles'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/detalle.jpg" border="0">
+			</a>
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<!--<a href="{$carpeta_entrar}&modificar_rechazada=acc&id={$neg_id_movimiento[lista.index]}" onMouseOver=" overlib('Mostrar datos de la solicitud',CAPTION,'Datos' , ABOVE); window.status='Valores'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/modificar.jpg" border="0">
+			</a>
+			-->&nbsp;
+		</div></td>
+		
+	</tr>
+	{/section}
+</table>
+
+{/if}
+
+
+
+{if $por_id_movimiento[0] != null}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="8" height="25" valign="middle" class="borde_lista">
+		&nbsp;:: Carpetas Mandadas de Archivo para Confirmar&nbsp;&nbsp;
+		<a href="{$carpeta_entrar}&imprimir_prestadas_sc=acc" onMouseOver=" overlib('Preparar impresión de esta Sección',CAPTION,'Imprimir' , ABOVE); window.status='Imprimir'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir_cabecera.gif" border="0">
+			</a>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+      <td width="30" height="20" valign="middle" class="borde_lista">&nbsp;Est.</td>
+	  <td width="50" height="20" valign="middle" class="borde_lista">&nbsp;CI</td>
+	  <td width="100" height="20" valign="middle" class="borde_lista">&nbsp;Propietario</td>
+	  <td width="160" height="20" valign="middle" class="borde_lista">&nbsp;Carpeta</td>
+	  <td width="205" height="20" valign="middle" class="borde_lista">&nbsp;Observaci&oacute;n</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	</tr>
+	{*********solicitudes por confirmar************}
+	{section name=lista loop=$por_id_movimiento}
+	<tr class="tabla_titulo_contenido">
+		<td width="30" class="borde_lista" align="center">
+			<a href="#" onMouseOver=" overlib('Enviado por: {$por_archivo[lista.index]}',CAPTION,'Por Confirmar' ); window.status='Estado del Flujo'; return true" onMouseOut=" nd();   return true">
+				<img src="../imagenes/pass/por_confirmar.gif" border="0">
+			</a>
+		</td>
+		<td width="50" class="borde_lista" valign="top">
+			&nbsp;{$por_mis[lista.index]}
+		</td>
+		<td width="100" class="borde_lista" valign="top">
+			{$por_propietario[lista.index]}
+		</td>
+		<td width="160" class="borde_lista" valign="top">
+			&nbsp;{$por_carpeta[lista.index]}
+		</td>
+		<td width="205" class="borde_lista" valign="top">
+			&nbsp;{$por_obs[lista.index]}
+		</td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<!--
+			<a href="{$carpeta_entrar}&eliminar_rechazada=acc&id={$neg_id_movimiento[lista.index]}" onMouseOver=" overlib('Eliminación de los valores de este Rechazo',CAPTION,'Eliminar' ); window.status='Eliminación'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+			-->&nbsp;
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="#" onMouseOver=" overlib('Enviado por: {$por_archivo[lista.index]}<br>En Fecha: {$por_fecha[lista.index]}',CAPTION,'Detalles' , ABOVE); window.status='Detalles'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/detalle.jpg" border="0">
+			</a>
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&aceptar_por_conf_arch=acc&id={$por_id_movimiento[lista.index]}" onMouseOver=" overlib('Mostrar datos de este Envio',CAPTION,'Datos' , ABOVE); window.status='Valores'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/aceptadas.gif" border="0">
+			</a>
+		</div></td>
+		
+	</tr>
+	{/section}
+</table>
+
+{/if}
+	
+	
+	
+	
+{if $mip_id_movimiento[0] != null}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="8" height="25" valign="middle" class="borde_lista">
+		&nbsp;:: Carpetas en mi Poder&nbsp;&nbsp;
+		<a href="{$carpeta_entrar}&imprimir_prestadas_confirmadas=acc" onMouseOver=" overlib('Preparar impresión de esta Sección',CAPTION,'Imprimir' , ABOVE); window.status='Imprimir'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir_cabecera.gif" border="0">
+			</a>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+      <td width="30" height="20" valign="middle" class="borde_lista">&nbsp;Est.</td>
+	  <td width="50" height="20" valign="middle" class="borde_lista">&nbsp;CI</td>
+	  <td width="100" height="20" valign="middle" class="borde_lista">&nbsp;Propietario</td>
+	  <td width="160" height="20" valign="middle" class="borde_lista">&nbsp;Carpeta</td>
+	  <td width="205" height="20" valign="middle" class="borde_lista">&nbsp;Observaci&oacute;n</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	</tr>
+	{*********solicitudes confirmadas************}
+	{section name=lista loop=$mip_id_movimiento}
+	<tr class="tabla_titulo_contenido">
+		<td width="30" class="borde_lista" align="center">
+			<a href="#" onMouseOver=" overlib('Enviado por: {$mip_archivo[lista.index]}<br>En Fecha: {$mip_fecha[lista.index]}',CAPTION,'En mi Poder' ); window.status='Estado del Flujo'; return true" onMouseOut=" nd();   return true">
+				<img src="../imagenes/pass/prestamo.gif" border="0">
+			</a>
+		</td>
+		<td width="50" class="borde_lista" valign="top">
+			&nbsp;{$mip_mis[lista.index]}
+		</td>
+		<td width="100" class="borde_lista" valign="top">
+			{$mip_propietario[lista.index]}
+		</td>
+		<td width="160" class="borde_lista" valign="top">
+			&nbsp;{$mip_carpeta[lista.index]}
+		</td>
+		<td width="205" class="borde_lista" valign="top">
+			&nbsp;{$mip_obs[lista.index]}
+		</td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			{if $show == 's'}
+				<a href="{$carpeta_entrar}&devolver_propietario=acc&id={$mip_id_movimiento[lista.index]}" onMouseOver=" overlib('Devolver esta carpeta al Cliente',CAPTION,'Devolver Cliente' , ABOVE); window.status='Devolución'; return true" onMouseOut=" nd();   return true"> 
+					<img src="../imagenes/pass/persona.gif" border="0">
+				</a>
+				<br><br>
+				<a href="{$carpeta_entrar}&adjudicarse_carpeta=acc&id={$mip_id_movimiento[lista.index]}" onMouseOver=" overlib('Adjudicarse de esta carpeta para el Banco',CAPTION,'Adjudicatoción' , ABOVE); window.status='Adjudicatoria'; return true" onMouseOut=" nd();   return true"> 
+					<img src="../imagenes/pass/adjudicatoria001.jpg" border="0">
+				</a>
+			{else}
+				&nbsp;
+			{/if}
+			
+			{* else}
+				{if $mip_adjudicarse[lista.index] == 1}
+					<br><br>
+					<a href="{$carpeta_entrar}&adjudicarse_carpeta=acc&id={$mip_id_movimiento[lista.index]}" onMouseOver=" overlib('Adjudicarse de esta carpeta para el Banco',CAPTION,'Adjudicatoción' , ABOVE); return true" onMouseOut=" nd();   return true"> 
+						<img src="../imagenes/pass/adjudicatoria001.jpg" border="0">
+					</a>
+				{else}
+					&nbsp;
+				{/if}
+			{/if *}
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&ampliar_plazo=acc&id={$mip_id_movimiento[lista.index]}" onMouseOver=" overlib('Ampliar plazo devolución',CAPTION,'Devolución' , ABOVE);  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/calendario.jpg" border="0">
+			</a>
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&retornar_conf_arch=acc&id={$mip_id_movimiento[lista.index]}" onMouseOver=" overlib('Devolver esta carpeta a Boveda',CAPTION,'Devolver Boveda' , ABOVE); window.status='Valores'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/prestardoc.gif" border="0">
+			</a>
+		</div></td>
+		
+	</tr>
+	{/section}
+</table>
+
+{/if}
+	
+	
+	
+	
+	
+{if $ret_id_movimiento[0] != null}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="8" height="25" valign="middle" class="borde_lista">
+		&nbsp;:: Carpetas Devueltas a Archivo sin Confirmar&nbsp;&nbsp;
+		<a href="{$carpeta_entrar}&imprimir_retornadas_sc=acc" onMouseOver=" overlib('Preparar impresión de esta Sección',CAPTION,'Imprimir' , ABOVE); window.status='Imprimir'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir_cabecera.gif" border="0">
+			</a>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+      <td width="30" height="20" valign="middle" class="borde_lista">&nbsp;Est.</td>
+	  <td width="50" height="20" valign="middle" class="borde_lista">&nbsp;CI</td>
+	  <td width="100" height="20" valign="middle" class="borde_lista">&nbsp;Propietario</td>
+	  <td width="160" height="20" valign="middle" class="borde_lista">&nbsp;Carpeta</td>
+	  <td width="205" height="20" valign="middle" class="borde_lista">&nbsp;Observaci&oacute;n</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	</tr>
+	{*********retorno sin confirmar************}
+	{section name=lista loop=$ret_id_movimiento}
+	<tr class="tabla_titulo_contenido">
+		<td width="30" class="borde_lista" align="center">
+			<a href="#" onMouseOver=" overlib('Enviado a: {$ret_archivo[lista.index]}',CAPTION,'Retornando' ); window.status='Estado del Flujo'; return true" onMouseOut=" nd();   return true">
+				<img src="../imagenes/pass/retornado.gif" border="0">
+			</a>
+		</td>
+		<td width="50" class="borde_lista" valign="top">
+			&nbsp;{$ret_mis[lista.index]}
+		</td>
+		<td width="100" class="borde_lista" valign="top">
+			{$ret_propietario[lista.index]}
+		</td>
+		<td width="160" class="borde_lista" valign="top">
+			&nbsp;{$ret_carpeta[lista.index]}
+		</td>
+		<td width="205" class="borde_lista" valign="top">
+			&nbsp;{$ret_obs[lista.index]}
+		</td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<!--
+			<a href="{$carpeta_entrar}&eliminar_rechazada=acc&id={$neg_id_movimiento[lista.index]}" onMouseOver=" overlib('Eliminación de los valores de este Rechazo',CAPTION,'Eliminar' ); window.status='Eliminación'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+			-->&nbsp;
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="#" onMouseOver=" overlib('Enviado a: {$ret_archivo[lista.index]}<br>En Fecha: {$ret_fecha[lista.index]}',CAPTION,'Detalles' , ABOVE); window.status='Detalles'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/detalle.jpg" border="0">
+			</a>			
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&modificar_retorno=acc&id={$ret_id_movimiento[lista.index]}" onMouseOver=" overlib('Mostrar datos de este Envio',CAPTION,'Modificar' , ABOVE); window.status='Valores'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/modificar.jpg" border="0">
+			</a>
+		</div></td>
+		
+	</tr>
+	{/section}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" class="borde_lista" align="right" colspan="8">
+			<a href="{$carpeta_entrar}&imprimir_envio_archivo=acc&id={$ret_id_movimiento[lista.index]}" onMouseOver=" overlib('Preparar impresión de esta devolución a Archivo',CAPTION,'Imprimir' , ABOVE); window.status='Imprimir'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir.gif" border="0">
+			</a>	
+		</td>
+	</tr>
+</table>
+
+{/if}
+	
+	
+	
+	
+	
+{if $dev_id_movimiento[0] != null}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="8" height="25" valign="middle" class="borde_lista">
+		&nbsp;:: Carpetas Devueltas a los Clientes&nbsp;&nbsp;
+		<a href="{$carpeta_entrar}&imprimir_devueltas_cliente=acc" onMouseOver=" overlib('Preparar impresión de esta Sección',CAPTION,'Imprimir' , ABOVE); window.status='Imprimir'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir_cabecera.gif" border="0">
+			</a>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+      <td width="30" height="20" valign="middle" class="borde_lista">&nbsp;Est.</td>
+	  <td width="50" height="20" valign="middle" class="borde_lista">&nbsp;CI</td>
+	  <td width="100" height="20" valign="middle" class="borde_lista">&nbsp;Propietario</td>
+	  <td width="160" height="20" valign="middle" class="borde_lista">&nbsp;Carpeta</td>
+	  <td width="205" height="20" valign="middle" class="borde_lista">&nbsp;Observaci&oacute;n</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	</tr>
+	{*********carpetas devueltas************}
+	{section name=lista loop=$dev_id_movimiento}
+	<tr class="tabla_titulo_contenido">
+		<td width="30" class="borde_lista" align="center">
+			<a href="#" onMouseOver=" overlib('Recibido de: {$dev_archivo[lista.index]}',CAPTION,'Devuelto Cliente' ); window.status='Estado del Flujo'; return true" onMouseOut=" nd();   return true">
+				<img src="../imagenes/pass/devuelto_cliente.gif" border="0">
+			</a>
+		</td>
+		<td width="50" class="borde_lista" valign="top">
+			&nbsp;{$dev_mis[lista.index]}
+		</td>
+		<td width="100" class="borde_lista" valign="top">
+			{$dev_propietario[lista.index]}
+		</td>
+		<td width="160" class="borde_lista" valign="top">{$dev_carpeta[lista.index]}</td>
+		<td width="205" class="borde_lista" valign="top">
+			&nbsp;{$dev_obs[lista.index]}
+		</td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<!--<a href="{$carpeta_entrar}&eliminar_devuelto=acc&id={$dev_id_movimiento[lista.index]}" onMouseOver=" overlib('Eliminación de los valores de esta Devolución',CAPTION,'Eliminar' , ABOVE); window.status='Eliminación'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+			-->&nbsp;
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="#" onMouseOver=" overlib('Recibido de: {$dev_archivo[lista.index]}<br>Devuelto en Fecha: {$dev_fecha[lista.index]}',CAPTION,'Detalles' , ABOVE); window.status='Detalles'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/detalle.jpg" border="0">
+			</a>
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<!--<a href="{$carpeta_entrar}&modificar_devuelto=acc&id={$dev_id_movimiento[lista.index]}" onMouseOver=" overlib('Mostrar datos de esta Devolución',CAPTION,'Datos' , ABOVE); window.status='Valores'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/modificar.jpg" border="0">
+			</a>
+			-->&nbsp;
+		</div></td>
+		
+	</tr>
+	{/section}
+</table>
+
+{/if}
+
+
+{if $adj_id_movimiento[0] != null}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="8" height="25" valign="middle" class="borde_lista">
+		&nbsp;:: Carpetas Adjudicadas para el Banco&nbsp;&nbsp;
+		<a href="{$carpeta_entrar}&imprimir_adjudicadas_banco=acc" onMouseOver=" overlib('Preparar impresión de esta Sección',CAPTION,'Imprimir' , ABOVE); window.status='Imprimir'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir_cabecera.gif" border="0">
+			</a>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+      <td width="30" height="20" valign="middle" class="borde_lista">&nbsp;Est.</td>
+	  <td width="50" height="20" valign="middle" class="borde_lista">&nbsp;CI</td>
+	  <td width="100" height="20" valign="middle" class="borde_lista">&nbsp;Propietario</td>
+	  <td width="160" height="20" valign="middle" class="borde_lista">&nbsp;Carpeta</td>
+	  <td width="205" height="20" valign="middle" class="borde_lista">&nbsp;Observaci&oacute;n</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	  <td width="25" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	</tr>
+	{*********carpetas adjudicadas************}
+	{section name=lista loop=$adj_id_movimiento}
+	<tr class="tabla_titulo_contenido">
+		<td width="30" class="borde_lista" align="center">
+			<a href="#" onMouseOver=" overlib('Recibido de: {$adj_archivo[lista.index]}',CAPTION,'Adjudicatoria' ); window.status='Estado del Flujo'; return true" onMouseOut=" nd();   return true">
+				<img src="../imagenes/pass/adjudicatoria001.jpg" border="0">
+			</a>
+		</td>
+		<td width="50" class="borde_lista" valign="top">
+			&nbsp;{$adj_mis[lista.index]}
+		</td>
+		<td width="100" class="borde_lista" valign="top">
+			{$adj_propietario[lista.index]}
+		</td>
+		<td width="160" class="borde_lista" valign="top">{$adj_carpeta[lista.index]}</td>
+		<td width="205" class="borde_lista" valign="top">
+			&nbsp;{$adj_obs[lista.index]}
+		</td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<!--<a href="{$carpeta_entrar}&eliminar_devuelto=acc&id={$dev_id_movimiento[lista.index]}" onMouseOver=" overlib('Eliminación de los valores de esta Devolución',CAPTION,'Eliminar' , ABOVE); window.status='Eliminación'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+			-->&nbsp;
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<a href="#" onMouseOver=" overlib('Recibido de: {$adj_archivo[lista.index]}<br>Adjudicado en Fecha: {$adj_fecha[lista.index]}',CAPTION,'Detalles' , ABOVE); window.status='Detalles'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/detalle.jpg" border="0">
+			</a>
+		</div></td>
+		
+		<td width="25" class="borde_lista"><div align="center">
+			<!--<a href="{$carpeta_entrar}&modificar_devuelto=acc&id={$dev_id_movimiento[lista.index]}" onMouseOver=" overlib('Mostrar datos de esta Devolución',CAPTION,'Datos' , ABOVE); window.status='Valores'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/modificar.jpg" border="0">
+			</a>
+			-->&nbsp;
+		</div></td>
+		
+	</tr>
+	{/section}
+</table>
+{/if}
+{if $aviso=='1'}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+<tr class="tabla_titulo_contenido">
+	<td width="620" height="20" valign="middle" class="borde_lista" >
+		(Sin datos para mostrar)
+	</td>
+</tr>
+</table>
+{/if}
+<br>
+</div>
+</body>
+</html>

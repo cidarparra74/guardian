@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/rotulos.js">
+</SCRIPT>
+
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido" onLoad="cargar_buscar()">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<SCRIPT LANGUAGE='JavaScript' SRC='../../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="{$carpeta_entrar}" onsubmit="return verificar_buscar(this)">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="4" height="20" valign="middle" align="center"> &nbsp;Opciones de B&uacute;squeda</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Nombres :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+		 <input name="filtro_nombres" type="text" class="input" id="filtro_nombres" value="{$filtro_nombres}" size="31" maxlength="50">
+		</td>
+        <td width="100" nowrap align="right" valign="middle">C.I. :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+		 <input name="filtro_ci" type="text" class="input" id="filtro_ci" value="{$filtro_ci}" size="20" maxlength="20">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Cuenta :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+		 <input name="filtro_ncaso" type="text" class="input" id="filtro_ncaso" value="{$filtro_ncaso}" size="30" maxlength="30">
+		</td>
+        <td width="100" nowrap align="right" valign="middle">&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+		&nbsp;
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" >&nbsp;</td>
+          <td colspan="3" align="left" valign="middle" height="30">
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton">&nbsp;
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+{if $ids_propietario}
+<table width="620" cellpadding="2" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+	  <td width="420" height="20" valign="middle" class="borde_lista">&nbsp;Propietarios</td>
+      <td width="200" height="20" valign="middle" class="borde_lista">&nbsp;C.I.</td>
+	</tr>
+	{section name=lista loop=$ids_propietario}
+	<tr class="tabla_titulo_contenido">
+		<td width="420" >&nbsp;
+				<img src="../imagenes/pass/tiene_carpeta.jpg" border="0">
+			&nbsp;
+			<a class="link_tabla" href="../code/_main.php?action=carpetaslst.php&id_cp={$ids_propietario[lista.index].ids}&carpeta_ant={$carpeta_acc}" onMouseOver=" overlib('Ver las carpetas de este Propietario',CAPTION,'Carpetas' ); return true" onMouseOut=" nd();   return true"> 
+				{$ids_propietario[lista.index].nombres}
+			</a>
+			&nbsp;&nbsp;
+			({$ids_propietario[lista.index].tiene_carpeta})
+		</td>
+		<td width="200" ><div align="left">
+			&nbsp;{$ids_propietario[lista.index].ci}
+		</div></td>
+	</tr>
+	{/section}
+</table>
+{/if}
+{if $ids_casos}
+<table width="620" cellpadding="2" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+	  <td width="400" height="20" valign="middle" class="borde_lista">&nbsp;Propietario</td>
+      <td width="200" height="20" valign="middle" class="borde_lista">&nbsp;C.I.</td>
+	  <td width="20" height="20" valign="middle" class="borde_lista">&nbsp;</td>
+	</tr>
+	{section name=lista loop=$ids_casos}
+	<tr class="tabla_titulo_contenido">
+		<td width="400" >
+			&nbsp;{$ids_casos[lista.index].nombres}
+		</td>
+		<td width="200" ><div align="left">
+			&nbsp;{$ids_casos[lista.index].ci}
+		</div></td>
+		<td width="20" >
+			<a href="../code/_main.php?action=carpetaslst.php&id_il={$ids_casos[lista.index].id}" onMouseOver=" overlib('Generar rótulo para impresión',CAPTION,'Rótulo' ); return true" onMouseOut=" nd(); return true" target="_blank"><img src="../images/actions/folder_edit.png" border="0"></a>
+		</td>
+	</tr>
+	{/section}
+</table>
+{/if}
+<br><br>
+
+</div>
+</body>
+</html>

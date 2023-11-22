@@ -1,0 +1,278 @@
+<?php
+
+$gaveta= $_REQUEST['gaveta'];
+$tipo= $_REQUEST['tipo'];
+$oficina= $_REQUEST['oficina'];
+$estado= $_REQUEST['estado'];
+$posicion_gaveta= $_REQUEST['posicion_gaveta'];
+$idalm = $_SESSION["id_almacen"];
+
+$consulta="WHERE o.id_almacen = $idalm ";
+if($tipo != "todos"){
+	if($consulta == ""){
+		$consulta="WHERE o.id_almacen = AND t.id_tipo_bien='$tipo' ";
+	}else{
+		$consulta .=" AND t.id_tipo_bien='$tipo' ";
+	}
+}
+if($oficina != "todos"){
+	if($consulta == ""){
+		$consulta="WHERE o.id_oficina='$oficina' ";
+	}
+	else{
+		$consulta=$consulta."AND o.id_oficina='$oficina' ";
+	}
+}
+if($gaveta != "todos"){
+	if($consulta == ""){
+		if($posicion_gaveta == "todos"){
+			$consulta="WHERE p.mis LIKE '%$gaveta' ";
+		}
+		else{
+			$consulta="WHERE p.mis LIKE '%$posicion_gaveta$gaveta' ";
+		}
+	}
+	else{
+		if($posicion_gaveta == "todos"){
+			$consulta=$consulta."AND p.mis LIKE '%$gaveta' ";
+		}
+		else{
+			$consulta=$consulta."AND p.mis LIKE '%$posicion_gaveta$gaveta' ";
+		}
+	}
+}
+
+if($estado=="boveda"){
+	if($consulta == ""){
+		$consulta= "WHERE ((m.id_estado is null) OR (m.id_estado<=3)) ";
+	}
+	else{
+		$consulta= $consulta."AND  ((m.id_estado is null) OR (m.id_estado<=3))  ";
+	}
+}else{
+	if($estado=="prestados"){
+		if($consulta == ""){
+			$consulta= "WHERE ((m.id_estado > 3) AND (m.id_estado<=7)) ";
+		}
+		else{
+			$consulta= $consulta."AND  ((m.id_estado > 3) AND (m.id_estado<=7))  ";
+		}
+	}else{
+		if($estado=="cliente"){
+			if($consulta == ""){
+				$consulta= "WHERE (m.id_estado = 8) ";
+			}
+			else{
+				$consulta= $consulta."AND  (m.id_estado = 8)  ";
+			}
+		}
+	}
+}
+
+
+$sql= "SELECT p.mis, p.emision, p.nombres, t.tipo_bien, o.nombre, m.id_estado, m.flujo, convert(varchar,c.creacion_carpeta,103) as fecha
+FROM (propietarios p 
+INNER JOIN carpetas c ON c.id_propietario=p.id_propietario 
+INNER JOIN oficinas o ON c.id_oficina=o.id_oficina 
+INNER JOIN tipos_bien t ON c.id_tipo_carpeta=t.id_tipo_bien) 
+LEFT JOIN movimientos_carpetas m ON m.id_carpeta=c.id_carpeta AND (m.flujo!='1' OR m.id_estado='8') 
+$consulta ORDER BY right(mis,1), right(mis,2) ";
+
+
+echo "
+	<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE='JavaScript' src='../scripts/autoriza_reportes.js'>
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style='SCROLLBAR-FACE-COLOR: {$color_de_scroll};' bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight='0' marginwidth='0' class='color_contenido'>
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align='center'>
+	<br>
+";
+/*
+<table width='620' cellpadding='0' cellspacing='0' border='0' align='center'>
+		<tr>
+		<td width='200' valign='bottom' height='20'>
+		</td>
+		<td width='420' valign='bottom' height='20'>
+			<div align='right'> <font class='tabla_titulo_contenido'> 
+			<a href='archivo.php?carpeta_entrar=reportes&inv_detallado_carpetas_html=acc' class='link_tabla'> 
+          Volver a Detalles de Impresi&oacute;n </a> </font> </div>
+		</td>
+		</tr>
+	</table>
+<br>
+*/
+
+$result= consulta($sql);
+$i=0;
+$carpetas = array();
+while($row= $result->fetchRow(DB_FETCHMODE_ASSOC)){
+	if($i==0){
+		$gaveta= substr($row["mis"],strlen($row["mis"])-1,strlen($row["mis"]));
+		$posicion= substr($row["mis"],strlen($row["mis"])-2,1);
+		$gaveta_aux=$gaveta;
+		$posicion_aux=$posicion;
+
+		//cabecera
+		echo "
+			<table width='620' cellpadding='0' cellspacing='0' border='1' align='center'>
+			<tr class='tabla_titulo_color'>
+			<td width='80' valign='top'>
+				C.I. ($posicion-$gaveta)
+			</td>
+			<td width='20' valign='top'>
+				Emisi&oacute;n
+			</td>
+			<td width='100' valign='top'>
+				Nombre
+			</td>
+			<td width='100' valign='top'>
+				Tipo Carpeta
+			</td>
+			<td width='100' valign='top'>
+				Fecha Ingreso
+			</td>
+			<td width='100' valign='top'>
+				Agencia
+			</td>
+			<td width='100' valign='top'>
+				Estado
+			</td>
+			</tr>
+		";
+	}
+	//else{
+		$gaveta= substr($row["mis"],strlen($row["mis"])-1,strlen($row["mis"]));
+		$posicion= substr($row["mis"],strlen($row["mis"])-2,1);
+		if($row["id_estado"]==null){
+			$estado = "Boveda";
+		}else{
+			if($row["id_estado"]==8){
+				if($row["flujo"]==0){
+					$estado = "por dev. Cliente";
+				}else{
+					$estado = "dev. cliente";
+				}
+			}else{
+				if($row["id_estado"]>3){
+					$estado = "Movimiento";
+				}else{
+					$estado = "Boveda";
+				}
+			}
+		}
+		$carpetas[] = array('gaveta'=>$row["gaveta"],
+							'posicion'=>$row["posicion"],
+							'mis'=>$row["mis"],
+							'emision'=>$row["emision"],
+							'nombres'=>$row["nombres"],
+							'tipo'=>$row["tipo_bien"],
+							'fecha'=>$row["fecha"],
+							'nombre'=>$row["nombre"],
+							'estado'=>$row["estado"]);
+		
+		$gaveta= substr($row["mis"],strlen($row["mis"])-1,strlen($row["mis"]));
+		$posicion= substr($row["mis"],strlen($row["mis"])-2,1);
+		if($posicion==$posicion_aux){ //seguimos con la misma posicion
+			echo "
+				<tr class='tabla_titulo_contenido'>
+				<td width='80' valign='top'>
+					".$row["mis"]."
+				</td>
+				<td width='20' valign='top'>
+					".$row["emision"]."
+				</td>
+				<td width='100' valign='top'>
+					".$row["nombres"]."
+				</td>
+				<td width='100' valign='top'>
+					".$row["tipo_bien"]."
+				</td>
+				<td width='100' valign='top'>
+					".$row["fecha"]."
+				</td>
+				<td width='100' valign='top'>
+					".$row["nombre"]."
+				</td>
+				<td width='100' valign='top'>
+					";
+					
+					if($row["id_estado"]==null){
+						echo "Boveda";
+					}
+					else{
+						if($row["id_estado"]==8){
+							if($row["flujo"]==0){
+								echo "por dev. Cliente";
+							}
+							else{
+								echo "dev. cliente";
+							}
+						}
+						else{
+							if($row["id_estado"]>3){
+								echo "Movimiento";
+							}
+							else{
+								echo "Boveda";
+							}
+						}
+					}
+					
+					echo"
+				</td>
+				</tr>	
+			";
+		}
+		else{//cambio de poscion
+		
+			echo "
+			</table><br><br>
+			<table width='620' cellpadding='0' cellspacing='0' border='1' align='center'>
+			<tr class='tabla_titulo_color'>
+			<td width='80' valign='top'>
+				C.I. ($posicion-$gaveta)
+			</td>
+			<td width='20' valign='top'>
+				Emisi&oacute;n
+			</td>
+			<td width='100' valign='top'>
+				Nombre
+			</td>
+			<td width='100' valign='top'>
+				Tipo Carpeta
+			</td>
+			<td width='100' valign='top'>
+				Fecha Ingreso
+			</td>
+			<td width='100' valign='top'>
+				Agencia
+			</td>
+			<td width='100' valign='top'>
+				Estado
+			</td>
+			</tr>
+		";
+		
+		}
+		$gaveta_aux=$gaveta;
+		$posicion_aux=$posicion;	
+	//}
+	$i++;
+	
+}//fin del while
+echo "</table><br><br>";
+
+
+//$smarty->display('usuarios/archivo/reportes/inv_detallado_carpetas_imp.html');
+die();
+?>

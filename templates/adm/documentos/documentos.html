@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/documentos.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center"><br>
+<form name="adicion" method="post" action="../code/_main.php?action=adm/documentos.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="620"><div align="center">
+			<input type="submit" name="adicionar" value="Adicionar Documento" class="boton">
+		</div></td>
+	</tr>
+</table>
+</form>
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		
+      <td class="borde_lista" width="620" colspan="6" height="20" valign="middle"> &nbsp;Documento</td>
+	</tr>
+	{section name=lista loop=$documentos}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista" width="300">
+			{if $documentos[lista.index].imagen != ''}<a href="adm/documentos/verimagen.php?id={$documentos[lista.index].id_documento}" target="_blank" onMouseOver=" overlib('Modelo del documento',CAPTION,'Ver imagen' ); return true" onMouseOut=" nd(); return true"><img src="../images/actions/clip.jpeg" border="0"></a>{/if}&nbsp;{$documentos[lista.index].documento}
+		</td>
+		<td class="borde_lista" width="200">
+			&nbsp;{$documentos[lista.index].descripcion}
+		</td>
+		
+		<td class="borde_lista" width="40"><div align="center">
+			<a href="#" onMouseOver=" overlib('Grupo: {$documentos[lista.index].grupo}<br>Fecha: {$tiene_fecha[lista.index]}<br>Vencimiento: {$vencimiento[lista.index]}<br>Meses: {$meses_vencimiento[lista.index]}',CAPTION,'Detalles' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/detalle.jpg" border="0">
+			</a>
+		</div></td>
+		<td class="borde_lista" width="40"><div align="center">
+			<a href="../code/_main.php?action=adm/documentos.php&modificar=acc&id={$documentos[lista.index].id_documento}" onMouseOver=" overlib('Modificación de los valores de este Documento',CAPTION,'Modificar' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/modificar.jpg" border="0">
+			</a>
+		</div></td>
+		<td class="borde_lista" width="40"><div align="center">
+			<a href="../code/_main.php?action=adm/documentos.php&eliminar=acc&id={$documentos[lista.index].id_documento}" onMouseOver=" overlib('Eliminación de los valores de este Documento',CAPTION,'Eliminar' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+		</div></td>
+	</tr>
+	{/section}
+</table>
+<br><br>
+
+</div>
+</body>
+</html>

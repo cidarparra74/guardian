@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0"  class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>Cliente :</strong> {$nombre}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=propietarios.php&filtro=1" class="link_tabla">
+				Volver a lista de Propietarios
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="420" valign="middle" height="30">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>Doc. :</strong> {$documento}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="middle" height="30">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=carpetas.php&carpeta_entrar=carpetas" class="link_tabla">
+				Volver a lista de Carpetas
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+<form name="adicionar" method="post" action="../code/_main.php?action=carpetas.php" >
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Estado de la Operaci&oacute;n</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Propietario :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+			{$nombre}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Instancia :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 {$nrocaso}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Operaci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 {$operacion} {$estado}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  {if $can =='s'}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 Fecha cancelaci&oacute;n :&nbsp;<input type="text" name="fechacan" value="{$fechacan}" maxlength="12" class="input" size="10" >
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+      {/if}
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">{if $can =='s'}
+            <input type="submit" name="decontabiliza" value="Adicionar a Canceladas" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{/if}
+			<input type="hidden" name="decontabilizando" value="ac">
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="documento" value="{$documento}">
+			<input type="hidden" name="estado" value="{$estado}">
+			<input type="hidden" name="paisDoc" value="{$paisDoc}">
+			<input type="hidden" name="tipoDoc" value="{$tipoDoc}">
+          </div></td>
+		  
+</form>		
+<form name="adicionar_cancelar" method="post" action="../code/_main.php?action=carpetas.php&filtro=1" onSubmit="des_verificar_adicion()">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Volver" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+<br>
+</body>
+</html>

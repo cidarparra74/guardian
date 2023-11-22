@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/informe_legal.js">
+</SCRIPT>
+
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+
+<form name="buscar" method="post" action="../code/_main.php?action=seguimiento.php">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="4" height="20" valign="middle" align="center"> &nbsp;B&uacute;squeda de operaciones</td>
+	</tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="25" valign="middle">Nombre Cliente 
+          :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+			<input type="text" name="filtro_cliente" value="{$f_cliente}" class="input" size="40">
+		</td>
+	</tr>
+	  <tr class="tabla_titulo_contenido"> 	
+		<td width="120" nowrap align="right" height="25" valign="middle">{if $enable_ws == 'N'}N&uacute;mero Doc. :{else}{if $enable_ws == 'S'}Cuenta :{else}N&uacute;mero Caso:{/if}{/if}&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+			<input type="text" name="filtro_nrocaso" value="{$f_nrocaso}" class="input" size="20">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="120" >&nbsp;</td>
+		<td  colspan="2" align="left" valign="middle" >
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton">&nbsp;
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td  colspan="5" height="20" valign="middle" class="borde_lista">
+			Documentos Encontrados
+		</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+	  <td width= "90" height="20" valign="middle" class="borde_lista">&nbsp;Fecha Recepci&oacute;n</td>
+      <td width="240" height="20" valign="middle" class="borde_lista">&nbsp;Cliente</td>
+	  <td width="230" height="20" valign="middle" class="borde_lista">&nbsp;Tipo Bien</td>
+	  <td width="60" height="20" valign="middle" class="borde_lista" colspan="2">&nbsp;</td>
+	</tr>
+	{section name=lista loop=$rec_lista}
+	<tr class="tabla_titulo_contenido">
+		<td width="90" class="borde_lista">
+			&nbsp;{$rec_lista[lista.index].fecha}
+		</td>
+		<td width="240" class="borde_lista">
+			&nbsp;<strong>{$rec_lista[lista.index].clien}</strong>
+			{if $rec_lista[lista.index].nrocaso!=''}<br>&nbsp;{if $enable_ws == 'N'}N&uacute;mero Doc. :{/if}{if $enable_ws == 'S'}Cuenta :{/if}{if $enable_ws == 'A'}N&uacute;mero Caso:{/if} {$rec_lista[lista.index].nrocaso}{/if}<br>
+			Oficina: {$rec_lista[lista.index].oficina}
+		</td>
+		<td width="230" class="borde_lista">
+			&nbsp;{$rec_lista[lista.index].tbien}
+		</td>
+
+		<td width="30" class="borde_lista"><div align="center">
+
+			<a href="{$carpeta_entrar}&verflujo=acc&id={$rec_lista[lista.index].id_inf}" onMouseOver=" overlib('{$rec_lista[lista.index].estadolit}',CAPTION,'Ver Estado ({$rec_lista[lista.index].estado})' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/help.png" border="0">
+			</a>
+
+		</div></td>
+		<td width="30" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&eliminar=ope&id={$rec_lista[lista.index].id_inf}" onMouseOver=" overlib('Eliminar la recepción de documentos',CAPTION,'Eliminar' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/eliminar.jpg" border="0">
+			</a>
+		</div></td>
+	</tr>
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td  colspan="5" height="20" valign="middle" class="borde_lista">
+			*** No hay datos para mostrar ***
+		</td>
+	</tr>
+	{/section}
+</table>
+<br>
+</div>
+<br><br><br>
+</body>
+</html>

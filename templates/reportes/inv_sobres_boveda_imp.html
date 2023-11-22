@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+</head>
+
+<body>
+<div align='left'>
+<table width='620' cellpadding='0' cellspacing='0' border='0' align='left' >
+	<tr>
+		<td width="200" align="left">
+			<img src="{$logo}">
+		</td>
+		<td width="420" align="left">
+			<h4>Inventario F&iacute;sico de Sobres</h4>
+		</td>
+	</tr>
+	<tr>
+	<tr>
+	<td width="700" colspan="2" align="left">
+
+	<table width='780' cellpadding='0' cellspacing='0' border='1' align='left' class='tableBorder'>
+		{assign var="grupo" value="x"}
+		{section name=lista loop=$carpetas}
+
+	{if $carpetas[lista.index].posicion!=$grupo}
+	{if $grupo!="x"}
+		<tr>
+		<td width='80' valign='top'>
+			<b> </b>
+		</td>
+		<td width='120' valign='top'>
+			<b>Cantidad de sobres: ({$cant})</b>
+		</td>
+		</tr>
+	{/if}
+
+		{assign var="grupo" value=$carpetas[lista.index].posicion}
+		{assign var="cant" value=0}
+		<tr>
+		<td width='80' valign='top'>
+			<b>C.I. ({$carpetas[lista.index].posicion}-{$carpetas[lista.index].gaveta})</b>
+		</td>
+		<td width='120' valign='top'>
+			<b>Nombre</b>
+		</td>
+		</tr>
+	{/if}
+	{assign var="cant" value=$cant+1}
+		<tr>
+		<td width='80' valign='top'>
+			{$carpetas[lista.index].mis}
+		</td>
+		<td width='120' valign='top'>
+			{$carpetas[lista.index].nombres}
+		</td>
+		</tr>
+		{/section}
+		<tr>
+		<td width='80' valign='top'>
+			<b> </b>
+		</td>
+		<td width='120' valign='top'>
+			<b>Cantidad de sobres: ({$cant})</b>
+		</td>
+		</tr>
+	</table>
+	</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

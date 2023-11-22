@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/clausulas.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="middle" height="35">
+			<div align="left"> <font class="tabla_titulo_contenido"> 
+Contrato:<br /> <strong>{$tcont}</strong><br /> </font> </div>
+		</td>
+		<td width="200" valign="middle" height="35">
+			<div align="right"> <font class="tabla_titulo_contenido"> <a href="{$carpeta_entrar}&idcc={$idco}" class="link_tabla"> 
+          Volver al Contrato</a> </font> </div>
+		</td>
+		</tr>
+	</table>
+<br />
+<form name="adicion" method="post" action="{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="0" class="borde_lista">
+	<tr class="tabla_titulo_contenido">
+		<td width="620">
+		<select name="idclausula">
+		{section name=lista loop=$clausulas}
+		<option value="{$clausulas[lista.index].id}" >{$clausulas[lista.index].titulo}</option>
+		<option value="{$clausulas[lista.index].id}" >------ ({$clausulas[lista.index].descri})</option>
+		{/section}
+		</select>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido">
+		<td width="620">Posici&oacute;n: <input type="text" name="posicion" class="input" size="6">
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido">
+		<td width="620">
+		<select name="opcional">
+		<option value="0" >Requerida</option>
+		<option value="1" >Opcional</option>
+		</select>
+		</td>
+	</tr>
+	<tr>
+		<td  width="620">
+			<input type="submit" name="adicclau" value="Adicionar" class="boton"> &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="adicclau_x" value="{$idco}" >
+			<input type="hidden" name="idcontra_x" value="{$idco}" >
+		</td>
+	</tr>
+</table>
+</form>
+<br>
+</div>
+</body>
+</html>

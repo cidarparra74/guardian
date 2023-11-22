@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+</head>
+
+<body>
+<div align='left'>
+<table width='620' cellpadding='0' cellspacing='0' border='0' align='left' >
+	<tr>
+		<td width="200" align="left">
+			<img src="{$logo}">
+		</td>
+		<td width="420" align="left">
+			<h4>Informes Legales con Perito Asignado</h4>
+		</td>
+	</tr>
+	<tr>
+	<tr>
+	<td width="600" colspan="2" align="left">
+
+<table width='600' cellpadding='0' cellspacing='0' border='1' align='left' class='tableBorder'>
+
+	{assign var="grupo" value='0'}
+	{assign var="bien" value='0'}
+	{section name=lista loop=$asignados}
+	{if $asignados[lista.index].id_perito != $grupo}
+	<tr >
+	  <td width="600" height="20" valign="middle" colspan="3">&nbsp;Perito: <strong>{$asignados[lista.index].perito}</strong></td>
+	</tr>{assign var="grupo" value=$asignados[lista.index].id_perito }
+	<tr >
+	  <td width="100" height="20" valign="middle" >&nbsp;<strong>Nº I.L.</strong></td>
+	  <td width="100" height="20" valign="middle" >&nbsp;<strong>Nº Cuenta</strong></td>
+      <td width="400" height="20" valign="middle" >&nbsp;<strong>Cliente</strong></td>
+	</tr>{assign var="bien" value='0'}
+	{/if}
+	
+	{if $asignados[lista.index].id_tipo_bien != $bien}
+	<tr >
+	  <td width="600" height="20" valign="middle" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<strong>{$asignados[lista.index].sol_tipo_bien}</strong></td>
+	</tr>{assign var="bien" value=$asignados[lista.index].id_tipo_bien }
+	{/if}
+	<tr >
+		<td >&nbsp;{$asignados[lista.index].id_informe_legal}</td>
+		<td >&nbsp;{$asignados[lista.index].nrocaso}</td>
+		<td >&nbsp;{$asignados[lista.index].sol_cliente} {$asignados[lista.index].perito}</td>
+	</tr>
+	{/section}
+</table>
+
+	</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

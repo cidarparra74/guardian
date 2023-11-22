@@ -1,0 +1,226 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/ver_informe_legal.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0"  class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br>
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20" class="tabla_titulo_contenido">Cliente: <b>{$cliente}</b> [{$ci_cliente} {$emision}]
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="{$carpeta_entrar}" class="link_tabla">
+				Volver a la B&uacute;squeda de Cliente
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+			
+		<tr>
+		<td width="420" valign="bottom" height="20" class="tabla_titulo_contenido">{if $enable_ws == 'S'}{if $nrocaso != '0'}Cuenta: <b>{$nrocaso}</b>{else}ID.OP: <b>{$noportunidad}</b>{/if} {/if}
+		{if $enable_ws == 'A'}N&uacute;mero Caso: <b>{$nrocaso}</b>{/if} 
+		</td>
+		<td width="200" valign="bottom" height="20">&nbsp;</td>
+		</tr>
+		
+</table>
+<br>
+{if $alerta=='OK'}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="580" colspan="3" height="20" valign="middle" class="borde_lista">
+			Documentos ya recepcionados de este cliente
+		</td>
+		<td width="90" colspan="3" height="20" align="right" valign="middle" class="borde_lista">
+			<font class="tabla_titulo_contenido"><a href="{$carpeta_entrar}&vcatastro={$id_propietario}&ncaso={$nrocaso}" onMouseOver=" overlib('Ver carpetas en catastro',CAPTION,'Refinanciar' ); return true" onMouseOut=" nd();   return true">Ver Catastro</a></font>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+	  <td width="90" height="20" valign="middle" class="borde_lista">&nbsp;Fecha Recepci&oacute;n</td>
+	  <td width="215"  height="20" valign="middle" class="borde_lista">&nbsp;Tipo Bien / N&uacute;mero</td>
+	  <td width="225" height="20" valign="middle" class="borde_lista">&nbsp;Recepcionado por</td>
+	  <td width="90"  height="20" valign="middle" class="borde_lista" colspan="3">&nbsp;</td>
+	</tr>
+	{section name=lista loop=$anteriores}
+	<tr class="tabla_titulo_contenido">
+		<td width="90" class="borde_lista">
+			&nbsp;{$anteriores[lista.index].fecha}<!-- br>&nbsp;<b>{$anteriores[lista.index].nrocaso}</b -->
+		</td>
+		<td width="215" class="borde_lista">
+			&nbsp;{$anteriores[lista.index].tbien} / <b>{$anteriores[lista.index].nrobien}</b>
+		</td>
+		<td width="225" class="borde_lista">
+			&nbsp;{$anteriores[lista.index].nombu}
+		</td>
+		<td width="30" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&impri_doc_infor=acc&id={$anteriores[lista.index].id_inf}" onMouseOver=" overlib('Imprimir documentos',CAPTION,'Imprimir' ); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir.gif" border="0">
+			</a>
+		</div></td>
+
+		<td width="30" class="borde_lista"><div align="center">
+
+			{$anteriores[lista.index].estado}
+
+		</div></td>
+		<td width="30" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&refinanciar=ini&id={$anteriores[lista.index].id_inf}&nrocaso={$nrocaso}" onMouseOver=" overlib('Copiar para refinanciamiento',CAPTION,'Refinanciar' ); return true" onMouseOut=" nd(); return true"> 
+				<img src="../imagenes/pass/por_confirmar.gif" border="0">
+			</a>
+		</div></td>
+	</tr>
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td  colspan="6" height="20" valign="middle" class="borde_lista">
+			*** No hay datos anteriores para mostrar de este cliente***
+		</td>
+	</tr>
+	{/section}
+</table>
+{/if}
+
+<form name="formulario" method="post" action="{$carpeta_entrar}" onSubmit="return verificar_formulario()">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            {if $id}Modificar{else}Adicionar NUEVA{/if} Recepci&oacute;n de Documentos</div>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+    </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Recibe :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <b> {$nombre_us_actual} </b>
+		</td>
+      </tr>	 
+	
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+		<td width="150" nowrap align="right" class="borde_tabla" valign="middle">Tipo :&nbsp;</td>
+        <td width="470" align="left" colspan="3" class="borde_tabla">
+		{if $id}
+			<select name="tipo_bien" class="input">
+			{section name=lista loop=$tiposbien}
+				<option value="{$tiposbien[lista.index].id}"
+				{if $tiposbien[lista.index].id == $id_tipo_bien} selected {/if}>{$tiposbien[lista.index].descri}</option>
+			{/section}
+			</select>
+		{else}
+			<select name="tipo_bien" class="input">
+			<option value="--">(Seleccione)</option>
+			{section name=lista loop=$tiposbien}
+				<option value="{$tiposbien[lista.index].id}"
+				{if $tiposbien[lista.index].id == $id_tipo_bien} selected {/if}>{$tiposbien[lista.index].descri}</option>
+			{/section}
+			</select>
+		{/if}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Descripci&oacute;n/Objeto :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		{if $objetos}
+		<select name="motivo_id" class="input">
+			<option value="--">{$motivo}</option>
+			{section name=lista loop=$objetos}
+				<option value="{$objetos[lista.index].id}">{$objetos[lista.index].descri}</option>
+			{/section}
+		</select>
+		{else}
+		 <textarea rows="2" cols="72" class="input" name="motivo">{$motivo}</textarea>
+		{/if}
+		</td>
+      </tr>{if $cat == '0'}
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="150" nowrap align="right" class="borde_tabla">N&uacute;mero :&nbsp;</td>
+        <td width="470" colspan="3"  align="left" class="borde_tabla">
+			<input type="text" name="nrobien" size="30" class="input" value="{$nrobien}" id="nrobien">&nbsp;(Folio, Placa, Motor o Matr&iacute;cula)
+		</td>
+      </tr>{else}<input type="hidden" name="nrobien" value="0" id="nrobien">{/if}
+
+      <tr class="tabla_titulo_contenido">
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Recepcionado por:</td>
+        <td width="470" colspan="3"  align="left" class="borde_tabla">
+			<input type="text" name="recepcionadox" size="35" class="input" value="{$recepcionadox}" id="recepcionadox">&nbsp;(Nombre del asesor/asistente de créditos)
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+</table>
+
+<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="207" nowrap><div align="right">
+            <input type="submit" name="adicionar_boton" value="Registrar Documentos" class="boton">
+			<input type="hidden" name="adicionar_boton_x" value="ac">
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="id_tipo_bien_old" value="{$id_tipo_bien}">
+			<input type="hidden" name="estado_formulario" value="{if $id}Modificar{else}Adicionar{/if}">
+			<input type="hidden" name="id_propietario" value="{$id_propietario}">
+			<input type="hidden" name="cliente" value="{$cliente}">
+			<input type="hidden" name="ci_cliente" value="{$ci_cliente}">
+			<input type="hidden" name="nrocaso" value="{$nrocaso}">
+			<input type="hidden" name="noportunidad" value="{$noportunidad}">
+
+          </div></td>
+		  
+</form>
+<form name="adicionar_cancelar" method="post" action="{$carpeta_entrar}" onSubmit="des_verificar_formulario()">
+        <td width="207"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		<input type="hidden" name="estado_formulario" value="adicionar">
+		</div>
+		</td>
+</form>
+
+{if $id}
+<form name="adicionar_cancelar" method="post" action="{$carpeta_entrar}" onSubmit="des_verificar_formulario()">
+        <td width="206"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="impri_doc_infor" value="Imprimir" class="boton"> 
+		<input type="hidden" name="id" value="{$id}">
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		<input type="hidden" name="estado_formulario" value="imprime">
+		</div>
+		</td>
+</form>
+{/if}
+      </tr>
+</table>
+
+</div>
+<br>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/contratos.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0"  class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<table width="620" border="0" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_contenido"> 
+		<td width="620"  valign="middle" height="30">&nbsp;<strong>{$alert}</strong><br></td>
+	</tr>
+</table>
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620"  valign="middle" height="30" colspan="2" class="borde_lista"><div align="center"> 
+           Acciones con el contrato</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2"  class="borde_tabla">&nbsp; </td>
+      </tr>
+      
+      <tr class="tabla_titulo_contenido"> 
+        <td width="200" align="left" class="borde_tabla" >&nbsp;&nbsp;
+		{if $micontrato.nulo == '0'}
+			<a href="contratos/vervarRTF.php?id={$idfinal}&td={$tipodoc}" onMouseOver=" overlib('Documento Parcial',CAPTION,'Ver Variables' );
+			return true"  onMouseOut=" nd();   return true"target="_blank"><img src="../images/actions/icon_lupa.png" 
+			border="0"></a>{if $quien != '6' && $quien != '8'}{if $word == 's'}
+			
+			{if $tipodoc == 'W' || $tipodoc == 'A'}&nbsp;
+			<a href="contratos/abrirRTF.php?id={$idfinal}&td=W" onMouseOver=" overlib('Abrir en WORD',CAPTION,'Abrir' );  return true"  onMouseOut=" nd();   return true" target="_blank"><img src="../images/actions/page_word.png" border="0"></a>
+			{/if}
+			
+			{if $tipodoc == 'O' || $tipodoc == 'A'}&nbsp;
+		<a href="contratos/abrirRTF.php?id={$idfinal}&td=O" onMouseOver=" overlib('Abrir en OPEN OFFICE',CAPTION,'Abrir' );  return true"  onMouseOut=" nd();   return true" target="_blank"><img src="../images/actions/openoffice.png" border="0"></a>
+			{/if}
+			{/if}&nbsp;
+		<a href="contratos/abrirPDF.php?id={$idfinal}" onMouseOver=" overlib('Abrir como PDF',CAPTION,'Ver' ); 
+		return true" onMouseOut=" nd(); return true" target="_blank"><img src="../imagenes/pass/pdf.png" border="0"></a>
+		{else}{if $quien == '6'}
+		<a href="{$carpeta_entrar}&id={$idfinal}&firma=v" 
+		onMouseOver=" overlib('Solicitar VoBo',CAPTION,'Notificar' );  return true"  onMouseOut=" nd();   
+		return true"><img src="../images/actions/script_edit.png" border="0"></a>{/if}{/if}&nbsp;
+		{else}
+		<a href="{$carpeta_entrar}&id={$micontrato.id}&gendoc=v" onMouseOver=" overlib('Generar documento ahora',CAPTION,'Sin documento!' );  return true"  onMouseOut=" nd();   return true"><img src="../images/actions/exclamation.png" border="0"></a>
+		{/if}
+		<a href="{$carpeta_entrar}&eliminar=acc&id={$micontrato.id}" onMouseOver=" overlib('Eliminar contrato',CAPTION,'Eliminar' ); return true" onMouseOut=" nd(); return true"><img src="../imagenes/pass/eliminar.jpg" border="0"></a>
+		</td>
+		<td width="420" align="left" class="borde_tabla">
+			&nbsp;<strong>{$micontrato.parte}</strong>&nbsp;&nbsp;{if $micontrato.nrocaso != ''}[{$micontrato.nrocaso}]{/if}<br>
+			&nbsp;{$micontrato.id}&nbsp;-&nbsp;{$micontrato.titulo}
+		</td>
+		
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="200" align="right" class="borde_tabla">Cambiar tama&ntilde;o de fuente:&nbsp;</td>
+        <td width="420" class="borde_tabla">&nbsp;<a href="{$carpeta_entrar}&id={$micontrato.id}&masopc=8"><b>8</b>pt</a>&nbsp;&nbsp;<a href="{$carpeta_entrar}&id={$micontrato.id}&masopc=9"><b>9</b>pt</a>&nbsp;&nbsp;<a href="{$carpeta_entrar}&id={$micontrato.id}&masopc=10"><b>10</b>pt</a>&nbsp;&nbsp;<a href="{$carpeta_entrar}&id={$micontrato.id}&masopc=11"><b>11</b>pt</a>&nbsp;&nbsp;<a href="{$carpeta_entrar}&id={$micontrato.id}&masopc=12"><b>12</b>pt</a></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  	  
+</table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+
+    </table>
+
+</div>
+
+</body>
+</html>

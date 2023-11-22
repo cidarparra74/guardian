@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+</head>
+
+<body>
+<div align='left'>
+<table width='620' cellpadding='0' cellspacing='0' border='0' align='left' >
+	<tr>
+		<td width="150" align="left">
+			<img src="{$logo}">
+		</td>
+		<td width="470" align="left">
+			<h4>REPORTE DE ASIGNACI&Oacute;N DE INFORMES PERICIALES</h4>
+		</td>
+	</tr>
+	<tr>
+</table>
+<br /><br /><br /><br />
+<table cellpadding='0' cellspacing='0' border='1' align='left' class='tableBorder'>
+
+	{assign var="peri" value='0'}
+	{assign var="ofi" value='0'}
+{section name=lista loop=$asignados}
+	
+	{if $asignados[lista.index].id_oficina != $ofi}
+	<tr >
+	  <td height="25" valign="middle" colspan="7">&nbsp;&nbsp;&nbsp;&nbsp;<strong>{$asignados[lista.index].oficina}</strong></td>
+	</tr>{assign var="ofi" value=$asignados[lista.index].id_oficina }
+	<tr >{assign var="peri" value='0'}
+	  <td width="70" height="20" valign="middle" >&nbsp;<strong>Nº Cuenta</strong></td>
+      <td width="80" height="20" valign="middle" >&nbsp;<strong>Fecha<br />Asignaci&oacute;n</strong></td>
+	  <td width="80" height="20" valign="middle" >&nbsp;<strong>Fecha<br />Presentaci&oacute;n</strong></td>
+	  <td width="180" height="20" valign="middle" >&nbsp;<strong>Nombre Cliente</strong></td>
+	  <td width="180" height="20" valign="middle" >&nbsp;<strong>Tipo Garantia</strong></td>
+	  <td width="180" height="20" valign="middle" >&nbsp;<strong>Nombre Asesor</strong></td>
+	  <td width="180" height="20" valign="middle" >&nbsp;<strong>Observaciones</strong></td>
+	</tr>	
+	{/if}
+	
+	{if $asignados[lista.index].id_perito != $peri}
+	<tr >
+	  <td valign="middle" colspan="9">&nbsp;Perito: <strong>{$asignados[lista.index].perito}</strong></td>
+	</tr>{assign var="peri" value=$asignados[lista.index].id_perito }
+	{/if}
+	<tr >
+		<td >&nbsp;{$asignados[lista.index].nrocaso}</td>
+		<td >&nbsp;{$asignados[lista.index].fecha}</td>
+		<td >&nbsp;{$asignados[lista.index].fecha_ace}</td>
+		<td >&nbsp;{$asignados[lista.index].ci}&nbsp;{$asignados[lista.index].cliente}</td>
+		<td >&nbsp;{$asignados[lista.index].tipo_bien}</td>
+		<td >&nbsp;{$asignados[lista.index].asesor}</td>
+		<td >&nbsp;{$asignados[lista.index].obs}</td>
+	</tr>
+{sectionelse}
+	<tr >
+	  <td height="20" valign="middle" colspan="9">No hay resultados</td>
+	</tr>
+{/section}
+</table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+{literal}
+<style>
+.LetrasN{
+font-family:"Arial";
+	 font-weight: bold;
+	 font-size:12px;
+}
+.LetrasN14{
+font-family:"Arial";
+	 font-weight: bold;
+	 font-size:14px;
+}
+.tabla{
+font-size:11px;
+padding:0px;
+	border-collapse:collapse;
+	border-spacing:0px;
+	font-family:Arial, Helvetica, sans-serif;
+
+}
+.tabla2{
+font-family:"Arial";
+font-size:12px;
+font-weight:bold;
+border-style:solid;
+border-width:1px;
+}
+ .tdx1{
+ font-weight:bold;
+	border-style:solid;
+	border:1px solid #000;
+ }
+ .tdx2{
+	border-style:solid;
+	border:1px solid #000;
+	font-size:10px;
+ }
+</style>
+{/literal}
+</head>
+
+<body>
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+
+<div align="left">
+
+
+<table width="700" cellpadding="0" cellspacing="0" border="0"  align="left" >
+		<tr>
+		<td width="90" valign="middle" height="35">
+			{if $logo01!=''}<img src="{$logo01}" border="0">{/if}
+		</td>
+		<td width="520" valign="middle" height="35"  align="center">
+			<div class="LetrasN14">DOCUMENTOS DE LA CARPETA</div>
+		</td>
+		<td width="90" valign="middle" height="35">&nbsp;</td>
+		</tr>
+		
+		<tr>
+		<td width="90" valign="middle" height="35">&nbsp;</td>
+		<td width="610" valign="middle" height="35" colspan="2">
+			<div align="left" class="LetrasN"> <strong>Propietario :</strong> {$titulo_nombre} </div>
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="90" valign="middle" height="35">&nbsp;</td>
+		<td width="610" valign="middle" height="35" colspan="2">
+			<div align="left" class="LetrasN"> <strong>C.I. :</strong> {$titulo_mis} </div>
+		</td>
+		</tr>
+
+		<tr>
+		<td width="90" valign="middle" height="35">&nbsp;</td>
+		<td width="610" valign="middle" height="35" colspan="2">
+			<div align="left" class="LetrasN"> <strong>Operaci&oacute;n :</strong> {$operacion} </div>
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="90" valign="middle" height="35">&nbsp;</td>
+		<td width="610" valign="middle" height="35" colspan="2">
+			<div align="left" class="LetrasN"> <strong>Oficina :</strong> {$oficina} </div>
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="90" valign="middle" height="35">&nbsp;</td>
+		<td width="610" valign="middle" height="35" colspan="2">
+			<div align="left" class="LetrasN"> <strong>Tipo de Carpeta :</strong> {$tipo} </div>
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="90" valign="middle" height="35">&nbsp;</td>
+		<td width="610" valign="middle" height="35" colspan="2">
+			<div align="left" class="LetrasN"> <strong>Observaciones :</strong> {$carpeta} </div>
+		</td>
+		</tr>
+
+		<tr>
+		<td colspan="3">
+	<table width="700" border="0" class="tabla" cellpadding="2" cellspacing="0">
+      <tr > 
+        <td width="250"  class='tdx1'>DOCUMENTO</td>
+		<td width="100"  class='tdx1'>NUMERO</td>
+		<td width="150"  class='tdx1'>TIPO DOCUMENTO</td>
+		<td width="50"  class='tdx1'>FOJAS</td>
+		<td width="150"  class='tdx1'>COMENTARIOS</td>
+      </tr>
+	  {section name=lista loop=$mis_documentos}
+      <tr > 
+        <td width="250" nowrap class='tdx2'>{$mis_documentos[lista.index].documento}&nbsp;</td>
+		<td width="100" nowrap class='tdx2'>{$mis_documentos[lista.index].numero}&nbsp;</td>
+		<td width="150" nowrap class='tdx2'>{$mis_documentos[lista.index].tipo}&nbsp;</td>
+		<td width="50"  nowrap class='tdx2'>{$mis_documentos[lista.index].numero_hojas}&nbsp;</td>
+		<td width="150" nowrap class='tdx2'>{if $mis_documentos[lista.index].estado=='9'}<strong>(Devuelto)</strong>&nbsp;{/if}{if $mis_documentos[lista.index].numero_hojas=='0'}<strong>Documento Faltante!</strong>&nbsp;{/if}{$mis_documentos[lista.index].observacion}&nbsp;</td>
+      </tr>
+	  {/section}
+    </table>
+		</td>
+		</tr>
+</table>
+	
+
+</div>
+
+</body>
+</html>

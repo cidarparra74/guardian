@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<script language="javascript" src="../scripts/modalpopups.js"></script>
+<script type="text/javascript" language="javascript" src="../scripts/XHConn.js"></script>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/opciones.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+
+<div align="center">
+<form name="guardar" method="post" action="../code/_main.php?action=adm/update_DBsec.php">
+<table width="650" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_tabla" width="650" colspan="2" valign="middle" height="30"><div align="center"> 
+            Actualizar Base de Datos</div>
+		</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">&nbsp; </td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">
+	
+	<table width="650" border="1" cellpadding="0" cellspacing="0" class="borde_tabla">
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">&nbsp; </td>
+	</tr>
+	{if $ok == 0}
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2" align="center">Presione el bot&oacute;n PROCEDER para realizar la actualizaci&oacute;n.</td>
+	</tr>
+	{else}
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2" align="center">{$cambios}</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2" align="center">Terminado.</td>
+	</tr>
+	{/if}
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">&nbsp; </td>
+	</tr>
+    </table>
+	
+	</td>
+	</tr>
+</table>{if $ok == 0}
+	<table width="650" border="0" class="color_contenido">
+      <tr> 
+        <td align="center">
+           <input type="submit" name="proceder" value="PROCEDER" class="boton">&nbsp;
+          </td>
+      </tr>
+    </table>{/if}
+</form>	
+</div>
+<br><br><br>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+
+</head>
+
+<body>
+
+<div align="center">
+
+<table width="650" cellpadding="3" cellspacing="0" border="0" align="left" class="tableBorder">
+	<tr>
+		<td width="300" colspan="2" align="left">
+			<img src="../imagenes/{$logo}">
+		</td>
+		<td width="350" colspan="2" align="right">
+			<h4>Nro: {$id}</h4>
+		</td>
+	</tr>
+	<tr>
+		<td width="650" colspan="4" align="center">
+			<h3>SOLICITUD DE EXCEPCION</h3>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>	
+	<tr>
+		<td width="650" colspan="4" align="left">
+			<h5><b>DATOS DEL CLIENTE</b></h5>
+		</td>
+	</tr>	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" >Cliente :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <b>{$cliente}</b> 
+		</td>
+		<td width="310" nowrap align="right" colspan="2" class="borde_tabla">Informe Legal No {$id}&nbsp;&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla" valign="middle">Documento :&nbsp;</td>
+         <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$ci_cliente} {$identificacion}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Garant&iacute;a :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$tipo_bien}</b>
+		</td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Obs :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$motivo}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+
+      {assign var="corte" value="x"}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="650" colspan="4" class="borde_tabla">
+		<table width="650" cellpadding="0" cellspacing="0" border="0" align="center" class="tableBorder">
+		{section name=lista loop=$excepciones}
+			{if $excepciones[lista.index].clase!=$corte}
+		<tr> 
+        <td width="650" colspan="4" class="tdBorder" height="26"><h5><b>&nbsp;
+		{if $excepciones[lista.index].clase == 'A'}Documentación Existente con Observación{/if}
+		{if $excepciones[lista.index].clase == 'B'}Documentación Faltante{/if}
+		{if $excepciones[lista.index].clase == 'C'}Otras Observaciones{/if}
+		{assign var="corte" value=$excepciones[lista.index].clase}
+		</b></h5></td>
+        </tr>
+		<tr>
+		{if $excepciones[lista.index].clase == 'C'}
+		<td width="240" class="tdBorder">&nbsp;OBSERVACION</td>
+		{else}
+		<td width="240" class="tdBorder">&nbsp;DOCUMENTO y OBSERVACION</td>
+		{/if}
+		<td width="100"  class="tdBorder">&nbsp;Tipo Excep.</td>
+		<td width="90"  class="tdBorder">&nbsp;Responsable</td>
+		<td width="90"  class="tdBorder">&nbsp;Fecha Limite</td>
+		</tr>
+			{/if}
+		<tr >
+		{if $excepciones[lista.index].clase == 'C'}
+		<td width="240" class="tdBorder"><span class="aviso_rojo">{$excepciones[lista.index].obs}</span></td>
+		{else}
+		<td class="tdBorder"><b>
+		{$excepciones[lista.index].documento}</b>{if $excepciones[lista.index].clase == 'A'}<br />
+		{$excepciones[lista.index].fojas}&nbsp;{$excepciones[lista.index].tipo}{/if}<br />
+		<span class="aviso_rojo">{$excepciones[lista.index].obs}{*$excepciones[lista.index].fecha*}</span></td>
+		{/if}
+		<td class="tdBorder">
+		{if $excepciones[lista.index].exce_tipo == '-'}--{/if}
+		{if $excepciones[lista.index].exce_tipo == 'T'}Temporal{/if}
+		{if $excepciones[lista.index].exce_tipo == 'P'}Permanente{/if}
+		</td>
+		<td class="tdBorder">
+		{if $excepciones[lista.index].exce_tipo == 'T'}{$excepciones[lista.index].exce_resp}{/if}
+		</td>
+		<td class="tdBorder">&nbsp;{if $excepciones[lista.index].exce_tipo == 'T'}{$excepciones[lista.index].exce_limite}{/if}
+		</td>
+		</tr>
+		{/section}
+		</table>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"  height="26">
+        <td width="650" colspan="4" class="borde_tabla"><h5><b>&nbsp;JUSTIFICACION</b></h5></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="650" colspan="4" class="borde_tabla">&nbsp;{$exe_justifica}&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="650" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>{if $exe_aprobar}
+	  <tr class="tabla_titulo_contenido"  height="26">
+        <td width="650" colspan="4" class="borde_tabla"><h5><b>&nbsp;APROBACION</b></h5></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="650" colspan="4" class="borde_tabla">&nbsp;{$exe_aprobar}&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="650" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>{/if}
+</table>
+
+</div>
+<br>
+</body>
+</html>

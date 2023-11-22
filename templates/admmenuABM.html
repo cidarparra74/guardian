@@ -1,0 +1,102 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Menu</title>
+<script language="JavaScript" src="../scripts/comun.js" type="text/JavaScript"></script>
+<script language="JavaScript" src="../scripts/chkadmmenu.js" type="text/JavaScript"></script>
+<link href="../styles/mainframe.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+ <div class="espacioTop"></div>
+ <div id="wrapABM"> 
+  <div class="barratitulo">{$titulomsg}</div>
+   <div id="formbase">
+	<fieldset>
+	 <form name="frmDatos" id="frmDatos" action="../code/_main.php" onsubmit ="return validar(this)">
+	 <legend>{if $task != 'del'}<img src="../images/actions/puntorojo.gif">=Dato requerido
+	 {else}{if $noBorrar==0}¡ EL REGISTRO SERA ELIMINADO DEFINITIVAMENTE !{else}ESTE REGISTRO NO SE PUEDE ELIMINAR{/if}{/if}</legend>
+	<p>
+	{if $task == 'del'}
+		<label for="user">Código:</label>
+		<span class="noedit">{$codigo}</span>
+	<br />
+		<label for="user">Descripci&oacute;n:</label>
+		<span class="noedit">{$descripcion}</span>
+	<br />
+		<label for="user">Imagen:</label>
+		<span class="noedit">{$imagen}</span>
+	<br />{if $subniv == '3'}
+		<label for="user">Ejecutar script:</label>
+		<span class="noedit">{$comando}</span>
+	<br />{/if}
+		<label for="user">Activo:</label>
+		<span class="noedit">{$activo}</span>
+	
+	{else}
+	
+		<label for="codigo">Código:</label>
+		<span class="noedit">{$codigo}</span>
+		<input name="codigo" type="hidden" value="{$codigo}" />
+	<br />
+		<label for="descripcion"><img src="../images/actions/puntorojo.gif">Descripci&oacute;n:</label>
+		<input name="descripcion" type="text" size="30" maxlength="25" value="{$descripcion}" />
+	<br />
+		<label for="imagen"><img src="../images/actions/puntorojo.gif">Imagen:</label>
+		<input name="imagen" type="text" size="30" value="{$imagen}" />
+	<br />{if $subniv == '3'}
+		<label for="comando"><img src="../images/actions/puntorojo.gif">Ejecutar script:</label>
+		<input name="comando" type="text" size="30"  maxlength="33" value="{$comando}" />
+	<br />{/if}
+		<label for="verimagen">Motrar imagen?:</label>
+		<select name="verimagen" id="verimagen">
+			<option value="S">Si</option>
+			<option value="N">No</option>
+		</select><script>document.getElementById("verimagen").value="{$verimagen}"</script>
+	<br />
+		<label for="vertexto">Mostrar Texto?</label>
+		<select name="vertexto" id="vertexto">
+			<option value="S">Si</option>
+			<option value="N">No</option>
+		</select><script>document.getElementById("vertexto").value="{$vertexto}"</script>
+	<br />
+		<label for="activo">Activo?:</label>
+		<select name="activo" id="activo">
+			<option value="S">Si</option>
+			<option value="N">No</option>
+		</select><script>document.getElementById("activo").value="{$activo}"</script>
+	{/if}
+	<br />
+	</p>
+	<p>
+	<label for="pass">&nbsp;</label>
+	
+	{if $task == 'del'}
+		{if $noBorrar==0}
+	<input name="elimina" type="submit" value="Eliminar !" class="boton"/>
+		{/if}
+	{else}
+		{if $task == 'add'}
+		<input name="inserta2" type="submit" value="Guardar y Volver" class="boton"/>
+		{else}
+		<input name="edita" type="submit" value="Guardar" class="boton"/>
+		{/if}
+	{/if}
+	<input name="cancela"  type="button" value="Volver" class="boton" onclick='javascript:enviaform("frmVolver")'/>
+	<input name="moduloSel" type="hidden" value="{$moduloSel}" />
+	<input name="ejecutaABM" type="hidden" value="S" />
+	<input name="nivel" type="hidden" value="{$subniv}" />
+	<input name="id" type="hidden" value="{$id}" />
+	<input name="action" type="hidden" value="admmenu.php" />
+	</p>
+		</form>
+		</fieldset>
+	</div>
+
+ </div>
+ 
+ <form name="frmVolver" id="frmVolver" action="../code/_main.php">
+	<input name="moduloSel" type="hidden" value="{$moduloSel}" />
+	<input name="action" type="hidden" value="admmenu.php" />
+ </form>
+</body>
+</html>

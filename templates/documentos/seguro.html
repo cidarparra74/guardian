@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>Datos Adicionales</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_documentos.js"></SCRIPT>
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+
+<div align="center">
+<br><br><br>
+{if $hay == 'si'}
+<form name="documentos" method="post" action="../code/seguro.php">
+
+<table width="90%" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		
+      <td colspan="2" valign="middle" class="borde_lista"> 
+        Datos Adicionales del Vencimiento
+	  </td>
+
+	</tr>
+		
+	<tr class="tabla_titulo_contenido">
+	 <td width="40%" align="right" class="borde_lista" nowrap> 
+		<font class="contenido_tabla_login">
+		Entidad:&nbsp;
+		</font>
+		</td>
+	 <td width="60%" align="left" class="borde_lista" nowrap> 
+		<font class="contenido_tabla_login">
+		&nbsp;<select name="seg_cia" class="input">
+			<option value="1" selected>--------</option>
+			{section name=sublista loop=$entidades}
+			<option value="{$entidades[sublista.index].id}" {if $entidades[sublista.index].id == $seg_cia}selected{/if}>{$entidades[sublista.index].entidad}</option>
+			{/section}
+		</select>
+		</font>
+		</td>
+	</tr>
+		
+	<tr class="tabla_titulo_contenido">
+	 <td width="40%" align="right" class="borde_lista" nowrap> 
+		<font class="contenido_tabla_login">
+		Nro de Documento:&nbsp;
+		</font>
+		</td>
+	 <td width="60%" align="left" class="borde_lista" nowrap> 
+		<font class="contenido_tabla_login">
+		&nbsp;<input type="text"  size="20" name="seg_poliza" value="{$seg_poliza}" maxlength="50"  class="input">
+		</font>
+		</td>
+	</tr>
+		
+	<tr class="tabla_titulo_contenido">
+	 <td width="40%" align="right" class="borde_lista" nowrap> 
+		<font class="contenido_tabla_login">
+		Fecha Vencimiento:&nbsp;
+		</font>
+		</td>
+	 <td width="60%" align="left" class="borde_lista" nowrap> 
+		<font class="contenido_tabla_login">
+		&nbsp;<input type="text" size="15" name="seg_vence" value="{$seg_vence}" maxlength="10"  class="input">
+		</font>
+		</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido">
+	 <td width="40%" align="right" class="borde_lista" nowrap> 
+		<font class="contenido_tabla_login">
+		Fecha Vencimiento Pago:&nbsp;
+		</font>
+		</td>
+	 <td width="60%" align="left" class="borde_lista" nowrap> 
+		<font class="contenido_tabla_login">
+		&nbsp;<input type="text" size="15" name="seg_plazo" value="{$seg_plazo}" maxlength="10"  class="input">
+		</font>
+		</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido">
+	 <td width="40%" align="right" class="borde_lista" nowrap> 
+		<font class="contenido_tabla_login">
+		Importe:&nbsp;
+		</font>
+		</td>
+	 <td width="60%" align="left" class="borde_lista" nowrap> 
+		<font class="contenido_tabla_login">
+		&nbsp;<input type="text"  size="10" name="seg_monto" value="{$seg_monto}" maxlength="50"  class="input">
+		</font>
+		</td>
+	</tr>
+		
+	<tr class="tabla_titulo_contenido">
+	 <td width="40%" align="right" class="borde_lista" nowrap> 
+		<font class="contenido_tabla_login">
+		Observaciones:&nbsp;
+		</font>
+		</td>
+	 <td width="60%" align="left" class="borde_lista" nowrap> 
+		<font class="contenido_tabla_login">
+		&nbsp;<textarea class="input" name="seg_obs" rows="4" cols="50">{$seg_obs}</textarea>
+		</font>
+		</td>
+	</tr>
+</table>
+<br><br>
+
+<table width="90%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+	<td><div align="center">
+		<input type="submit" name="guardar_seg" value=" Guardar " class="boton">
+		<input type="hidden" name="guardar_segx" value="guardando">
+		<input type="hidden" name="id_dp" value="{$id_dp}">
+	</div></td>
+	</tr>
+</table>
+</form>
+{else}
+	{if $hay == 'no'}
+<br><br> Para poder ingresar datos adicionales primero guarde los documentos, 
+<br> luego edite la carpeta e ingrese nuevamente a esta opci&oacute;n.
+<br><br> Si el documento esta marcado como no requerido tampoco
+<br> podr&aacute; registrar datos adicionales.
+	{else}
+	<br><br><br><br>Guardado.
+	{/if}
+{/if}
+<br><br>
+</div>
+</body>
+</html>

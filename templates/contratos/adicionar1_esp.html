@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/contratos_esp.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0"  class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+
+<form name="adicionar" method="post" action="{$carpeta_entrar}" onSubmit="return verificar1(this)">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620"  valign="middle" height="30" class="borde_lista"><div align="center"> 
+           Pendientes de elaboraci&oacute;n de contrato:</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620"  class="borde_tabla">&nbsp; </td>
+      </tr>
+      
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" align="center" class="borde_tabla" >&nbsp;&nbsp;
+				N&uacute;mero de Caso / Cliente:<br>
+			<select name="nrocaso" class="input" size="15">
+			{section name=lista loop=$nrocasos}
+				<option value="{$nrocasos[lista.index].nrocaso}" {if $nrocasos[lista.index].nrocaso == $nrocaso} selected {/if}>
+				{$nrocasos[lista.index].nrocaso} {$nrocasos[lista.index].cliente} ({$nrocasos[lista.index].tipoope})</option>
+			{sectionelse}
+				<option value="0">(Sin n&uacute;meros pendientes)</option>
+			{/section}
+			</select>
+		<input type="hidden" name="caso_esp" value="ok">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  	  
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="variables_esp" value="Siguiente" class="boton"><input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="contrato" value=""> <!-- a la variable contrato se le asigna la desc del contrato via JS -->
+			<input type="hidden" name="cantidad" value="0">
+          </div></td>
+		  <td width="310"><div align="left">
+		<input type="button" name="boton_cancelar" value="Cancelar" class="boton" onClick="des_verificar_adicion()">
+		</div>
+		</td>
+      </tr>
+    </table>
+</form>
+<form name="adicionar_cancelar" method="post" action="{$carpeta_entrar}&filtro=1 ">
+<input type="hidden" name="adicionar_boton_cancelar" value="s"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+</form>
+</div>
+
+</body>
+</html>

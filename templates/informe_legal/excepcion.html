@@ -1,0 +1,182 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/excepcion.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="{$carpeta_entrar}" class="link_tabla">
+				Volver a lista de Informes
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"> 
+          <div align="center">Datos del Cliente</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Cliente :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 <b>{$cliente}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla" valign="middle">Docu. ID :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <b>{$ci_cliente} - {$identificacion}</b>
+		</td>
+        <td width="100" nowrap align="right" class="borde_tabla" valign="middle">Tipo :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+				<b>{$tipo_bien}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+
+	  <tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"> 
+          <div align="center">Observaciones al Informe Legal No {$id}</div>
+		</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla"><b><u>Documentación Existente con Observación</u></b> </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="100" align="right" class="borde_tabla"><b><u>FECHA&nbsp;</u></b></td>
+        <td width="210" align="left" class="borde_tabla"><b><u>DOCUMENTO</u></b></td>
+        <td width="100" align="left" class="borde_tabla"><b><u>FOJAS</u></b></td>
+        <td width="210" align="left" class="borde_tabla"><b><u>TIPO DOC.</u>   <u>VENCIMIENTO</u></b></td>
+      </tr>
+	  {section name=lista loop=$docsConObs}
+	  <tr class="tabla_titulo_contenido">
+        <td width="100" align="right" class="borde_tabla"><b>{$docsConObs[lista.index].fecha}</b>&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla"><b>{$docsConObs[lista.index].documento}</b>&nbsp;</td>
+        <td width="100" align="left" class="borde_tabla"><b>{$docsConObs[lista.index].fojas}</b>&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla"><b>{$docsConObs[lista.index].tipo}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$docsConObs[lista.index].fecha_vencimiento}</b>&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100"  class="borde_tabla">&nbsp;</td>
+		 <td width="520" colspan="3" class="borde_tabla">{$docsConObs[lista.index].observaciones}</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" height="10" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  {sectionelse}
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">*** sin documentos observados ***</td>
+      </tr>
+	  {/section}
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla"><b><u>Documentación Faltante</u></b></td>
+      </tr>
+	  {section name=lista loop=$docsFaltan}
+	  <tr class="tabla_titulo_contenido">
+        <td width="100" nowrap align="right" class="borde_tabla">&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		 {$docsFaltan[lista.index]}&nbsp;
+		</td>
+      </tr>
+	  {sectionelse}
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">*** sin documentos faltantes ***</td>
+      </tr>
+	  {/section}
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla"><b><u>Otras Observaciones</u></b></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">{$otras_observaciones}&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla"><b><u>Conclusiones y Recomendaciones</u></b></td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">{$conclusiones}&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+</table>
+
+
+<table width="620" border="1" cellpadding="8" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" valign="middle" height="30" class="borde_lista"> 
+          <div align="center">Solicitud de Excepción de {$nombresol}</div>
+		</td>
+	</tr>
+ 
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" align="left" class="borde_tabla">
+			<strong>{$solicitud}</strong><br><br>
+			Solicitud dirigida a: <strong>{$nombredes}</strong>
+		</td>
+      </tr>
+ </table>
+
+ <table width="620" border="1" cellpadding="8" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" valign="middle" height="30" class="borde_lista"> 
+          <div align="center">Respuesta a la solicitud por {$nombrerev} </div>
+		</td>
+	</tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" align="left" class="borde_tabla">
+		 <strong>{$respuesta}</strong><br><br>
+		 <div align="center">
+		 Conclusión:&nbsp;{if $estado == "ACE"}<b>ACEPTADA</b>&nbsp;&nbsp;&nbsp;&nbsp;Plazo para Regularización: <b>{if $plazo == "0"}INDEFINIDO{else}{$plazo} días{/if}</b>{else}<b>RECHAZADA</b>{/if}
+		</div>
+		</td>
+      </tr>
+ </table>
+
+ <br>
+<table width="620" border="0" class="color_contenido">
+	  <tr>
+		<td width="310"  align="center">
+		 <form name="imprimir_excepcion" method="post" action="../code/_main.php?action=excepcion.php" >
+			<input type="submit" name="imprimir_exce" value="Imprimir" class="boton"> 
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="estado_formulario" value="aceptar">
+			<input type="hidden" name="id" value="{$id}">
+		</form></td>
+		<td width="310"  align="center">
+		<form name="adicionar_cancelar" method="post" action="{$carpeta_entrar}&filtro=1" onSubmit="des_verificar_formulario()">
+			<input type="submit" name="adicionar_boton_cancelar" value="Volver" class="boton"> 
+			<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+			<input type="hidden" name="estado_formulario" value="aceptar">
+		</form>
+		</td>	
+      </tr>
+    </table>
+
+</div>
+<br>
+</body>
+</html>

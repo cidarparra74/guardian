@@ -1,0 +1,277 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_propietarios.js">
+</SCRIPT>
+
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido" onLoad="cargar_buscar()">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<SCRIPT LANGUAGE='JavaScript' SRC='../../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="../code/{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="4" height="20" valign="middle" align="center"> &nbsp;Opciones de B&uacute;squeda</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Nombres :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+		 <input name="filtro_nombres" type="text" class="input" id="filtro_nombres" value="{$filtro_nombres}" size="31" maxlength="50">
+		</td>
+        <td width="100" nowrap align="right" valign="middle">&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+		</td>
+      </tr>
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">C.I. :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+		 	<input name="filtro_ci" type="text" class="input" id="filtro_ci" value="{$filtro_ci}" size="31" maxlength="20">
+		</td>
+        <td width="100" nowrap align="right" valign="middle">&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+		</td>
+      </tr>
+	  
+
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" >&nbsp;</td>
+        <td colspan="3" align="left" valign="middle" >
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton">&nbsp;
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+{if $ids_propietario}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		
+      <td width="620" colspan="6" height="20" valign="middle" class="borde_lista">&nbsp;Propietarios</td>
+	</tr>
+	{section name=lista loop=$ids_propietario}
+	<tr class="tabla_titulo_contenido">
+		<td width="420" class="borde_lista">
+			&nbsp;{$ids_propietario[lista.index].nombres}
+
+			&nbsp;&nbsp;
+			({$ids_propietario[lista.index].tiene_carpeta})
+				
+		</td>
+		<td width="40" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&vercarpetas={$ids_propietario[lista.index].ids}" onMouseOver=" overlib('Carpetas del cliente',CAPTION,'Ver' );  return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/tiene_carpeta.jpg" border="0">
+			</a>
+		</div></td>
+	</tr>
+	{/section}
+</table>
+{/if}
+
+
+
+{if $ids_carpeta}
+
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>Propietario :</strong> {$titulo_nombre}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="bottom" height="20">
+
+		</td>
+		</tr>
+		
+		<tr>
+		<td width="420" valign="middle" height="30">
+			<div align="left">
+			<font class="tabla_titulo_contenido">
+				<strong>CI :</strong> {$titulo_mis}
+			</font>
+			</div>
+		</td>
+		<td width="200" valign="middle" height="30">
+			&nbsp;
+		</td>
+		</tr>
+	</table>
+
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		
+      <td width="250" height="20" valign="middle" class="borde_lista"> &nbsp;Tipo Carpeta / Oficina</td>
+	  <td width="370" height="20" colspan="2" valign="middle" class="borde_lista"> &nbsp;Observaci&oacute;n</td>
+	</tr>{assign var="corte" value="xxx"} {assign var="cant" value=0}
+	{section name=lista loop=$ids_carpeta}
+	{if $ids_carpeta[lista.index].operacion <> $corte}	
+	<tr class="tabla_titulo_contenido">
+	<td height="25" valign="middle"><b>&nbsp;OPERACION: {$ids_carpeta[lista.index].operacion}</b></td>
+	<td height="20" colspan="2" align="right" valign="middle" >&nbsp;</td>
+	</tr>{assign var="corte" value=$ids_carpeta[lista.index].operacion}
+	{/if}{assign var="cant" value=$cant+1}
+	<tr class="tabla_titulo_contenido">
+		<td width="250" class="borde_lista">&nbsp;
+			{$ids_carpeta[lista.index].tipo_carpeta}
+			<br />&nbsp;&nbsp;&nbsp;
+			&nbsp;({$ids_carpeta[lista.index].o_nombre})
+		</td>
+		<td width="320" class="borde_lista">
+			&nbsp;{$ids_carpeta[lista.index].carpeta}
+			<br>
+			<strong>{$ids_carpeta[lista.index].fecha}</strong>
+		</td>
+		<td width="50" class="borde_lista" align="left">&nbsp;
+{if $ids_carpeta[lista.index].fdev==''}
+			
+	<a href="{$carpeta_entrar}&info_carpeta=ok&id={$ids_carpeta[lista.index].id}" onMouseOver=" overlib('Ver/Modificar datos',CAPTION,'Ver' , ABOVE); return true" onMouseOut=" nd();   return true" > 
+		<img src="../imagenes/pass/modificar.png" border="0"></a>
+
+{else}
+	<!-- carpeta devuelta -->
+	<a href="javascript:void(0);" onMouseOver=" overlib('Devuelta al Cliente',CAPTION,'Carpeta' , ABOVE); return true" onMouseOut=" nd();   return true"> 
+		<img src="../imagenes/pass/persona.gif" border="0"></a>
+{/if}
+		</td>
+	</tr>
+	{/section}
+</table>
+<br />
+{/if}
+
+
+
+{if $veroperacion}
+
+
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="./_main.php?action={$carpeta_acc}.php&vercarpetas={$id_p}" class="link_tabla">
+				Volver a lista de Carpetas
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+	</table>
+<br>
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+           Datos de la operaci&oacute;n </div>
+		</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Cliente :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla"><b>{$cliente}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+	    <td width="100" nowrap align="right" class="borde_tabla" valign="middle">N&ordm; Doc. :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <b>{$ci} </b>
+		</td>
+        <td width="100" nowrap align="right" class="borde_tabla" valign="middle">Tipo :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <b>{$tipo_bien}</b>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <form name="formulario" method="post" action="./_main.php?action={$carpeta_acc}.php" onSubmit="return vercaso()">
+	  {if $cuenta !=''}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Cuenta :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		
+		{$cuenta}
+		
+		</td>
+      </tr>{/if}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Instancia :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		<input type="text" name="nrocaso" value="{$nrocaso}" class="input" size="20">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Operaci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		<input type="text" name="operacion" value="{$operacion}" class="input" size="20">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Sub Operaci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla">
+		<input type="text" name="suboperacion" value="{$suboperacion}" class="input" size="20">
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+</table>
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="3">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="155" nowrap><div align="right">
+		
+            <input type="submit" name="asignar_boton" value="Aceptar" class="boton">
+			<input type="hidden" name="guardardatos" value="el">
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="vercarpetas" value="{$id_p}">
+			
+         </form></div></td>
+
+	<td width="310"><div align="left">
+<form name="adicionar_cancelar" method="post" action="./_main.php?action={$carpeta_acc}.php" onSubmit="des_verificar_formulario()">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> 
+			<input type="hidden" name="vercarpetas" value="{$id_p}">
+</form>	</div>
+		</td>
+	
+      </tr>
+    </table>
+</div>
+<br>
+
+{/if}
+
+<br>
+<br>
+</div>
+</body>
+</html>

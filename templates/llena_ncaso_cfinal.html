@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="4" height="20" valign="middle" align="center"> &nbsp;Opciones 
+        de B&uacute;squeda</td>
+	</tr>
+      	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" height="25" valign="middle">Cliente :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="filtro_cliente" value="{$f_cliente}" class="input" size="30">
+		</td>
+		<td width="100" nowrap align="right" height="25" valign="middle">C.I. :&nbsp;</td>
+        <td width="210" align="left" valign="middle">
+			<input type="text" name="filtro_ci_cliente" value="{$f_ci_cliente}" class="input" size="20">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" >&nbsp;</td>
+		<td colspan="3" align="left" valign="middle" >
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton">&nbsp;
+		 
+		</td>
+      </tr>
+</table>
+</form>
+{$alert}
+<br>
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+    <td width="620" colspan="4" valign="middle" height="20" class="borde_lista">
+    Lista de Pendientes</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+	  <td width="100" height="20" valign="middle" class="borde_lista">&nbsp;Nro. I.L.</td>
+	  <td width="90" height="20" valign="middle" class="borde_lista">&nbsp;Fecha</td>
+	  <td width="430" height="20" valign="middle" class="borde_lista" colspan="2">&nbsp;Cliente</td>
+
+	</tr>
+	{section name=lista loop=$nrocasos}
+	<tr class="tabla_titulo_contenido">
+		<td width="100" height="20" class="borde_lista">&nbsp;<strong>{$nrocasos[lista.index].nrocaso}</strong> </td>
+		<td width="90" height="20" class="borde_lista">&nbsp;{$nrocasos[lista.index].fecha}</td>
+		<td width="430" class="borde_lista">&nbsp;<a href="{$carpeta_entrar}&idc={$nrocasos[lista.index].nrocaso}" onMouseOver=" overlib('Llenar variables',CAPTION,'Solicitar' );  return true" onMouseOut=" nd();   return true">{$nrocasos[lista.index].cliente}</a></td>
+
+	</tr>
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" class="borde_lista" colspan="4">&nbsp;(No existen casos pendientes)</td>
+	</tr>
+	{/section}
+</table>
+
+</div>
+<br>
+<br>
+</body>
+</html>

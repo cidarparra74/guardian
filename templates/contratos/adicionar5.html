@@ -1,0 +1,153 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<script language="javascript" src="../scripts/modalpopups.js"></script>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/contratox.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0"  class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<table width="620" border="0" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_contenido"> 
+		<td width="620"  valign="middle" height="30">&nbsp;<strong>Para terminar, complete las casillas siguientes</strong></td>
+	</tr>
+</table>
+<form name="adicionar1" method="post" action="../code/_main.php?action=contratos.php" onSubmit="return verificar1(this)">
+<table width="700" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="700"  valign="middle" height="30" class="borde_lista" colspan="3"><div align="center">{$contrato}</div></td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="700" colspan="3" class="borde_tabla">&nbsp; </td>
+      </tr>{assign var="lugar_grupo" value="xxx"}
+      {section name=lista loop=$principal}{if $principal[lista.index].id <> $lugar_grupo && $principal[lista.index].descripcion <> ''}
+      <tr class="tabla_titulo_contenido"> 
+        <td width="700" align="left" colspan="3" class="borde_tabla" >&nbsp;&nbsp;	
+			<strong>{$principal[lista.index].titulo}</strong>{assign var="lugar_grupo" value=$principal[lista.index].id}
+		</td>
+      </tr>{/if}
+	  {if $principal[lista.index].idnumeral <> '0' && $principal[lista.index].descripcion <> ''}
+	 <tr class="tabla_titulo_contenido"> 
+        <td width="10"  class="borde_tabla">&nbsp;</td>
+		<td width="640" align="left" class="borde_tabla"  colspan="2">
+			o&nbsp;<u>{$principal[lista.index].inciso}</u>
+		</td>
+      </tr>
+	  {/if}
+	  {if $principal[lista.index].descripcion <> ''}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="10"  class="borde_tabla">&nbsp; </td>
+		<td width="240" align="right" class="borde_tabla" >
+			&nbsp;{$principal[lista.index].descripcion}:
+		</td>
+		<td width="450" align="left" class="borde_tabla" >&nbsp;
+		{if $principal[lista.index].esglobal == '0'}
+			<!-- VARIABLES SIN CONTENIDO -->
+			{if $principal[lista.index].tipo == '0'}
+				<!-- Es una caja de texto que permite cualquier dato -->
+				{if $principal[lista.index].lineas == '1'}
+				<!-- Es una caja de texto de una linea -->
+				<input name="data_{$smarty.section.lista.index}" type="text" class="input" value="" size="60" maxlength="250">
+				{else}
+				<!-- Es una caja de texto de varias lineas -->
+				<textarea class="input" name="data_{$smarty.section.lista.index}" rows="{$principal[lista.index].lineas}" cols="60"></textarea>
+				{/if}
+			{else}
+			{if $principal[lista.index].tipo == '1'}
+				<!-- Es una caja de texto que pide un valor numérico decimal, y debe ser convertido a literal con moneda. Ej. Bs 100.50 (Son Cien 50/100 Bolivianos) -->
+				<input name="data_{$smarty.section.lista.index}" id="data_{$smarty.section.lista.index}" type="text" class="input" value="" size="60" maxlength="100">&nbsp;
+				<a href="#" onClick="javascript:moneda('data_{$smarty.section.lista.index}')" onMouseOver=" overlib('Convertir a literal',CAPTION,'Moneda', CAPCOLOR,'{$acc_color_txt_cabecera}',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'120',TEXTFONT,'Arial',ABOVE); window.status='Convertir'; return true" onMouseOut=" nd(); window.status=''; return true"><img src="../imagenes/pass/tras.png" border="0"></a>
+			{else}
+			{if $principal[lista.index].tipo == '2'}
+				<!-- Es una caja de texto que pide un valor numérico decimal, y debe ser convertido a literal porcentaje. Ej. 10.1% (Diez punto uno por ciento) -->
+				<input name="data_{$smarty.section.lista.index}" type="text" class="input" value="" size="60" maxlength="100">&nbsp;
+				<a href="#" onClick="javascript:porcentaje('data_{$smarty.section.lista.index}')" onMouseOver=" overlib('Convertir a literal',CAPTION,'Porcentaje', CAPCOLOR,'{$acc_color_txt_cabecera}',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'120',TEXTFONT,'Arial',ABOVE); window.status='Convertir'; return true" onMouseOut=" nd(); window.status=''; return true"><img src="../imagenes/pass/tras.png" border="0"></a>
+			{else}
+			{if $principal[lista.index].tipo == '3'}
+				<!-- Es una caja de texto que pide un valor numérico decimal, y debe ser convertido a literal. Ej. 8.33 (Ocho punto Treinta tres) -->
+				<input name="data_{$smarty.section.lista.index}" type="text" class="input" value="" size="60" maxlength="100">
+				<a href="#" onClick="javascript:decimal('data_{$smarty.section.lista.index}')" onMouseOver=" overlib('Convertir a literal',CAPTION,'Decimal', CAPCOLOR,'{$acc_color_txt_cabecera}',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'120',TEXTFONT,'Arial',ABOVE); window.status='Convertir'; return true" onMouseOut=" nd(); window.status=''; return true"><img src="../imagenes/pass/tras.png" border="0"></a>
+			{else}
+			{if $principal[lista.index].tipo == '4'}
+				<!-- Es una caja de texto que pide un valor numérico entero, y debe ser convertido a literal. Ej. 12 (doce) -->
+				<input name="data_{$smarty.section.lista.index}" type="text" class="input" value="" size="60" maxlength="100">
+				<a href="#" onClick="javascript:entero('data_{$smarty.section.lista.index}')" onMouseOver=" overlib('Convertir a literal',CAPTION,'Entero', CAPCOLOR,'{$acc_color_txt_cabecera}',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'120',TEXTFONT,'Arial',ABOVE); window.status='Convertir'; return true" onMouseOut=" nd(); window.status=''; return true"><img src="../imagenes/pass/tras.png" border="0"></a>
+			{else}
+				<!-- Es una caja de texto que pide un valor fecha, y debe ser convertido a literal. Ej “12-03-2010” cambiar por:  “12 de marzo de 2011” -->
+				<input name="data_{$smarty.section.lista.index}" type="text" class="input" value="" size="60" maxlength="100">
+			{/if}
+			{/if}
+			{/if}
+			{/if}
+			{/if}
+		{else}
+		{if $principal[lista.index].esglobal == '1'}
+			<!-- VARIABLES CON CONTENIDO -->
+			{if $principal[lista.index].eslista == '0'}
+				<input name="data_{$smarty.section.lista.index}" type="text" class="input" value="{$principal[lista.index].contenido}" size="60" maxlength="100">
+			{else}
+				{assign var="cbolista" value=$principal[lista.index].valores}
+				<select name="data_{$smarty.section.lista.index}" class="input">
+				{section name=lista2 loop=$cbolista}
+				<option value="{$cbolista[lista2.index].id}">{$cbolista[lista2.index].valor}</option>
+				{/section}
+				</select>
+			{/if}
+		{else}
+		{if $principal[lista.index].esglobal == '2'}
+			<!-- VARIABLES CON CONTENIDO Variable que la primera vez coloca el usuario -->
+			{if $principal[lista.index].lineas == '1'}
+			<!-- Es una caja de texto de una linea -->
+			<input name="data_{$smarty.section.lista.index}" type="text" class="input" value="{$principal[lista.index].contenido}" size="60" maxlength="250">
+			{else}
+			<!-- Es una caja de texto de varias lineas -->
+			<textarea class="input" name="data_{$smarty.section.lista.index}" rows="{$principal[lista.index].lineas}" cols="60">{$principal[lista.index].contenido}</textarea>
+			{/if}
+		{/if}
+		{/if}
+		{/if}
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="700" colspan="3" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  {/if}
+	  {/section}
+</table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="adicionar4" value="Siguiente" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<!-- input type="hidden" name="idcontrato" value="{$idcontrato}">
+			<input type="hidden" name="opcional" value="{$opcional}">
+			<input type="hidden" name="contrato" value="{$contrato}" -->
+          </div></td>
+	
+</form>
+<form name="adicionar_cancelar" method="post" action="../code/_main.php?action=contratos.php&filtro=1 " onSubmit="des_verificar_adicion()">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,301 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<script language="javascript" src="../scripts/modalpopups.js"></script>
+<script type="text/javascript" language="javascript" src="../scripts/XHConn.js"></script>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/opciones.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+
+<div align="center">
+<form name="guardar" method="post" action="../code/_main.php?action=adm/opciones.php">
+<table width="650" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td class="borde_tabla" width="650" colspan="2" valign="middle" height="30"><div align="center"> 
+            Configuraci&oacute;n del Sistema</div>
+		</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">&nbsp; </td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">
+	
+	<table width="650" border="1" cellpadding="0" cellspacing="0" class="borde_tabla">
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Habilitar el env&iacute;o de correos electr&oacute;nicos :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left">{if $ok=='N'}
+		<select name="enable_mail" class="input">
+			<option value="S" {if $enable_mail == 'S'}selected{/if}>SI</option>
+			<option value="N" {if $enable_mail == 'N'}selected{/if}>NO</option>
+		</select>{else}{if $enable_mail == 'S'} SI{else}NO {/if} {/if}
+	</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido">
+	<td class="borde_tabla" width="325" nowrap align="right">IP Servidor SMTP :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left">
+		<input type="text" value="{$smtp}" name="smtp" id="smtp" class="input" size="20" maxlength="50" {$disable}>&nbsp;&nbsp;
+		<a href="javascript: void(0);"  onClick="return wdPedirCorreo();">(Probar env&iacute;o de correo)</a>
+		<!-- input type="button" name="mailtest" id="mailtest" value="Probar" class="boton" -->
+	</td>
+	</tr>
+	<tr class="tabla_titulo_contenido">
+	<td class="borde_tabla" width="325" nowrap align="right">Direcci&oacute;n de Correo para el Remitente :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left">
+		<input type="text" value="{$mailSender}" name="mailSender" id="mailSender" class="input" size="50" maxlength="50" {$disable}>
+	</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">&nbsp; </td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido">
+	<td class="borde_tabla" width="325" nowrap align="right">Habilitar recepci&oacute;n de documentos por Servicio WEB :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >
+		{if $ok=='N'}
+		<select name="enable_ws" class="input">
+			<option value="N" {if $enable_ws == 'N'}selected{/if}>NO, la recepci&oacute;n se la realiza por CI (BSA)</option>
+			<option value="S" {if $enable_ws == 'S'}selected{/if}>SI, la recepci&oacute;n es por Nro de Cuenta (BSL)</option>
+			<option value="A" {if $enable_ws == 'A'}selected{/if}>SI, la recepci&oacute;n es por Nro de Caso (BEC)</option>
+			<option value="C" {if $enable_ws == 'C'}selected{/if}>SI, la recepci&oacute;n es por Nro de CI (CID)</option>
+		</select>{else}{if $enable_ws == 'S'} SI{else}NO {/if} {/if}&nbsp;
+	</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">URL del servicio cuenta/nro.caso :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >
+		<input type="text" value="{$url1}" name="url1" class="input" size="50" maxlength="100" {$disable}>&nbsp;
+	</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">URL del servicio contable :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >
+		<input type="text" value="{$url2}" name="url2" class="input" size="50" maxlength="100" {$disable}>&nbsp;
+	</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">URL Servicio WEB SEC :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" ><input type="text" value="{$url4}" name="url4" class="input" size="50" maxlength="100" {$disable}>&nbsp;
+	</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">&nbsp; </td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Tama&ntilde;o m&iacute;nimo para el Login :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >
+		<input type="text" value="{$long_login}" name="long_login" class="input" size="5" maxlength="100" {$disable}> (0=Sin restricci&oacute;n)
+	</td>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Tama&ntilde;o m&iacute;nimo para la Contrase&ntilde;a :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >
+		<input type="text" value="{$long_pass}" name="long_pass" class="input" size="5" maxlength="100" {$disable}> (0=Sin restricci&oacute;n)
+	</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Tipo de autenticaci&oacute;n :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="enable_login" class="input">
+			<option value="N" {if $enable_login == 'N'}selected{/if}>Mediante Cuenta de Guardian</option>
+			<option value="S" {if $enable_login == 'S'}selected{/if}>Mediante Servicio WEB</option>
+			<option value="L" {if $enable_login == 'L'}selected{/if}>Mediante LDAP</option>
+		</select>{else}{if $enable_login == 'S'} Mediante Servicio WEB{else}{if $enable_login == 'N'} Mediante Cuenta de Guardian{else} Mediante LDAP{/if}{/if}{/if}
+	</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">URL del servicio WEB de logueo :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >
+		<input type="text" value="{$url3}" name="url3" class="input" size="50" maxlength="100" {$disable}>
+	</td>
+	</tr>
+	
+	
+	
+	<!-- tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">&nbsp; </td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Habilitar recepci&oacute;n por nro de caso (usa servicio WEB) :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="enable_ncaso" class="input">
+			<option value="S" {if $enable_ncaso == 'S'}selected{/if}>SI</option>
+			<option value="N" {if $enable_ncaso == 'N'}selected{/if}>NO</option>
+		</select>{else}{if $enable_ncaso == 'S'} SI{else}NO {/if} {/if}
+	</td>
+	</tr -->
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">&nbsp; </td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Habilitar C&oacute;digo CI :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="enable_mis" class="input">
+			<option value="S" {if $enable_mis == 'S'}selected{/if}>SI</option>
+			<option value="N" {if $enable_mis == 'N'}selected{/if}>NO</option>
+		</select>{else}{if $enable_mis == 'S'} SI{else}NO {/if} {/if}
+	</td>
+	</tr>
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Habilitar Elaboraci&oacute;n de I.L. sin Recepci&oacute;n :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="enable_ilsin" class="input">
+			<option value="S" {if $enable_ilsin == 'S'}selected{/if}>SI</option>
+			<option value="N" {if $enable_ilsin == 'N'}selected{/if}>NO</option>
+		</select>{else}{if $enable_ilsin == 'S'} SI{else}NO {/if} {/if}
+	</td>
+	</tr>
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Habilitar adici&oacute;n de propietarios en I.L. :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="enable_prop" class="input">
+			<option value="S" {if $enable_prop == 'S'}selected{/if}>SI</option>
+			<option value="N" {if $enable_prop == 'N'}selected{/if}>NO</option>
+		</select>{else}{if $enable_prop == 'S'} SI{else}NO {/if} {/if}
+	</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Habilitar eliminar documentos de recepci&oacute;n :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="enable_deldoc" class="input">
+			<option value="S" {if $enable_deldoc == 'S'}selected{/if}>SI</option>
+			<option value="N" {if $enable_deldoc == 'N'}selected{/if}>NO</option>
+		</select>{else}{if $enable_deldoc == 'S'} SI{else}NO {/if} {/if}
+	</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Habilitar bot&oacute;n autorizar solicitud en recepci&oacute;n :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="autosolicita" class="input">
+			<option value="S" {if $autosolicita == 'S'}selected{/if}>SI</option>
+			<option value="N" {if $autosolicita == 'N'}selected{/if}>NO</option>
+		</select>{else}{if $autosolicita == 'S'} SI{else}NO {/if} {/if}
+	</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Habilitar trasladar carpetas para usuario catastro :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="trasladar" class="input">
+			<option value="S" {if $trasladar == 'S'}selected{/if}>SI</option>
+			<option value="N" {if $trasladar == 'N'}selected{/if}>NO</option>
+		</select>{else}{if $trasladar == 'S'} SI{else}NO {/if} {/if}
+	</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Habilitar manejo de catastro por oficinas:&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="enable_catofi" class="input">
+			<option value="S" {if $enable_catofi == 'S'}selected{/if}>SI</option>
+			<option value="N" {if $enable_catofi == 'N'}selected{/if}>NO</option>
+		</select>{else}{if $enable_catofi == 'S'} SI{else}NO {/if} {/if}
+	</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido">
+	<td class="borde_tabla" width="650" colspan="2">&nbsp; </td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Perfil correspondiente a los Abogados :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="id_perfil_abo" class="input">
+		{section name=lista loop=$perfiles}
+			<option value="{$perfiles[lista.index].id}"{if $perfiles[lista.index].id == $id_perfil_abo}selected{/if} >{$perfiles[lista.index].perfil}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Perfil correspondiente al Enc. Operaciones :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="id_perfil_ope" class="input">
+		{section name=lista loop=$perfiles}
+			<option value="{$perfiles[lista.index].id}"{if $perfiles[lista.index].id == $id_perfil_ope}selected{/if} >{$perfiles[lista.index].perfil}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Perfil correspondiente al Enc. Catastro :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="id_perfil_cat" class="input">
+		{section name=lista loop=$perfiles}
+			<option value="{$perfiles[lista.index].id}"{if $perfiles[lista.index].id == $id_perfil_cat}selected{/if} >{$perfiles[lista.index].perfil}</option>
+		{/section}
+		</select>{else}Actualizado{/if}
+	</td>
+	</tr>
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">&nbsp;</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Archivo im&aacute;gen para reportes :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" ><input type="text" value="{$logo01}" name="logo01" class="input" size="50" maxlength="100" {$disable}>&nbsp;
+	</td>
+	</tr>
+	
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Estados del Informe legal (separar con punto y coma) :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" ><input type="text" value="{$il_estado_fin}" name="il_estado_fin" class="input" size="50" maxlength="100" {$disable}>&nbsp;
+	</td>
+	</tr>
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Reporte de Recepci&oacute;n de Docs. :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" ><input type="text" value="{$rep_recepcion}" name="rep_recepcion" class="input" size="50" maxlength="100" {$disable}>&nbsp;
+	</td>
+	</tr>
+
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Carpeta Arch. Temporales (use / como separador) :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" ><input type="text" value="{$rutatmp}" name="rutatmp" class="input" size="50" maxlength="200" {$disable}>&nbsp;
+	</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="325" nowrap align="right">Abrir contratos con :&nbsp;</td>
+	<td class="borde_tabla" width="325" align="left" >{if $ok=='N'}
+		<select name="tipodoc" class="input">
+			<option value="W" {if $tipodoc == 'W'}selected{/if}>Microsoft WORD</option>
+			<option value="O" {if $tipodoc == 'O'}selected{/if}>Open Office</option>
+			<option value="A" {if $tipodoc == 'A'}selected{/if}>Ambos</option>
+		</select>{else}{if $tipodoc == 'W'} Microsoft WORD {elseif $tipodoc == 'O'} Open Office {else} Word y Open Office{/if} {/if}
+	</td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+	<td class="borde_tabla" width="650" colspan="2">&nbsp; </td>
+	</tr>
+    </table>
+</td>
+	</tr>
+</table>
+	<table width="650" border="0" class="color_contenido">
+      <tr> 
+        <td align="center">
+           {if $ok=='N'}<input type="submit" name="adicionar_boton" value="Guardar Configuraci&oacute;n" class="boton">{/if}&nbsp;
+          </td>
+      </tr>
+    </table>
+</form>	
+</div>
+<br><br><br>
+</body>
+</html>

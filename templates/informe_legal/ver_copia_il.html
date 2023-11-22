@@ -1,0 +1,610 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/informe_legal_inmueble.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="bottom" height="20">
+		</td>
+		<td width="200" valign="bottom" height="20">
+			<div align="right">
+			<font class="tabla_titulo_contenido">
+			<a href="../code/_main.php?action=informe_legal.php" class="link_tabla">
+				Volver a lista de Informes
+			</a>
+			</font>
+			</div>
+		</td>
+		</tr>
+
+	</table>
+<br>
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Copia Informe Legal - {$tipo_bien}</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	 
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Cliente :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <strong>{$cliente}</strong>
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">&nbsp;</td>
+		 <td width="210" nowrap align="left" class="borde_tabla"></td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="100" nowrap align="right" class="borde_tabla" valign="middle">N&ordm; 
+          Doc. :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <strong>{$ci_cliente}&nbsp;{$emision}</strong>
+		</td>
+        <td width="100" nowrap align="right" class="borde_tabla" valign="middle">&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 
+		 </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Datos del Propietario 
+			</div>
+		</td>
+	  </tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla" align="center">
+			<select name="lista_personas" {if $cantidad_lista <= 2}size="2"{else}size="{$cantidad_lista}"{/if}>
+				{section name=lista loop=$lista_personas}
+					<option value="{$lista_personas[lista.index]}">{$lista_personas[lista.index]}</option>
+				{sectionelse}
+				<option value="0">Sin Propietario(s) Registrado(s)</option>
+				{/section}
+			</select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+{if $tipo == '1'}
+	  <tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Datos Generales del Inmueble<a name="acc2"></a> </div>
+		</td>
+	  </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla" valign="top">Descripci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla" valign="top">
+		 <strong>{$descripcion_bien}</strong>&nbsp;
+		 </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla" valign="top">Extensi&oacute;n y&nbsp;&nbsp;<br>Resoluciones :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla" valign="top">
+		 <strong>{$extension}</strong>&nbsp;
+		 </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla" valign="top">Ubicaci&oacute;n :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla" valign="top">
+		 <strong>{$ubicacion}</strong>&nbsp;
+		 </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla" valign="top">Registro D.R. :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla" valign="top">
+		 <strong>{$registro_dr}</strong>&nbsp;
+		 </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla" valign="top">Datos Doc. :&nbsp;</td>
+        <td width="520" colspan="3" align="left" class="borde_tabla" valign="top">
+		 <strong>{$datos_documento}</strong>&nbsp;
+		 </td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Superf. S/T :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$superficie_titulo}</strong>&nbsp;
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">Superf. S/P :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$superficie_plano}</strong>&nbsp;
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" height="17" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">L&iacute;mite Este :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$limite_este}</strong>&nbsp;
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">L&iacute;mite Oeste :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$limite_oeste}</strong>&nbsp;
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">L&iacute;mite Norte :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$limite_norte}</strong>&nbsp;
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">L&iacute;mite Sud :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$limite_sud}</strong>&nbsp;
+		</td>
+      </tr>
+{else}
+ {if  $tipo == '3'}
+ <tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Datos Generales del Veh&iacute;culo<a name="acc2"></a>
+			</div>
+		</td>
+	  </tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Placa :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$placa}</strong>&nbsp;
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">Marca :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$marca}</strong>&nbsp;
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Chasis :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+<strong>{$chasis}</strong>&nbsp;		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">Modelo :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+<strong>{$modelo}</strong>&nbsp;		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Motor :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$motor}</strong>&nbsp;
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">Clase :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		<strong>{$clase}</strong>&nbsp;
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Tipo :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$tipo_a}</strong>&nbsp;
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">Color :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$color}</strong>&nbsp;
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">CRPVA :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$crpva}</strong>&nbsp;
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">Fecha :&nbsp;</td>
+        <td width="310" align="left" class="borde_tabla">
+		 <strong>{$fecha_vehiculo}</strong>&nbsp;
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="100" nowrap align="right" class="borde_tabla">P&oacute;liza 
+          :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <strong>{$poliza}</strong>&nbsp;
+		</td>
+        <td width="100" nowrap align="right" class="borde_tabla">Alcald&iacute;a 
+          :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <strong>{$alcaldia}</strong>&nbsp;
+		</td>
+      </tr>
+ {else}
+ {if  $tipo == '2'}
+ <tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Datos Generales de la maquinaria<a name="acc2"></a>
+			</div>
+		</td>
+	  </tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Descripci&oacute;n :&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" colspan="3">
+		 <strong>{$tipo_a}</strong>&nbsp;
+		</td>
+		
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Serie :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <strong>{$placa}</strong>&nbsp;
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">Marca :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <strong>{$marca}</strong>&nbsp;
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Motor :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <strong>{$motor}</strong>&nbsp;
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">Modelo :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		<strong>{$modelo}</strong>&nbsp;
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Chasis :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <strong>{$chasis}</strong>&nbsp;
+		</td>
+		<td width="100" nowrap align="right" class="borde_tabla">P&oacute;liza de Imp. :&nbsp;</td>
+        <td width="210" align="left" class="borde_tabla">
+		 <strong>{$poliza}</strong>&nbsp;
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="100" nowrap align="right" class="borde_tabla">Reg. SEDAG :&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" colspan="3">
+		 <strong>{$crpva}</strong>&nbsp;
+		</td>
+		
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+	  	<td width="100" nowrap align="right" class="borde_tabla">Otro :&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" colspan="3">
+		 <strong>{$clase}</strong>&nbsp;
+		</td>
+      </tr>
+	{else}
+	{if  $tipo == '6'} {* semovientes *}
+	
+	{else}
+	{if  $tipo == '5'} {* personeria juridica *}
+	{else} {* otros *}		
+				{/if}		
+			{/if}
+		{/if}
+	{/if}
+{/if}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+</table>
+<!-- table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="640" colspan="7" valign="middle" height="30" class="borde_lista">
+		<table width="620" border="0" cellpadding="0" cellspacing="0">
+		<tr class="tabla_titulo_color">
+		<td width="410" colspan="4" >&nbsp;* Documentaci&oacute;n Requerida
+		</td>
+		<td width="210" colspan="3" ><div align="right">
+		Tomar en cuenta&nbsp;<img src="../imagenes/pass/accept.jpg" border="0"></div>
+		</td>
+        </tr>
+		</table>
+		</td>
+	</tr>
+	<tr class="tabla_titulo_color">
+		<td width="240" valign="middle" height="30" class="borde_lista">
+		<div align="left"> Documento</div>
+		</td>
+		<td width="50" valign="middle" height="30" class="borde_lista" align="right">
+		<div align="left"> N&ordm;</div>
+		</td>
+		<td width="60"  valign="middle" height="30" class="borde_lista">
+		<div align="left"> Fecha</div>
+		</td>
+		<td width="60" valign="middle" height="30" class="borde_lista">
+		<div align="left"> Fecha Venc.</div>
+		</td>
+		<td width="150" valign="middle" height="30" class="borde_lista">
+		<div align="left"> Tipo</div>
+		</td>
+		<td width="35" valign="middle" height="30" class="borde_lista" align="right">
+		<div align="left"> Fs.</div>
+		</td>
+		<td width="25" valign="middle" height="30" class="borde_lista">
+		<div align="center"><img src="../imagenes/pass/accept.jpg" border="0">
+          </div>
+		</td>
+	</tr>
+   
+	  {section name=lista loop=$docus}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="240" nowrap align="left" class="borde_parecido" valign="top">
+			{$docus[lista.index].documento}&nbsp;
+			<input type="hidden" name="documento_id[]" value="{$docus[lista.index].id_documento}">
+		</td>
+		<td width="50" nowrap align="left" class="borde_parecido" valign="top">
+			<input type="text" name="numero[]" class="input_derecha" size="10" value="{$infor[lista.index].numero}">
+			
+		</td>
+		<td width="60" nowrap align="left" class="borde_parecido" valign="top">
+			{if $docus[lista.index].tiene_fecha == 1}
+				{if $docus[lista.index].vencimiento == 1}
+					<input type="text" name="fecha_{$smarty.section.lista.index}" class="input_derecha" size="12" 
+					value="{$infor[lista.index].fechas}">
+					<input type="hidden" name="vencim_{$smarty.section.lista.index}" value="{$docus[lista.index].meses_vencimiento}">
+				{else}
+					<input type="text" name="fecha_{$smarty.section.lista.index}" class="input_derecha" size="12" value="{$infor[lista.index].fechas}" onKeyUp="colocar_fecha(fecha_{$smarty.section.lista.index})">
+				{/if}
+			{else}
+				&nbsp;
+			{/if}
+		</td>
+		<td width="60 nowrap align="left" class="borde_parecido" valign="top">
+			{if $docus[lista.index].vencimiento == 1}
+				<input type="text" name="fecha_venc{$smarty.section.lista.index}" class="input_derecha" size="12" value="{$infor[lista.index].fechas_vencimiento}" onKeyUp="colocar_fecha(fecha_venc{$smarty.section.lista.index})">
+			{else}
+				&nbsp;
+			{/if}
+		</td>
+		<td width="150" nowrap align="left" class="borde_parecido" valign="top">
+			<select name="tipo_documento[]" class="input">
+				<option value="0">-----</option>
+				{section name=lista2 loop=$tipodocs}
+					<option value="{$tipodocs[lista2.index].id}"
+					{if $infor[lista.index].ids_tipo_documento == $tipodocs[lista2.index].id}
+						 selected{/if}>{$tipodocs[lista2.index].tipo}</option>
+				{/section}
+			</select>
+		</td>
+		<td width="35" nowrap align="left" class="borde_parecido" valign="top">
+			<input type="text" name="fojas[]" value="{$infor[lista.index].fojas}" class="input_derecha" size="3" >
+		</td>
+		<td width="25" nowrap class="borde_parecido" valign="top"><div align="center">
+				<input type="checkbox" name="tomar_{$smarty.section.lista.index}" class="input" {if $infor[lista.index].tomar_en_cuenta == 1}checked{/if}>
+			</div>
+		</td>
+	  </tr>
+    <tr class="tabla_titulo_contenido">
+		<td width="250" valign="middle" height="30" class="borde_tabla" align="right">
+		Obs:</td>
+        <td valign="middle" height="30" class="borde_tabla" colspan="6">
+		<div align="left">
+		<textarea name="obs_{$smarty.section.lista.index}" class="input" rows="2" cols="69">{$infor[lista.index].observaciones}</textarea>
+		</div>
+		</td>
+    </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="7" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  {/section}
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="7" class="borde_tabla">&nbsp;</td>
+      </tr>
+</table -->
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+{if $tipo == '1'}
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Tradici&oacute;n</div>
+		</td>
+	  </tr>
+	
+      <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">
+		&nbsp;
+          <textarea name="tradicion" cols="98" rows="10" class="input" id="tradicion" readonly>{$tradicion}</textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+    </tr>
+{/if}
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Otras Observaciones </div>
+		</td>
+	  </tr>
+	
+      <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">
+		&nbsp;
+          <textarea name="otras_observaciones" cols="98" rows="10" class="input" id="otras_observaciones" readonly>{$otras_observaciones}</textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+    </tr>
+	
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Nota <a name="number2"></a></div>
+		</td>
+	  </tr>
+	
+      <tr class="tabla_titulo_contenido">
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">
+		&nbsp;
+          <textarea name="nota" cols="98" rows="3" class="input" id="nota" readonly>{$nota}</textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+    </tr>
+	
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Garant&iacute;a Contrato&nbsp;&nbsp; </div>
+		</td>
+	  </tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">
+		&nbsp;
+          <textarea name="garantia_contrato" cols="98" rows="6" class="input" id="garantia_contrato" readonly>{$garantia_contrato}</textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+    </tr>
+	
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="left"> 
+            &nbsp;* Conclusiones</div>
+		</td>
+	  </tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">
+		&nbsp;
+          <textarea name="conclusiones" cols="98" rows="3" class="input" id="conclusiones" readonly>{$conclusiones}</textarea>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp;</td>
+    </tr>
+</table>
+
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp;</td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap>
+		<form name="formulario" method="post" action="../code/_main.php?action=informe_legal.php" ><div align="right">
+           <input type="submit" name="copiar_boton" value="Copiar este I.L." class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="copiar_boton_x" value="{$tipo}">
+			<input type="hidden" name="tipo" value="{$tipo}">
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="idnew" value="{$idnew}">
+          </div></form></td>
+        <td width="310"><form name="adicionar_cancelar" method="post" action="../code/_main.php?action=informe_legal.php" onSubmit="des_eliminar_confirmar()">
+		<div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="adicionar_boton_cancelar" value="Cancelar" class="boton"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		<input type="hidden" name="estado_formulario" value="modificar">
+		</div></form>
+		</td>
+      </tr>
+    </table>
+
+</div>
+<br>
+</body>
+</html>

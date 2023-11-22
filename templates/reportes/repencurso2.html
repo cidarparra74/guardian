@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+</head>
+
+<body>
+<div align='left'>
+<table width='620' cellpadding='0' cellspacing='0' border='0' align='left' >
+	<tr>
+		<td width="200" align="left">
+			<img src="{$logo}">
+		</td>
+		<td width="420" align="left">
+			<h4>Reporte de Tr&aacute;mites en curso</h4>
+		</td>
+	</tr>
+	<tr>
+	<tr>
+	<td width="600" colspan="2" align="left">
+
+	<table width='600' cellpadding='0' cellspacing='0' border='1' align='left' class='tableBorder'>
+
+		{assign var="suma" value=0}
+		{assign var="grupo" value=$listado[0].id}
+		{section name=lista loop=$listado}
+			
+			{if $listado[lista.index].id!=$grupo}
+					{assign var="grupo" value=$listado[lista.index].id }
+			<tr>
+			<td valign='top' colspan="3">
+				&nbsp;
+			</td>
+			<td valign='top' align="right">
+				&nbsp;<strong>{$suma}</strong>&nbsp;&nbsp;
+			</td>
+			</tr>{assign var="suma" value=0}
+			{/if}
+			
+			{if $suma==0 && $listado[lista.index].oficina != '-x-'}
+			<tr>
+			<td valign='top' width='560' colspan="3">
+				&nbsp;<strong>{$listado[lista.index].oficina}</strong>
+			</td>
+			<td valign='top' width='40' align="right">
+				&nbsp;
+			</td>
+			</tr>
+			<tr>
+			<td width='225' valign='top'>
+				<b>Nombre ASESOR</b>
+			</td>
+			<td width='225' valign='top'>
+				<b>Garant&iacute;a</b>
+			</td>
+			<td width='110' valign='top'>
+				<b>Estado</b>
+			</td>
+			<td width='40' valign='top'>
+				<b>Cantidad</b>
+			</td>
+			</tr>
+			{/if}
+		{if $listado[lista.index].nro != '00'}	
+		<tr>
+		<td valign='top'>
+			&nbsp;&nbsp;{$listado[lista.index].usuario}
+		</td>
+		<td valign='top'>
+			&nbsp;{$listado[lista.index].tipo_bien}
+		</td>
+		<td valign='top'>
+			{if $listado[lista.index].nro == '01'}
+				En agencia - Asesor de Cr&eacute;dito
+			{else}
+				{if $listado[lista.index].nro == '02'}
+				En Agencia - EncarGado de Operaciones
+			{else}
+				{if $listado[lista.index].nro == '03'}
+				En Agencia - Gerente Agencia
+			{else}
+				{if $listado[lista.index].nro == '04'}
+				En elaboraci&oacute;n de I.L.
+			{else}
+				{if $listado[lista.index].nro == '05'}
+				En elaboraci&oacute;n de I.L.
+			{else}
+				{if $listado[lista.index].nro == '06'}
+				Publicado (Rojo)
+			{else}
+				{if $listado[lista.index].nro == '07'}
+				Publicado (Amarillo)
+			{else}
+				{if $listado[lista.index].nro == '08'}
+				Publicado (Verde)
+			{else}
+				{if $listado[lista.index].nro == '09'}
+				Publicado (sin bandera)
+			{else}
+				* {$listado[lista.index].nro}
+			{/if}
+			{/if}
+			{/if}
+			{/if}
+			{/if}
+			{/if}
+			{/if}
+			{/if}
+			{/if}
+		</td>
+		<td valign='top'>
+			&nbsp;&nbsp;{$listado[lista.index].cant}
+		</td>
+		</tr>
+		{/if}
+		{assign var="suma" value=$suma+$listado[lista.index].cant}
+		{/section}
+	</table>
+	</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

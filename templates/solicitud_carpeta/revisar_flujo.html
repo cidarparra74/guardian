@@ -1,0 +1,201 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/comun_solicitud.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" onLoad="cargar_modificar_prestar()" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr class="tabla_titulo_contenido">
+		<td width="150" valign="bottom" height="20"align="right" >
+				<strong>Propietario :</strong> 
+		</td>
+		<td width="470" valign="bottom" height="20">
+			{$nombres}&nbsp;
+		</td>
+		</tr>
+		
+		<tr class="tabla_titulo_contenido">
+		<td  valign="middle" height="30" align="right">
+				<strong>CI :</strong> 
+		</td>
+		<td valign="middle" height="30">
+			{$ci}&nbsp;
+		</td>
+		</tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td  nowrap align="right" >Operaci&oacute;n :&nbsp;</td>
+        <td  align="left" class="tabla_titulo_contenido">
+		 {$operacion}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td  nowrap align="right" >Tipo : &nbsp;</td>
+        <td  align="left" class="tabla_titulo_contenido">
+		 {$tipo}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td  nowrap align="right" >Oficina : &nbsp;</td>
+        <td  align="left" class="tabla_titulo_contenido">
+		 {$oficina}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td  nowrap align="right" >Desc : &nbsp;</td>
+        <td  align="left" class="tabla_titulo_contenido">
+		 {$carpeta}</br>
+		</td>
+      </tr>
+	</table>
+	
+	{section name=lista loop=$movimientos}
+	
+<form name="form_$movimientos[lista.index].idm}" method="post" action="{$carpeta_entrar}" >
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Revisi&oacute;n de Prestamo de Carpeta</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Solicitante: :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <select name="us_inicio" class="input">
+					<option value="0">---</option>
+			{section name=listau loop=$ids_usuario}
+				{if $ids_usuario[listau.index].id_usuario == $movimientos[lista.index].us_inicio}
+					<option value="{$ids_usuario[listau.index].id_usuario}" selected>{$ids_usuario[listau.index].nombres}</option>
+				{else}
+					<option value="{$ids_usuario[listau.index].id_usuario}">{$ids_usuario[listau.index].nombres}</option>
+				{/if}
+			{/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Usuario Destino :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <select name="us_comun" class="input">
+					<option value="0">---</option>
+			{section name=listau loop=$ids_usuario}
+				{if $ids_usuario[listau.index].id_usuario == $movimientos[lista.index].us_comun}
+					<option value="{$ids_usuario[listau.index].id_usuario}" selected>{$ids_usuario[listau.index].nombres}</option>
+				{else}
+					<option value="{$ids_usuario[listau.index].id_usuario}">{$ids_usuario[listau.index].nombres}</option>
+				{/if}
+			{/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Usuario Autoriza :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <select name="us_autoriza" class="input">
+					<option value="0">---</option>
+			{section name=listau loop=$ids_usuario}
+				{if $ids_usuario[listau.index].id_usuario == $movimientos[lista.index].us_autoriza}
+					<option value="{$ids_usuario[listau.index].id_usuario}" selected>{$ids_usuario[listau.index].nombres}</option>
+				{else}
+					<option value="{$ids_usuario[listau.index].id_usuario}">{$ids_usuario[listau.index].nombres}</option>
+				{/if}
+			{/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Usuario Catastro :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <select name="us_archivo" class="input">
+					<option value="0">---</option>
+			{section name=listau loop=$ids_usuario}
+				{if $ids_usuario[listau.index].id_usuario == $movimientos[lista.index].us_archivo}
+					<option value="{$ids_usuario[listau.index].id_usuario}" selected>{$ids_usuario[listau.index].nombres}</option>
+				{else}
+					<option value="{$ids_usuario[listau.index].id_usuario}">{$ids_usuario[listau.index].nombres}</option>
+				{/if}
+			{/section}
+		 </select>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  {*
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Observaci&oacute;n :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <textarea class="input" name="observacion" rows="3" cols="70">{$observacion}</textarea>
+		</td>
+      </tr>
+	  *}
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="150" nowrap align="right" class="borde_tabla">Estado :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <select name="estado" class="input">
+			{section name=listae loop=$estados}
+				{if $estados[listae.index].id == $movimientos[lista.index].estado}
+					<option value="{$estados[listae.index].id}" selected>{$estados[listae.index].est}</option>
+				{else}
+					<option value="{$estados[listae.index].id}">{$estados[listae.index].est}</option>
+				{/if}
+			{/section}
+		 </select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+
+    </table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+			<input type="submit" name="revisar_flujo_boton" value=" Guardar " class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="id_cp" value="{$id_cp}">
+			<input type="hidden" name="id_movimiento" value="{$movimientos[lista.index].idm}">
+			<input type="hidden" name="carpeta_propietario" value="{$movimientos[lista.index].idm}">
+          </div></td>
+		  
+</form>	
+
+ 	
+
+<form name="modificar_prestar_cancelar" method="post" action="{$carpeta_entrar}" onSubmit="des_verificar_prestar_mod()">
+        <td width="310"><div align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="carpeta_propietario" value="Cancelar" class="boton">
+			<input type="hidden" name="id_cp" value="{$id_cp}">
+		</div>
+		</td>
+</form>		
+      </tr>
+    </table>
+	
+{/section}
+
+</div>
+
+</body>
+</html>

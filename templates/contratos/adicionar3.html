@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/contratosx.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0"  class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+<br>
+<table width="620" border="0" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_contenido"> 
+		<td width="620"  valign="middle" height="30">&nbsp;<strong>Algunas cl&aacute;usulas tienen incisos</strong><br>&nbsp;Seleccione los que correspondan</td>
+	</tr>
+</table>
+<form name="adicionar" method="post" action="{$carpeta_entrar}" >
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620"  valign="middle" height="30" class="borde_lista" colspan="2"><div align="center">{$contrato}{if $tipoope}<br>{$tipoope}{/if}</div>
+		</td>
+	</tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp; </td>
+      </tr>{assign var="lugar_grupo" value="xxx"}{assign var="pararadio" value="-1"}
+      {section name=lista loop=$clausulas}{if $clausulas[lista.index].id <> $lugar_grupo}
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" align="left" colspan="2" class="borde_tabla" >&nbsp;&nbsp;	
+			<strong>{$clausulas[lista.index].titulo}</strong><br><br>{assign var="lugar_grupo" value=$clausulas[lista.index].id}{assign var="pararadio" value=$pararadio+1}
+		</td>
+      </tr>{/if}
+	 <tr class="tabla_titulo_contenido"> 
+        <td width="100"  class="borde_tabla">&nbsp; </td>
+		<td width="520" align="left" class="borde_tabla" >
+		{if $clausulas[lista.index].excluye=='0'}
+			<input type="checkbox" name="opc_{$smarty.section.lista.index}" {$clausulas[lista.index].marcado}>&nbsp;{$clausulas[lista.index].inciso}
+		{else}
+			<input type="radio" name="rad_{$pararadio}" value="{$clausulas[lista.index].idnumeral}" {$clausulas[lista.index].marcado}>&nbsp;{$clausulas[lista.index].inciso}
+		{/if}
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  {/section}  
+</table>
+
+	<table width="620" border="0" class="color_contenido">
+      <tr class="tabla"> 
+        <td width="620" colspan="2">&nbsp; </td>
+      </tr>
+      <tr class="tabla"> 
+        <td width="310" nowrap><div align="right">
+            <input type="submit" name="adicionar4" value="Siguiente" class="boton">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</div></td>
+		  <td width="310"><div align="left">
+		<input type="button" name="boton_cancelar" value="Cancelar" class="boton" onClick="des_verificar_adicion()">
+		</div>
+		</td>
+      </tr>
+    </table>
+</form>
+<form name="adicionar_cancelar" method="post" action="{$carpeta_entrar}&filtro=1 ">
+<input type="hidden" name="adicionar_boton_cancelar" value="s"> 
+		<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+</form>
+</div>
+
+</body>
+</html>

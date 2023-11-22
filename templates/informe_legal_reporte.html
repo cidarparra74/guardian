@@ -1,0 +1,217 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_propietarios.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido" >
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<SCRIPT LANGUAGE='JavaScript' SRC='../../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="2" height="20" valign="middle" align="center"> &nbsp;Opciones de Reporte</td>
+	</tr>
+  
+     <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">Recinto :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 	<select name="id_almacen" class="input" onChange="document.buscar.submit();">
+				{section name=lista loop=$recintos}
+				<option value="{$recintos[lista.index].id_almacen}" {if $id_almacen == $recintos[lista.index].id_almacen}selected{/if}>{$recintos[lista.index].nombre}</option>
+				{/section}
+		 	</select>
+		</td>
+      </tr>
+	  
+	 <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">Solicitante :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 	<select name="filtro_sol" class="input">
+				<option value="*">(Todos)</option>
+				{section name=lista loop=$usuariosol}
+				<option value="{$usuariosol[lista.index].id_usuario}" {if $filtro_sol == $usuariosol[lista.index].id_usuario}selected{/if}>{$usuariosol[lista.index].nombres}</option>
+				{/section}
+		 	</select>
+		</td>
+      </tr>
+	  
+	  <!-- tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">Abogado :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 	<select name="filtro_abo" class="input">
+				<option value="*">(todos)</option>
+				{section name=lista loop=$usuarioabo}
+				<option value="{$usuarioabo[lista.index].id_usuario}" {if $filtro_abo == $usuarioabo[lista.index].id_usuario}selected{/if}>{$usuarioabo[lista.index].nombres}</option>
+				{/section}
+		 	</select>
+		</td>
+      </tr -->
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">Solicitudes desde :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 <input name="filtro_fecha" type="text" class="input" id="filtro_fecha" value="{$filtro_fecha}" size="15" maxlength="10">&nbsp;&nbsp;Hasta :&nbsp;<input name="filtro_fech2" type="text" class="input" id="filtro_fech2" value="{$filtro_fech2}" size="15" maxlength="10">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="28" valign="middle">Estado del I.L. :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 	<select name="estado" class="input">
+				<option value="*" {if $estado == '*'}selected{/if}>(Todos)</option>
+				<!-- option value="sol" {if $estado == 'sol'}selected{/if}>Solicitado</option>
+				<option value="apr" {if $estado == 'apr'}selected{/if}>Autorizado</option -->
+				<option value="ace" {if $estado == 'ace'}selected{/if}>En elaboraci&oacute;n</option>
+				<option value="pub" {if $estado == 'pub'}selected{/if}>Publicado</option>
+				<option value="npu" {if $estado == 'npu'}selected{/if}>Despublicado</option>
+		 	</select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="28" valign="middle">Tipo de Reporte :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 	<select name="reporte" class="input">
+				<option value="1" {if $reporte == '1'}selected{/if}>Detallado</option>
+				<option value="2" {if $reporte == '2'}selected{/if}>Resumido</option>
+				<!-- option value="3" {if $reporte == '3'}selected{/if}>Resumido por bancas</option -->
+		 	</select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">&nbsp;</td>
+		<td width="500" align="left" valign="middle">
+		 <input type="submit" name="buscar_boton" value=" Aceptar " class="boton">
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+{if $listado}
+
+{if $reporte == '1'}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	{assign var=alm value='0'}
+	{assign var=ofi value='0'}
+	{assign var=abo value='0'}
+	{assign var=est value='0'}
+	{section name=lista loop=$listado}
+		{if $listado[lista.index].almacen!=$alm || $listado[lista.index].oficina!=$ofi || $listado[lista.index].abogado!=$abo}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="7" class="borde_lista" align="left"><strong>
+		&nbsp;Recinto :&nbsp;{$listado[lista.index].almacen}<br />
+		&nbsp;Agencia :&nbsp;{$listado[lista.index].oficina}<br />
+		&nbsp;Abogado :&nbsp;{$listado[lista.index].abogado}</strong></td>
+	</tr>
+	<tr class="tabla_titulo_color">
+		<td width="60"  class="borde_lista">&nbsp;Nro</td>
+		<td width="80"  class="borde_lista">&nbsp;Solicitado</td>
+		<td width="110" class="borde_lista">&nbsp;Cliente</td>
+		<td width="80"  class="borde_lista">&nbsp;C.I.</td>
+		<td width="110" class="borde_lista">&nbsp;Solicita</td>
+		<td width="80"  class="borde_lista">&nbsp;Aceptado</td>
+		<td width="100" class="borde_lista">&nbsp;Garant&iacute;a</td>
+	</tr>
+		{assign var=alm value=$listado[lista.index].almacen}
+		{assign var=ofi value=$listado[lista.index].oficina}
+		{assign var=abo value=$listado[lista.index].abogado}
+		{assign var=est value='0'}
+		{/if}
+	{if $listado[lista.index].estado!=$est}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="7" class="borde_lista">&nbsp;<strong>Estado : {$listado[lista.index].estado}
+		</strong></td>
+	</tr>{assign var=est value=$listado[lista.index].estado}
+	{/if}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista">&nbsp;{$listado[lista.index].id}</td>
+		<td class="borde_lista">&nbsp;{$listado[lista.index].fsol}</td>
+		<td class="borde_lista">&nbsp;{$listado[lista.index].cliente}</td>
+		<td class="borde_lista">&nbsp;{$listado[lista.index].ci}</td>
+		<td class="borde_lista">&nbsp;{$listado[lista.index].solicita}</td>
+		<td class="borde_lista">&nbsp;{$listado[lista.index].face}</td>
+		<td class="borde_lista">&nbsp;{$listado[lista.index].tipo_bien}</td>
+	</tr>
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="7" height="20" valign="middle" class="borde_lista">&nbsp;(Vacio, utilice la opci&oacute;n de b&uacute;squeda)</td>
+	</tr>
+	{/section}
+</table>
+{else}{if $reporte == '2'}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	{assign var=alm value='0'}
+	{assign var=ofi value='0'}
+	{section name=lista loop=$listado}
+		{if $listado[lista.index].almacen!=$alm || $listado[lista.index].oficina!=$ofi }
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="5" class="borde_lista" align="left"><strong>
+		&nbsp;Recinto :&nbsp;{$listado[lista.index].almacen}<br />
+		&nbsp;Agencia :&nbsp;{$listado[lista.index].oficina}</strong></td>
+	</tr>
+	<tr class="tabla_titulo_color">
+		<td width="300" class="borde_lista">&nbsp;Abogado</td>
+		<td width="80" class="borde_lista">&nbsp;En elaboración</td>
+		<td width="80" class="borde_lista">&nbsp;Publicado</td>
+		<td width="80" class="borde_lista">&nbsp;Despublicado</td>
+		<td width="80" class="borde_lista">&nbsp;Total</td>
+	</tr>{assign var=alm value=$listado[lista.index].almacen}
+		{assign var=ofi value=$listado[lista.index].oficina}
+	{/if}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista">&nbsp;{$listado[lista.index].nombres}</td>
+		<td class="borde_lista">&nbsp;{$listado[lista.index].A}</td>
+		<td class="borde_lista">&nbsp;{$listado[lista.index].B}</td>
+		<td class="borde_lista">&nbsp;{$listado[lista.index].C}</td>
+		<td class="borde_lista">&nbsp;{$listado[lista.index].total}</td>
+	</tr>
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="5" height="20" valign="middle" class="borde_lista">&nbsp;(Vacio, utilice la opci&oacute;n de b&uacute;squeda)</td>
+	</tr>
+	{/section}
+</table>
+{else}
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="200" class="borde_lista">
+			&nbsp;Banca
+		</td>
+		<td width="240" class="borde_lista">
+			&nbsp;Tipo Garant&iacute;a
+		</td>
+		<td width="100" class="borde_lista">
+			&nbsp;Estado
+		</td>
+		<td width="80" class="borde_lista">&nbsp;Cantidad</td>
+	</tr>
+	{section name=lista loop=$listado}
+	<tr class="tabla_titulo_contenido">
+		<td class="borde_lista">
+			&nbsp;{$listado[lista.index].banca}
+		</td>
+		<td class="borde_lista">
+			&nbsp;{$listado[lista.index].tipo_bien}
+		</td>
+		<td class="borde_lista">&nbsp;{$listado[lista.index].estado}</td>
+		<td class="borde_lista">&nbsp;{$listado[lista.index].cant}</td>
+	</tr>
+	{sectionelse}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="5" height="20" valign="middle" class="borde_lista">&nbsp;(Vacio, utilice la opci&oacute;n de b&uacute;squeda)</td>
+	</tr>
+	{/section}
+</table>
+{/if}
+{/if}
+{/if}
+<br>
+</div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/contratos.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido" >
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<SCRIPT LANGUAGE='JavaScript' SRC='../../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br />
+<br />
+
+<form name="seleccion" method="post" action="{$carpeta_entrar}" >
+<table width="620" cellpadding="0" cellspacing="0" border="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="2" height="20" valign="middle" align="center"> &nbsp;
+		{if $quien == 'A'}CAJA DE AHORRO PERSONA NATURAL
+		{else}{if $quien == 'B'}CUENTA CORRIENTE PERSONA NATURAL
+		{else}CONTRATO COMPLEMENTARIO POR SERVICIO(S) ADICIONAL(ES){/if}{/if}</td>
+	</tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" align="center" class="borde_tabla" >&nbsp;</td>
+     </tr>
+{if $quien != 'C'}
+	<tr class="tabla_titulo_contenido"> 
+		<td width="100" align="center" class="borde_tabla" >&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" ><strong>{if $quien == 'A'}Tipo de cliente:
+		{else}Contrato:{/if}</strong></td>
+     </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" align="center" class="borde_tabla" >&nbsp;</td>
+    </tr>
+	
+	<tr class="tabla_titulo_contenido"> 
+		<td width="100" align="center" class="borde_tabla" >&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" >
+		{if $contratos}
+		 	{section name=lista loop=$contratos}
+			<label for="rad{$contratos[lista.index].id}">
+		 	<input type="radio" name="idcontrato" value="{$contratos[lista.index].id}" id="rad{$contratos[lista.index].id}" 
+			{if $smarty.section.lista.index == '0'}checked{/if} >&nbsp;{$contratos[lista.index].titulo}
+			</label>
+			{/section}
+		{else}
+			No tiene contratos asignados!
+			</br>
+		{/if}
+			</br>
+		</td>
+      </tr>
+{else}
+	  
+		 	{section name=lista loop=$contratos}
+					<input type="hidden" name="idcontrato" value="{$contratos[lista.index].id}">
+			{/section}	
+{/if}			
+	<tr class="tabla_titulo_contenido"> 
+		<td width="100" align="center" class="borde_tabla" >&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" ><strong>Modalidad de registro de firma:</strong></td>
+     </tr>
+	<tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" align="center" class="borde_tabla" >&nbsp;</td>
+     </tr>
+	<tr class="tabla_titulo_contenido"> 
+		<td width="100" align="center" class="borde_tabla" >&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" ><label for="radU">
+		 	<label for="radU"><input type="radio" name="tipo" value="U" id="radU" checked onClick="chkdisable2(false)">&nbsp;Unipersonal</label></br></br>
+		 	<label for="radI"><input type="radio" name="tipo" value="I" id="radI" onClick="chkdisable2(false)">&nbsp;Colectiva Indistinta</label></br></br>
+		 	{if $quien != 'C'}
+			<label for="radC"><input type="radio" name="tipo" value="C" id="radC" onClick="chkdisable2(true)">&nbsp;Colectiva Conjunta</label>
+			{/if}
+		</td>
+      </tr>
+	{if $quien != 'C'}
+	<tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" align="center" class="borde_tabla" >&nbsp;</td>
+     </tr>
+	<tr class="tabla_titulo_contenido"> 
+		<td width="100" align="center" class="borde_tabla" >&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" ><strong>Servicios adicionales:</strong></td>
+     </tr>
+	 
+	<tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" align="center" class="borde_tabla" >&nbsp;</td>
+     </tr>
+	<tr class="tabla_titulo_contenido"> 
+		<td width="100" align="center" class="borde_tabla" >&nbsp;</td>
+        <td width="520" align="left" class="borde_tabla" ><label for="radU">
+		 	<label for="radS"><input type="radio" name="servicio" value="S" id="radS" checked>&nbsp;Con servicios adicionales</label></br></br>
+		 	<label for="radN"><input type="radio" name="servicio" value="N" id="radN">&nbsp;Sin servicios adicionales</label>
+		</td>
+      </tr>
+	{else}
+		
+					<input type="hidden" name="servicio" value="S">
+	{/if}
+	<tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="2" align="center" class="borde_tabla" >&nbsp;</td>
+     </tr>
+	 
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="2" ><div align="center">
+		<form name="adicion" method="post" action="{$carpeta_entrar}">
+					<input type="submit" name="adicionar" value="Siguiente" class="boton">
+					<input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+					<input type="hidden" name="edita" value="{$edita}">
+		</form>
+		</div></td>
+	</tr>
+	 
+</table>
+</form>
+
+<br>
+<br>
+<br>
+<br>
+</div>
+</body>
+</html>

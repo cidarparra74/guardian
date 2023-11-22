@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/autoriza_reportes.js">
+</SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+
+<div align="center">
+	<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="200" valign="bottom" height="20">
+		</td>
+		<td width="420" valign="bottom" height="20">
+			<div align="right"> <font class="tabla_titulo_contenido">
+			<a href="{$carpeta_entrar}" class="link_tabla"> 
+          Volver a Detalles de Impresi&oacute;n </a> </font> </div>
+		</td>
+		</tr>
+	</table>
+<form name="formulario" method="post" action="{$carpeta_entrar}" target="_blank">
+<table width="620" border="1" cellpadding="0" cellspacing="0" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" colspan="4" valign="middle" height="30" class="borde_lista"><div align="center"> 
+            Reporte de Documentos Observados</div>
+		</td>
+	</tr>
+	
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="120" 1 nowrap align="right" valign="top" class="borde_tabla">
+			Oficina:
+		</td>
+		<td width="500" colspan="3" nowrap align="left" valign="top" class="borde_tabla">
+			<select name="id_oficina">
+			{section name=lista loop=$oficinas}
+				<option value='{$oficinas[lista].id_oficina}'>{$oficinas[lista].nombre}&nbsp;</option>
+			{/section}
+			</select>
+		</td>
+      </tr>
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="150" nowrap align="right" valign="top" class="borde_tabla">Estado Carpetas 
+          :&nbsp;</td>
+        <td width="470" colspan="3" align="left" class="borde_tabla">
+		 <select name="estado" class="input">
+		 	<option value="todos" selected>Todos</option>
+			<option value="prestados">Prestados</option>
+			<option value="boveda">En B&oacute;veda</option>
+			<option value="cliente">Devueltos al Cliente</option>
+		 </select>
+		</td>
+      </tr>
+
+      <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+      <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="120" 1 nowrap align="right" valign="top" class="borde_tabla">
+			Ordenado por:
+		</td>
+		<td width="500" colspan="3" nowrap align="left" valign="top" class="borde_tabla">
+			<select name="orden">
+				<option value='1' selected>Nombre Propietario</option>
+				<option value='2'>Tipo de Garant&iacute;a</option>
+				<option value='3'>Tipo de Documento</option>
+			</select>&nbsp;&nbsp;
+			<!-- input type="checkbox" class="input" name="salto">&nbsp;Salto de p&aacute;gina entre grupos --></td>
+		</td>
+      </tr>
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="620" colspan="4" class="borde_tabla">&nbsp; </td>
+      </tr>
+
+      <tr class="tabla_titulo_contenido" valign="top"> 
+        <td width="120" 1 nowrap align="right" valign="top" class="borde_tabla">
+			Para Excel:
+		</td>
+		<td width="500" colspan="3" nowrap align="left" valign="top" class="borde_tabla">
+		<input type="checkbox" class="input" name="marcado">
+		</td>
+      </tr>
+	  
+	 
+    </table>
+	<br />
+	<input type="submit" name="docsobs" class="boton" value="Imprimir">&nbsp;
+			<input type="hidden" name="gorep" value="s">
+			
+</form>
+	
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/archivo_propietarios.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido" >
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<SCRIPT LANGUAGE='JavaScript' SRC='../../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<form name="buscar" method="post" action="{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="2" height="20" valign="middle" align="center"> &nbsp;Opciones de B&uacute;squeda</td>
+	</tr>
+  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">Agencia :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 	<select name="filtro_ofi" class="input">
+				<option value="*">(Todas)</option>
+				{section name=lista loop=$oficinas}
+				<option value="{$oficinas[lista.index].id}" {if $filtro_ofi == $oficinas[lista.index].id}selected{/if}>{$oficinas[lista.index].oficina}</option>
+				{/section}
+		 	</select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">Solicitado por :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 	<select name="filtro_usr" class="input">
+				<option value="*">(Todos)</option>
+				{section name=lista loop=$usuarios}
+				<option value="{$usuarios[lista.index].id}" {if $filtro_usr == $usuarios[lista.index].id}selected{/if}>{$usuarios[lista.index].nombres}</option>
+				{/section}
+		 	</select>
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">Cliente :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 	<input name="filtro_texto" type="text" class="input" id="filtro_texto" value="{$filtro_texto}" size="60" maxlength="100">
+		</td>
+      </tr>
+	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">De la fecha :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 <input name="filtro_fecha" type="text" class="input" id="filtro_fecha" value="{$filtro_fecha}" size="15" maxlength="10">&nbsp;&nbsp;A la Fecha :&nbsp;<input name="filtro_fech2" type="text" class="input" id="filtro_fech2" value="{$filtro_fech2}" size="15" maxlength="10">
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido"> 
+        <td width="120" nowrap align="right" height="30" valign="middle">Estado :&nbsp;</td>
+        <td width="500" align="left" valign="middle">
+		 	<select name="filtro_estado"  class="input" id="filtro_estado">
+			<option value="P" {if $filtro_estado == 'P'}selected{/if}>Pendientes</option>
+			<option value="R" {if $filtro_estado == 'R'}selected{/if}>Revisados</option>
+			</select> 
+		</td>
+      </tr>
+	  
+	  <tr class="tabla_titulo_contenido">
+        <td width="120" nowrap align="right" height="28" valign="middle">&nbsp;</td>
+		<td width="500" align="left" valign="middle">
+		 <input type="submit" name="buscar_boton" value=" Buscar " class="boton"><br><br>
+		 <input type="hidden" name="carpeta_entrar" value="{$carpeta_acc}">
+		</td>
+      </tr>
+</table>
+</form>
+{if $excepcions}
+{assign var="grupo" value='-0-'}
+{section name=lista loop=$excepcions}
+{if $grupo!=$excepcions[lista.index].id}
+{if $grupo!='-0-'}{if $filtro_estado == 'P'}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="3" class="borde_lista">
+		<a href="{$carpeta_entrar}&levantar={$idante}">Levantar Excepci&oacute;n</a>
+		</td>
+	</tr>{/if}
+</table>
+{/if}<br /><span class="tabla_titulo_contenido">
+&nbsp;Cliente: <strong>{$excepcions[lista.index].propietario}</strong> {if $excepcions[lista.index].nrocaso!='0'}Nro: <strong>{$excepcions[lista.index].nrocaso}</strong>{/if}
+{if $excepcions[lista.index].usuario}<br />(Solicita: {$excepcions[lista.index].usuario} de: {$excepcions[lista.index].oficina}){/if}</span>
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	{assign var="grupo" value=$excepcions[lista.index].id}
+	{assign var="idante" value=$excepcions[lista.index].id}
+	<tr class="tabla_titulo_color">
+		<td width="240" class="borde_lista">
+			&nbsp;Documento 
+		</td>
+		<td width="270" class="borde_lista">
+			&nbsp;Observaciones
+		</td>
+		<td width="110" class="borde_lista">
+			&nbsp;Fecha Limite
+		</td>
+		</tr>
+	{/if}
+	{if $excepcions[lista.index].documento !=''}
+	<tr class="tabla_titulo_contenido">
+		<td width="240" class="borde_lista">
+			{$excepcions[lista.index].documento}
+		</td>
+		<td width="270" class="borde_lista">&nbsp;{$excepcions[lista.index].obs}</td>
+		<td width="110" class="borde_lista">
+			&nbsp;{$excepcions[lista.index].fecha}&nbsp;{$excepcions[lista.index].limite}
+		</td>
+	</tr>
+	{else}
+	<tr class="tabla_titulo_contenido">
+		<td width="510" colspan="2" class="borde_lista"><strong>OBS:</strong> {$excepcions[lista.index].bandera}<br />
+		&nbsp;{$excepcions[lista.index].obs}</td>
+		<td width="110" class="borde_lista">
+			&nbsp;{$excepcions[lista.index].fecha}&nbsp;{$excepcions[lista.index].limite}
+		</td>
+	</tr>
+	{if $excepcions[lista.index].justifica !=''}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="3" class="borde_lista"><strong>Justificaci&oacute;n:</strong><br />
+		&nbsp;{$excepcions[lista.index].justifica}</td>
+	</tr>
+	{/if}
+	{if $excepcions[lista.index].aprobar !=''}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="3" class="borde_lista"><strong>Aprobaci&oacute;n/Rechazo:</strong><br />
+		&nbsp;{$excepcions[lista.index].aprobar}</td>
+	</tr>
+	{/if}
+	{/if}
+{/section}{if $filtro_estado == 'P'}
+	<tr class="tabla_titulo_contenido">
+		<td width="620" colspan="3" class="borde_lista">
+		<a href="{$carpeta_entrar}&levantar={$idante}">Levantar Excepci&oacute;n</a>
+		</td>
+	</tr>{/if}
+</table>
+{/if}
+<br>
+<br>
+<br>
+</div>
+</body>
+</html>

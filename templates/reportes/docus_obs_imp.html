@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+
+{literal}
+<style type="text/css">
+.tableBorder {border-collapse:collapse;
+font-family: arial; font-size: 10px;}
+.tdBorder {border:1px solid #808080}
+.font11{font-family: arial; font-size: 11px;}
+</style>
+{/literal}
+
+</head>
+
+<body>
+
+<div align='left'>
+<br>
+<table width='620' cellpadding='0' cellspacing='0' border='0' align='left' >
+	<tr>
+		<td width="300" align="left">
+			<img src="{$logo}">
+		</td>
+		<td width="320" align="left">
+			<h4>REPORTE DE DOCUMENTOS OBSERVADOS</h4>
+		</td>
+	</tr>
+	<tr>
+	<td width="600" colspan="2" align="left">
+	<table width='600' cellpadding='2' cellspacing='0' border='1' align='left' class='tableBorder'>
+		
+	{assign var="grupo" value="x"}
+	{section name=lista loop=$listado}
+	{if $listado[lista.index].id!=$grupo}
+		{assign var="grupo" value=$listado[lista.index].id}
+		<tr>
+		<td width='150' valign='top' >&nbsp;</td>
+		<td width='140' valign='top' >&nbsp;</td>
+		<td width='150' valign='top' >&nbsp;</td>
+		<td width='140' valign='top' >&nbsp;</td>
+		<td width='20' valign='top' >&nbsp;</td>
+		</tr>
+		<tr>
+		<td width='150' valign='top' >
+			Oficina:<br>
+			<b>{$listado[lista.index].oficina}</b> 
+		</td>
+		<td width='140' valign='top' >
+			Tipo Garant&iacute;a:<br>
+			<b>{$listado[lista.index].tipo_bien}</b>
+		</td>
+		<td width='150' valign='top' >
+			Cliente:<br>
+			<b>{$listado[lista.index].nombres}</b>
+		</td>
+		<td width='160' colspan="2" valign='top' >
+			Carpeta:<br>
+			<b>{$listado[lista.index].carpeta}</b>
+		</td>
+		</tr>
+		<tr>
+		<td width='290' valign='top' colspan="2" class='tdBorder'>
+			<b>Documento</b>
+		</td>
+		<td width='290' valign='top' colspan="2" class='tdBorder'>
+			<b>Observaci&oacute;n</b>
+		</td>
+		<td width='20' valign='top' class='tdBorder'>
+			<b>Fojas</b>
+		</td>
+		</tr>
+	{/if}
+		<tr>
+		<td width='290' colspan="2" valign='top' class='tdBorder'>
+			{$listado[lista.index].documento}
+		</td>
+		<td width='290' colspan="2" valign='top' class='tdBorder'>
+			{$listado[lista.index].observacion}
+		</td>
+		<td width='20' valign='top' class='tdBorder'>
+			{$listado[lista.index].fojas}&nbsp;
+		</td>
+		</tr>
+	{/section}
+	</table>
+	</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

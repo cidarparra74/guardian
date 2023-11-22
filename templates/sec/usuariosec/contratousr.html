@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/contratos.js"></SCRIPT>
+<LINK REL='stylesheet' type='text/css' href='../styles/php.css'>
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido" >
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<SCRIPT LANGUAGE='JavaScript' SRC='../../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<table width="620" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+		<td width="420" valign="middle" height="35">
+			<div align="left"> <font class="tabla_titulo_contenido"> 
+Usuario:<br /> <strong>{$nombres}</strong><br /></td>
+		<td width="200" valign="middle" height="35">
+			<div align="right"> <font class="tabla_titulo_contenido"> <a href="{$carpeta_entrar}" class="link_tabla"> 
+          Volver a los Usuarios</a> </font> </div>
+		</td>
+		</tr>
+	</table>
+<br />
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+      <td width="620" colspan="3" height="20" valign="middle" align="center"> &nbsp;Contratos</td>
+	</tr>
+{section name=lista loop=$contratous}	  
+      <tr class="tabla_titulo_contenido"> 
+        <td width="70" nowrap align="right"  valign="middle">{$contratous[lista.index].id}&nbsp;</td>
+        <td width="450" align="left" valign="middle">&nbsp;{$contratous[lista.index].titulo}&nbsp;</td>
+        <td width="100" align="left" valign="middle">&nbsp;
+		<a href="{$carpeta_entrar}&contrato=del&idcontrato={$contratous[lista.index].id}&id={$id}" onMouseOver=" overlib('Quitar este contrato',CAPTION,'Desvincular' ); return true" onMouseOut=" nd(); return true" onClick="return confirm('Proceder?');"> 
+			<img src="../imagenes/pass/eliminar.jpg" border="0"></a>
+		&nbsp;</td>
+      </tr>
+{/section}
+</table>
+
+
+{if $contratos}
+<form name="adicion" method="post" action="{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="0" class="borde_lista">
+	<tr>
+		<td  width="620"><div align="center">
+		<select name="idcontrato">
+		{section name=lista loop=$contratos}
+		<option value="{$contratos[lista.index].id}" >{$contratos[lista.index].titulo}</option>
+		{/section}
+		</select>
+		</div></td>
+	<tr>
+	</tr>
+		<td  width="620"><div align="center">
+			<input type="submit" name="adicontra" value="Adicionar" class="boton"> &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="hidden" name="id" value="{$id}" >
+			<input type="hidden" name="contrato" value="add" >
+		</div></td>
+	</tr>
+</table>
+</form>
+{/if}
+
+<br>
+<br> <!-- estos BR son para corregir el problema de los ultims tooltips de la lista -->
+</div>
+</body>
+</html>

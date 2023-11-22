@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>Administracion de Sistemas</title>
+<SCRIPT LANGUAGE="JavaScript" src="../scripts/autoriza_reportes.js">
+</SCRIPT>
+<style type=text/css>
+</style>
+<link href="../styles/php.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="SCROLLBAR-FACE-COLOR: {$color_de_scroll};" bottomMargin=0 leftMargin=0 topMargin=0 rightMargin=0 
+marginheight="0" marginwidth="0" class="color_contenido">
+<DIV ID='overDiv' STYLE='position:absolute; visibility:hide; z-index:1;'></DIV>
+<SCRIPT LANGUAGE='JavaScript' SRC='../overlib/overlib.js'></SCRIPT>
+<div align="center">
+<br>
+<form name="frmrep" method="post" action="{$carpeta_entrar}">
+<table width="620" cellpadding="0" cellspacing="0" border="1" align="center" class="borde_lista">
+	<tr class="tabla_titulo_color">
+		<td width="620" height="30" valign="middle" class="borde_lista" colspan="2" align="center">
+			Impresi&oacute;n de Reportes
+		</td>
+	</tr>
+	<!-- tr class="tabla_titulo_contenido">
+      <td width="550" height="20" class="borde_lista" valign="middle">&nbsp; Listado de Carpetas Aceptadas con Firma Autorizada</td>
+	  <td width="70" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&listado_ace_con_fa=acc" onMouseOver=" overlib('Imprimir un Listado de Carpetas Aceptadas con Firma Autorizada',CAPTION,'Imprimir' , ABOVE); window.status='Impresión'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir.gif" border="0">
+			</a>
+	  </div></td>
+	</tr -->
+	
+	<!-- tr class="tabla_titulo_contenido">
+      <td width="550" height="20" class="borde_lista" valign="middle">&nbsp; Inventario F&iacute;sico Detallado de Carpetas</td>
+	  <td width="70" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&inv_detallado_carpetas=acc" onMouseOver=" overlib('Imprimir el Inventario detallado de las Carpetas',CAPTION,'Imprimir' , ABOVE); window.status='Impresión'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir.gif" border="0">
+			</a>
+	  </div></td>
+	</tr -->
+	
+	<!-- tr class="tabla_titulo_contenido">
+      <td width="550" height="20" class="borde_lista" valign="middle">&nbsp; Inventario F&iacute;sico Detallado de Carpetas por C&oacute;digo MIS</td>
+	  <td width="70" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&inv_detallado_mis=acc" onMouseOver=" overlib('Imprimir el Inventario detallado de las Carpetas por Código MIS',CAPTION,'Imprimir',CAPCOLOR,'{$acc_color_txt_cabecera}',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'150',TEXTFONT,'Arial',LEFT, ABOVE); window.status='Impresión'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir.gif" border="0">
+			</a>
+	  </div></td>
+	</tr -->
+	
+	
+	
+	<!-- tr class="tabla_titulo_contenido">
+      <td width="550" height="20" class="borde_lista" valign="middle">&nbsp; Inventario F&iacute;sico de Sobres en B&oacute;veda</td>
+	  <td width="70" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&inv_sobres_boveda=acc" onMouseOver=" overlib('Imprimir el Inventario sobres en Bóveda',CAPTION,'Imprimir',CAPCOLOR,'{$acc_color_txt_cabecera}',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'150',TEXTFONT,'Arial',LEFT, ABOVE); window.status='Impresión'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir.gif" border="0">
+			</a>
+	  </div></td>
+	</tr -->
+	
+	<!-- tr class="tabla_titulo_contenido">
+      <td width="550" height="20" class="borde_lista" valign="middle">&nbsp; Fechas de Creaci&oacute;n de Propietarios y Carpetas</td>
+	  <td width="70" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&fechas_creacion_pc=acc" onMouseOver=" overlib('Imprimir el Inventario sobres en Bóveda',CAPTION,'Imprimir',CAPCOLOR,'{$acc_color_txt_cabecera}',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'150',TEXTFONT,'Arial',LEFT, ABOVE); window.status='Impresión'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir.gif" border="0">
+			</a>
+	  </div></td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido">
+      <td width="550" height="20" class="borde_lista" valign="middle">&nbsp; Historial de Carpetas</td>
+	  <td width="70" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&historial_carpetas=acc" onMouseOver=" overlib('Imprimir el Historial de las Carpetas',CAPTION,'Imprimir',CAPCOLOR,'{$acc_color_txt_cabecera}',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'150',TEXTFONT,'Arial',LEFT, ABOVE); window.status='Impresión'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/imprimir.gif" border="0">
+			</a>
+	  </div></td>
+	</tr -->
+	
+	<tr class="tabla_titulo_contenido">
+      <td width="550" height="20" class="borde_lista" valign="middle">&nbsp; Inventario F&iacute;sico Detallado de Carpetas (HTML)</td>
+	  <td width="70" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&inv_detallado_carpetas_html=acc" onMouseOver=" overlib('Imprimir el Inventario detallado de las Carpetas en html',CAPTION,'Imprimir' , ABOVE); window.status='Impresión'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/printer.png" border="0">
+			</a>
+			<input type = "radio" name = "radRepo" id = "repo01" value = "inv_detallado_carpetas_html" checked = "checked" />
+	  </div></td>
+	</tr>
+	{if $lst=='1'}
+	<tr class="tabla_titulo_contenido">
+      <td width="550" height="20" class="borde_lista" valign="middle">&nbsp; Reporte de Auditor&iacute;a</td>
+	  <td width="70" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&inv_auditoria=acc" onMouseOver=" overlib('Imprimir ',CAPTION,'Imprimir',CAPCOLOR,'{$acc_color_txt_cabecera}',CAPTIONSIZE,'2',BGCOLOR,'{$acc_color_cabecera}',CAPTIONFONT,'arial',FGCOLOR,'{$acc_color_contenido}',TEXTSIZE,'2',TEXTCOLOR,'{$acc_color_txt_contenido}',WIDTH,'150',TEXTFONT,'Arial',LEFT, ABOVE); return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/printer.png" border="0">
+			</a>
+			<input type = "radio" name = "radRepo" id = "repo02" value = "inv_auditoria"  />
+	  </div></td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido">
+      <td width="550" height="20" class="borde_lista" valign="middle">&nbsp; Listado de Carpetas con Documentos Observados</td>
+	  <td width="70" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&docsobs=acc" onMouseOver=" overlib('Listar Carpetas con documentos observados',CAPTION,'Imprimir' , ABOVE); window.status='Impresión'; return true" onMouseOut=" nd();   return true"> 
+				<img src="../imagenes/pass/printer.png" border="0">
+			</a>
+			<input type = "radio" name = "radRepo" id = "repo02" value = "docsobs"  />
+	  </div></td>
+	</tr>
+
+	<tr class="tabla_titulo_contenido">
+      <td width="550" height="20" class="borde_lista" valign="middle">&nbsp; Digitaci&oacute;n de Carpetas (Resumen)</td>
+	  <td width="70" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&avanceres=acc" onMouseOver=" overlib('Reporte resumen de digitación',CAPTION,'Imprimir' , ABOVE); window.status='Impresión'; return true" onMouseOut=" nd();   return true" target="_blank"> 
+				<img src="../imagenes/pass/printer.png" border="0">
+			</a>
+			<input type = "radio" name = "radRepo" id = "repo02" value = "avanceres"  />
+	  </div></td>
+	</tr>
+	
+	<tr class="tabla_titulo_contenido">
+      <td width="550" height="20" class="borde_lista" valign="middle">&nbsp; Digitaci&oacute;n de Carpetas (Detalle)</td>
+	  <td width="70" class="borde_lista"><div align="center">
+			<a href="{$carpeta_entrar}&avancedet=acc" onMouseOver=" overlib('Reporte detallado de digitación',CAPTION,'Imprimir' , ABOVE); window.status='Impresión'; return true" onMouseOut=" nd();   return true" target="_blank"> 
+				<img src="../imagenes/pass/printer.png" border="0">
+			</a>
+			<input type = "radio" name = "radRepo" id = "repo02" value = "avancedet"  />
+	  </div></td>
+	</tr>
+	{/if}
+</table>
+<br />
+<input type="submit" name="reporte_go" value="Ver Reporte" class="boton">
+</form>
+<br />
+
+</div>
+</body>
+</html>
